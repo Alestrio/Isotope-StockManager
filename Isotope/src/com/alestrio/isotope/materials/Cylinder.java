@@ -23,15 +23,11 @@ public class Cylinder implements Material {
 	}
 
 	@Override
-	public int getxDimension() {
+	public int getWidth() {
+		// TODO Auto-generated method stub
 		return 0;
 	}
-
-	@Override
-	public int getyDimension() {
-		return 0;
-	}
-
+	
 	@Override
 	public int getThickness() {
 		return 0;
@@ -43,7 +39,7 @@ public class Cylinder implements Material {
 	}
 
 	@Override
-	public int getRemainingLenght() {
+	public int getRemainingWeight() {
 		return 0;
 	}
 
@@ -51,5 +47,12 @@ public class Cylinder implements Material {
 	public String getHead() {
 		return null;
 	}
+
+	@Override
+	public int getInitialWeight() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 
 }

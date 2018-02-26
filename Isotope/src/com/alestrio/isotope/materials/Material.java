@@ -11,14 +11,14 @@ public interface Material {
 	public int getLength();
 	
 	//Rectangular pieces
-	public int getxDimension();
-	
-	public int getyDimension();
+	public int getWidth();
 	
 	public int getThickness();
 	
 	//3D printers spools
 	public String getType();
 	
-	public int getRemainingLenght();
+	public int getRemainingWeight();
+	
+	public int getInitialWeight();
 }
