@@ -5,11 +5,14 @@ public class Screw implements Material{
 	private String head = "";
 	private int diameter = 0;
 	private int length = 0;
+	private String type = "";
 	
-	public Screw(int a, int b, String c) {
+	public Screw(int a, int b, String c, String d) {
 		diameter = a;
 		length = b;
 		head = c;
+		type = d;
+		
 	}
 	
 	@Override
@@ -39,7 +42,7 @@ public class Screw implements Material{
 
 	@Override
 	public String getType() {
-		return null;
+		return type;
 	}
 
 	@Override
@@ -51,6 +54,12 @@ public class Screw implements Material{
 	public float getInitialWeight() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public String getColor() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

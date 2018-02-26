@@ -20,4 +20,6 @@ public interface Material {
 	public float getRemainingWeight();
 	
 	public float getInitialWeight();
+	
+	public String getColor();
 }

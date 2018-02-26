@@ -5,11 +5,13 @@ public class Cylinder implements Material {
 	private int diameter = 0;
 	private int length = 0;
 	private String type = "";
+	private String color = "";
 	
-	public Cylinder(int a, int b, String c) {
+	public Cylinder(int a, int b, String c, String d) {
 		diameter = a;
 		length = b;
 		type = c;
+		color = d;
 	}
 	
 	@Override
@@ -52,6 +54,11 @@ public class Cylinder implements Material {
 	public float getInitialWeight() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public String getColor() {
+		return color;
 	}
 
 

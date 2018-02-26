@@ -6,12 +6,14 @@ public class RectangularPiece implements Material{
 	private int width = 0;
 	private int thickness = 0;
 	private String type = "";
+	private String color = "";
 	
-	public RectangularPiece(int a, int b, int c, String d) {
+	public RectangularPiece(int a, int b, int c, String d, String e) {
 		length = a;
 		width = b;
 		thickness = c;
 		type = d;
+		color = e;
 	}
 	
 	@Override
@@ -58,6 +60,11 @@ public class RectangularPiece implements Material{
 	public float getInitialWeight() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public String getColor() {
+		return color;
 	}
 
 }

@@ -37,7 +37,6 @@ public class DB extends Thread{
 			Class.forName("org.postgresql.Driver");
 			return true;
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return false;
 		}
@@ -59,14 +58,31 @@ public class DB extends Thread{
 	}
 	//-------- SPOOL --------
 	public boolean eraseSpool(int id) {
-		return false;
+		ResultSet b;
+		boolean c = true;
+		try {
+			Statement state = conn.createStatement();
+			b = state.executeQuery("DELETE FROM bobines WHERE id="+id);
+			c = b.absolute(MAX_PRIORITY);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return c;
 	}
 
 	public boolean addSpool(FilamentSpool m) {
-		float spoolDiameter = m.getDiameter();
-		float initialWeight = m.getInitialWeight();
-		float remainingWeight = m.getRemainingWeight();
-		return false;
+		ResultSet b;
+		boolean d = true;
+		try {
+			Statement state = conn.createStatement();
+			b = state.executeQuery("INSERT INTO bobines (type, diameter, initialWeight, remainingWeight, color)"
+					+ " VALUES (" + m.getType() + ", " + m.getDiameter() + ", "+ m.getInitialWeight() +", "
+					+ m.getRemainingWeight() + ", " + m.getColor());
+			d = b.absolute(MAX_PRIORITY);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return d;
 		
 	}
 	
@@ -76,10 +92,10 @@ public class DB extends Thread{
 		boolean c = true;
 		try {
 			Statement state = conn.createStatement();
-			b = state.executeQuery("DELETE " + id + " FROM cylindres");
+			b = state.executeQuery("DELETE FROM cylinders WHERE id="+id);
 			c = b.absolute(MAX_PRIORITY);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 		return c;
@@ -91,37 +107,76 @@ public class DB extends Thread{
 		boolean d = true;
 		try {
 			Statement state = conn.createStatement();
-			b = state.executeQuery("INSERT INTO cylindres (diameter, length, type)"
+			b = state.executeQuery("INSERT INTO cylindres (diameter, length, color, type)"
 					+ " VALUES (" + c.getDiameter() + ", "+ c.getLength() +", "
-					+ c.getType());
+					+ c.getColor() + ", " + c.getType());
 			d = b.absolute(MAX_PRIORITY);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return false;
+		return d;
 		
 	}
 	
 	//-------- SCREWS --------
 	public boolean eraseScrew(int id) {
-		return false;
+		ResultSet b;
+		boolean c = true;
+		try {
+			Statement state = conn.createStatement();
+			b = state.executeQuery("DELETE FROM visserie WHERE id="+id);
+			c = b.absolute(MAX_PRIORITY);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return c;
 		
 	}
 	
 	public boolean addScrew(Screw s) {
-		return false;
+		ResultSet b;
+		boolean d = true;
+		try {
+			Statement state = conn.createStatement();
+			b = state.executeQuery("INSERT INTO cylindres (diameter, length, head, type)"
+					+ " VALUES (" + s.getDiameter() + ", "+ s.getLength() +", " + s.getHead() + ", " + s.getType());
+			d = b.absolute(MAX_PRIORITY);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return d;
 		
 	}
 	
 	//-------- RECTANGULAR PIECES ---------
-	public boolean eraseRectangularPiece(int id) {
-		return false;
+	public boolean eraseRectangularPiece(int id) { 
+		ResultSet b;
+		boolean c = true;
+		try {
+			Statement state = conn.createStatement();
+			b = state.executeQuery("DELETE FROM rectangles WHERE id="+id);
+			c = b.absolute(MAX_PRIORITY);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return c;
 		
 	}
 	
 	public boolean addRectangularPiece(RectangularPiece r) {
-		return false;
+		ResultSet b;
+		boolean d = true;
+		try {
+			Statement state = conn.createStatement();
+			b = state.executeQuery("INSERT INTO rectangles (length, width, thickness, type, color)"
+					+ " VALUES (" + r.getLength() + ", "+ r.getWidth() +", "
+					+ r.getThickness() + ", " + r.getType() + ", " + r.getColor());
+			d = b.absolute(MAX_PRIORITY);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return d;
 		
 	}
+
 }

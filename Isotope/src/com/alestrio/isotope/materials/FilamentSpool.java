@@ -6,12 +6,14 @@ public class FilamentSpool implements Material{
 	private int initialWeight = 0;
 	private int remainingWeight = 0;
 	private String type = "";
+	private String color = "";
 	
-	public FilamentSpool(float a,int b,int c,String d) {
+	public FilamentSpool(float a,int b,int c,String d, String e) {
 		diameter = a;
 		initialWeight = b;
 		remainingWeight = c;
 		type = d;
+		color = e;
 	}
 	
 	@Override
@@ -52,6 +54,11 @@ public class FilamentSpool implements Material{
 	@Override
 	public float getInitialWeight() {
 		return initialWeight;
+	}
+
+	@Override
+	public String getColor() {
+		return color;
 	}
 
 }
