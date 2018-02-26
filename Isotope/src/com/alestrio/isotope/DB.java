@@ -107,9 +107,9 @@ public class DB extends Thread{
 		boolean d = true;
 		try {
 			Statement state = conn.createStatement();
-			b = state.executeQuery("INSERT INTO cylindres (diameter, length, color, type)"
+			b = state.executeQuery("INSERT INTO cylindres (diameter, length, color, type, remainingLength)"
 					+ " VALUES (" + c.getDiameter() + ", "+ c.getLength() +", "
-					+ c.getColor() + ", " + c.getType());
+					+ c.getColor() + ", " + c.getType() + ", " + c.getRemainingLength());
 			d = b.absolute(MAX_PRIORITY);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -168,9 +168,10 @@ public class DB extends Thread{
 		boolean d = true;
 		try {
 			Statement state = conn.createStatement();
-			b = state.executeQuery("INSERT INTO rectangles (length, width, thickness, type, color)"
+			b = state.executeQuery("INSERT INTO rectangles (length, width, thickness, type, color, remainingLength, remainingWidth, remainingThickness)"
 					+ " VALUES (" + r.getLength() + ", "+ r.getWidth() +", "
-					+ r.getThickness() + ", " + r.getType() + ", " + r.getColor());
+					+ r.getThickness() + ", " + r.getType() + ", " + r.getColor() + ", " + r.getRemainingLength() + ", "
+					+ r.getRemainingWidth() + ", " + r.getRemainingThickness());
 			d = b.absolute(MAX_PRIORITY);
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -6,12 +6,14 @@ public class Cylinder implements Material {
 	private int length = 0;
 	private String type = "";
 	private String color = "";
+	private int remainingLength = 0;
 	
 	public Cylinder(int a, int b, String c, String d) {
 		diameter = a;
 		length = b;
 		type = c;
 		color = d;
+		remainingLength = length;
 	}
 	
 	@Override
@@ -59,6 +61,24 @@ public class Cylinder implements Material {
 	@Override
 	public String getColor() {
 		return color;
+	}
+
+	@Override
+	public int getRemainingLength() {
+		// TODO Auto-generated method stub
+		return remainingLength;
+	}
+
+	@Override
+	public int getRemainingWidth() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getRemainingThickness() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 

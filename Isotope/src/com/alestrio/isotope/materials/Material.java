@@ -9,10 +9,16 @@ public interface Material {
 	
 	public int getLength();
 	
+	public int getRemainingLength();
+	
 	//Rectangular pieces
 	public int getWidth();
 	
+	public int getRemainingWidth();
+	
 	public int getThickness();
+	
+	public int getRemainingThickness();
 	
 	//3D printers spools
 	public String getType();

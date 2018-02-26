@@ -62,5 +62,23 @@ public class Screw implements Material{
 		return null;
 	}
 
+	@Override
+	public int getRemainingLength() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getRemainingWidth() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getRemainingThickness() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 
 }
