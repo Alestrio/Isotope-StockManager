@@ -2,20 +2,18 @@ package com.alestrio.isotope;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import com.alestrio.isotope.materials.* ;
 
 public class DB extends Thread{
 	
 	private String url = "";
-	private String urlM = url+"bobines";
-	private String urlC = url+"cylindres";
-	private String urlS = url+"visserie";
-	private String urlR = url+"rectangles";
 	private String user = "";
 	private String pswd = "";
-	Connection connM, connC, connS, connR;
+	Connection conn;
 	
 	public DB(String a, String b, String c) {
 		url = a;
@@ -25,10 +23,7 @@ public class DB extends Thread{
 	
 	public boolean connect() {
 		try {
-			connM = DriverManager.getConnection(urlM, user, pswd);
-			connC = DriverManager.getConnection(urlC, user, pswd);
-			connS = DriverManager.getConnection(urlS, user, pswd);
-			connR = DriverManager.getConnection(urlR, user, pswd);
+			conn = DriverManager.getConnection(url, user, pswd);
 			return true;
 		}
 		catch (Exception e){
@@ -50,28 +45,19 @@ public class DB extends Thread{
 	
 	public boolean getConnectionState() {
 		boolean b = true;
-		boolean c = true;
-		boolean d = true;
-		boolean e = true;
 		try {
-			b = connM.isValid(MAX_PRIORITY);
-			c = connC.isValid(MAX_PRIORITY);
-			d = connS.isValid(MAX_PRIORITY);
-			e = connR.isValid(MAX_PRIORITY);
+			b = conn.isValid(MAX_PRIORITY);
 		} catch (SQLException f) {
 			f.printStackTrace();
 			b = false;
-			c = false;
-			d = false;
-			e = false;
 		}
 		
-		if(b && c && d && e)
+		if(b)
 			return true;
 		else
 			return false;
 	}
-	
+	//-------- SPOOL --------
 	public boolean eraseSpool(int id) {
 		return false;
 	}
@@ -84,16 +70,40 @@ public class DB extends Thread{
 		
 	}
 	
+	//-------- CYLINDERS --------
 	public boolean eraseCylinder(int id) {
-		return false;
+		ResultSet b;
+		boolean c = true;
+		try {
+			Statement state = conn.createStatement();
+			b = state.executeQuery("DELETE " + id + " FROM cylindres");
+			c = b.absolute(MAX_PRIORITY);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return c;
 		
 	}
 	
 	public boolean addCylinder(Cylinder c) {
+		ResultSet b;
+		boolean d = true;
+		try {
+			Statement state = conn.createStatement();
+			b = state.executeQuery("INSERT INTO cylindres (diameter, length, type)"
+					+ " VALUES (" + c.getDiameter() + ", "+ c.getLength() +", "
+					+ c.getType());
+			d = b.absolute(MAX_PRIORITY);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return false;
 		
 	}
 	
+	//-------- SCREWS --------
 	public boolean eraseScrew(int id) {
 		return false;
 		
@@ -104,6 +114,7 @@ public class DB extends Thread{
 		
 	}
 	
+	//-------- RECTANGULAR PIECES ---------
 	public boolean eraseRectangularPiece(int id) {
 		return false;
 		
