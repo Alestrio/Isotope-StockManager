@@ -18,7 +18,7 @@ public class Screw implements Material{
 	}
 
 	@Override
-	public int getDiameter() {
+	public float getDiameter() {
 		return diameter;
 	}
 
@@ -43,12 +43,12 @@ public class Screw implements Material{
 	}
 
 	@Override
-	public int getRemainingWeight() {
+	public float getRemainingWeight() {
 		return 0;
 	}
 
 	@Override
-	public int getInitialWeight() {
+	public float getInitialWeight() {
 		// TODO Auto-generated method stub
 		return 0;
 	}

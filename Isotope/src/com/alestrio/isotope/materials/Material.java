@@ -2,11 +2,10 @@ package com.alestrio.isotope.materials;
 
 public interface Material {
 	//Screws
-	
 	public String getHead();
 	
 	//Tubes or cylinders / screws
-	public int getDiameter();
+	public float getDiameter();
 	
 	public int getLength();
 	
@@ -18,7 +17,7 @@ public interface Material {
 	//3D printers spools
 	public String getType();
 	
-	public int getRemainingWeight();
+	public float getRemainingWeight();
 	
-	public int getInitialWeight();
+	public float getInitialWeight();
 }

@@ -2,12 +2,12 @@ package com.alestrio.isotope.materials;
 
 public class FilamentSpool implements Material{
 
-	private int diameter = 0;
+	private float diameter = 0;
 	private int initialWeight = 0;
 	private int remainingWeight = 0;
 	private String type = "";
 	
-	public FilamentSpool(int a,int b,int c,String d) {
+	public FilamentSpool(float a,int b,int c,String d) {
 		diameter = a;
 		initialWeight = b;
 		remainingWeight = c;
@@ -20,7 +20,7 @@ public class FilamentSpool implements Material{
 	}
 
 	@Override
-	public int getDiameter() {
+	public float getDiameter() {
 		return diameter;
 	}
 
@@ -45,12 +45,12 @@ public class FilamentSpool implements Material{
 	}
 
 	@Override
-	public int getRemainingWeight() {
+	public float getRemainingWeight() {
 		return remainingWeight;
 	}
 
 	@Override
-	public int getInitialWeight() {
+	public float getInitialWeight() {
 		return initialWeight;
 	}
 

@@ -20,7 +20,7 @@ public class RectangularPiece implements Material{
 	}
 
 	@Override
-	public int getDiameter() {
+	public float getDiameter() {
 		return 0;
 	}
 
@@ -49,13 +49,13 @@ public class RectangularPiece implements Material{
 	}
 
 	@Override
-	public int getRemainingWeight() {
+	public float getRemainingWeight() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int getInitialWeight() {
+	public float getInitialWeight() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
