@@ -70,14 +70,14 @@ public class DB extends Thread{
 		return c;
 	}
 
-	public boolean addSpool(FilamentSpool m) {
+	public boolean addSpool(FilamentSpool m, int qty) {
 		ResultSet b;
 		boolean d = true;
 		try {
 			Statement state = conn.createStatement();
-			b = state.executeQuery("INSERT INTO bobines (type, diameter, initialWeight, remainingWeight, color)"
+			b = state.executeQuery("INSERT INTO bobines (type, diameter, initialWeight, remainingWeight, color, qty)"
 					+ " VALUES (" + m.getType() + ", " + m.getDiameter() + ", "+ m.getInitialWeight() +", "
-					+ m.getRemainingWeight() + ", " + m.getColor());
+					+ m.getRemainingWeight() + ", " + m.getColor() + ", " + qty);
 			d = b.absolute(MAX_PRIORITY);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -102,14 +102,14 @@ public class DB extends Thread{
 		
 	}
 	
-	public boolean addCylinder(Cylinder c) {
+	public boolean addCylinder(Cylinder c, int qty) {
 		ResultSet b;
 		boolean d = true;
 		try {
 			Statement state = conn.createStatement();
-			b = state.executeQuery("INSERT INTO cylindres (diameter, length, color, type, remainingLength)"
+			b = state.executeQuery("INSERT INTO cylindres (diameter, length, color, type, remainingLength, qty)"
 					+ " VALUES (" + c.getDiameter() + ", "+ c.getLength() +", "
-					+ c.getColor() + ", " + c.getType() + ", " + c.getRemainingLength());
+					+ c.getColor() + ", " + c.getType() + ", " + c.getRemainingLength() + ", " + qty);
 			d = b.absolute(MAX_PRIORITY);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -133,13 +133,12 @@ public class DB extends Thread{
 		
 	}
 	
-	public boolean addScrew(Screw s) {
+	public boolean addScrew(Screw s, int qty) {
 		ResultSet b;
 		boolean d = true;
 		try {
 			Statement state = conn.createStatement();
-			b = state.executeQuery("INSERT INTO cylindres (diameter, length, head, type)"
-					+ " VALUES (" + s.getDiameter() + ", "+ s.getLength() +", " + s.getHead() + ", " + s.getType());
+			b = state.executeQuery("INSERT INTO visserie (diameter, length, head, type, color, qty) VALUES ("+s.getDiameter()+", "+s.getLength()+", '"+s.getHead()+"', '"+s.getType()+"', '"+s.getColor()+"', "+qty+")");
 			d = b.absolute(MAX_PRIORITY);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -163,15 +162,15 @@ public class DB extends Thread{
 		
 	}
 	
-	public boolean addRectangularPiece(RectangularPiece r) {
+	public boolean addRectangularPiece(RectangularPiece r, int qty) {
 		ResultSet b;
 		boolean d = true;
 		try {
 			Statement state = conn.createStatement();
-			b = state.executeQuery("INSERT INTO rectangles (length, width, thickness, type, color, remainingLength, remainingWidth, remainingThickness)"
+			b = state.executeQuery("INSERT INTO rectangles (length, width, thickness, type, color, remainingLength, remainingWidth, remainingThickness, qty)"
 					+ " VALUES (" + r.getLength() + ", "+ r.getWidth() +", "
 					+ r.getThickness() + ", " + r.getType() + ", " + r.getColor() + ", " + r.getRemainingLength() + ", "
-					+ r.getRemainingWidth() + ", " + r.getRemainingThickness());
+					+ r.getRemainingWidth() + ", " + r.getRemainingThickness() + ", " + qty);
 			d = b.absolute(MAX_PRIORITY);
 		} catch (SQLException e) {
 			e.printStackTrace();

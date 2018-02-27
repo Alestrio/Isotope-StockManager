@@ -6,12 +6,14 @@ public class Screw implements Material{
 	private int diameter = 0;
 	private int length = 0;
 	private String type = "";
+	private String color = "";
 	
-	public Screw(int a, int b, String c, String d) {
+	public Screw(int a, int b, String c, String d, String e) {
 		diameter = a;
 		length = b;
 		head = c;
 		type = d;
+		color = e;
 		
 	}
 	
@@ -59,7 +61,7 @@ public class Screw implements Material{
 	@Override
 	public String getColor() {
 		// TODO Auto-generated method stub
-		return null;
+		return color;
 	}
 
 	@Override
