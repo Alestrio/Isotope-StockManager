@@ -1,11 +1,19 @@
 **ISOTOPE**
+
 *Informations générales: *
+
 - Version actuelle : Hydrogène (H)
+
 - Types de consommables supportés :
+
 	- Visserie
+	
 	- Plaques
+	
 	- Cylindres
+	
 	- Bobines d'impression 3D
+	
 ---
 
 ## Comment contribuer ?
