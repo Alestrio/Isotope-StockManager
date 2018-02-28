@@ -1,24 +1,20 @@
 **ISOTOPE**
 
-*Informations générales: *
+## Informations générales:
 
 - Version actuelle : Hydrogène (H)
 
 - Types de consommables supportés :
-
 	- Visserie
-	
 	- Plaques
-	
 	- Cylindres
-	
 	- Bobines d'impression 3D
 	
 ---
 
 ## Comment contribuer ?
 
-- Par ajout de fonctionnalité ou correction de bugs (créer un pull request)
+- Par ajout de fonctionnalités ou corrections de bugs (créer un pull request)
 
 ---
 
@@ -28,7 +24,7 @@
 	- SceneBuilder
 	- e(fx)clipse
 	- JDBC avec les drivers PostgreSQL
-	- Une base de donnée SQL avec les templates donnés dans le dossier "db"
+	- Une base de données SQL avec les templates donnés dans le dossier "db"
 
 ---
 
@@ -37,7 +33,7 @@
 - En l'absence d'installateur, il faut placer le jar dans un dossier, puis rajouter le fichier donné dans le dossier "deployement",
 	de là, il faudra rentrer l'addresse du serveur dans le fichier susnommé.
 
-- Il faudra aussi installer un serveur PostGreSQL, et importer la base de donnée se trouvant dans le dossier "db".
+- Il faudra aussi installer un serveur PostGreSQL, et importer la base de données se trouvant dans le dossier "db".
 
 --
 
