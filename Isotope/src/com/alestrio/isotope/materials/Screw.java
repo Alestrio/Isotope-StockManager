@@ -3,12 +3,12 @@ package com.alestrio.isotope.materials;
 public class Screw implements Material{
 
 	private String head = "";
-	private int diameter = 0;
+	private float diameter = 0;
 	private int length = 0;
 	private String type = "";
 	private String color = "";
 	
-	public Screw(int a, int b, String c, String d, String e) {
+	public Screw(float a, int b, String c, String d, String e) {
 		diameter = a;
 		length = b;
 		head = c;

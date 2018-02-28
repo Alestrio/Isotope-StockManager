@@ -3,6 +3,7 @@ package com.alestrio.isotope;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -141,7 +142,6 @@ public class DB extends Thread{
 			b = state.executeQuery("INSERT INTO visserie (diameter, length, head, type, color, qty) VALUES ("+s.getDiameter()+", "+s.getLength()+", '"+s.getHead()+"', '"+s.getType()+"', '"+s.getColor()+"', "+qty+")");
 			d = b.absolute(MAX_PRIORITY);
 		} catch (SQLException e) {
-			e.printStackTrace();
 		}
 		return d;
 		
@@ -156,7 +156,6 @@ public class DB extends Thread{
 			b = state.executeQuery("DELETE FROM rectangles WHERE id="+id);
 			c = b.absolute(MAX_PRIORITY);
 		} catch (SQLException e) {
-			e.printStackTrace();
 		}
 		return c;
 		
@@ -173,10 +172,20 @@ public class DB extends Thread{
 					+ r.getRemainingWidth() + ", " + r.getRemainingThickness() + ", " + qty);
 			d = b.absolute(MAX_PRIORITY);
 		} catch (SQLException e) {
-			e.printStackTrace();
 		}
 		return d;
-		
 	}
-
+		
+	 public Screw[] getDbEntriesScrew() throws Exception{
+		 Screw[] tabScrew = null;
+		 int i = 0;
+	      Statement state = conn.createStatement();
+	      ResultSet result = state.executeQuery("SELECT * FROM visserie");
+	      while(result.next()){         
+	          tabScrew [i]= new Screw(result.getInt("diameter"), result.getInt("length"),
+	        		  result.getString("head"), result.getString("type"), result.getString("color"));
+	          i++;
+	      	}
+		return tabScrew;
+	 }
 }
