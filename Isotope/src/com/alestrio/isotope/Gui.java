@@ -12,8 +12,6 @@ public class Gui extends Application {
 	private BorderPane mainContainer;
 	
 	public static void main(String[] args) {
-		
-
 		Application.launch(args);
 	}
 

@@ -10,8 +10,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 
 public class IsotopeGuiEvents {
 	@FXML
@@ -34,17 +32,17 @@ public class IsotopeGuiEvents {
 	@FXML
 	private TableView<Screw> table;
 	@FXML
-	private TableColumn head;
+	private TableColumn<Screw, String> head;
 	@FXML
-	private TableColumn diameter;
+	private TableColumn<Screw, String> diameter;
 	@FXML
-	private TableColumn length;
+	private TableColumn<Screw, String> length;
 	@FXML
-	private TableColumn type;
+	private TableColumn<Screw, String> type;
 	@FXML
-	private TableColumn color;
+	private TableColumn<Screw, String> color;
 	@FXML
-	private TableColumn qty;
+	private TableColumn<Screw, String> qty;
 	
 	@FXML
 	void clickAddBtn() {
@@ -72,6 +70,10 @@ public class IsotopeGuiEvents {
 			    	data.add(new Screw (s[i].getDiameter(), s[i].getLength(), s[i].getHead(), s[i].getType(), s[i].getColor()));
 			    	i++;
 			    }
+			    table.setItems(data);
+			    
+			    
+			    
 		
 	}
 }

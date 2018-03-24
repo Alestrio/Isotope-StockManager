@@ -1,5 +1,7 @@
 package com.alestrio.isotope.materials;
 
+import java.util.Observer;
+
 public class FilamentSpool implements Material{
 
 	private float diameter = 0;
@@ -77,6 +79,24 @@ public class FilamentSpool implements Material{
 	public int getRemainingThickness() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public void addObserver(Observer obs) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeObserver() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void notifyObserver(String str) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

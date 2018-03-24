@@ -1,5 +1,7 @@
 package com.alestrio.isotope.materials;
 
+import java.util.Observer;
+
 public class RectangularPiece implements Material{
 
 	private int length = 0;
@@ -90,6 +92,24 @@ public class RectangularPiece implements Material{
 	public int getRemainingThickness() {
 		// TODO Auto-generated method stub
 		return remainingThickness;
+	}
+
+	@Override
+	public void addObserver(Observer obs) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeObserver() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void notifyObserver(String str) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

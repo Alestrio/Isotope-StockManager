@@ -1,6 +1,8 @@
 package com.alestrio.isotope.materials;
 
-public interface Material {
+import com.alestrio.isotope.observable.Observable;
+
+public interface Material extends Observable {
 	//Screws
 	public String getHead();
 	

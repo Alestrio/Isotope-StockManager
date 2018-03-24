@@ -1,5 +1,8 @@
 package com.alestrio.isotope.materials;
 
+import java.util.ArrayList;
+import java.util.Observer;
+
 public class Screw implements Material{
 
 	private String head = "";
@@ -7,6 +10,7 @@ public class Screw implements Material{
 	private int length = 0;
 	private String type = "";
 	private String color = "";
+	private ArrayList<Observer> observerList = new ArrayList<Observer>();
 	
 	public Screw(float a, int b, String c, String d, String e) {
 		diameter = a;
@@ -80,6 +84,25 @@ public class Screw implements Material{
 	public int getRemainingThickness() {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+	
+	
+	//observer pattern methods
+	@Override
+	public void addObserver(Observer obs) {
+		observerList.add(obs);
+	}
+
+	@Override
+	public void removeObserver() {
+		observerList = new ArrayList<Observer>();
+		
+	}
+
+	@Override
+	public void notifyObserver(String str) {
+		// TODO Auto-generated method stub
+		
 	}
 
 
