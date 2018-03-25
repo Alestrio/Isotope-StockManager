@@ -5,13 +5,13 @@ import javafx.beans.property.FloatProperty;
 import javafx.beans.property.StringProperty;
 
 public interface Material {
-	//Screws
-	String getHead();
+    //Screws
+    String getHead ();
 
     StringProperty getHeadProperty();
-	
-	//Tubes or cylinders / screws
-	float getDiameter();
+
+    //Tubes or cylinders / screws
+    float getDiameter ();
 
     FloatProperty getDiameterProperty();
 
@@ -23,7 +23,7 @@ public interface Material {
 
     FloatProperty getRemainingLengthProperty();
 
-	//Rectangular pieces
+    //Rectangular pieces
     float getWidth();
 
     FloatProperty getWidthProperty();
@@ -40,20 +40,20 @@ public interface Material {
 
     FloatProperty getRemainingThicknessProperty();
 
-	//3D printers spools
-	String getType();
+    //3D printers spools
+    String getType ();
 
     StringProperty getTypeProperty();
 
-	float getRemainingWeight();
+    float getRemainingWeight ();
 
     FloatProperty getRemainingWeightProperty();
 
-	float getInitialWeight();
+    float getInitialWeight ();
 
     FloatProperty getInitialWeightProperty();
 
-	String getColor();
+    String getColor ();
 
     StringProperty getColorProperty();
 }
