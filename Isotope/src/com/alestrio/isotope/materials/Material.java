@@ -1,33 +1,31 @@
 package com.alestrio.isotope.materials;
 
-import com.alestrio.isotope.observable.Observable;
-
-public interface Material extends Observable {
+public interface Material {
 	//Screws
-	public String getHead();
+	String getHead();
 	
 	//Tubes or cylinders / screws
-	public float getDiameter();
-	
-	public int getLength();
-	
-	public int getRemainingLength();
+	float getDiameter();
+
+	int getLength();
+
+	int getRemainingLength();
 	
 	//Rectangular pieces
-	public int getWidth();
-	
-	public int getRemainingWidth();
-	
-	public int getThickness();
-	
-	public int getRemainingThickness();
+	int getWidth();
+
+	int getRemainingWidth();
+
+	int getThickness();
+
+	int getRemainingThickness();
 	
 	//3D printers spools
-	public String getType();
-	
-	public float getRemainingWeight();
-	
-	public float getInitialWeight();
-	
-	public String getColor();
+	String getType();
+
+	float getRemainingWeight();
+
+	float getInitialWeight();
+
+	String getColor();
 }
