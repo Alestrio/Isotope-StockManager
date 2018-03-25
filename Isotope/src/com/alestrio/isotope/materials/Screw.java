@@ -2,10 +2,10 @@ package com.alestrio.isotope.materials;
 
 public class Screw implements Material{
 
-	private String head = "";
-	private float diameter = 0;
-	private int length = 0;
-	private String type = "";
+    private String head;
+    private float diameter;
+    private int length;
+    private String type;
 	private String color;
 
 	public Screw(float a, int b, String c, String d, String e) {

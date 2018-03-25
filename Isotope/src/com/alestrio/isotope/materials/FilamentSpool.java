@@ -2,11 +2,11 @@ package com.alestrio.isotope.materials;
 
 public class FilamentSpool implements Material{
 
-	private float diameter = 0;
-	private int initialWeight = 0;
-	private int remainingWeight = 0;
-	private String type = "";
-	private String color = "";
+	private float diameter;
+	private int initialWeight;
+	private int remainingWeight;
+	private String type;
+	private String color;
 	
 	public FilamentSpool(float a,int b,int c,String d, String e) {
 		diameter = a;

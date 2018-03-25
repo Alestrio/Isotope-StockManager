@@ -2,14 +2,14 @@ package com.alestrio.isotope.materials;
 
 public class RectangularPiece implements Material{
 
-	private int length = 0;
-	private int remainingLength = 0;
-	private int width = 0;
-	private int remainingWidth = 0;
-	private int thickness = 0;
-	private int remainingThickness = 0;
-	private String type = "";
-	private String color = "";
+	private int length;
+	private int remainingLength;
+	private int width;
+	private int remainingWidth;
+	private int thickness;
+	private int remainingThickness;
+	private String type;
+	private String color;
 	
 	public RectangularPiece(int a, int b, int c, String d, String e) {
 		length = a;

@@ -2,11 +2,11 @@ package com.alestrio.isotope.materials;
 
 public class Cylinder implements Material {
 
-	private int diameter = 0;
-	private int length = 0;
-	private String type = "";
-	private String color = "";
-	private int remainingLength = 0;
+    private int diameter;
+    private int length;
+    private String type;
+    private String color;
+    private int remainingLength;
 	
 	public Cylinder(int a, int b, String c, String d) {
 		diameter = a;
