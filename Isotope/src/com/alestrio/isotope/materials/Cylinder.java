@@ -1,16 +1,16 @@
 package com.alestrio.isotope.materials;
 
-import javafx.beans.property.FloatProperty;
+import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.StringProperty;
 
 public
 class Cylinder implements Material {
 
-    private FloatProperty  diameter;
-    private FloatProperty  length;
+    private DoubleProperty diameter;
+    private DoubleProperty length;
     private StringProperty type;
     private StringProperty color;
-    private FloatProperty  remainingLength;
+    private DoubleProperty remainingLength;
 
     public
     Cylinder (float a ,float b ,String c ,String d) {
@@ -23,45 +23,45 @@ class Cylinder implements Material {
 
     @Override
     public
-    float getDiameter () {
+    double getDiameter () {
         return diameter.get();
     }
     @Override
     public
-    FloatProperty getDiameterProperty () {
+    DoubleProperty getDiameterProperty () {
         return diameter;
     }
 
     @Override
     public
-    float getLength () {
+    double getLength () {
         return length.get();
     }
     @Override
     public
-    FloatProperty getLengthProperty () {
+    DoubleProperty getLengthProperty () {
         return length;
     }
 
     @Override
     public
-    float getWidth () {
+    double getWidth () {
         return 0;
     }
     @Override
     public
-    FloatProperty getWidthProperty () {
+    DoubleProperty getWidthProperty () {
         return null;
     }
 
     @Override
     public
-    float getThickness () {
+    double getThickness () {
         return 0;
     }
     @Override
     public
-    FloatProperty getThicknessProperty () {
+    DoubleProperty getThicknessProperty () {
         return null;
     }
 
@@ -78,12 +78,12 @@ class Cylinder implements Material {
 
     @Override
     public
-    float getRemainingWeight () {
+    double getRemainingWeight () {
         return 0;
     }
     @Override
     public
-    FloatProperty getRemainingWeightProperty () {
+    DoubleProperty getRemainingWeightProperty () {
         return null;
     }
 
@@ -100,12 +100,12 @@ class Cylinder implements Material {
 
     @Override
     public
-    float getInitialWeight () {
+    double getInitialWeight () {
         return 0;
     }
     @Override
     public
-    FloatProperty getInitialWeightProperty () {
+    DoubleProperty getInitialWeightProperty () {
         return null;
     }
 
@@ -122,34 +122,34 @@ class Cylinder implements Material {
 
     @Override
     public
-    float getRemainingLength () {
-        return remainingLength.get();
+    double getRemainingLength () {
+        return (float) remainingLength.get();
     }
     @Override
     public
-    FloatProperty getRemainingLengthProperty () {
+    DoubleProperty getRemainingLengthProperty () {
         return remainingLength;
     }
 
     @Override
     public
-    float getRemainingWidth () {
+    double getRemainingWidth () {
         return 0;
     }
     @Override
     public
-    FloatProperty getRemainingWidthProperty () {
+    DoubleProperty getRemainingWidthProperty () {
         return null;
     }
 
     @Override
     public
-    float getRemainingThickness () {
+    double getRemainingThickness () {
         return 0;
     }
     @Override
     public
-    FloatProperty getRemainingThicknessProperty () {
+    DoubleProperty getRemainingThicknessProperty () {
         return null;
     }
 }

@@ -1,16 +1,16 @@
 package com.alestrio.isotope.materials;
 
-import javafx.beans.property.FloatProperty;
+import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.StringProperty;
 
 public
 class FilamentSpool implements Material {
 
-    private FloatProperty diameter;
-    private FloatProperty initialWeight;
-    private FloatProperty initialLength;
-    private FloatProperty remainingWeight;
-    private FloatProperty remainingLength;
+    private DoubleProperty diameter;
+    private DoubleProperty initialWeight;
+    private DoubleProperty initialLength;
+    private DoubleProperty remainingWeight;
+    private DoubleProperty remainingLength;
     private StringProperty type;
     private StringProperty color;
 
@@ -37,42 +37,49 @@ class FilamentSpool implements Material {
 
     @Override
     public
-    float getDiameter () {
+    double getDiameter () {
         return diameter.get();
     }
 
     @Override
-    public FloatProperty getDiameterProperty() {
+    public
+    DoubleProperty getDiameterProperty () {
         return null;
     }
 
     @Override
-    public float getLength() {
+    public
+    double getLength () {
         return initialLength.get();
     }
 
     @Override
-    public FloatProperty getLengthProperty() {
+    public
+    DoubleProperty getLengthProperty () {
         return initialLength;
     }
 
     @Override
-    public float getWidth() {
+    public
+    double getWidth () {
         return 0;
     }
 
     @Override
-    public FloatProperty getWidthProperty() {
+    public
+    DoubleProperty getWidthProperty () {
         return null;
     }
 
     @Override
-    public float getThickness() {
+    public
+    double getThickness () {
         return 0;
     }
 
     @Override
-    public FloatProperty getThicknessProperty() {
+    public
+    DoubleProperty getThicknessProperty () {
         return null;
     }
 
@@ -86,20 +93,24 @@ class FilamentSpool implements Material {
     }
 
     @Override
-    public float getRemainingWeight() {
+    public
+    double getRemainingWeight () {
         return remainingWeight.get();
     }
     @Override
-    public FloatProperty getRemainingWeightProperty() {
+    public
+    DoubleProperty getRemainingWeightProperty () {
         return remainingWeight;
     }
 
     @Override
-    public float getInitialWeight() {
+    public
+    double getInitialWeight () {
         return initialWeight.get();
     }
     @Override
-    public FloatProperty getInitialWeightProperty() {
+    public
+    DoubleProperty getInitialWeightProperty () {
         return initialWeight;
     }
 
@@ -113,32 +124,36 @@ class FilamentSpool implements Material {
     }
 
     @Override
-    public float getRemainingLength() {
+    public
+    double getRemainingLength () {
         return remainingLength.get();
     }
     @Override
-    public FloatProperty getRemainingLengthProperty() {
+    public
+    DoubleProperty getRemainingLengthProperty () {
         return remainingLength;
     }
 
     @Override
     public
-    float getRemainingWidth () {
+    double getRemainingWidth () {
         return 0;
     }
 
     @Override
-    public FloatProperty getRemainingWidthProperty() {
+    public
+    DoubleProperty getRemainingWidthProperty () {
         return null;
     }
 
     @Override
     public
-    float getRemainingThickness () {
+    double getRemainingThickness () {
         return 0;
     }
     @Override
-    public FloatProperty getRemainingThicknessProperty() {
+    public
+    DoubleProperty getRemainingThicknessProperty () {
         return null;
     }
 }

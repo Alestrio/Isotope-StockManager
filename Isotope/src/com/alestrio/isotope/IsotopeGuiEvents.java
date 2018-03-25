@@ -3,10 +3,8 @@ package com.alestrio.isotope;
 import com.alestrio.isotope.materials.Screw;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 public class IsotopeGuiEvents {
 	@FXML
@@ -27,8 +25,20 @@ public class IsotopeGuiEvents {
 	private Button addBtn;
 	DB db = new DB("jdbc:postgresql://localhost:5432/isotope","postgres","postgres");
 	@FXML
-	private TableView<Screw> table;
-	
+    private TableView<Screw> table = new TableView<>();
+    @FXML
+    private TableColumn<Screw, String> headColumn;
+    @FXML
+    private TableColumn<Screw, String> diamColumn;
+    @FXML
+    private TableColumn<Screw, String> lengthColumn;
+    @FXML
+    private TableColumn<Screw, String> typeColumn;
+    @FXML
+    private TableColumn<Screw, String> colorColumn;
+    @FXML
+    private TableColumn<Screw, String> qtyColumn;
+
 	@FXML
 	void clickAddBtn() {
 		Screw v = new Screw(Integer.parseInt(txtDiameter.getText()),
@@ -49,14 +59,25 @@ public class IsotopeGuiEvents {
 	void clickConnectionBtn() {
 		System.out.println(db.getDriverState());
 		System.out.println(db.connect());
-	}
+        try {
+            showDbEntriesScrews();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 	private void showDbEntriesScrews() throws Exception {
-		int i = 0;
+        table.getColumns().clear();
 		ObservableList<Screw> ols = db.getDbEntriesScrew();
-		table.setItems(ols);
-			    
-			    
-		
-	}
+        table.setItems(ols);
+        headColumn.setCellValueFactory(new PropertyValueFactory<>("head"));
+        diamColumn.setCellValueFactory(new PropertyValueFactory<>("diameter"));
+        lengthColumn.setCellValueFactory(new PropertyValueFactory<>("length"));
+        typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
+        colorColumn.setCellValueFactory(new PropertyValueFactory<>("color"));
+        qtyColumn.setCellValueFactory(new PropertyValueFactory<>("qty"));
+        table.getColumns().addAll(headColumn ,diamColumn ,lengthColumn ,typeColumn ,colorColumn ,qtyColumn);
+        table.setVisible(true);
+
+    }
 }

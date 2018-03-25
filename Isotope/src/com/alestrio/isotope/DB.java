@@ -4,18 +4,24 @@ import com.alestrio.isotope.materials.Cylinder;
 import com.alestrio.isotope.materials.FilamentSpool;
 import com.alestrio.isotope.materials.RectangularPiece;
 import com.alestrio.isotope.materials.Screw;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class DB extends Thread{
-	
-	private String url = "";
-	private String user = "";
-	private String pswd = "";
-	Connection conn;
-	
-	public DB(String a, String b, String c) {
+
+    List<Screw>           list = new ArrayList<Screw>();
+    ObservableList<Screw> ols  = FXCollections.observableList(list);
+    private String     url;
+    private String     user;
+    private String     pswd;
+    private Connection conn;
+
+    DB (String a ,String b ,String c) {
 		url = a;
 		user = b;
 		pswd = c;
@@ -34,8 +40,8 @@ public class DB extends Thread{
 
 	public boolean getDriverState() {
 		try {
-			Class.forName("org.postgresql.Driver");
-			return true;
+            Class.forName("org.postgresql.Driver");
+            return true;
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 			return false;
@@ -173,21 +179,19 @@ public class DB extends Thread{
 	}
 
     public ObservableList<Screw> getDbEntriesScrew() throws Exception {
-        ObservableList<Screw> ols = null;
-		 Screw[] tabScrew = null;
 		 int i = 0;
+
 	      Statement state = conn.createStatement();
 	      ResultSet result = state.executeQuery("SELECT * FROM visserie");
-	      while(result.next()){         
-	          tabScrew [i]= new Screw(result.getInt("diameter"), result.getInt("length"),
-	        		  result.getString("head"), result.getString("type"), result.getString("color"));
-	          i++;
-	      	}
-        i = 0;
-        while (tabScrew.length < i) {
-            ols.add(tabScrew[i]);
-            i++;
+        while (result.next()) {
+            double a = result.getDouble("diameter");
+            double b = result.getDouble("length");
+            String c = result.getString("head");
+            String d = result.getString("type");
+            String e = result.getString("color");
+            ols.add(new Screw(a ,b ,c ,d ,e));
         }
+
         return ols;
 	 }
 }

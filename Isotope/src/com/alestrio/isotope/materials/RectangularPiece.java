@@ -1,17 +1,17 @@
 package com.alestrio.isotope.materials;
 
-import javafx.beans.property.FloatProperty;
+import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.StringProperty;
 
 public
 class RectangularPiece implements Material {
 
-    private FloatProperty length;
-    private FloatProperty remainingLength;
-    private FloatProperty width;
-    private FloatProperty remainingWidth;
-    private FloatProperty thickness;
-    private FloatProperty remainingThickness;
+    private DoubleProperty length;
+    private DoubleProperty remainingLength;
+    private DoubleProperty width;
+    private DoubleProperty remainingWidth;
+    private DoubleProperty thickness;
+    private DoubleProperty remainingThickness;
     private StringProperty type;
     private StringProperty color;
 
@@ -40,39 +40,45 @@ class RectangularPiece implements Material {
 
     @Override
     public
-    float getDiameter () {
+    double getDiameter () {
         return 0;
     }
     @Override
-    public FloatProperty getDiameterProperty() {
+    public
+    DoubleProperty getDiameterProperty () {
         return null;
     }
 
     @Override
-    public float getLength() {
+    public
+    double getLength () {
         return length.get();
     }
     @Override
-    public FloatProperty getLengthProperty() {
+    public
+    DoubleProperty getLengthProperty () {
         return length;
     }
 
     @Override
-    public float getWidth() {
+    public
+    double getWidth () {
         return width.get();
     }
     @Override
-    public FloatProperty getWidthProperty() {
+    public
+    DoubleProperty getWidthProperty () {
         return width;
     }
 
     @Override
     public
-    float getThickness () {
+    double getThickness () {
         return thickness.get();
     }
     @Override
-    public FloatProperty getThicknessProperty() {
+    public
+    DoubleProperty getThicknessProperty () {
         return thickness;
     }
 
@@ -88,21 +94,23 @@ class RectangularPiece implements Material {
 
     @Override
     public
-    float getRemainingWeight () {
+    double getRemainingWeight () {
         return 0;
     }
     @Override
-    public FloatProperty getRemainingWeightProperty() {
+    public
+    DoubleProperty getRemainingWeightProperty () {
         return null;
     }
 
     @Override
     public
-    float getInitialWeight () {
+    double getInitialWeight () {
         return 0;
     }
     @Override
-    public FloatProperty getInitialWeightProperty() {
+    public
+    DoubleProperty getInitialWeightProperty () {
         return null;
     }
 
@@ -116,29 +124,35 @@ class RectangularPiece implements Material {
     }
 
     @Override
-    public float getRemainingLength() {
+    public
+    double getRemainingLength () {
         return remainingLength.get();
     }
     @Override
-    public FloatProperty getRemainingLengthProperty() {
+    public
+    DoubleProperty getRemainingLengthProperty () {
         return remainingLength;
     }
 
     @Override
-    public float getRemainingWidth() {
+    public
+    double getRemainingWidth () {
         return remainingWidth.get();
     }
     @Override
-    public FloatProperty getRemainingWidthProperty() {
+    public
+    DoubleProperty getRemainingWidthProperty () {
         return remainingWidth;
     }
 
     @Override
-    public float getRemainingThickness() {
+    public
+    double getRemainingThickness () {
         return remainingThickness.get();
     }
     @Override
-    public FloatProperty getRemainingThicknessProperty() {
+    public
+    DoubleProperty getRemainingThicknessProperty () {
         return remainingThickness;
     }
 }
