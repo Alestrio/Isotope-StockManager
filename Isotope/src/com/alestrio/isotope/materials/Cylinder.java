@@ -1,67 +1,69 @@
 package com.alestrio.isotope.materials;
 
-import javafx.beans.property.FloatProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 
 public
 class Cylinder implements Material {
 
-    private FloatProperty  diameter;
-    private FloatProperty  length;
-    private StringProperty type;
-    private StringProperty color;
-    private FloatProperty  remainingLength;
+    private SimpleDoubleProperty  diameter        = new SimpleDoubleProperty();
+    private SimpleDoubleProperty  length          = new SimpleDoubleProperty();
+    private SimpleStringProperty  type            = new SimpleStringProperty();
+    private SimpleStringProperty  color           = new SimpleStringProperty();
+    private SimpleDoubleProperty  remainingLength = new SimpleDoubleProperty();
+    private SimpleIntegerProperty qty             = new SimpleIntegerProperty();
+
 
     public
-    Cylinder (float a ,float b ,String c ,String d) {
+    Cylinder (float a ,float b ,String c ,String d ,int e) {
         diameter.set(a);
         length.set(b);
         type.set(c);
         color.set(d);
+        qty.set(e);
         remainingLength = length;
     }
 
     @Override
     public
-    float getDiameter () {
+    double getDiameter () {
         return diameter.get();
     }
     @Override
     public
-    FloatProperty getDiameterProperty () {
+    DoubleProperty getDiameterProperty () {
         return diameter;
     }
 
     @Override
     public
-    float getLength () {
+    double getLength () {
         return length.get();
     }
     @Override
     public
-    FloatProperty getLengthProperty () {
+    DoubleProperty getLengthProperty () {
         return length;
     }
 
     @Override
     public
-    float getWidth () {
+    double getWidth () {
         return 0;
     }
     @Override
     public
-    FloatProperty getWidthProperty () {
+    DoubleProperty getWidthProperty () {
         return null;
     }
 
     @Override
     public
-    float getThickness () {
+    double getThickness () {
         return 0;
     }
     @Override
     public
-    FloatProperty getThicknessProperty () {
+    DoubleProperty getThicknessProperty () {
         return null;
     }
 
@@ -78,12 +80,12 @@ class Cylinder implements Material {
 
     @Override
     public
-    float getRemainingWeight () {
+    double getRemainingWeight () {
         return 0;
     }
     @Override
     public
-    FloatProperty getRemainingWeightProperty () {
+    DoubleProperty getRemainingWeightProperty () {
         return null;
     }
 
@@ -100,12 +102,12 @@ class Cylinder implements Material {
 
     @Override
     public
-    float getInitialWeight () {
+    double getInitialWeight () {
         return 0;
     }
     @Override
     public
-    FloatProperty getInitialWeightProperty () {
+    DoubleProperty getInitialWeightProperty () {
         return null;
     }
 
@@ -122,34 +124,46 @@ class Cylinder implements Material {
 
     @Override
     public
-    float getRemainingLength () {
-        return remainingLength.get();
+    int getQty () {
+        return qty.get();
+    }
+
+    @Override
+    public
+    IntegerProperty getQtyProperty () {
+        return qty;
+    }
+
+    @Override
+    public
+    double getRemainingLength () {
+        return (float) remainingLength.get();
     }
     @Override
     public
-    FloatProperty getRemainingLengthProperty () {
+    DoubleProperty getRemainingLengthProperty () {
         return remainingLength;
     }
 
     @Override
     public
-    float getRemainingWidth () {
+    double getRemainingWidth () {
         return 0;
     }
     @Override
     public
-    FloatProperty getRemainingWidthProperty () {
+    DoubleProperty getRemainingWidthProperty () {
         return null;
     }
 
     @Override
     public
-    float getRemainingThickness () {
+    double getRemainingThickness () {
         return 0;
     }
     @Override
     public
-    FloatProperty getRemainingThicknessProperty () {
+    DoubleProperty getRemainingThicknessProperty () {
         return null;
     }
 }

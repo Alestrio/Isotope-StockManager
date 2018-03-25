@@ -1,24 +1,25 @@
 package com.alestrio.isotope.materials;
 
-import javafx.beans.property.FloatProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 
 public
 class Screw implements Material {
 
-    private StringProperty head;
-    private FloatProperty diameter;
-    private FloatProperty length;
-    private StringProperty type;
-    private StringProperty color;
+    private SimpleStringProperty  head     = new SimpleStringProperty();
+    private SimpleDoubleProperty  diameter = new SimpleDoubleProperty();
+    private SimpleDoubleProperty  length   = new SimpleDoubleProperty();
+    private SimpleStringProperty  type     = new SimpleStringProperty();
+    private SimpleStringProperty  color    = new SimpleStringProperty();
+    private SimpleIntegerProperty qty      = new SimpleIntegerProperty();
 
     public
-    Screw (float a ,int b ,String c ,String d ,String e) {
+    Screw (double a ,double b ,String c ,String d ,String e ,int f) {
         diameter.set(a);
         length.set(b);
         head.set(c);
         type.set(d);
         color.set(e);
+        qty.set(f);
     }
 
     @Override
@@ -32,38 +33,46 @@ class Screw implements Material {
     }
 
     @Override
-    public float getDiameter() {
+    public
+    double getDiameter () {
         return diameter.get();
     }
     @Override
-    public FloatProperty getDiameterProperty() {
+    public
+    DoubleProperty getDiameterProperty () {
         return diameter;
     }
 
     @Override
-    public float getLength() {
+    public
+    double getLength () {
         return length.get();
     }
     @Override
-    public FloatProperty getLengthProperty() {
+    public
+    DoubleProperty getLengthProperty () {
         return length;
     }
 
     @Override
-    public float getWidth() {
+    public
+    double getWidth () {
         return 0;
     }
     @Override
-    public FloatProperty getWidthProperty() {
+    public
+    DoubleProperty getWidthProperty () {
         return null;
     }
 
     @Override
-    public float getThickness() {
+    public
+    double getThickness () {
         return 0;
     }
     @Override
-    public FloatProperty getThicknessProperty() {
+    public
+    DoubleProperty getThicknessProperty () {
         return null;
     }
 
@@ -78,21 +87,23 @@ class Screw implements Material {
 
     @Override
     public
-    float getRemainingWeight () {
+    double getRemainingWeight () {
         return 0;
     }
     @Override
-    public FloatProperty getRemainingWeightProperty() {
+    public
+    DoubleProperty getRemainingWeightProperty () {
         return null;
     }
 
     @Override
     public
-    float getInitialWeight () {
+    double getInitialWeight () {
         return 0;
     }
     @Override
-    public FloatProperty getInitialWeightProperty() {
+    public
+    DoubleProperty getInitialWeightProperty () {
         return null;
     }
 
@@ -106,33 +117,51 @@ class Screw implements Material {
     }
 
     @Override
-    public float getRemainingLength() {
+    public
+    int getQty () {
+        return qty.get();
+    }
+
+    @Override
+    public
+    IntegerProperty getQtyProperty () {
+        return qty;
+    }
+
+    @Override
+    public
+    double getRemainingLength () {
         return 0;
     }
 
     @Override
-    public FloatProperty getRemainingLengthProperty() {
+    public
+    DoubleProperty getRemainingLengthProperty () {
         return null;
     }
 
     @Override
     public
-    float getRemainingWidth () {
+    double getRemainingWidth () {
         return 0;
     }
 
     @Override
-    public FloatProperty getRemainingWidthProperty() {
+    public
+    DoubleProperty getRemainingWidthProperty () {
         return null;
     }
 
     @Override
     public
-    float getRemainingThickness () {
+    double getRemainingThickness () {
         return 0;
     }
     @Override
-    public FloatProperty getRemainingThicknessProperty() {
+    public
+    DoubleProperty getRemainingThicknessProperty () {
         return null;
     }
+
+
 }

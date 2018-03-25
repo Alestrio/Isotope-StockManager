@@ -1,7 +1,8 @@
 package com.alestrio.isotope.materials;
 
 
-import javafx.beans.property.FloatProperty;
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.StringProperty;
 
 public interface Material {
@@ -11,49 +12,53 @@ public interface Material {
     StringProperty getHeadProperty();
 
     //Tubes or cylinders / screws
-    float getDiameter ();
+    double getDiameter ();
 
-    FloatProperty getDiameterProperty();
+    DoubleProperty getDiameterProperty ();
 
-    float getLength();
+    double getLength ();
 
-    FloatProperty getLengthProperty();
+    DoubleProperty getLengthProperty ();
 
-    float getRemainingLength();
+    double getRemainingLength ();
 
-    FloatProperty getRemainingLengthProperty();
+    DoubleProperty getRemainingLengthProperty ();
 
     //Rectangular pieces
-    float getWidth();
+    double getWidth ();
 
-    FloatProperty getWidthProperty();
+    DoubleProperty getWidthProperty ();
 
-    float getRemainingWidth();
+    double getRemainingWidth ();
 
-    FloatProperty getRemainingWidthProperty();
+    DoubleProperty getRemainingWidthProperty ();
 
-    float getThickness();
+    double getThickness ();
 
-    FloatProperty getThicknessProperty();
+    DoubleProperty getThicknessProperty ();
 
-    float getRemainingThickness();
+    double getRemainingThickness ();
 
-    FloatProperty getRemainingThicknessProperty();
+    DoubleProperty getRemainingThicknessProperty ();
 
     //3D printers spools
     String getType ();
 
     StringProperty getTypeProperty();
 
-    float getRemainingWeight ();
+    double getRemainingWeight ();
 
-    FloatProperty getRemainingWeightProperty();
+    DoubleProperty getRemainingWeightProperty ();
 
-    float getInitialWeight ();
+    double getInitialWeight ();
 
-    FloatProperty getInitialWeightProperty();
+    DoubleProperty getInitialWeightProperty ();
 
     String getColor ();
 
     StringProperty getColorProperty();
+
+    int getQty ();
+
+    IntegerProperty getQtyProperty ();
 }
