@@ -1,13 +1,12 @@
 package com.alestrio.isotope;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-import java.sql.Statement;
+import com.alestrio.isotope.materials.Cylinder;
+import com.alestrio.isotope.materials.FilamentSpool;
+import com.alestrio.isotope.materials.RectangularPiece;
+import com.alestrio.isotope.materials.Screw;
+import javafx.collections.ObservableList;
 
-import com.alestrio.isotope.materials.* ;
+import java.sql.*;
 
 public class DB extends Thread{
 	
@@ -51,11 +50,8 @@ public class DB extends Thread{
 			f.printStackTrace();
 			b = false;
 		}
-		
-		if(b)
-			return true;
-		else
-			return false;
+
+        return b;
 	}
 	//-------- SPOOL --------
 	public boolean eraseSpool(int id) {
@@ -175,8 +171,9 @@ public class DB extends Thread{
 		}
 		return d;
 	}
-		
-	 public Screw[] getDbEntriesScrew() throws Exception{
+
+    public ObservableList<Screw> getDbEntriesScrew() throws Exception {
+        ObservableList<Screw> ols = null;
 		 Screw[] tabScrew = null;
 		 int i = 0;
 	      Statement state = conn.createStatement();
@@ -186,6 +183,11 @@ public class DB extends Thread{
 	        		  result.getString("head"), result.getString("type"), result.getString("color"));
 	          i++;
 	      	}
-		return tabScrew;
+        i = 0;
+        while (tabScrew.length < i) {
+            ols.add(tabScrew[i]);
+            i++;
+        }
+        return ols;
 	 }
 }

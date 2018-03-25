@@ -1,10 +1,12 @@
 package com.alestrio.isotope;
 
 import com.alestrio.isotope.materials.Screw;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 
 public class IsotopeGuiEvents {
 	@FXML
@@ -26,18 +28,6 @@ public class IsotopeGuiEvents {
 	DB db = new DB("jdbc:postgresql://localhost:5432/isotope","postgres","postgres");
 	@FXML
 	private TableView<Screw> table;
-	@FXML
-	private TableColumn<Screw, String> head;
-	@FXML
-	private TableColumn<Screw, String> diameter;
-	@FXML
-	private TableColumn<Screw, String> length;
-	@FXML
-	private TableColumn<Screw, String> type;
-	@FXML
-	private TableColumn<Screw, String> color;
-	@FXML
-	private TableColumn<Screw, String> qty;
 	
 	@FXML
 	void clickAddBtn() {
@@ -46,7 +36,12 @@ public class IsotopeGuiEvents {
 				txtHead.getText(),
 				txtType.getText(),
 				txtColor.getText());
-				if(db.addScrew(v, Integer.parseInt(txtQty.getText())))
+		try {
+			showDbEntriesScrews();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		if (db.addScrew(v, Integer.parseInt(txtQty.getText())))
 					txtArea.appendText("Reussi !");
 	}
 	
@@ -55,18 +50,11 @@ public class IsotopeGuiEvents {
 		System.out.println(db.getDriverState());
 		System.out.println(db.connect());
 	}
-	
-	void showDbEntriesScrews() throws Exception {
-		int i = 0;
-		Screw[] s = db.getDbEntriesScrew();
 
-		final ObservableList<Screw> data = FXCollections.observableArrayList();
-			    while(i < s.length) {
-			    	data.add(new Screw (s[i].getDiameter(), s[i].getLength(), s[i].getHead(), s[i].getType(), s[i].getColor()));
-			    	i++;
-			    }
-			    table.setItems(data);
-			    
+	private void showDbEntriesScrews() throws Exception {
+		int i = 0;
+		ObservableList<Screw> ols = db.getDbEntriesScrew();
+		table.setItems(ols);
 			    
 			    
 		

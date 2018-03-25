@@ -1,22 +1,25 @@
 package com.alestrio.isotope.materials;
 
+import javafx.beans.property.FloatProperty;
+import javafx.beans.property.StringProperty;
+
 public class RectangularPiece implements Material{
 
-	private int length;
-	private int remainingLength;
-	private int width;
-	private int remainingWidth;
-	private int thickness;
-	private int remainingThickness;
-	private String type;
-	private String color;
+    private FloatProperty length;
+    private FloatProperty remainingLength;
+    private FloatProperty width;
+    private FloatProperty remainingWidth;
+    private FloatProperty thickness;
+    private FloatProperty remainingThickness;
+    private StringProperty type;
+    private StringProperty color;
 	
 	public RectangularPiece(int a, int b, int c, String d, String e) {
-		length = a;
-		width = b;
-		thickness = c;
-		type = d;
-		color = e;
+        length.set(a);
+        width.set(b);
+        thickness.set(c);
+        type.set(d);
+        color.set(e);
 		
 		remainingLength = length;
 		remainingWidth = width;
@@ -28,67 +31,118 @@ public class RectangularPiece implements Material{
 		return null;
 	}
 
+    @Override
+    public StringProperty getHeadProperty() {
+        return null;
+    }
+
 	@Override
 	public float getDiameter() {
 		return 0;
 	}
 
+    @Override
+    public FloatProperty getDiameterProperty() {
+        return null;
+    }
+
 	@Override
-	public int getLength() {
-		// TODO Auto-generated method stub
+    public float getLength() {
+        return length.get();
+    }
+
+    @Override
+    public FloatProperty getLengthProperty() {
 		return length;
 	}
 
 	@Override
-	public int getWidth() {
-		// TODO Auto-generated method stub
+    public float getWidth() {
+        return width.get();
+    }
+
+    @Override
+    public FloatProperty getWidthProperty() {
 		return width;
 	}
 
 	@Override
-	public int getThickness() {
-		// TODO Auto-generated method stub
+    public float getThickness() {
+        return thickness.get();
+    }
+
+    @Override
+    public FloatProperty getThicknessProperty() {
 		return thickness;
 	}
 
 	@Override
 	public String getType() {
-		// TODO Auto-generated method stub
+        return type.get();
+    }
+
+    @Override
+    public StringProperty getTypeProperty() {
 		return type;
 	}
 
 	@Override
 	public float getRemainingWeight() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
+
+    @Override
+    public FloatProperty getRemainingWeightProperty() {
+        return null;
+    }
 
 	@Override
 	public float getInitialWeight() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
-	public String getColor() {
-		return color;
-	}
+    @Override
+    public FloatProperty getInitialWeightProperty() {
+        return null;
+    }
 
 	@Override
-	public int getRemainingLength() {
-		// TODO Auto-generated method stub
+    public String getColor() {
+        return color.get();
+    }
+
+    @Override
+    public StringProperty getColorProperty() {
+        return color;
+    }
+
+	@Override
+    public float getRemainingLength() {
+        return remainingLength.get();
+    }
+
+    @Override
+    public FloatProperty getRemainingLengthProperty() {
 		return remainingLength;
 	}
 
 	@Override
-	public int getRemainingWidth() {
-		// TODO Auto-generated method stub
+    public float getRemainingWidth() {
+        return remainingWidth.get();
+    }
+
+    @Override
+    public FloatProperty getRemainingWidthProperty() {
 		return remainingWidth;
 	}
 
 	@Override
-	public int getRemainingThickness() {
-		// TODO Auto-generated method stub
+    public float getRemainingThickness() {
+        return remainingThickness.get();
+    }
+
+    @Override
+    public FloatProperty getRemainingThicknessProperty() {
 		return remainingThickness;
 	}
 }
