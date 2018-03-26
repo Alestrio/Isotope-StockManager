@@ -18,8 +18,6 @@ public class Gui extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		primaryStage.setTitle("Isotope H");
-		
-		
 		Parent root = FXMLLoader.load(getClass().getResource("mainWindow.fxml"));
 		Scene scene = new Scene(root);
 		primaryStage.setScene(scene);

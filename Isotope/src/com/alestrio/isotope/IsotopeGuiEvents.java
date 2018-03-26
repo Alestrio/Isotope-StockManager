@@ -1,5 +1,6 @@
 package com.alestrio.isotope;
 
+import com.alestrio.isotope.materials.RectangularPiece;
 import com.alestrio.isotope.materials.Screw;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -20,27 +21,60 @@ public class IsotopeGuiEvents {
 	@FXML
 	private TextField txtQty;
 	@FXML
-	private TextArea txtArea;
+	private TextArea  txtArea;
 	@FXML
-	private Button addBtn;
+	private Button    addBtnScrew;
 	DB db = new DB("jdbc:postgresql://localhost:5432/isotope","postgres","postgres");
+
+	/*--- TABLE VIEW SCREW ---*/
 	@FXML
-    private TableView<Screw> table = new TableView<>();
-    @FXML
-    private TableColumn<Screw, String> headColumn;
-    @FXML
-    private TableColumn<Screw, String> diamColumn;
-    @FXML
-    private TableColumn<Screw, String> lengthColumn;
-    @FXML
-    private TableColumn<Screw, String> typeColumn;
-    @FXML
-    private TableColumn<Screw, String> colorColumn;
-    @FXML
-    private TableColumn<Screw, String> qtyColumn;
+	private TableView<Screw> tableS = new TableView<>();
+	@FXML
+	private TableColumn<Screw, String> headColumnS;
+	@FXML
+	private TableColumn<Screw, String> diamColumnS;
+	@FXML
+	private TableColumn<Screw, String> lengthColumnS;
+	@FXML
+	private TableColumn<Screw, String> typeColumnS;
+	@FXML
+	private TableColumn<Screw, String> colorColumnS;
+	@FXML
+	private TableColumn<Screw, String> qtyColumnS;
+
+	/*--- TABLEVIEW PLAQUES ---*/
+	@FXML
+	private TableView<RectangularPiece> tableR = new TableView<>();
+	@FXML
+	private TableColumn<RectangularPiece, String> typeColumnR;
+	@FXML
+	private TableColumn<RectangularPiece, String> lengthColumnR;
+	@FXML
+	private TableColumn<RectangularPiece, String> remainingLengthColumnR;
+	@FXML
+	private TableColumn<RectangularPiece, String> widthColumnR;
+	@FXML
+	private TableColumn<RectangularPiece, String> remainingWidthColumnR;
+	@FXML
+	private TableColumn<RectangularPiece, String> thicknessColumnR;
+	@FXML
+	private TableColumn<RectangularPiece, String> remainingThicknessColumnR;
+	@FXML
+	private TableColumn<RectangularPiece, String> colorColumnR;
+	@FXML
+	private TableColumn<RectangularPiece, String> qtyColumnR;
+
+	/*--- TABLEVIEW SPOOLS ---*/
+
+
+	/*--- TABLEVIEW CYLINDERS ---*/
+
+	/*-------------------------------------------------------------------*/
+
+	/*--- ADD BUTTONS ---*/
 
 	@FXML
-	void clickAddBtn() {
+	void clickAddBtnScrew () {
 		Screw v = new Screw(Integer.parseInt(txtDiameter.getText()),
 				Integer.parseInt(txtLength.getText()),
 				txtHead.getText(),
@@ -49,7 +83,29 @@ public class IsotopeGuiEvents {
                 Integer.parseInt(txtQty.getText()));
 					txtArea.appendText("Reussi !");
 	}
-	
+
+	void clickAddBtnSpool () {
+
+	}
+
+	void clickAddBtnRec () {
+
+	}
+
+	void clickAddBtnCylinder () {
+
+	}
+
+	/*--- MODIFY BUTTONS ---*/
+
+
+
+	/*--- ERASE BUTTONS ---*/
+
+
+
+	/*--- OTHER BUTTONS ---*/
+
 	@FXML
 	void clickConnectionBtn() {
 		System.out.println(db.getDriverState());
@@ -61,18 +117,35 @@ public class IsotopeGuiEvents {
         }
     }
 
-	private void showDbEntriesScrews() throws Exception {
-        table.getColumns().clear();
-		ObservableList<Screw> ols = db.getDbEntriesScrew();
-        table.setItems(ols);
-        headColumn.setCellValueFactory(new PropertyValueFactory<>("head"));
-        diamColumn.setCellValueFactory(new PropertyValueFactory<>("diameter"));
-        lengthColumn.setCellValueFactory(new PropertyValueFactory<>("length"));
-        typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
-        colorColumn.setCellValueFactory(new PropertyValueFactory<>("color"));
-        qtyColumn.setCellValueFactory(new PropertyValueFactory<>("qty"));
-        table.getColumns().addAll(headColumn ,diamColumn ,lengthColumn ,typeColumn ,colorColumn ,qtyColumn);
-        table.setVisible(true);
+	/*--- SHOWDBENTRIES... ---*/
 
-    }
+	private void showDbEntriesScrews() throws Exception {
+		tableS.getColumns().clear();
+		ObservableList<Screw> ols = db.getDbEntriesScrew();
+		tableS.setItems(ols);
+		headColumnS.setCellValueFactory(new PropertyValueFactory<>("head"));
+		diamColumnS.setCellValueFactory(new PropertyValueFactory<>("diameter"));
+		lengthColumnS.setCellValueFactory(new PropertyValueFactory<>("length"));
+		typeColumnS.setCellValueFactory(new PropertyValueFactory<>("type"));
+		colorColumnS.setCellValueFactory(new PropertyValueFactory<>("color"));
+		qtyColumnS.setCellValueFactory(new PropertyValueFactory<>("qty"));
+		tableS.getColumns().addAll(headColumnS ,diamColumnS ,lengthColumnS ,typeColumnS ,colorColumnS ,qtyColumnS);
+		tableS.setVisible(true);
+
+	}
+
+	private
+	void showDbEntriesRec () {
+
+	}
+
+	private
+	void showDbEntriesCylinders () {
+
+	}
+
+	private
+	void showDbEntriesSpool () {
+
+	}
 }
