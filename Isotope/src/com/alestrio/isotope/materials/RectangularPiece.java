@@ -16,17 +16,16 @@ class RectangularPiece implements Material {
     private SimpleIntegerProperty qty   = new SimpleIntegerProperty();
 
     public
-    RectangularPiece (int a ,int b ,int c ,String d ,String e ,int f) {
+    RectangularPiece (double a ,double b ,double c ,String d ,String e ,int f ,double g ,double h ,double i) {
         length.set(a);
         width.set(b);
         thickness.set(c);
         type.set(d);
         color.set(e);
         qty.set(f);
-
-        remainingLength = length;
-        remainingWidth = width;
-        remainingThickness = thickness;
+        remainingLength.set(g);
+        remainingWidth.set(h);
+        remainingThickness.set(i);
     }
 
     @Override

@@ -72,26 +72,37 @@ public class DB extends Thread{
 		return c;
 	}
 
-	public boolean addSpool(FilamentSpool m, int qty) {
+	public
+	boolean addSpool (FilamentSpool m) {
 		ResultSet b;
 		boolean d = true;
 		try {
 			Statement state = conn.createStatement();
-			b = state.executeQuery("INSERT INTO bobines (type, diameter, initialWeight, remainingWeight, color, qty)"
-					+ " VALUES (" + m.getType() + ", " + m.getDiameter() + ", "+ m.getInitialWeight() +", "
-					+ m.getRemainingWeight() + ", " + m.getColor() + ", " + qty);
+			b = state.executeQuery("INSERT INTO bobines (type, diameter, initialweight, remainingweight, color)"
+					+ " VALUES ('" + m.getType() + "', " + m.getDiameter() + ", " + m.getInitialWeight() + ", "
+					+ m.getRemainingWeight() + ", '" + m.getColor() + "')");
 			d = b.absolute(MAX_PRIORITY);
 		} catch (SQLException e) {
-			e.printStackTrace();
 		}
 		return d;
 		
 	}
 
     public
-    ObservableList<FilamentSpool> getDbEntriesSpool () {
-        List<FilamentSpool>           list = new ArrayList<>();
-        ObservableList<FilamentSpool> olf  = FXCollections.observableList(list);
+	ObservableList<FilamentSpool> getDbEntriesSpool () throws Exception {
+        List<FilamentSpool>           list   = new ArrayList<>();
+        ObservableList<FilamentSpool> olf    = FXCollections.observableList(list);
+		Statement                     state  = conn.createStatement();
+		ResultSet                     result = state.executeQuery("SELECT * FROM bobines");
+
+		while (result.next()) {
+			double a = result.getDouble("diameter");
+			double b = result.getDouble("initialweight");
+			double c = result.getDouble("remainingweight");
+			String d = result.getString("type");
+			String e = result.getString("color");
+			olf.add(new FilamentSpool(a ,b ,c ,d ,e));
+		}
         return olf;
     }
 	
@@ -128,9 +139,21 @@ public class DB extends Thread{
 	}
 
     public
-    ObservableList<Cylinder> getDbEntriesCylinders () {
-        List<Cylinder>           list = new ArrayList<>();
-        ObservableList<Cylinder> olc  = FXCollections.observableList(list);
+	ObservableList<Cylinder> getDbEntriesCylinders () throws Exception {
+        List<Cylinder>           list   = new ArrayList<>();
+        ObservableList<Cylinder> olc    = FXCollections.observableList(list);
+		Statement                state  = conn.createStatement();
+		ResultSet                result = state.executeQuery("SELECT * FROM cylindres");
+
+		while (result.next()) {
+			double a = result.getDouble("diameter");
+			double b = result.getDouble("length");
+			String c = result.getString("type");
+			String d = result.getString("color");
+			int    e = result.getInt("qty");
+			double f = result.getDouble("remainingLength");
+			olc.add(new Cylinder(a ,b ,c ,d ,e ,f));
+		}
         return olc;
     }
 	
@@ -186,20 +209,13 @@ public class DB extends Thread{
     }
 	
 	//-------- RECTANGULAR PIECES ---------
-	public boolean eraseRectangularPiece(int id) { 
-		ResultSet b;
-		boolean c = true;
-		try {
-			Statement state = conn.createStatement();
-			b = state.executeQuery("DELETE FROM rectangles WHERE id="+id);
-			c = b.absolute(MAX_PRIORITY);
-		} catch (SQLException e) {
-		}
-		return c;
+	public
+	void eraseRectangularPiece (RectangularPiece r) {
 		
 	}
-	
-	public boolean addRectangularPiece(RectangularPiece r, int qty) {
+
+	public
+	boolean addRectangularPiece (RectangularPiece r) {
 		ResultSet b;
 		boolean d = true;
 		try {
@@ -207,7 +223,7 @@ public class DB extends Thread{
 			b = state.executeQuery("INSERT INTO rectangles (length, width, thickness, type, color, remainingLength, remainingWidth, remainingThickness, qty)"
 					+ " VALUES (" + r.getLength() + ", "+ r.getWidth() +", "
 					+ r.getThickness() + ", " + r.getType() + ", " + r.getColor() + ", " + r.getRemainingLength() + ", "
-					+ r.getRemainingWidth() + ", " + r.getRemainingThickness() + ", " + qty);
+					+ r.getRemainingWidth() + ", " + r.getRemainingThickness() + ", " + r.getQty());
 			d = b.absolute(MAX_PRIORITY);
 		} catch (SQLException e) {
 		}
@@ -215,9 +231,25 @@ public class DB extends Thread{
 	}
 
     public
-    ObservableList<RectangularPiece> getDbEntriesRecPieces () {
-        List<RectangularPiece>           list = new ArrayList<>();
-        ObservableList<RectangularPiece> olr  = FXCollections.observableList(list);
+	ObservableList<RectangularPiece> getDbEntriesRecPieces () throws Exception {
+        List<RectangularPiece>           list   = new ArrayList<>();
+        ObservableList<RectangularPiece> olr    = FXCollections.observableList(list);
+		Statement                        state  = conn.createStatement();
+		ResultSet                        result = state.executeQuery("SELECT * FROM rectangles");
+
+		while (result.next()) {
+			double a = result.getDouble("length");
+			double b = result.getDouble("width");
+			double c = result.getDouble("thickness");
+			String d = result.getString("type");
+			String e = result.getString("color");
+			int    f = result.getInt("qty");
+			double g = result.getDouble("remainingLength");
+			double h = result.getDouble("remainingWidth");
+			double i = result.getDouble("remainingThickness");
+			olr.add(new RectangularPiece(a ,b ,c ,d ,e ,f ,g ,h ,i));
+		}
+
         return olr;
     }
 }

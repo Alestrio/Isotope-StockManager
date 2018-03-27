@@ -7,23 +7,18 @@ class FilamentSpool implements Material {
 
     private SimpleDoubleProperty  diameter        = new SimpleDoubleProperty();
     private SimpleDoubleProperty  initialWeight   = new SimpleDoubleProperty();
-    private SimpleDoubleProperty  initialLength   = new SimpleDoubleProperty();
     private SimpleDoubleProperty  remainingWeight = new SimpleDoubleProperty();
-    private SimpleDoubleProperty  remainingLength = new SimpleDoubleProperty();
     private SimpleStringProperty  type            = new SimpleStringProperty();
     private SimpleStringProperty  color           = new SimpleStringProperty();
     private SimpleIntegerProperty qty             = new SimpleIntegerProperty();
 
     public
-    FilamentSpool (float a ,float b ,float c ,String d ,String e ,float f ,float g ,int h) {
+    FilamentSpool (double a ,double b ,double c ,String d ,String e) {
         diameter.set(a);
         initialWeight.set(b);
         remainingWeight.set(c);
         type.set(d);
         color.set(e);
-        initialLength.set(f);
-        remainingLength.set(g);
-        qty.set(h);
     }
 
     @Override
@@ -52,13 +47,13 @@ class FilamentSpool implements Material {
     @Override
     public
     double getLength () {
-        return initialLength.get();
+        return 0;
     }
 
     @Override
     public
     DoubleProperty getLengthProperty () {
-        return initialLength;
+        return null;
     }
 
     @Override
@@ -140,12 +135,12 @@ class FilamentSpool implements Material {
     @Override
     public
     double getRemainingLength () {
-        return remainingLength.get();
+        return 0;
     }
     @Override
     public
     DoubleProperty getRemainingLengthProperty () {
-        return remainingLength;
+        return null;
     }
 
     @Override

@@ -14,13 +14,13 @@ class Cylinder implements Material {
 
 
     public
-    Cylinder (float a ,float b ,String c ,String d ,int e) {
+    Cylinder (double a ,double b ,String c ,String d ,int e ,double f) {
         diameter.set(a);
         length.set(b);
         type.set(c);
         color.set(d);
         qty.set(e);
-        remainingLength = length;
+        remainingLength.set(f);
     }
 
     @Override

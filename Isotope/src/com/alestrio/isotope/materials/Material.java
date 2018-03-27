@@ -61,4 +61,6 @@ public interface Material {
     int getQty ();
 
     IntegerProperty getQtyProperty ();
+
+
 }
