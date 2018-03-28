@@ -220,12 +220,13 @@ public class DB extends Thread{
 		boolean d = true;
 		try {
 			Statement state = conn.createStatement();
-			b = state.executeQuery("INSERT INTO rectangles (length, width, thickness, type, color, remainingLength, remainingWidth, remainingThickness, qty)"
+			b = state.executeQuery("INSERT INTO rectangles (length, width, thickness, type, color, remainingLength, remainingWidth, remainingThickness)"
 					+ " VALUES (" + r.getLength() + ", "+ r.getWidth() +", "
-					+ r.getThickness() + ", " + r.getType() + ", " + r.getColor() + ", " + r.getRemainingLength() + ", "
-					+ r.getRemainingWidth() + ", " + r.getRemainingThickness() + ", " + r.getQty());
+					+ r.getThickness() + ", '" + r.getType() + "', '" + r.getColor() + "', " + r.getRemainingLength() + ", "
+					+ r.getRemainingWidth() + ", " + r.getRemainingThickness() + ") ");
 			d = b.absolute(MAX_PRIORITY);
 		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		return d;
 	}
@@ -243,11 +244,10 @@ public class DB extends Thread{
 			double c = result.getDouble("thickness");
 			String d = result.getString("type");
 			String e = result.getString("color");
-			int    f = result.getInt("qty");
 			double g = result.getDouble("remainingLength");
 			double h = result.getDouble("remainingWidth");
 			double i = result.getDouble("remainingThickness");
-			olr.add(new RectangularPiece(a ,b ,c ,d ,e ,f ,g ,h ,i));
+			olr.add(new RectangularPiece(a ,b ,c ,d ,e ,g ,h ,i));
 		}
 
         return olr;

@@ -5,24 +5,22 @@ import javafx.beans.property.*;
 public
 class RectangularPiece implements Material {
 
-    private SimpleDoubleProperty length = new SimpleDoubleProperty();
-    private SimpleDoubleProperty remainingLength;
-    private SimpleDoubleProperty width = new SimpleDoubleProperty();
-    private SimpleDoubleProperty remainingWidth;
-    private SimpleDoubleProperty thickness = new SimpleDoubleProperty();
-    private SimpleDoubleProperty remainingThickness;
-    private SimpleStringProperty  type  = new SimpleStringProperty();
-    private SimpleStringProperty  color = new SimpleStringProperty();
-    private SimpleIntegerProperty qty   = new SimpleIntegerProperty();
+    private SimpleDoubleProperty length             = new SimpleDoubleProperty();
+    private SimpleDoubleProperty remainingLength    = new SimpleDoubleProperty();
+    private SimpleDoubleProperty width              = new SimpleDoubleProperty();
+    private SimpleDoubleProperty remainingWidth     = new SimpleDoubleProperty();
+    private SimpleDoubleProperty thickness          = new SimpleDoubleProperty();
+    private SimpleDoubleProperty remainingThickness = new SimpleDoubleProperty();
+    private SimpleStringProperty type               = new SimpleStringProperty();
+    private SimpleStringProperty color              = new SimpleStringProperty();
 
     public
-    RectangularPiece (double a ,double b ,double c ,String d ,String e ,int f ,double g ,double h ,double i) {
+    RectangularPiece (double a ,double b ,double c ,String d ,String e ,double g ,double h ,double i) {
         length.set(a);
         width.set(b);
         thickness.set(c);
         type.set(d);
         color.set(e);
-        qty.set(f);
         remainingLength.set(g);
         remainingWidth.set(h);
         remainingThickness.set(i);
@@ -126,13 +124,13 @@ class RectangularPiece implements Material {
     @Override
     public
     int getQty () {
-        return qty.get();
+        return 0;
     }
 
     @Override
     public
     IntegerProperty getQtyProperty () {
-        return qty;
+        return null;
     }
 
     @Override
