@@ -5,12 +5,12 @@ import javafx.beans.property.*;
 public
 class FilamentSpool implements Material {
 
-    private SimpleDoubleProperty  diameter        = new SimpleDoubleProperty();
-    private SimpleDoubleProperty  initialWeight   = new SimpleDoubleProperty();
-    private SimpleDoubleProperty  remainingWeight = new SimpleDoubleProperty();
-    private SimpleStringProperty  type            = new SimpleStringProperty();
-    private SimpleStringProperty  color           = new SimpleStringProperty();
-    private SimpleIntegerProperty qty             = new SimpleIntegerProperty();
+    private final SimpleDoubleProperty  diameter        = new SimpleDoubleProperty();
+    private final SimpleDoubleProperty  initialWeight   = new SimpleDoubleProperty();
+    private final SimpleDoubleProperty  remainingWeight = new SimpleDoubleProperty();
+    private final SimpleStringProperty  type            = new SimpleStringProperty();
+    private final SimpleStringProperty  color           = new SimpleStringProperty();
+    private final SimpleIntegerProperty qty             = new SimpleIntegerProperty();
 
     public
     FilamentSpool (double a ,double b ,double c ,String d ,String e) {

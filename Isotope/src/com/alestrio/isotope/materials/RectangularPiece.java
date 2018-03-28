@@ -5,14 +5,14 @@ import javafx.beans.property.*;
 public
 class RectangularPiece implements Material {
 
-    private SimpleDoubleProperty length             = new SimpleDoubleProperty();
-    private SimpleDoubleProperty remainingLength    = new SimpleDoubleProperty();
-    private SimpleDoubleProperty width              = new SimpleDoubleProperty();
-    private SimpleDoubleProperty remainingWidth     = new SimpleDoubleProperty();
-    private SimpleDoubleProperty thickness          = new SimpleDoubleProperty();
-    private SimpleDoubleProperty remainingThickness = new SimpleDoubleProperty();
-    private SimpleStringProperty type               = new SimpleStringProperty();
-    private SimpleStringProperty color              = new SimpleStringProperty();
+    private final SimpleDoubleProperty length             = new SimpleDoubleProperty();
+    private final SimpleDoubleProperty remainingLength    = new SimpleDoubleProperty();
+    private final SimpleDoubleProperty width              = new SimpleDoubleProperty();
+    private final SimpleDoubleProperty remainingWidth     = new SimpleDoubleProperty();
+    private final SimpleDoubleProperty thickness          = new SimpleDoubleProperty();
+    private final SimpleDoubleProperty remainingThickness = new SimpleDoubleProperty();
+    private final SimpleStringProperty type               = new SimpleStringProperty();
+    private final SimpleStringProperty color              = new SimpleStringProperty();
 
     public
     RectangularPiece (double a ,double b ,double c ,String d ,String e ,double g ,double h ,double i) {

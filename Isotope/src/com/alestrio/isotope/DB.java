@@ -14,12 +14,13 @@ import java.util.List;
 
 public class DB extends Thread{
 
-    private String     url;
-    private String     user;
-    private String     pswd;
-    private Connection conn;
+	private final String     url;
+	private final String     user;
+	private final String     pswd;
+	private       Connection conn;
 
-    DB (String a ,String b ,String c) {
+	public
+	DB (String a ,String b ,String c) {
 		url = a;
 		user = b;
 		pswd = c;
@@ -47,7 +48,7 @@ public class DB extends Thread{
 	}
 	
 	public boolean getConnectionState() {
-		boolean b = true;
+		boolean b;
 		try {
 			b = conn.isValid(MAX_PRIORITY);
 		} catch (SQLException f) {
@@ -83,6 +84,7 @@ public class DB extends Thread{
 					+ m.getRemainingWeight() + ", '" + m.getColor() + "')");
 			d = b.absolute(MAX_PRIORITY);
 		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		return d;
 		
@@ -181,6 +183,7 @@ public class DB extends Thread{
             b = state.executeQuery("INSERT INTO visserie (diameter, length, head, type, color, qty) VALUES (" + s.getDiameter() + ", " + s.getLength() + ", '" + s.getHead() + "', '" + s.getType() + "', '" + s.getColor() + "', " + s.getQty() + ")");
 			d = b.absolute(MAX_PRIORITY);
 		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		return d;
 		
@@ -190,7 +193,7 @@ public class DB extends Thread{
     ObservableList<Screw> getDbEntriesScrew () throws Exception {
         int i = 0;
 
-        List<Screw>           list = new ArrayList<Screw>();
+		List<Screw>           list = new ArrayList<>();
         ObservableList<Screw> ols  = FXCollections.observableList(list);
 
         Statement state  = conn.createStatement();

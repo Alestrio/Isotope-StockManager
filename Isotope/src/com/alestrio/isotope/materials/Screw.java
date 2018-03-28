@@ -5,12 +5,12 @@ import javafx.beans.property.*;
 public
 class Screw implements Material {
 
-    private SimpleStringProperty  head     = new SimpleStringProperty();
-    private SimpleDoubleProperty  diameter = new SimpleDoubleProperty();
-    private SimpleDoubleProperty  length   = new SimpleDoubleProperty();
-    private SimpleStringProperty  type     = new SimpleStringProperty();
-    private SimpleStringProperty  color    = new SimpleStringProperty();
-    private SimpleIntegerProperty qty      = new SimpleIntegerProperty();
+    private final SimpleStringProperty  head     = new SimpleStringProperty();
+    private final SimpleDoubleProperty  diameter = new SimpleDoubleProperty();
+    private final SimpleDoubleProperty  length   = new SimpleDoubleProperty();
+    private final SimpleStringProperty  type     = new SimpleStringProperty();
+    private final SimpleStringProperty  color    = new SimpleStringProperty();
+    private final SimpleIntegerProperty qty      = new SimpleIntegerProperty();
 
     public
     Screw (double a ,double b ,String c ,String d ,String e ,int f) {

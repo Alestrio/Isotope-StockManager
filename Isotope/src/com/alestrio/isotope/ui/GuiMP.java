@@ -1,4 +1,4 @@
-package com.alestrio.isotope;
+package com.alestrio.isotope.ui;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -11,19 +11,19 @@ public
 class GuiMP extends Application {
 
 	private BorderPane mainContainer;
-	
-	public static void main(String[] args) {
-		Application.launch(args);
-	}
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		primaryStage.setTitle("Isotope H");
-		Parent root  = FXMLLoader.load(getClass().getResource("IsotopeLauncher.fxml"));
+        Parent root  = FXMLLoader.load(getClass().getResource("IsotopeMP.fxml"));
 		Scene  scene = new Scene(root);
 		primaryStage.setScene(scene);
 		primaryStage.show();
+    }
 
+    public
+    void launch () {
+        Application.launch();
 	}
 
 

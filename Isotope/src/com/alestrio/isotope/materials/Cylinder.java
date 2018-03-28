@@ -5,12 +5,12 @@ import javafx.beans.property.*;
 public
 class Cylinder implements Material {
 
-    private SimpleDoubleProperty  diameter        = new SimpleDoubleProperty();
-    private SimpleDoubleProperty  length          = new SimpleDoubleProperty();
-    private SimpleStringProperty  type            = new SimpleStringProperty();
-    private SimpleStringProperty  color           = new SimpleStringProperty();
-    private SimpleDoubleProperty  remainingLength = new SimpleDoubleProperty();
-    private SimpleIntegerProperty qty             = new SimpleIntegerProperty();
+    private final SimpleDoubleProperty  diameter        = new SimpleDoubleProperty();
+    private final SimpleDoubleProperty  length          = new SimpleDoubleProperty();
+    private final SimpleStringProperty  type            = new SimpleStringProperty();
+    private final SimpleStringProperty  color           = new SimpleStringProperty();
+    private final SimpleDoubleProperty  remainingLength = new SimpleDoubleProperty();
+    private final SimpleIntegerProperty qty             = new SimpleIntegerProperty();
 
 
     public

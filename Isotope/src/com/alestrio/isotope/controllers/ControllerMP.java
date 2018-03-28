@@ -1,5 +1,6 @@
-package com.alestrio.isotope;
+package com.alestrio.isotope.controllers;
 
+import com.alestrio.isotope.DB;
 import com.alestrio.isotope.materials.Cylinder;
 import com.alestrio.isotope.materials.FilamentSpool;
 import com.alestrio.isotope.materials.RectangularPiece;
@@ -9,13 +10,16 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 public
 class ControllerMP {
-	DB db = new DB("jdbc:postgresql://localhost:5432/isotope","postgres","postgres");
+	private final DB db = new DB("jdbc:postgresql://localhost:5432/isotope" ,"postgres" ,"postgres");
 
 	/*--- SCREW ---*/
 	@FXML
-	private TableView<Screw> tableS = new TableView<>();
+	private final TableView<Screw> tableS = new TableView<>();
 	@FXML
 	private TableColumn<Screw, String> headColumnS;
 	@FXML
@@ -215,15 +219,22 @@ class ControllerMP {
 
 	private void showDbEntriesScrews() throws Exception {
 		tableS.getColumns().clear();
-		ObservableList<Screw> ols = db.getDbEntriesScrew();
+		ObservableList<Screw>                  ols = db.getDbEntriesScrew();
+		Collection<TableColumn<Screw, String>> t   = new ArrayList<>();
 		tableS.setItems(ols);
 		headColumnS.setCellValueFactory(new PropertyValueFactory<>("head"));
+		t.add(headColumnS);
 		diamColumnS.setCellValueFactory(new PropertyValueFactory<>("diameter"));
+		t.add(diamColumnS);
 		lengthColumnS.setCellValueFactory(new PropertyValueFactory<>("length"));
+		t.add(lengthColumnS);
 		typeColumnS.setCellValueFactory(new PropertyValueFactory<>("type"));
+		t.add(typeColumnS);
 		colorColumnS.setCellValueFactory(new PropertyValueFactory<>("color"));
+		t.add(colorColumnS);
 		qtyColumnS.setCellValueFactory(new PropertyValueFactory<>("qty"));
-		tableS.getColumns().addAll(headColumnS ,diamColumnS ,lengthColumnS ,typeColumnS ,colorColumnS ,qtyColumnS);
+		t.add(qtyColumnS);
+		tableS.getColumns().addAll(t);
 		tableS.setVisible(true);
 
 	}
@@ -231,33 +242,50 @@ class ControllerMP {
 	private
 	void showDbEntriesRec () throws Exception {
 		tableR.getColumns().clear();
-		ObservableList<RectangularPiece> olr = db.getDbEntriesRecPieces();
+		ObservableList<RectangularPiece>                  olr = db.getDbEntriesRecPieces();
+		Collection<TableColumn<RectangularPiece, String>> t   = new ArrayList<>();
 		tableR.setItems(olr);
 		typeColumnR.setCellValueFactory(new PropertyValueFactory<>("type"));
+		t.add(typeColumnR);
 		lengthColumnR.setCellValueFactory(new PropertyValueFactory<>("length"));
+		t.add(lengthColumnR);
 		remainingLengthColumnR.setCellValueFactory(new PropertyValueFactory<>("remainingLength"));
+		t.add(remainingLengthColumnR);
 		widthColumnR.setCellValueFactory(new PropertyValueFactory<>("width"));
+		t.add(widthColumnR);
 		remainingWidthColumnR.setCellValueFactory(new PropertyValueFactory<>("remainingWidth"));
+		t.add(remainingWidthColumnR);
 		thicknessColumnR.setCellValueFactory(new PropertyValueFactory<>("thickness"));
+		t.add(thicknessColumnR);
 		remainingThicknessColumnR.setCellValueFactory(new PropertyValueFactory<>("remainingThickness"));
+		t.add(remainingThicknessColumnR);
 		colorColumnR.setCellValueFactory(new PropertyValueFactory<>("color"));
+		t.add(colorColumnR);
 		qtyColumnR.setCellValueFactory(new PropertyValueFactory<>("qty"));
-		tableR.getColumns().addAll(typeColumnR ,lengthColumnR ,remainingLengthColumnR ,widthColumnR ,remainingWidthColumnR ,thicknessColumnR ,remainingThicknessColumnR ,colorColumnR ,qtyColumnR);
+		t.add(qtyColumnR);
+		tableR.getColumns().addAll(t);
 		tableR.setVisible(true);
 	}
 
 	private
 	void showDbEntriesCylinders () throws Exception {
 		tableC.getColumns().clear();
-		ObservableList<Cylinder> olc = db.getDbEntriesCylinders();
+		ObservableList<Cylinder>                  olc = db.getDbEntriesCylinders();
+		Collection<TableColumn<Cylinder, String>> t   = new ArrayList<>();
 		tableC.setItems(olc);
 		diameterColumnC.setCellValueFactory(new PropertyValueFactory<>("diameter"));
+		t.add(diameterColumnC);
 		lengthColumnC.setCellValueFactory(new PropertyValueFactory<>("length"));
+		t.add(lengthColumnC);
 		remainingLengthColumnC.setCellValueFactory(new PropertyValueFactory<>("remainingLength"));
+		t.add(remainingLengthColumnC);
 		typeColumnC.setCellValueFactory(new PropertyValueFactory<>("type"));
+		t.add(typeColumnC);
 		colorColumnC.setCellValueFactory(new PropertyValueFactory<>("color"));
+		t.add(colorColumnC);
 		qtyColumnC.setCellValueFactory(new PropertyValueFactory<>("qty"));
-		tableC.getColumns().addAll(diameterColumnC ,lengthColumnC ,remainingLengthColumnC ,typeColumnC ,colorColumnC ,qtyColumnC);
+		t.add(qtyColumnC);
+		tableC.getColumns().addAll(t);
 		tableC.setVisible(true);
 	}
 
@@ -266,12 +294,19 @@ class ControllerMP {
 		tableF.getColumns().clear();
 		ObservableList<FilamentSpool> olf = db.getDbEntriesSpool();
 		tableF.setItems(olf);
+		Collection<TableColumn<FilamentSpool, String>> t = new ArrayList<>();
 		typeColumnF.setCellValueFactory(new PropertyValueFactory<>("type"));
+		t.add(typeColumnF);
 		colorColumnF.setCellValueFactory(new PropertyValueFactory<>("color"));
+		t.add(colorColumnF);
 		diameterColumnF.setCellValueFactory(new PropertyValueFactory<>("diameter"));
+		t.add(diameterColumnF);
 		weightColumnF.setCellValueFactory(new PropertyValueFactory<>("initialWeight"));
+		t.add(weightColumnF);
 		remainingWeightColumnF.setCellValueFactory(new PropertyValueFactory<>("remainingWeight"));
-		tableF.getColumns().addAll(typeColumnF ,colorColumnF ,diameterColumnF ,weightColumnF ,remainingWeightColumnF);
+		t.add(remainingWeightColumnF);
+
+		tableF.getColumns().addAll(t);
 		tableF.setVisible(true);
 	}
 
