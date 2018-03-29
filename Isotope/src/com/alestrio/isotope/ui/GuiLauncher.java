@@ -18,7 +18,7 @@ class GuiLauncher extends Application {
     public
     void start (Stage primaryStage) throws Exception {
         primaryStage.setTitle("Isotope H");
-        Parent root  = FXMLLoader.load(getClass().getResource("IsotopeLauncher.fxml"));
+        Parent root  = FXMLLoader.load(getClass().getResource("fxml/IsotopeLauncher.fxml"));
         Scene  scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();
