@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+        xmlns:dc="http://purl.org/dc/elements/1.1/"
+        xmlns:cc="http://creativecommons.org/ns#"
+        xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+        xmlns:svg="http://www.w3.org/2000/svg"
+        xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+        xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+        xmlns="http://www.w3.org/2000/svg"
+        width="256"
+        height="256"
+        viewBox="0 0 67.733332 67.733335"
+        version="1.1"
+        id="svg44"
+        inkscape:export-filename="C:\Users\Vincent\IdeaProjects\isotope2\Isotope\ico\HMPIco.png"
+        inkscape:export-xdpi="96"
+        inkscape:export-ydpi="96"
+        inkscape:version="0.92.3 (2405546, 2018-03-11)"
+        sodipodi:docname="HMPIco.svg">
+    <defs
+            id="defs38">
+        <inkscape:perspective
+                sodipodi:type="inkscape:persp3d"
+                inkscape:vp_x="-6.5858933 : 516.85996 : 1"
+                inkscape:vp_y="0 : 3779.5275 : 0"
+                inkscape:vp_z="787.11492 : 516.85996 : 1"
+                inkscape:persp3d-origin="390.26451 : 329.77335 : 1"
+                id="perspective78"/>
+        <inkscape:perspective
+                sodipodi:type="inkscape:persp3d"
+                inkscape:vp_x="459.61904 : 230.89881 : 1"
+                inkscape:vp_y="0 : 1000 : 0"
+                inkscape:vp_z="-269.2738 : 177.22619 : 1"
+                inkscape:persp3d-origin="105 : 99 : 1"
+                id="perspective48"/>
+    </defs>
+    <sodipodi:namedview
+            id="base"
+            pagecolor="#ffffff"
+            bordercolor="#666666"
+            borderopacity="1.0"
+            inkscape:pageopacity="0.0"
+            inkscape:pageshadow="2"
+            inkscape:zoom="2.25"
+            inkscape:cx="128"
+            inkscape:cy="128"
+            inkscape:document-units="mm"
+            inkscape:current-layer="layer1"
+            showgrid="false"
+            units="px"
+            inkscape:window-width="1366"
+            inkscape:window-height="745"
+            inkscape:window-x="-8"
+            inkscape:window-y="-8"
+            inkscape:window-maximized="1"/>
+    <metadata
+            id="metadata41">
+        <rdf:RDF>
+            <cc:Work
+                    rdf:about="">
+                <dc:format>image/svg+xml</dc:format>
+                <dc:type
+                        rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+                <dc:title></dc:title>
+            </cc:Work>
+        </rdf:RDF>
+    </metadata>
+    <g
+            inkscape:label="Calque 1"
+            inkscape:groupmode="layer"
+            id="layer1"
+            transform="translate(0,-229.26665)">
+        <g
+                sodipodi:type="inkscape:box3d"
+                id="g64"
+                style="fill:#0055d4"
+                inkscape:perspectiveID="#perspective78"
+                inkscape:corner0="0.44685042 : 0.15305199 : 0 : 1"
+                inkscape:corner7="-0.21526757 : 0.14526773 : 0.25 : 1">
+            <path
+                    sodipodi:type="inkscape:box3dside"
+                    id="path66"
+                    style="fill:#353564;fill-rule:evenodd;stroke:none;stroke-linejoin:round"
+                    inkscape:box3dsidetype="6"
+                    d="m 267.69983,-261.09645 v 20.3344 l 76.52635,36.8578 v -17.33849 z"
+                    points="267.69983,-240.76205 344.22618,-203.90425 344.22618,-221.24274 267.69983,-261.09645 "/>
+            <path
+                    sodipodi:type="inkscape:box3dside"
+                    id="path76"
+                    style="fill:#e9e9ff;fill-rule:evenodd;stroke:none;stroke-linejoin:round"
+                    inkscape:box3dsidetype="11"
+                    d="m 344.22618,-221.24274 224.48218,-147.59094 v 28.43327 l -224.48218,136.49616 z"
+                    points="568.70836,-368.83368 568.70836,-340.40041 344.22618,-203.90425 344.22618,-221.24274 "/>
+            <path
+                    sodipodi:type="inkscape:box3dside"
+                    id="path68"
+                    style="fill:#4d4d9f;fill-rule:evenodd;stroke:none;stroke-linejoin:round"
+                    inkscape:box3dsidetype="5"
+                    d="m 267.69983,-261.09645 231.42858,-228.23702 69.57995,120.49979 -224.48218,147.59094 z"
+                    points="499.12841,-489.33347 568.70836,-368.83368 344.22618,-221.24274 267.69983,-261.09645 "/>
+            <path
+                    sodipodi:type="inkscape:box3dside"
+                    id="path74"
+                    style="fill:#afafde;fill-rule:evenodd;stroke:none;stroke-linejoin:round"
+                    inkscape:box3dsidetype="13"
+                    d="m 267.69983,-240.76205 231.42858,-211.07989 69.57995,111.44153 -224.48218,136.49616 z"
+                    points="499.12841,-451.84194 568.70836,-340.40041 344.22618,-203.90425 267.69983,-240.76205 "/>
+            <path
+                    sodipodi:type="inkscape:box3dside"
+                    id="path72"
+                    style="fill:#d7d7ff;fill-rule:evenodd;stroke:none;stroke-linejoin:round"
+                    inkscape:box3dsidetype="14"
+                    d="m 499.12841,-489.33347 v 37.49153 l 69.57995,111.44153 v -28.43327 z"
+                    points="499.12841,-451.84194 568.70836,-340.40041 568.70836,-368.83368 499.12841,-489.33347 "/>
+            <path
+                    sodipodi:type="inkscape:box3dside"
+                    id="path70"
+                    style="fill:#8686bf;fill-rule:evenodd;stroke:none;stroke-linejoin:round"
+                    inkscape:box3dsidetype="3"
+                    d="m 267.69983,-261.09645 231.42858,-228.23702 v 37.49153 l -231.42858,211.07989 z"
+                    points="499.12841,-489.33347 499.12841,-451.84194 267.69983,-240.76205 267.69983,-261.09645 "/>
+        </g>
+        <rect
+                style="fill:#0055d4;stroke-width:0.07205068"
+                id="rect122"
+                width="26.066648"
+                height="32.851612"
+                x="12.095242"
+                y="252.75853"/>
+        <rect
+                style="fill:#d40000;stroke-width:0.07205068"
+                id="rect124"
+                width="25.635794"
+                height="33.245045"
+                x="26.959684"
+                y="238.79167"/>
+        <rect
+                style="fill:#000000;stroke-width:0.07205068"
+                id="rect126"
+                width="31.883171"
+                height="27.736992"
+                x="31.881054"
+                y="264.15396"/>
+    </g>
+</svg>
