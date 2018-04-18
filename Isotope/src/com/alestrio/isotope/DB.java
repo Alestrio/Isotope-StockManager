@@ -160,12 +160,13 @@ public class DB extends Thread{
     }
 	
 	//-------- SCREWS --------
-	public boolean eraseScrew(int id) {
+	public boolean eraseScrew(Screw s) {
 		ResultSet b;
 		boolean c = true;
 		try {
 			Statement state = conn.createStatement();
-			b = state.executeQuery("DELETE FROM visserie WHERE id="+id);
+			b = state.executeQuery("DELETE FROM visserie WHERE diameter = " + s.getDiameter()+" , length = " + s.getLength() + ", type = '" +s.getType()+"' color = '" + s.getColor()+
+			"', qty=" +s.getQty() + ", remainingLength = " + s.getRemainingLength());
 			c = b.absolute(MAX_PRIORITY);
 		} catch (SQLException e) {
 			e.printStackTrace();
