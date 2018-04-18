@@ -12,7 +12,7 @@ import java.util.Collection;
 
 public
 class ControllerV {
-    private final DB               db     = new DB("jdbc:postgresql://localhost:5432/isotope" ,"postgres" ,"postgres");
+    private final DB db = new DB("jdbc:postgresql://localhost:5432/isotope" ,"postgres" ,"postgre");
     /*--- SCREW ---*/
     @FXML
     private final TableView<Screw> tableS = new TableView<>();
@@ -64,8 +64,13 @@ class ControllerV {
         }
     }
 
-    public
-    void showDbEntriesScrews () throws Exception {
+    @FXML
+    void clickDelButton(){
+        db.eraseScrew(tableS.getSelectionModel().getSelectedItem());
+
+    }
+
+    public void showDbEntriesScrews () throws Exception {
         tableS.getColumns().clear();
         ObservableList<Screw>                  ols = db.getDbEntriesScrew();
         Collection<TableColumn<Screw, String>> t   = new ArrayList<>();

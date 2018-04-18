@@ -7,25 +7,25 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public
 class GuiMP extends Application {
 
 	private BorderPane mainContainer;
 
-	@Override
-	public void start(Stage primaryStage) throws Exception {
+    public
+    void launch (Stage primaryStage) throws IOException {
 		primaryStage.setTitle("Isotope H");
-        Parent root  = FXMLLoader.load(getClass().getResource("IsotopeMP.fxml"));
+		Parent root  = FXMLLoader.load(getClass().getResource("IsotopeMP.fxml"));
 		Scene  scene = new Scene(root);
 		primaryStage.setScene(scene);
 		primaryStage.show();
-    }
-
-    public
-    void launch () {
-        Application.launch();
 	}
 
 
+	@Override
+	public void start(Stage primaryStage) throws Exception {
 
+	}
 }
