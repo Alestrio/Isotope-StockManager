@@ -183,6 +183,7 @@ public class DB extends Thread{
             b = state.executeQuery("INSERT INTO visserie (diameter, length, head, type, color, qty) VALUES (" + s.getDiameter() + ", " + s.getLength() + ", '" + s.getHead() + "', '" + s.getType() + "', '" + s.getColor() + "', " + s.getQty() + ")");
 			d = b.absolute(MAX_PRIORITY);
 		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		return d;
 		
