@@ -30,35 +30,35 @@ class ControllerV {
     private TableColumn<Screw, String> qtyColumnS;
 
     @FXML
-    private TextField txtHeadS;
+    private TextField txtHead;
     @FXML
-    private TextField txtDiameterS;
+    private TextField txtDiameter;
     @FXML
-    private TextField txtLengthS;
+    private TextField txtLength;
     @FXML
-    private TextField txtTypeS;
+    private TextField txtType;
     @FXML
-    private TextField txtColorS;
+    private TextField txtColor;
     @FXML
-    private TextField txtQtyS;
+    private TextField txtQty;
     @FXML
-    private TextArea  txtAreaS;
+    private TextArea  txtArea;
     @FXML
-    private Button    addBtnS;
+    private Button    addBtn;
     @FXML
     private Button delBtn;
 
 
     @FXML
-    void clickAddBtnScrew () {
-        Screw v = new Screw(Double.parseDouble(txtDiameterS.getText()) ,
-                Double.parseDouble(txtLengthS.getText()) ,
-                txtHeadS.getText() ,
-                txtTypeS.getText() ,
-                txtColorS.getText() ,
-                Integer.parseInt(txtQtyS.getText()));
+    void clickAddButton() {
+        Screw v = new Screw(Double.parseDouble(txtDiameter.getText()) ,
+                Double.parseDouble(txtLength.getText()) ,
+                txtHead.getText() ,
+                txtType.getText() ,
+                txtColor.getText() ,
+                Integer.parseInt(txtQty.getText()));
         if (db.addScrew(v))
-            txtAreaS.appendText("Reussi !");
+            txtArea.appendText("Reussi !");
         try {
             showDbEntriesScrews();
         } catch (Exception e) {
