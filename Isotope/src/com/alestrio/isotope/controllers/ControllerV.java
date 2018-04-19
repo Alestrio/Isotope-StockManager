@@ -15,7 +15,7 @@ class ControllerV {
     private final DB db = new DB("jdbc:postgresql://localhost:5432/isotope" ,"postgres" ,"postgre");
     /*--- SCREW ---*/
     @FXML
-    private final TableView<Screw> tableS = new TableView<>();
+    private TableView<Screw> tableS;
     @FXML
     private TableColumn<Screw, String> headColumnS;
     @FXML

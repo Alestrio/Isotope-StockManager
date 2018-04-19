@@ -14,12 +14,12 @@ class Screw implements Material {
 
     public
     Screw (double a ,double b ,String c ,String d ,String e ,int f) {
-        diameter.set(a);
-        length.set(b);
-        head.set(c);
-        type.set(d);
-        color.set(e);
-        qty.set(f);
+        this.diameter.set(a);
+        this.length.set(b);
+        this.head.set(c);
+        this.type.set(d);
+        this.color.set(e);
+        this.qty.set(f);
     }
 
     @Override

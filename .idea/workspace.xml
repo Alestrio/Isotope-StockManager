@@ -2,18 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9deb089a-fdfc-4bce-af34-267762040a3f" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/postgresql_42_2_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/Vincent.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Isotope/src/com/alestrio/isotope/DB.java" beforeDir="false" afterPath="$PROJECT_DIR$/Isotope/src/com/alestrio/isotope/DB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Isotope/src/com/alestrio/isotope/controllers/ControllerLauncher.java" beforeDir="false" afterPath="$PROJECT_DIR$/Isotope/src/com/alestrio/isotope/controllers/ControllerLauncher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Isotope/Isotope.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Isotope/Isotope.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Isotope/src/com/alestrio/isotope/controllers/ControllerV.java" beforeDir="false" afterPath="$PROJECT_DIR$/Isotope/src/com/alestrio/isotope/controllers/ControllerV.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Isotope/src/com/alestrio/isotope/ui/GuiMP.java" beforeDir="false" afterPath="$PROJECT_DIR$/Isotope/src/com/alestrio/isotope/ui/GuiMP.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Isotope/src/com/alestrio/isotope/ui/GuiV.java" beforeDir="false" afterPath="$PROJECT_DIR$/Isotope/src/com/alestrio/isotope/ui/GuiV.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Isotope/src/com/alestrio/isotope/ui/fxml/IsotopeLauncher.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Isotope/src/com/alestrio/isotope/ui/fxml/IsotopeLauncher.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Isotope/src/com/alestrio/isotope/materials/Screw.java" beforeDir="false" afterPath="$PROJECT_DIR$/Isotope/src/com/alestrio/isotope/materials/Screw.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Isotope/src/com/alestrio/isotope/ui/fxml/IsotopeV.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Isotope/src/com/alestrio/isotope/ui/fxml/IsotopeV.fxml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/Isotope/bin/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -25,20 +19,29 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ControllerV.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ControllerV.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Isotope/src/com/alestrio/isotope/controllers/ControllerV.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="560">
-              <caret line="71" lean-forward="true" selection-start-line="71" selection-end-line="71" />
+            <state relative-caret-position="1640">
+              <caret line="90" selection-start-line="90" selection-end-line="90" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DB.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Screw.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Isotope/src/com/alestrio/isotope/materials/Screw.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="349">
+              <caret line="20" column="26" lean-forward="true" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DB.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Isotope/src/com/alestrio/isotope/DB.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="648">
-              <caret line="171" column="32" lean-forward="true" selection-start-line="171" selection-start-column="32" selection-end-line="171" selection-end-column="32" />
+            <state relative-caret-position="344">
+              <caret line="170" column="34" selection-start-line="170" selection-start-column="34" selection-end-line="170" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -54,8 +57,9 @@
         <option value="$PROJECT_DIR$/Isotope/src/com/alestrio/isotope/ui/GuiMP.java" />
         <option value="$PROJECT_DIR$/Isotope/src/com/alestrio/isotope/ui/GuiV.java" />
         <option value="$PROJECT_DIR$/Isotope/src/com/alestrio/isotope/controllers/ControllerLauncher.java" />
-        <option value="$PROJECT_DIR$/Isotope/src/com/alestrio/isotope/controllers/ControllerV.java" />
         <option value="$PROJECT_DIR$/Isotope/src/com/alestrio/isotope/DB.java" />
+        <option value="$PROJECT_DIR$/Isotope/src/com/alestrio/isotope/materials/Screw.java" />
+        <option value="$PROJECT_DIR$/Isotope/src/com/alestrio/isotope/controllers/ControllerV.java" />
       </list>
     </option>
   </component>
@@ -67,10 +71,12 @@
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
-    <navigator proportions="" version="1">
+    <navigator currentView="PackagesPane" proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="AndroidView" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -78,58 +84,58 @@
               <item name="isotope" type="b2602c69:ProjectViewProjectNode" />
               <item name="Isotope" type="462c0819:PsiDirectoryNode" />
             </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane">
+        <subPane>
+          <expand>
             <path>
-              <item name="isotope" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Isotope" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="isotope" type="58d84e3e:PackageViewProjectNode" />
+              <item name="Isotope" type="616d4139:PackageViewModuleNode" />
             </path>
             <path>
-              <item name="isotope" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Isotope" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="isotope" type="462c0819:PsiDirectoryNode" />
+              <item name="isotope" type="58d84e3e:PackageViewProjectNode" />
+              <item name="Isotope" type="616d4139:PackageViewModuleNode" />
+              <item name="com.alestrio.isotope" type="1f31426a:PackageElementNode" />
             </path>
             <path>
-              <item name="isotope" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Isotope" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="isotope" type="462c0819:PsiDirectoryNode" />
-              <item name="controllers" type="462c0819:PsiDirectoryNode" />
+              <item name="isotope" type="58d84e3e:PackageViewProjectNode" />
+              <item name="Isotope" type="616d4139:PackageViewModuleNode" />
+              <item name="com.alestrio.isotope" type="1f31426a:PackageElementNode" />
+              <item name="materials" type="1f31426a:PackageElementNode" />
             </path>
             <path>
-              <item name="isotope" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Isotope" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="isotope" type="462c0819:PsiDirectoryNode" />
-              <item name="materials" type="462c0819:PsiDirectoryNode" />
+              <item name="isotope" type="58d84e3e:PackageViewProjectNode" />
+              <item name="Isotope" type="616d4139:PackageViewModuleNode" />
+              <item name="com.alestrio.isotope" type="1f31426a:PackageElementNode" />
+              <item name="ui" type="1f31426a:PackageElementNode" />
             </path>
             <path>
-              <item name="isotope" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Isotope" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="isotope" type="462c0819:PsiDirectoryNode" />
-              <item name="ui" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="isotope" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Isotope" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="isotope" type="462c0819:PsiDirectoryNode" />
-              <item name="ui" type="462c0819:PsiDirectoryNode" />
-              <item name="fxml" type="462c0819:PsiDirectoryNode" />
+              <item name="isotope" type="58d84e3e:PackageViewProjectNode" />
+              <item name="Isotope" type="616d4139:PackageViewModuleNode" />
+              <item name="com.alestrio.isotope" type="1f31426a:PackageElementNode" />
+              <item name="ui" type="1f31426a:PackageElementNode" />
+              <item name="fxml" type="1f31426a:PackageElementNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="AndroidView" />
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$USER_HOME$/AppData/Local/SceneBuilder/SceneBuilder.exe" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Isotope/lib/postgresql-42.2.1.jar!/" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Alexis\IdeaProjects\isotope\Isotope\src\com\alestrio\isotope\materials" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -144,6 +150,11 @@
     </option>
   </component>
   <component name="RunManager">
+    <configuration name="Launcher" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="com.alestrio.isotope.ui.GuiLauncher" />
+      <module name="Isotope" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
+    </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
     </configuration>
@@ -196,41 +207,83 @@
     </task>
     <servers />
   </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32963374" />
+      <window_info anchor="bottom" id="Messages" order="7" weight="0.32963374" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="2" />
       <window_info anchor="right" id="Capture Analysis" order="3" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" order="3" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.33518314" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32963374" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32963374" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18020834" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18176973" />
+      <window_info anchor="bottom" id="Find" order="1" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info id="UI Designer" order="2" />
       <window_info anchor="right" id="Theme Preview" order="3" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3973363" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Isotope/src/com/alestrio/isotope/DB.java</url>
+          <line>165</line>
+          <properties />
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Isotope/src/com/alestrio/isotope/DB.java</url>
+          <line>170</line>
+          <properties />
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="27" />
+    </breakpoint-manager>
+  </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Isotope/src/com/alestrio/isotope/controllers/ControllerV.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1160">
+          <caret line="58" column="44" selection-start-line="58" selection-start-column="44" selection-end-line="58" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Isotope/src/com/alestrio/isotope/DB.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3400">
+          <caret line="170" column="34" selection-start-line="170" selection-start-column="34" selection-end-line="170" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Isotope/src/com/alestrio/isotope/controllers/ControllerMP.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -273,13 +326,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Isotope/src/com/alestrio/isotope/materials/Screw.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="6" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Isotope/src/com/alestrio/isotope/controllers/ControllerMP.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="20">
@@ -287,23 +333,119 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Isotope/src/com/alestrio/isotope/controllers/ControllerV.java">
+    <entry file="file://$PROJECT_DIR$/Isotope/src/com/alestrio/isotope/ui/fxml/IsotopeV.fxml">
+      <provider selected="true" editor-type-id="text-editor" />
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/javafx.base/com/sun/javafx/reflect/MethodUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="560">
-          <caret line="71" lean-forward="true" selection-start-line="71" selection-end-line="71" />
+        <state relative-caret-position="171">
+          <caret line="274" selection-start-line="274" selection-end-line="274" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk-9.0.4/lib/src.zip!/java.base/jdk/internal/reflect/NativeMethodAccessorImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="68" column="33" selection-start-line="68" selection-start-column="33" selection-end-line="68" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Isotope/src/com/alestrio/isotope/materials/Screw.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="349">
+          <caret line="20" column="26" lean-forward="true" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Isotope/src/com/alestrio/isotope/DB.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="648">
-          <caret line="171" column="32" lean-forward="true" selection-start-line="171" selection-start-column="32" selection-end-line="171" selection-end-column="32" />
+        <state relative-caret-position="344">
+          <caret line="170" column="34" selection-start-line="170" selection-start-column="34" selection-end-line="170" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Isotope/src/com/alestrio/isotope/controllers/ControllerV.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1640">
+          <caret line="90" selection-start-line="90" selection-end-line="90" />
         </state>
       </provider>
     </entry>
   </component>
   <component name="masterDetails">
     <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>9</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>Isotope</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>postgresql-42.2.1</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
       <state key="ScopeChooserConfigurable.UI">
         <settings>
           <splitter-proportions>
