@@ -45,6 +45,8 @@ class ControllerV {
     private TextArea  txtAreaS;
     @FXML
     private Button    addBtnS;
+    @FXML
+    private Button delBtn;
 
 
     @FXML
@@ -67,7 +69,12 @@ class ControllerV {
     @FXML
     void clickDelButton(){
         db.eraseScrew(tableS.getSelectionModel().getSelectedItem());
-
+        try{
+            showDbEntriesScrews();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
     public void showDbEntriesScrews () throws Exception {

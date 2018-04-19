@@ -165,11 +165,10 @@ public class DB extends Thread{
 		boolean c = true;
 		try {
 			Statement state = conn.createStatement();
-			b = state.executeQuery("DELETE FROM visserie WHERE diameter = " + s.getDiameter()+" , length = " + s.getLength() + ", type = '" +s.getType()+"' color = '" + s.getColor()+
-			"', qty=" +s.getQty() + ", remainingLength = " + s.getRemainingLength());
+			b = state.executeQuery("DELETE FROM visserie WHERE diameter = " + s.getDiameter()+"AND  length = " + s.getLength() + "AND type = '" +s.getType()+"'AND color = '" + s.getColor()+
+			"' AND qty=" +s.getQty());
 			c = b.absolute(MAX_PRIORITY);
 		} catch (SQLException e) {
-			e.printStackTrace();
 		}
 		return c;
 		
@@ -184,7 +183,6 @@ public class DB extends Thread{
             b = state.executeQuery("INSERT INTO visserie (diameter, length, head, type, color, qty) VALUES (" + s.getDiameter() + ", " + s.getLength() + ", '" + s.getHead() + "', '" + s.getType() + "', '" + s.getColor() + "', " + s.getQty() + ")");
 			d = b.absolute(MAX_PRIORITY);
 		} catch (SQLException e) {
-			e.printStackTrace();
 		}
 		return d;
 		
