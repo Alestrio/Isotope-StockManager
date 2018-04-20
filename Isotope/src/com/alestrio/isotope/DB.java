@@ -176,18 +176,33 @@ public class DB extends Thread{
 
     public
     boolean addScrew (Screw s) {
-		ResultSet b;
-		boolean d = true;
-		try {
-			Statement state = conn.createStatement();
+        ResultSet b;
+        boolean d = true;
+        try {
+            Statement state = conn.createStatement();
+            //TODO qty change
             b = state.executeQuery("INSERT INTO visserie (diameter, length, head, type, color, qty) VALUES (" + s.getDiameter() + ", " + s.getLength() + ", '" + s.getHead() + "', '" + s.getType() + "', '" + s.getColor() + "', " + s.getQty() + ")");
-			d = b.absolute(MAX_PRIORITY);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return d;
-		
+            d = b.absolute(MAX_PRIORITY);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return d;
 	}
+
+	public
+	boolean qtyChangeScrew(Screw s){
+        ResultSet b;
+        boolean d = true;
+        try {
+            Statement state = conn.createStatement();
+            b = state.executeQuery("UPDATE visserie SET qty = "+ s.getQty() +" WHERE diameter =" + s.getDiameter() + " AND length = " + s.getLength() + "AND head = '" + s.getHead() + "' AND type = '" +s.getType()+"' AND color = '" + s.getColor() + "'");
+            d = b.absolute(MAX_PRIORITY);
+        } catch (SQLException e) {
+            //e.printStackTrace();
+        }
+        return d;
+
+    }
 
     public
     ObservableList<Screw> getDbEntriesScrew () throws Exception {

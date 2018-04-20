@@ -42,11 +42,15 @@ class ControllerV {
     @FXML
     private TextField txtQty;
     @FXML
+    private TextField txtQtyN;
+    @FXML
     private TextArea  txtArea;
     @FXML
     private Button    addBtn;
     @FXML
     private Button delBtn;
+    @FXML
+    private Button qtyBtn;
 
 
     @FXML
@@ -64,6 +68,20 @@ class ControllerV {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    void clickQtyChangeButton(){
+        Screw v = tableS.getSelectionModel().getSelectedItem();
+        v.setQty(Integer.parseInt(txtQtyN.getText()));
+        db.qtyChangeScrew(v);
+        try{
+            showDbEntriesScrews();
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+
     }
 
     @FXML

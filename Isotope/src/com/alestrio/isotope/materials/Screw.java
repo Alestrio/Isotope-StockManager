@@ -12,6 +12,7 @@ class Screw implements Material {
     private final SimpleStringProperty  color    = new SimpleStringProperty();
     private final SimpleIntegerProperty qty      = new SimpleIntegerProperty();
 
+
     public
     Screw (double a ,double b ,String c ,String d ,String e ,int f) {
         this.diameter.set(a);
@@ -19,6 +20,7 @@ class Screw implements Material {
         this.head.set(c);
         this.type.set(d);
         this.color.set(e);
+
         this.qty.set(f);
     }
 
@@ -126,6 +128,10 @@ class Screw implements Material {
     public
     IntegerProperty getQtyProperty () {
         return qty;
+    }
+
+    public void setQty(int qty) {
+        this.qty.set(qty);
     }
 
     @Override
