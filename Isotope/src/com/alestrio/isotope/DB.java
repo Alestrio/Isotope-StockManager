@@ -205,14 +205,17 @@ public class DB extends Thread{
     }
 
     public
-    ObservableList<Screw> getDbEntriesScrew () throws Exception {
+    ObservableList<Screw> getDbEntriesScrew (){
         int i = 0;
 
 		List<Screw>           list = new ArrayList<>();
         ObservableList<Screw> ols  = FXCollections.observableList(list);
 
-        Statement state  = conn.createStatement();
-        ResultSet result = state.executeQuery("SELECT * FROM visserie");
+		Statement state  = null;
+		try {
+			state = conn.createStatement();
+
+		ResultSet result = state.executeQuery("SELECT * FROM visserie");
         while (result.next()) {
             double a = result.getDouble("diameter");
             double b = result.getDouble("length");
@@ -222,7 +225,9 @@ public class DB extends Thread{
             int    f = result.getInt("qty");
             ols.add(new Screw(a ,b ,c ,d ,e ,f));
         }
-
+	} catch (SQLException e) {
+		e.printStackTrace();
+	}
         return ols;
     }
 	

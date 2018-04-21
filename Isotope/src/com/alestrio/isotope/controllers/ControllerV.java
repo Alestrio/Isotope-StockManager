@@ -9,6 +9,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
 
 public
 class ControllerV {
@@ -61,13 +63,12 @@ class ControllerV {
                 txtType.getText() ,
                 txtColor.getText() ,
                 Integer.parseInt(txtQty.getText()));
-        if (db.addScrew(v))
-            txtArea.appendText("Reussi !");
-        try {
+        if(!isSimilar(v))
+            if (db.addScrew(v))
+                txtArea.appendText("Reussi !");
+        else
+            txtArea.appendText("Item similaire");
             showDbEntriesScrews();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     @FXML
@@ -95,7 +96,7 @@ class ControllerV {
         }
     }
 
-    public void showDbEntriesScrews () throws Exception {
+    public void showDbEntriesScrews () {
         tableS.getColumns().clear();
         ObservableList<Screw>                  ols = db.getDbEntriesScrew();
         Collection<TableColumn<Screw, String>> t   = new ArrayList<>();
@@ -120,10 +121,18 @@ class ControllerV {
     void clickConnectionBtn () {
         System.out.println(db.getDriverState());
         System.out.println(db.connect());
-        try {
             showDbEntriesScrews();
-        } catch (Exception e) {
-            e.printStackTrace();
+
+    }
+
+    boolean isSimilar(Screw s) {
+        List<Screw> screwList = db.getDbEntriesScrew();
+        Iterator<Screw> i = screwList.iterator();
+        while (i.hasNext()){
+            Screw f = i.next();
+            if (f.getColor().equals(s.getColor()) && f.getType().equals(s.getType()) && f.getHead().equals(s.getHead()) && f.getLength() == s.getLength() && f.getDiameter() == s.getDiameter() && f.getQty() == s.getQty())
+                return true;
         }
+        return false;
     }
 }
