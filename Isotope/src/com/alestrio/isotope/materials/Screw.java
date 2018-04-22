@@ -11,17 +11,20 @@ class Screw implements Material {
     private final SimpleStringProperty  type     = new SimpleStringProperty();
     private final SimpleStringProperty  color    = new SimpleStringProperty();
     private final SimpleIntegerProperty qty      = new SimpleIntegerProperty();
+    private final SimpleDoubleProperty  price     = new SimpleDoubleProperty();
+    private final SimpleDoubleProperty  totalPrice = new SimpleDoubleProperty();
 
 
     public
-    Screw (double a ,double b ,String c ,String d ,String e ,int f) {
-        this.diameter.set(a);
-        this.length.set(b);
-        this.head.set(c);
-        this.type.set(d);
-        this.color.set(e);
-
-        this.qty.set(f);
+    Screw (double diameter ,double length ,String head ,String type ,String color,int qty, double price) {
+        this.diameter.set(diameter);
+        this.length.set(length);
+        this.head.set(head);
+        this.type.set(type);
+        this.color.set(color);
+        this.qty.set(qty);
+        this.price.set(price);
+        this.totalPrice.set(qty*price);
     }
 
     @Override
@@ -128,6 +131,24 @@ class Screw implements Material {
     public
     IntegerProperty getQtyProperty () {
         return qty;
+    }
+
+    @Override
+    public double getPrice() {
+        return price.get();
+    }
+
+    public double getTotalPrice(){
+        return totalPrice.get();
+    }
+
+    @Override
+    public DoubleProperty getPriceProperty() {
+        return price;
+    }
+
+    public DoubleProperty getTotalPriceProperty(){
+        return totalPrice;
     }
 
     public void setQty(int qty) {

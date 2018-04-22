@@ -166,9 +166,10 @@ public class DB extends Thread{
 		try {
 			Statement state = conn.createStatement();
 			b = state.executeQuery("DELETE FROM visserie WHERE diameter = " + s.getDiameter()+"AND  length = " + s.getLength() + "AND type = '" +s.getType()+"'AND color = '" + s.getColor()+
-			"' AND qty=" +s.getQty());
+			"' AND qty=" +s.getQty()+" AND price=" +s.getPrice());
 			c = b.absolute(MAX_PRIORITY);
 		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		return c;
 		
@@ -180,8 +181,7 @@ public class DB extends Thread{
         boolean d = true;
         try {
             Statement state = conn.createStatement();
-            //TODO qty change
-            b = state.executeQuery("INSERT INTO visserie (diameter, length, head, type, color, qty) VALUES (" + s.getDiameter() + ", " + s.getLength() + ", '" + s.getHead() + "', '" + s.getType() + "', '" + s.getColor() + "', " + s.getQty() + ")");
+            b = state.executeQuery("INSERT INTO visserie (diameter, length, head, type, color, qty, price) VALUES (" + s.getDiameter() + ", " + s.getLength() + ", '" + s.getHead() + "', '" + s.getType() + "', '" + s.getColor() + "', " + s.getQty() + ", "+s.getPrice()+")");
             d = b.absolute(MAX_PRIORITY);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -195,10 +195,10 @@ public class DB extends Thread{
         boolean d = true;
         try {
             Statement state = conn.createStatement();
-            b = state.executeQuery("UPDATE visserie SET qty = "+ s.getQty() +" WHERE diameter =" + s.getDiameter() + " AND length = " + s.getLength() + "AND head = '" + s.getHead() + "' AND type = '" +s.getType()+"' AND color = '" + s.getColor() + "'");
+            b = state.executeQuery("UPDATE visserie SET qty = "+ s.getQty() +" WHERE diameter =" + s.getDiameter() + " AND length = " + s.getLength() + "AND head = '" + s.getHead() + "' AND type = '" +s.getType()+"' AND color = '" + s.getColor() + "' AND price =" + s.getPrice() );
             d = b.absolute(MAX_PRIORITY);
         } catch (SQLException e) {
-            //e.printStackTrace();
+            e.printStackTrace();
         }
         return d;
 
@@ -223,7 +223,8 @@ public class DB extends Thread{
             String d = result.getString("type");
             String e = result.getString("color");
             int    f = result.getInt("qty");
-            ols.add(new Screw(a ,b ,c ,d ,e ,f));
+            double g = result.getDouble("price");
+            ols.add(new Screw(a ,b ,c ,d ,e ,f, g));
         }
 	} catch (SQLException e) {
 		e.printStackTrace();

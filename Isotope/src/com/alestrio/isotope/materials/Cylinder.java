@@ -135,6 +135,16 @@ class Cylinder implements Material {
     }
 
     @Override
+    public double getPrice() {
+        return 0;
+    }
+
+    @Override
+    public DoubleProperty getPriceProperty() {
+        return null;
+    }
+
+    @Override
     public
     double getRemainingLength () {
         return (float) remainingLength.get();

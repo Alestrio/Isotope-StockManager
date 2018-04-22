@@ -30,6 +30,10 @@ class ControllerV {
     private TableColumn<Screw, String> colorColumnS;
     @FXML
     private TableColumn<Screw, String> qtyColumnS;
+    @FXML
+    private TableColumn<Screw, String> totalPriceColumn;
+    @FXML
+    private TableColumn<Screw, String> priceColumn;
 
     @FXML
     private TextField txtHead;
@@ -43,6 +47,8 @@ class ControllerV {
     private TextField txtColor;
     @FXML
     private TextField txtQty;
+    @FXML
+    private TextField txtPrice;
     @FXML
     private TextField txtQtyN;
     @FXML
@@ -62,13 +68,14 @@ class ControllerV {
                 txtHead.getText() ,
                 txtType.getText() ,
                 txtColor.getText() ,
-                Integer.parseInt(txtQty.getText()));
+                Integer.parseInt(txtQty.getText()),
+                Double.parseDouble(txtPrice.getText()));
         if(!isSimilar(v))
             if (db.addScrew(v))
                 txtArea.appendText("Reussi !");
         else
             txtArea.appendText("Item similaire");
-            showDbEntriesScrews();
+        showDbEntriesScrews();
     }
 
     @FXML
@@ -113,6 +120,11 @@ class ControllerV {
         t.add(colorColumnS);
         qtyColumnS.setCellValueFactory(new PropertyValueFactory<>("qty"));
         t.add(qtyColumnS);
+        priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
+        t.add(priceColumn);
+        totalPriceColumn.setCellValueFactory(new PropertyValueFactory<>("totalPrice"));
+        t.add(totalPriceColumn);
+
         tableS.getColumns().addAll(t);
         tableS.setVisible(true);
     }
@@ -130,7 +142,7 @@ class ControllerV {
         Iterator<Screw> i = screwList.iterator();
         while (i.hasNext()){
             Screw f = i.next();
-            if (f.getColor().equals(s.getColor()) && f.getType().equals(s.getType()) && f.getHead().equals(s.getHead()) && f.getLength() == s.getLength() && f.getDiameter() == s.getDiameter() && f.getQty() == s.getQty())
+            if (f.getColor().equals(s.getColor()) && f.getType().equals(s.getType()) && f.getHead().equals(s.getHead()) && f.getLength() == s.getLength() && f.getDiameter() == s.getDiameter() && f.getQty() == s.getQty() && f.getPrice() == s.getPrice())
                 return true;
         }
         return false;

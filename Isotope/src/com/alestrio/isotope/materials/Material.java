@@ -62,5 +62,8 @@ interface Material {
 
     IntegerProperty getQtyProperty ();
 
+    double getPrice();
+
+    DoubleProperty getPriceProperty();
 
 }
