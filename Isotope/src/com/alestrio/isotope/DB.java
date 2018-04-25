@@ -238,9 +238,17 @@ public class DB extends Thread{
     }
 	
 	//-------- RECTANGULAR PIECES ---------
-	public
-	void eraseRectangularPiece (RectangularPiece r) {
-		
+	public boolean eraseRectangularPiece (RectangularPiece r) {
+        ResultSet b;
+        boolean d = true;
+        try {
+            Statement state = conn.createStatement();
+            b = state.executeQuery("DELETE FROM rectangles WHERE length = " + r.getLength() + "AND width = " + r.getWidth() + "AND thickness = " + r.getThickness() +" AND type = " + r.getType() + " AND color = " + r.getColor() + "AND remainingLength = " +r.getRemainingLength()+ "AND remainingWidth = " + r.getRemainingWidth() +"AND remainingThickness = " + r.getRemainingThickness()+ "AND price = " + r.getPrice());
+            d = b.absolute(MAX_PRIORITY);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return d;
 	}
 
 	public
@@ -249,10 +257,10 @@ public class DB extends Thread{
 		boolean d = true;
 		try {
 			Statement state = conn.createStatement();
-			b = state.executeQuery("INSERT INTO rectangles (length, width, thickness, type, color, remainingLength, remainingWidth, remainingThickness)"
+			b = state.executeQuery("INSERT INTO rectangles (length, width, thickness, type, color, remainingLength, remainingWidth, remainingThickness, price)"
 					+ " VALUES (" + r.getLength() + ", "+ r.getWidth() +", "
 					+ r.getThickness() + ", '" + r.getType() + "', '" + r.getColor() + "', " + r.getRemainingLength() + ", "
-					+ r.getRemainingWidth() + ", " + r.getRemainingThickness() + ") ");
+					+ r.getRemainingWidth() + ", " + r.getRemainingThickness() + ", " + r.getPrice() +") ");
 			d = b.absolute(MAX_PRIORITY);
 		} catch (SQLException e) {
 			e.printStackTrace();

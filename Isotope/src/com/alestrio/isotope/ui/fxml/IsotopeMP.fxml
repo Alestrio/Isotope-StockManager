@@ -146,18 +146,15 @@
                                                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                         </rowConstraints>
+                                                         <children>
+                                                            <Label text="Longueur restante" />
+                                                            <Label text="Largeur restante" GridPane.rowIndex="1" />
+                                                            <Label text="Longueur" GridPane.rowIndex="4" />
+                                                            <Label text="Supprimer" GridPane.rowIndex="3" />
+                                                            <Label text="Épaisseur restante" GridPane.rowIndex="2" />
+                                                         </children>
                                                       </GridPane>
                                                    </children></AnchorPane>
-                                                            </content>
-                                                        </Tab>
-                                                        <Tab text="Changer la quantité">
-                                                            <content>
-                                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                                                            </content>
-                                                        </Tab>
-                                                        <Tab text="Supprimer">
-                                                            <content>
-                                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                                                             </content>
                                                         </Tab>
                                                     </tabs>

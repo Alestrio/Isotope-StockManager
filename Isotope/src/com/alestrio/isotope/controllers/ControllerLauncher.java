@@ -35,7 +35,7 @@ class ControllerLauncher {
     private void mpButtonClick(Event e){
         GuiMP g = new GuiMP();
         try{
-            g.launch();
+            g.launch(new Stage());
         }
         catch(Exception ioe){
             ioe.printStackTrace();

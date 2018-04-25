@@ -17,7 +17,7 @@ class GuiMP extends Application {
     public
     void launch (Stage primaryStage) throws IOException {
 		primaryStage.setTitle("Isotope H");
-		Parent root  = FXMLLoader.load(getClass().getResource("IsotopeMP.fxml"));
+		Parent root  = FXMLLoader.load(getClass().getResource("fxml/IsotopeMP.fxml"));
 		Scene  scene = new Scene(root);
 		primaryStage.setScene(scene);
 		primaryStage.show();

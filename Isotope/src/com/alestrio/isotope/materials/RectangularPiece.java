@@ -5,17 +5,7 @@ import javafx.beans.property.*;
 public
 class RectangularPiece extends AbsMaterial {
 
-    public RectangularPiece() {
-        this.length.set(0);
-        this.width.set(0);
-        this.thickness.set(0);
-        this.type.set(null);
-        this.color.set(null);
-        this.remainingLength.set(0);
-        this.remainingWidth.set(0);
-        this.remainingThickness.set(0);
-        this.price.set(0);
-    }
+    public RectangularPiece() { }
 
     public RectangularPiece (double length , double width , double thickness , String type , String color , double remainingLength , double remainingWidth , double remainingThickness, double price) {
         this.length.set(length);
@@ -27,6 +17,7 @@ class RectangularPiece extends AbsMaterial {
         this.remainingWidth.set(remainingWidth);
         this.remainingThickness.set(remainingThickness);
         this.price.set(price);
+        this.totalPrice.set((this.remainingLength.get() * this.remainingWidth.get() * this.remainingThickness.get())/1000 * this.price.get());
     }
 
 }

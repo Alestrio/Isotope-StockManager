@@ -202,6 +202,10 @@ class ControllerMP {
 		t.add(colorColumnR);
 		qtyColumnR.setCellValueFactory(new PropertyValueFactory<>("qty"));
 		t.add(qtyColumnR);
+		priceCmColumnR.setCellValueFactory(new PropertyValueFactory<>("price"));
+		t.add(priceCmColumnR);
+		totalPriceColumnR.setCellValueFactory(new PropertyValueFactory<>("totalPrice"));
+		t.add(totalPriceColumnR);
 		tableR.getColumns().addAll(t);
 		tableR.setVisible(true);
 	}
