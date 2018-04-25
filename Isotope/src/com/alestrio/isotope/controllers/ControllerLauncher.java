@@ -2,6 +2,7 @@ package com.alestrio.isotope.controllers;
 
 import com.alestrio.isotope.ui.GuiMP;
 import com.alestrio.isotope.ui.GuiV;
+import javafx.application.Application;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -40,6 +41,11 @@ class ControllerLauncher {
         catch(Exception ioe){
             ioe.printStackTrace();
         }
+        ((Node) (e.getSource())).getScene().getWindow().hide();
+    }
+
+    @FXML
+    private void quitButtonClick(Event e){
         ((Node) (e.getSource())).getScene().getWindow().hide();
     }
 }
