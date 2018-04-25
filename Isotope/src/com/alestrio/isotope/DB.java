@@ -212,7 +212,8 @@ public class DB extends Thread{
         ObservableList<Screw> ols  = FXCollections.observableList(list);
 
 		Statement state  = null;
-		try {
+        //noinspection finally
+        try {
 			state = conn.createStatement();
 
 		ResultSet result = state.executeQuery("SELECT * FROM visserie");
@@ -229,7 +230,11 @@ public class DB extends Thread{
 	} catch (SQLException e) {
 		e.printStackTrace();
 	}
-        return ols;
+	finally{
+            //noinspection ReturnInsideFinallyBlock
+            return ols;
+		}
+
     }
 	
 	//-------- RECTANGULAR PIECES ---------
@@ -271,7 +276,8 @@ public class DB extends Thread{
 			double g = result.getDouble("remainingLength");
 			double h = result.getDouble("remainingWidth");
 			double i = result.getDouble("remainingThickness");
-			olr.add(new RectangularPiece(a ,b ,c ,d ,e ,g ,h ,i));
+			double j = result.getDouble("price");
+			olr.add(new RectangularPiece(a ,b ,c ,d ,e ,g ,h ,i, j));
 		}
 
         return olr;

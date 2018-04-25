@@ -6,6 +6,8 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
+import javafx.stage.Window;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -135,6 +137,24 @@ class ControllerV {
         System.out.println(db.connect());
             showDbEntriesScrews();
 
+    }
+
+    @FXML
+    void clickTotalValue(){
+        Dialog<String> t = new Dialog<>();
+        Window w = t.getDialogPane().getScene().getWindow();
+        List<Screw> screwList = db.getDbEntriesScrew();
+        Iterator<Screw> i = screwList.iterator();
+        double j = 0;
+        while (i.hasNext()){
+            Screw f = i.next();
+            j+=f.getTotalPrice();
+        }
+        t.setContentText("La valeur totale est de " +j+"€");
+        t.setTitle("Valeur totale");
+
+        w.setOnCloseRequest(event -> w.hide());
+        t.showAndWait();
     }
 
     boolean isSimilar(Screw s) {

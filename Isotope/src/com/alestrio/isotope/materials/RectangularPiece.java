@@ -3,176 +3,30 @@ package com.alestrio.isotope.materials;
 import javafx.beans.property.*;
 
 public
-class RectangularPiece implements Material {
+class RectangularPiece extends AbsMaterial {
 
-    private final SimpleDoubleProperty length             = new SimpleDoubleProperty();
-    private final SimpleDoubleProperty remainingLength    = new SimpleDoubleProperty();
-    private final SimpleDoubleProperty width              = new SimpleDoubleProperty();
-    private final SimpleDoubleProperty remainingWidth     = new SimpleDoubleProperty();
-    private final SimpleDoubleProperty thickness          = new SimpleDoubleProperty();
-    private final SimpleDoubleProperty remainingThickness = new SimpleDoubleProperty();
-    private final SimpleStringProperty type               = new SimpleStringProperty();
-    private final SimpleStringProperty color              = new SimpleStringProperty();
-
-    public
-    RectangularPiece (double a ,double b ,double c ,String d ,String e ,double g ,double h ,double i) {
-        length.set(a);
-        width.set(b);
-        thickness.set(c);
-        type.set(d);
-        color.set(e);
-        remainingLength.set(g);
-        remainingWidth.set(h);
-        remainingThickness.set(i);
+    public RectangularPiece() {
+        this.length.set(0);
+        this.width.set(0);
+        this.thickness.set(0);
+        this.type.set(null);
+        this.color.set(null);
+        this.remainingLength.set(0);
+        this.remainingWidth.set(0);
+        this.remainingThickness.set(0);
+        this.price.set(0);
     }
 
-    @Override
-    public
-    String getHead () {
-        return null;
-    }
-    @Override
-    public StringProperty getHeadProperty() {
-        return null;
-    }
-
-    @Override
-    public
-    double getDiameter () {
-        return 0;
-    }
-    @Override
-    public
-    DoubleProperty getDiameterProperty () {
-        return null;
+    public RectangularPiece (double length , double width , double thickness , String type , String color , double remainingLength , double remainingWidth , double remainingThickness, double price) {
+        this.length.set(length);
+        this.width.set(width);
+        this.thickness.set(thickness);
+        this.type.set(type);
+        this.color.set(color);
+        this.remainingLength.set(remainingLength);
+        this.remainingWidth.set(remainingWidth);
+        this.remainingThickness.set(remainingThickness);
+        this.price.set(price);
     }
 
-    @Override
-    public
-    double getLength () {
-        return length.get();
-    }
-    @Override
-    public
-    DoubleProperty getLengthProperty () {
-        return length;
-    }
-
-    @Override
-    public
-    double getWidth () {
-        return width.get();
-    }
-    @Override
-    public
-    DoubleProperty getWidthProperty () {
-        return width;
-    }
-
-    @Override
-    public
-    double getThickness () {
-        return thickness.get();
-    }
-    @Override
-    public
-    DoubleProperty getThicknessProperty () {
-        return thickness;
-    }
-
-    @Override
-    public
-    String getType () {
-        return type.get();
-    }
-    @Override
-    public StringProperty getTypeProperty() {
-        return type;
-    }
-
-    @Override
-    public
-    double getRemainingWeight () {
-        return 0;
-    }
-    @Override
-    public
-    DoubleProperty getRemainingWeightProperty () {
-        return null;
-    }
-
-    @Override
-    public
-    double getInitialWeight () {
-        return 0;
-    }
-    @Override
-    public
-    DoubleProperty getInitialWeightProperty () {
-        return null;
-    }
-
-    @Override
-    public String getColor() {
-        return color.get();
-    }
-    @Override
-    public StringProperty getColorProperty() {
-        return color;
-    }
-
-    @Override
-    public
-    int getQty () {
-        return 0;
-    }
-
-    @Override
-    public
-    IntegerProperty getQtyProperty () {
-        return null;
-    }
-
-    @Override
-    public double getPrice() {
-        return 0;
-    }
-
-    @Override
-    public DoubleProperty getPriceProperty() {
-        return null;
-    }
-
-    @Override
-    public
-    double getRemainingLength () {
-        return remainingLength.get();
-    }
-    @Override
-    public
-    DoubleProperty getRemainingLengthProperty () {
-        return remainingLength;
-    }
-
-    @Override
-    public
-    double getRemainingWidth () {
-        return remainingWidth.get();
-    }
-    @Override
-    public
-    DoubleProperty getRemainingWidthProperty () {
-        return remainingWidth;
-    }
-
-    @Override
-    public
-    double getRemainingThickness () {
-        return remainingThickness.get();
-    }
-    @Override
-    public
-    DoubleProperty getRemainingThicknessProperty () {
-        return remainingThickness;
-    }
 }

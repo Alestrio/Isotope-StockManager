@@ -37,6 +37,10 @@ class ControllerMP {
 	private TableColumn<RectangularPiece, String> colorColumnR;
 	@FXML
 	private TableColumn<RectangularPiece, String> qtyColumnR;
+	@FXML
+	private TableColumn<RectangularPiece, String> priceCmColumnR;
+	@FXML
+	private TableColumn<RectangularPiece, String> totalPriceColumnR;
 
 	@FXML
 	private TextField txtTypeR;
@@ -50,6 +54,9 @@ class ControllerMP {
 	private TextField txtColorR;
 	@FXML
 	private TextArea  txtAreaR;
+	@FXML
+	private TextField txtPriceR;
+
 	@FXML
 	private Button    addBtnR;
 
@@ -140,7 +147,8 @@ class ControllerMP {
 				txtColorR.getText() ,
 				Double.parseDouble(txtLengthR.getText()) ,
 				Double.parseDouble(txtWidthR.getText()) ,
-				Double.parseDouble(txtThicknessR.getText()));
+				Double.parseDouble(txtThicknessR.getText()),
+				Double.parseDouble(txtPriceR.getText()));
 		if (db.addRectangularPiece(v))
 			txtAreaR.appendText("Reussi !");
 		showDbEntries();
