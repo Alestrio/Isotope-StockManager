@@ -22,4 +22,23 @@ class FilamentSpool extends AbsMaterial {
         this.color.set(e);
     }
 
+    @Override
+    public void delete() {
+
+    }
+
+    @Override
+    public void add() {
+
+    }
+
+    @Override
+    public void modify() {
+
+    }
+
+    @Override
+    public void qtyChange() {
+
+    }
 }

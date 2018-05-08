@@ -65,6 +65,19 @@ public class DB extends Thread{
         return b;
 	}
 
+	public boolean dbQuery(String query){
+		ResultSet b;
+		boolean c = true;
+		try {
+			Statement state = conn.createStatement();
+			b = state.executeQuery(query);
+			c = b.absolute(MAX_PRIORITY);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return c;
+	}
+
 	//-------- SPOOL --------
 	public boolean eraseSpool(int id) {
 		ResultSet b;
@@ -166,50 +179,6 @@ public class DB extends Thread{
     }
 	
 	//-------- SCREWS --------
-	public boolean eraseScrew(Screw s) {
-		ResultSet b;
-		boolean c = true;
-		try {
-			Statement state = conn.createStatement();
-			b = state.executeQuery("DELETE FROM visserie WHERE diameter = " + s.getDiameter()+"AND  length = " + s.getLength() + "AND type = '" +s.getType()+"'AND color = '" + s.getColor()+
-			"' AND qty=" +s.getQty()+" AND price=" +s.getPrice());
-			c = b.absolute(MAX_PRIORITY);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return c;
-		
-	}
-
-    public
-    boolean addScrew (Screw s) {
-        ResultSet b;
-        boolean d = true;
-        try {
-            Statement state = conn.createStatement();
-            b = state.executeQuery("INSERT INTO visserie (diameter, length, head, type, color, qty, price) VALUES (" + s.getDiameter() + ", " + s.getLength() + ", '" + s.getHead() + "', '" + s.getType() + "', '" + s.getColor() + "', " + s.getQty() + ", "+s.getPrice()+")");
-            d = b.absolute(MAX_PRIORITY);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return d;
-	}
-
-	public
-	boolean qtyChangeScrew(Screw s){
-        ResultSet b;
-        boolean d = true;
-        try {
-            Statement state = conn.createStatement();
-            b = state.executeQuery("UPDATE visserie SET qty = "+ s.getQty() +" WHERE diameter =" + s.getDiameter() + " AND length = " + s.getLength() + "AND head = '" + s.getHead() + "' AND type = '" +s.getType()+"' AND color = '" + s.getColor() + "' AND price =" + s.getPrice() );
-            d = b.absolute(MAX_PRIORITY);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return d;
-
-    }
-
     public
     ObservableList<Screw> getDbEntriesScrew (){
         int i = 0;

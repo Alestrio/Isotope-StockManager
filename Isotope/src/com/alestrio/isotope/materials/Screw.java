@@ -6,8 +6,6 @@
 
 package com.alestrio.isotope.materials;
 
-import javafx.beans.property.*;
-
 public
 class Screw extends AbsMaterial {
 
@@ -24,4 +22,24 @@ class Screw extends AbsMaterial {
         this.totalPrice.set(qty*price);
     }
 
+    @Override
+    public void delete() {
+        db.dbQuery("DELETE FROM visserie WHERE diameter = " + this.diameter+"AND  length = " + this.length + "AND type = '" +this.type+"'AND color = '" + this.color+
+                "' AND qty =" +this.qty+" AND price =" +this.price);
+    }
+
+    @Override
+    public void add() {
+        db.dbQuery("INSERT INTO visserie (diameter, length, head, type, color, qty, price) VALUES (" + this.diameter + ", " + this.length + ", '" + this.head + "', '" + this.type + "', '" + this.color + "', " + this.qty + ", "+this.price+")");
+    }
+
+    @Override
+    public void modify() {
+
+    }
+
+    @Override
+    public void qtyChange() {
+        db.dbQuery("UPDATE visserie SET qty = "+ this.qty +" WHERE diameter =" + this.diameter + " AND length = " + this.length + "AND head = '" + this.head + "' AND type = '" +this.type+"' AND color = '" + this.color + "' AND price =" + this.price);
+    }
 }

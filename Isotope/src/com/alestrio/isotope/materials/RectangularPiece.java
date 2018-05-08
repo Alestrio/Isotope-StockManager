@@ -26,4 +26,23 @@ class RectangularPiece extends AbsMaterial {
         this.totalPrice.set((this.remainingLength.get() * this.remainingWidth.get() * this.remainingThickness.get())/1000 * this.price.get());
     }
 
+    @Override
+    public void delete() {
+
+    }
+
+    @Override
+    public void add() {
+
+    }
+
+    @Override
+    public void modify() {
+
+    }
+
+    @Override
+    public void qtyChange() {
+
+    }
 }

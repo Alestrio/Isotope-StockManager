@@ -6,6 +6,7 @@
 
 package com.alestrio.isotope.materials;
 
+import com.alestrio.isotope.DB;
 import javafx.beans.property.*;
 
 public abstract class AbsMaterial {
@@ -25,6 +26,7 @@ public abstract class AbsMaterial {
     protected SimpleIntegerProperty qty = new SimpleIntegerProperty(0);
     protected SimpleDoubleProperty price = new SimpleDoubleProperty(0);
     protected SimpleDoubleProperty totalPrice = new SimpleDoubleProperty(0);
+    DB db = new DB("jdbc:postgresql://localhost:5432/isotope" ,"postgres" ,"postgres");
 
     //Screws
     public String getHead() {
@@ -209,4 +211,13 @@ public abstract class AbsMaterial {
     public DoubleProperty getTotalPriceProperty() {
         return this.totalPrice;
     }
+
+    public abstract void delete();
+
+    public abstract void add();
+
+    public abstract void modify();
+
+    public abstract void qtyChange();
+
 }

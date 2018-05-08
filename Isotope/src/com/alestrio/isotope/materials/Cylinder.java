@@ -22,4 +22,23 @@ class Cylinder extends AbsMaterial {
         this.remainingLength.set(f);
     }
 
+    @Override
+    public void delete() {
+
+    }
+
+    @Override
+    public void add() {
+
+    }
+
+    @Override
+    public void modify() {
+
+    }
+
+    @Override
+    public void qtyChange() {
+
+    }
 }

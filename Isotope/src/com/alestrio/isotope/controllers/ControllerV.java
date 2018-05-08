@@ -78,9 +78,10 @@ class ControllerV {
                 txtColor.getText() ,
                 Integer.parseInt(txtQty.getText()),
                 Double.parseDouble(txtPrice.getText()));
-        if(!isSimilar(v))
-            if (db.addScrew(v))
-                txtArea.appendText("Reussi !");
+        if(!isSimilar(v)){
+            v.add();
+            txtArea.appendText("Reussi !");
+        }
         else
             txtArea.appendText("Item similaire");
         showDbEntriesScrews();
@@ -90,7 +91,7 @@ class ControllerV {
     void clickQtyChangeButton(){
         Screw v = tableS.getSelectionModel().getSelectedItem();
         v.setQty(Integer.parseInt(txtQtyN.getText()));
-        db.qtyChangeScrew(v);
+        v.qtyChange();
         try{
             showDbEntriesScrews();
         }
@@ -102,7 +103,7 @@ class ControllerV {
 
     @FXML
     void clickDelButton(){
-        db.eraseScrew(tableS.getSelectionModel().getSelectedItem());
+        tableS.getSelectionModel().getSelectedItem().delete();
         try{
             showDbEntriesScrews();
         }
@@ -163,11 +164,9 @@ class ControllerV {
         t.showAndWait();
     }
 
-    boolean isSimilar(Screw s) {
+    private boolean isSimilar(Screw s) {
         List<Screw> screwList = db.getDbEntriesScrew();
-        Iterator<Screw> i = screwList.iterator();
-        while (i.hasNext()){
-            Screw f = i.next();
+        for (Screw f : screwList) {
             if (f.getColor().equals(s.getColor()) && f.getType().equals(s.getType()) && f.getHead().equals(s.getHead()) && f.getLength() == s.getLength() && f.getDiameter() == s.getDiameter() && f.getQty() == s.getQty() && f.getPrice() == s.getPrice())
                 return true;
         }
