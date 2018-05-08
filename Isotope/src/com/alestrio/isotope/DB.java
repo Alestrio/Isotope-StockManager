@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2018.
+ * Code written by Alexis LEBEL (aka Alestrio)
+ *
+ */
+
 package com.alestrio.isotope;
 
 import com.alestrio.isotope.materials.Cylinder;
@@ -261,6 +267,21 @@ public class DB extends Thread{
 					+ " VALUES (" + r.getLength() + ", "+ r.getWidth() +", "
 					+ r.getThickness() + ", '" + r.getType() + "', '" + r.getColor() + "', " + r.getRemainingLength() + ", "
 					+ r.getRemainingWidth() + ", " + r.getRemainingThickness() + ", " + r.getPrice() +") ");
+			d = b.absolute(MAX_PRIORITY);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return d;
+	}
+
+	public boolean modifyRectangularPiece(RectangularPiece r){
+		ResultSet b;
+		boolean d = true;
+		try {
+			Statement state = conn.createStatement();
+			b = state.executeQuery("UPDATE FROW rectangles " +
+					"SET remaininglength = " + r.getRemainingLength() +", remainingwidth = " + r.getRemainingWidth() + ", remainingthickness =" + r.getRemainingThickness() +
+				"WHERE length =" + r.getLength() + " AND width = " + r.getWidth() + "AND thickness = " + r.getThickness() + "" );
 			d = b.absolute(MAX_PRIORITY);
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -1,9 +1,16 @@
+/*
+ * Copyright (c) 2018.
+ * Code written by Alexis LEBEL (aka Alestrio)
+ *
+ */
+
 package com.alestrio.isotope.controllers;
 
 import com.alestrio.isotope.DB;
 import com.alestrio.isotope.materials.Cylinder;
 import com.alestrio.isotope.materials.FilamentSpool;
 import com.alestrio.isotope.materials.RectangularPiece;
+import com.alestrio.isotope.materials.Screw;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -56,9 +63,21 @@ class ControllerMP {
 	private TextArea  txtAreaR;
 	@FXML
 	private TextField txtPriceR;
+	@FXML
+	private TextField newTxtLengthR;
+	@FXML
+	private TextField  newTxtWidthR;
+	@FXML
+	private TextField newTxtThicknessR;
 
 	@FXML
 	private Button    addBtnR;
+	@FXML
+	private Button duplicateBtnR;
+	@FXML
+	private Button saveBtnR;
+	@FXML
+	private Button delBtnR;
 
 	/*--- TABLEVIEW CYLINDERS ---*/
 	@FXML
@@ -160,7 +179,16 @@ class ControllerMP {
 	}
 
 	/*--- MODIFY BUTTONS ---*/
+	@FXML
+	void onDuplicateButtonClickR(){
+		RectangularPiece v = tableR.getSelectionModel().getSelectedItem();
+		db.addRectangularPiece(v);
+	}
 
+	@FXML
+	void onSaveButtonClick(){
+
+	}
 
 
 	/*--- ERASE BUTTONS ---*/

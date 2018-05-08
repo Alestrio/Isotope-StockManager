@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2018.
+ * Code written by Alexis LEBEL (aka Alestrio)
+ *
+ */
+
 package com.alestrio.isotope.materials;
 
 import javafx.beans.property.*;

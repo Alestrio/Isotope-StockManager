@@ -19,6 +19,12 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
+<!--
+  ~ Copyright (c) 2018.
+  ~ Code written by Alexis LEBEL (aka Alestrio)
+  ~
+  -->
+
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="816.0" prefWidth="1433.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.alestrio.isotope.controllers.ControllerMP">
     <children>
         <MenuBar VBox.vgrow="NEVER">
@@ -149,9 +155,13 @@
                                                          <children>
                                                             <Label text="Longueur restante" />
                                                             <Label text="Largeur restante" GridPane.rowIndex="1" />
-                                                            <Label text="Longueur" GridPane.rowIndex="4" />
-                                                            <Label text="Supprimer" GridPane.rowIndex="3" />
                                                             <Label text="Épaisseur restante" GridPane.rowIndex="2" />
+                                                            <TextField fx:id="newTxtLengthR" GridPane.columnIndex="1" />
+                                                            <TextField fx:id="newTxtWidthR" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                            <TextField fx:id="newTxtThicknessR" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                            <Button fx:id="duplicateBtnR" mnemonicParsing="false" prefHeight="25.0" prefWidth="261.0" text="Dupliquer" GridPane.rowIndex="3" />
+                                                            <Button fx:id="saveBtnR" mnemonicParsing="false" prefHeight="25.0" prefWidth="261.0" text="Sauvegarder les modifications" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                            <Button fx:id="delBtnR" mnemonicParsing="false" prefHeight="25.0" prefWidth="261.0" text="Supprimer" GridPane.rowIndex="4" />
                                                          </children>
                                                       </GridPane>
                                                    </children></AnchorPane>
