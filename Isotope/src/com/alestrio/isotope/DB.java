@@ -6,6 +6,7 @@
 
 package com.alestrio.isotope;
 
+import com.alestrio.isotope.controllers.ControllerV;
 import com.alestrio.isotope.materials.Cylinder;
 import com.alestrio.isotope.materials.FilamentSpool;
 import com.alestrio.isotope.materials.RectangularPiece;
@@ -13,6 +14,7 @@ import com.alestrio.isotope.materials.Screw;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.lang.reflect.Method;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -53,15 +55,9 @@ public class DB extends Thread{
 		}
 	}
 	
-	public boolean getConnectionState() {
+	public boolean getConnectionState() throws SQLException {
 		boolean b;
-		try {
-			b = conn.isValid(MAX_PRIORITY);
-		} catch (SQLException f) {
-			f.printStackTrace();
-			b = false;
-		}
-
+		b = conn.isValid(MAX_PRIORITY);
         return b;
 	}
 

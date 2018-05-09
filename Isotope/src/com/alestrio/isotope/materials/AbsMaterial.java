@@ -212,12 +212,10 @@ public abstract class AbsMaterial {
         return this.totalPrice;
     }
 
-    public abstract void delete();
+    public abstract boolean delete();
 
-    public abstract void add();
+    public abstract boolean add();
 
-    public abstract void modify();
-
-    public abstract void qtyChange();
+    public abstract boolean qtyChange();
 
 }

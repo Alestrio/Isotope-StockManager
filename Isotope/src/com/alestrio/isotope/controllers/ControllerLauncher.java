@@ -16,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public
 class ControllerLauncher {
@@ -34,6 +35,8 @@ class ControllerLauncher {
             g.launch(new Stage());
         } catch (IOException ioe) {
             ioe.printStackTrace();
+        } catch (SQLException e1) {
+            e1.printStackTrace();
         }
         ((Node) (e.getSource())).getScene().getWindow().hide();
     }

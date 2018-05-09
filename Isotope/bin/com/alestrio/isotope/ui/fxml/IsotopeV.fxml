@@ -19,6 +19,12 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
+<!--
+  ~ Copyright (c) 2018.
+  ~ Code written by Alexis LEBEL (aka Alestrio)
+  ~
+  -->
+
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="695.0" prefWidth="1167.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.alestrio.isotope.controllers.ControllerV">
     <children>
         <MenuBar prefHeight="21.0" prefWidth="900.0" VBox.vgrow="NEVER">

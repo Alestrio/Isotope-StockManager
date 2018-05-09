@@ -15,6 +15,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -68,6 +69,7 @@ class ControllerV {
     @FXML
     private Button qtyBtn;
 
+    private Alert alert;
 
     @FXML
     void clickAddButton() {
@@ -79,8 +81,13 @@ class ControllerV {
                 Integer.parseInt(txtQty.getText()),
                 Double.parseDouble(txtPrice.getText()));
         if(!isSimilar(v)){
-            v.add();
-            txtArea.appendText("Reussi !");
+            if(!v.add()){
+                alert.setAlertType(Alert.AlertType.ERROR);
+                alert.setTitle("ERREUR !");
+                alert.setContentText("Impossible d'ajouter la vis");
+            }
+            else
+                txtArea.appendText("Reussi !");
         }
         else
             txtArea.appendText("Item similaire");
@@ -91,59 +98,64 @@ class ControllerV {
     void clickQtyChangeButton(){
         Screw v = tableS.getSelectionModel().getSelectedItem();
         v.setQty(Integer.parseInt(txtQtyN.getText()));
-        v.qtyChange();
-        try{
-            showDbEntriesScrews();
+        if(!v.qtyChange()){
+            alert.setAlertType(Alert.AlertType.ERROR);
+            alert.setTitle("ERREUR !");
+            alert.setContentText("Impossible de changer la quantité");
         }
-        catch(Exception e){
-            e.printStackTrace();
-        }
+        showDbEntriesScrews();
 
     }
 
     @FXML
     void clickDelButton(){
         tableS.getSelectionModel().getSelectedItem().delete();
-        try{
             showDbEntriesScrews();
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
-    }
-
-    public void showDbEntriesScrews () {
-        tableS.getColumns().clear();
-        ObservableList<Screw>                  ols = db.getDbEntriesScrew();
-        Collection<TableColumn<Screw, String>> t   = new ArrayList<>();
-        tableS.setItems(ols);
-        headColumnS.setCellValueFactory(new PropertyValueFactory<>("head"));
-        t.add(headColumnS);
-        diamColumnS.setCellValueFactory(new PropertyValueFactory<>("diameter"));
-        t.add(diamColumnS);
-        lengthColumnS.setCellValueFactory(new PropertyValueFactory<>("length"));
-        t.add(lengthColumnS);
-        typeColumnS.setCellValueFactory(new PropertyValueFactory<>("type"));
-        t.add(typeColumnS);
-        colorColumnS.setCellValueFactory(new PropertyValueFactory<>("color"));
-        t.add(colorColumnS);
-        qtyColumnS.setCellValueFactory(new PropertyValueFactory<>("qty"));
-        t.add(qtyColumnS);
-        priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
-        t.add(priceColumn);
-        totalPriceColumn.setCellValueFactory(new PropertyValueFactory<>("totalPrice"));
-        t.add(totalPriceColumn);
-
-        tableS.getColumns().addAll(t);
-        tableS.setVisible(true);
     }
 
     @FXML
-    void clickConnectionBtn () {
-        System.out.println(db.getDriverState());
-        System.out.println(db.connect());
-            showDbEntriesScrews();
+    public void showDbEntriesScrews () {
+        if(!(tableS == null))
+            tableS.getColumns().clear();
+        ObservableList<Screw>                  ols = db.getDbEntriesScrew();
+        Collection<TableColumn<Screw, String>> t   = new ArrayList<>();
+        this.headColumnS.setCellValueFactory(new PropertyValueFactory<>("head"));
+        t.add(headColumnS);
+        this.diamColumnS.setCellValueFactory(new PropertyValueFactory<>("diameter"));
+        t.add(diamColumnS);
+        this.lengthColumnS.setCellValueFactory(new PropertyValueFactory<>("length"));
+        t.add(lengthColumnS);
+        this.typeColumnS.setCellValueFactory(new PropertyValueFactory<>("type"));
+        t.add(typeColumnS);
+        this.colorColumnS.setCellValueFactory(new PropertyValueFactory<>("color"));
+        t.add(colorColumnS);
+        this.qtyColumnS.setCellValueFactory(new PropertyValueFactory<>("qty"));
+        t.add(qtyColumnS);
+        this.priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
+        t.add(priceColumn);
+        this.totalPriceColumn.setCellValueFactory(new PropertyValueFactory<>("totalPrice"));
+        t.add(totalPriceColumn);
 
+        this.tableS.setItems(ols);
+        this.tableS.getColumns().addAll(t);
+        this.tableS.setVisible(true);
+    }
+
+    @FXML
+    void clickConnectionBtn () throws SQLException {
+        if(!db.getDriverState()){
+            alert.setAlertType(Alert.AlertType.ERROR);
+            alert.setTitle("ERREUR !");
+            alert.setContentText("Problème de driver JDBC");
+        }
+        db.connect();
+        if(!db.getConnectionState()){
+            alert.setAlertType(Alert.AlertType.ERROR);
+            alert.setTitle("ERREUR !");
+            alert.setContentText("Impossible de se connecter à la base de données");
+        }
+        else
+            showDbEntriesScrews();
     }
 
     @FXML

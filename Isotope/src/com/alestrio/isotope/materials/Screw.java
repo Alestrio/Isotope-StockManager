@@ -23,23 +23,21 @@ class Screw extends AbsMaterial {
     }
 
     @Override
-    public void delete() {
-        db.dbQuery("DELETE FROM visserie WHERE diameter = " + this.diameter+"AND  length = " + this.length + "AND type = '" +this.type+"'AND color = '" + this.color+
-                "' AND qty =" +this.qty+" AND price =" +this.price);
+    public boolean delete() {
+        return db.dbQuery(String.format("DELETE FROM visserie WHERE diameter = %sAND  length = %sAND type = '%s'AND color = '%s' AND qty =%d AND price =%s", this.diameter.get(), this.length.get(), this.type.get(), this.color.get(), this.qty.get(), this.price.get()));
     }
 
     @Override
-    public void add() {
-        db.dbQuery("INSERT INTO visserie (diameter, length, head, type, color, qty, price) VALUES (" + this.diameter + ", " + this.length + ", '" + this.head + "', '" + this.type + "', '" + this.color + "', " + this.qty + ", "+this.price+")");
+    public boolean add() {
+        return db.dbQuery(String.format("INSERT INTO visserie (diameter, length, head, type, color, qty, price) VALUES (%s, %s, '%s', '%s', '%s', %d, %s)", this.diameter.get(), this.length.get(), this.head.get(), this.type.get(), this.color.get(), this.qty.get(), this.price.get()));
+    }
+
+    public boolean modify(double diameter ,double length ,String head ,String type ,String color,int qty, double price) {
+        return db.dbQuery(String.format("UPDATE visserie SET diameter= +%s, length= %s , head= %s , type=%s , color=%s , qty=%d , price=%s WHERE diameter= %s , length=%s , head=%s , type= %s , color=%s , qty=%d , price=%s", diameter, length, head, type, color, qty, price, this.diameter.get(), this.length.get(), this.head.get(), this.head.get(), this.color.get(), this.qty.get(), this.price.get()));
     }
 
     @Override
-    public void modify() {
-
-    }
-
-    @Override
-    public void qtyChange() {
-        db.dbQuery("UPDATE visserie SET qty = "+ this.qty +" WHERE diameter =" + this.diameter + " AND length = " + this.length + "AND head = '" + this.head + "' AND type = '" +this.type+"' AND color = '" + this.color + "' AND price =" + this.price);
+    public boolean qtyChange() {
+        return db.dbQuery(String.format("UPDATE visserie SET qty = %d WHERE diameter =%s AND length = %sAND head = '%s' AND type = '%s' AND color = '%s' AND price =%s", this.qty.get(), this.diameter.get(), this.length.get(), this.head.get(), this.type.get(), this.color.get(), this.price.get()));
     }
 }

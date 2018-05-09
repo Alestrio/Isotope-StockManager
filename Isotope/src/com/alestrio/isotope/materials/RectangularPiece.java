@@ -6,8 +6,6 @@
 
 package com.alestrio.isotope.materials;
 
-import javafx.beans.property.*;
-
 public
 class RectangularPiece extends AbsMaterial {
 
@@ -27,22 +25,24 @@ class RectangularPiece extends AbsMaterial {
     }
 
     @Override
-    public void delete() {
+    public boolean delete() {
 
+        return false;
     }
 
     @Override
-    public void add() {
+    public boolean add() {
 
+        return false;
     }
 
-    @Override
     public void modify() {
 
     }
 
     @Override
-    public void qtyChange() {
+    public boolean qtyChange() {
 
+        return false;
     }
 }
