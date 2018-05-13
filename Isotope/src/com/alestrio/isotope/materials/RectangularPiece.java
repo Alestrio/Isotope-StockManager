@@ -41,8 +41,8 @@ class RectangularPiece extends AbsMaterial {
     }
 
     @Override
-    public boolean qtyChange() {
-
+    public boolean qtyChange(int newQty) {
+        //TODO add qty setting to this object
         return false;
     }
 }

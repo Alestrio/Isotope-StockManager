@@ -216,6 +216,6 @@ public abstract class AbsMaterial {
 
     public abstract boolean add();
 
-    public abstract boolean qtyChange();
+    public abstract boolean qtyChange(int newQty);
 
 }

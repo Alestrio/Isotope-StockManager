@@ -73,38 +73,7 @@ public class DB extends Thread{
 		}
 		return c;
 	}
-
-	//-------- SPOOL --------
-	public boolean eraseSpool(int id) {
-		ResultSet b;
-		boolean c = true;
-		try {
-			Statement state = conn.createStatement();
-			b = state.executeQuery("DELETE FROM bobines WHERE id="+id);
-			c = b.absolute(MAX_PRIORITY);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return c;
-	}
-
-	public
-	boolean addSpool (FilamentSpool m) {
-		ResultSet b;
-		boolean d = true;
-		try {
-			Statement state = conn.createStatement();
-			b = state.executeQuery("INSERT INTO bobines (type, diameter, initialweight, remainingweight, color)"
-					+ " VALUES ('" + m.getType() + "', " + m.getDiameter() + ", " + m.getInitialWeight() + ", "
-					+ m.getRemainingWeight() + ", '" + m.getColor() + "')");
-			d = b.absolute(MAX_PRIORITY);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return d;
-		
-	}
-
+	
     public
 	ObservableList<FilamentSpool> getDbEntriesSpool () throws Exception {
         List<FilamentSpool>           list   = new ArrayList<>();
@@ -122,38 +91,6 @@ public class DB extends Thread{
 		}
         return olf;
     }
-	
-	//-------- CYLINDERS --------
-	public boolean eraseCylinder(int id) {
-		ResultSet b;
-		boolean c = true;
-		try {
-			Statement state = conn.createStatement();
-			b = state.executeQuery("DELETE FROM cylinders WHERE id="+id);
-			c = b.absolute(MAX_PRIORITY);
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-		}
-		return c;
-		
-	}
-	
-	public boolean addCylinder(Cylinder c, int qty) {
-		ResultSet b;
-		boolean d = true;
-		try {
-			Statement state = conn.createStatement();
-			b = state.executeQuery("INSERT INTO cylindres (diameter, length, color, type, remainingLength, qty)"
-					+ " VALUES (" + c.getDiameter() + ", "+ c.getLength() +", "
-					+ c.getColor() + ", " + c.getType() + ", " + c.getRemainingLength() + ", " + qty);
-			d = b.absolute(MAX_PRIORITY);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return d;
-		
-	}
 
     public
 	ObservableList<Cylinder> getDbEntriesCylinders () throws Exception {
@@ -173,8 +110,7 @@ public class DB extends Thread{
 		}
         return olc;
     }
-	
-	//-------- SCREWS --------
+
     public
     ObservableList<Screw> getDbEntriesScrew (){
         int i = 0;
