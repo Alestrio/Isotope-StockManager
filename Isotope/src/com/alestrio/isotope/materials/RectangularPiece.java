@@ -6,8 +6,7 @@
 
 package com.alestrio.isotope.materials;
 
-public
-class RectangularPiece extends AbsMaterial {
+public class RectangularPiece extends AbsMaterial {
 
     public RectangularPiece() { }
 
@@ -27,22 +26,29 @@ class RectangularPiece extends AbsMaterial {
     @Override
     public boolean delete() {
 
-        return false;
+        return db.dbQuery(String.format("DELETE FROM rectangles WHERE length=%s AND width=%s AND thickness=%s AND type=%s AND color=%s AND remaininglength=%s AND " +
+                "remainingwidth=%s AND remainingthickness=%s AND price=%s", this.length.get(), this.width.get(), this.thickness.get(), this.type.get(), this.color.get(),
+                this.remainingLength.get(), this.remainingWidth.get(), this.remainingThickness.get(), this.price.get()));
     }
 
     @Override
     public boolean add() {
 
-        return false;
+        return db.dbQuery(String.format("INSERT INTO rectangles (length ,width ,thickness ,type ,color ,remaininglength ,remainingwidth ,remainingthickness, price)" +
+                " VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)", this.length.get(), this.width.get(), this.thickness.get(), this.type.get(), this.color.get(),
+                this.remainingLength.get(), this.remainingWidth.get(), this.remainingThickness.get(), this.price.get() ));
     }
 
-    public void modify() {
-
+    public boolean modify(double length , double width , double thickness , String type , String color , double remainingLength , double remainingWidth , double remainingThickness, double price) {
+        return db.dbQuery(String.format("UPDATE rectangles SET length=%s AND width=%s AND thickness=%s AND type=%s AND color=%s AND remaininglength=%s AND" +
+                "remainingwidth=%s AND remainingthickness=%s AND price=%s WHERE length=%s AND width=%s AND thickness=%s AND type=%s AND color=%s AND remaininglength=%s AND" +
+                "remainingwidth=%s AND remainingthickness=%s AND price=%s",length ,width ,thickness ,type ,color ,remainingLength ,remainingWidth ,remainingThickness,price,
+                this.length.get(), this.width.get(), this.thickness.get(), this.type.get(), this.color.get(), this.remainingLength.get(), this.remainingWidth.get(),
+                this.remainingThickness.get(), this.price.get()));
     }
 
     @Override
     public boolean qtyChange(int newQty) {
-        //TODO add qty setting to this object
         return false;
     }
 }

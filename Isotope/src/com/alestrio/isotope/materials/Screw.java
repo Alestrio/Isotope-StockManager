@@ -33,21 +33,6 @@ class Screw extends AbsMaterial {
     }
 
     public boolean modify(double diameter ,double length ,String head ,String type ,String color,int qty, double price) {
-        if(diameter == 0)
-            diameter = this.diameter.get();
-        if(length == 0)
-            length = this.length.get();
-        if(head == null)
-            head = this.head.get();
-        if(type == null)
-            type = this.type.get();
-        if(color == null)
-            color = this.color.get();
-        if(qty == 0)
-            qty = this.qty.get();
-        if(price == 0)
-            price = this.price.get();
-
         return db.dbQuery(String.format("UPDATE visserie SET diameter= %s, length= %s , head= %s , type=%s , color=%s , qty=%d , price=%s WHERE diameter= %s , length=%s , head=%s , type= %s , color=%s , qty=%d , price=%s", diameter, length, head, type, color, qty, price, this.diameter.get(), this.length.get(), this.head.get(), this.head.get(), this.color.get(), this.qty.get(), this.price.get()));
     }
 

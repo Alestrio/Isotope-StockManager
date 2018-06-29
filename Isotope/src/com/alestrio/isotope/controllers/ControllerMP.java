@@ -152,7 +152,7 @@ class ControllerMP {
 				Double.parseDouble(txtWeightF.getText()) ,
 				txtTypeF.getText() ,
 				txtColorF.getText());
-		if (db.addSpool(v))
+		if (v.add())
 			txtAreaF.appendText("Reussi !");
 		showDbEntries();
 	}
@@ -168,13 +168,24 @@ class ControllerMP {
 				Double.parseDouble(txtWidthR.getText()) ,
 				Double.parseDouble(txtThicknessR.getText()),
 				Double.parseDouble(txtPriceR.getText()));
-		if (db.addRectangularPiece(v))
+		if (v.add())
 			txtAreaR.appendText("Reussi !");
 		showDbEntries();
 	}
 
 	@FXML
 	void clickAddBtnCylinder () {
+		Cylinder c = new Cylinder(
+				Double.parseDouble(diameterColumnC.getText()),
+				Double.parseDouble(lengthColumnC.getText()),
+				typeColumnC.getText(),
+				colorColumnC.getText(),
+				Integer.parseInt(qtyColumnC.getText()),
+				Double.parseDouble(remainingLengthColumnC.getText())
+		);
+		if (c.add())
+			txtAreaC.appendText("Reussi !");
+		showDbEntries();
 		showDbEntries();
 	}
 
@@ -182,7 +193,7 @@ class ControllerMP {
 	@FXML
 	void onDuplicateButtonClickR(){
 		RectangularPiece v = tableR.getSelectionModel().getSelectedItem();
-		db.addRectangularPiece(v);
+		v.add();
 	}
 
 	@FXML

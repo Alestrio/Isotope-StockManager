@@ -36,19 +36,6 @@ class Cylinder extends AbsMaterial {
     }
 
     public boolean modify(double diameter , double length , String type , String color , int qty , double remainingLength) {
-        if(diameter == 0)
-            diameter = this.diameter.get();
-        if(length == 0)
-            length = this.length.get();
-        if(type == null)
-            type = this.type.get();
-        if(color == null)
-            color = this.color.get();
-        if(qty == 0)
-            qty = this.qty.get();
-        if(remainingLength == 0)
-            remainingLength = this.remainingLength.get();
-
         return db.dbQuery("UPDATE cylindres SET diameter ="+ diameter + ", length="+ length +", type ='" + type + "', color='" + color + "', qty =" + qty +", remaininglength =" + remainingLength +"  WHERE diameter = " + this.diameter.get() + "AND length =" + this.length.get() + "AND type='" + this.type.get() +"'" +
                 "AND color= '" + this.color.get() + "AND qty =" + this.qty.get() + " AND remaininglength =" + this.remainingLength.get());
     }

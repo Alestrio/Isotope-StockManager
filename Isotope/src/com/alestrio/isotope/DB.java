@@ -73,7 +73,7 @@ public class DB extends Thread{
 		}
 		return c;
 	}
-	
+
     public
 	ObservableList<FilamentSpool> getDbEntriesSpool () throws Exception {
         List<FilamentSpool>           list   = new ArrayList<>();
