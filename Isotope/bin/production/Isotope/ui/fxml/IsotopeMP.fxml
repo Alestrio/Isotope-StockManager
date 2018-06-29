@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<!--
+  ~ Copyright (c) 2018.
+  ~ Code written by Alexis LEBEL (aka Alestrio)
+  ~
+  -->
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="816.0" prefWidth="1433.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.alestrio.isotope.controllers.ControllerMP">
+    <children>
+        <MenuBar VBox.vgrow="NEVER">
+            <menus>
+                <Menu mnemonicParsing="false" text="File">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#clickConnectionBtn" text="Se connecter à la base" />
+                        <MenuItem mnemonicParsing="false" text="Open…" />
+                        <Menu mnemonicParsing="false" text="Open Recent" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" text="Close" />
+                        <MenuItem mnemonicParsing="false" text="Save" />
+                        <MenuItem mnemonicParsing="false" text="Save As…" />
+                        <MenuItem mnemonicParsing="false" text="Revert" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" text="Preferences…" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" text="Quit" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Undo" />
+                        <MenuItem mnemonicParsing="false" text="Redo" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" text="Cut" />
+                        <MenuItem mnemonicParsing="false" text="Copy" />
+                        <MenuItem mnemonicParsing="false" text="Paste" />
+                        <MenuItem mnemonicParsing="false" text="Delete" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" text="Select All" />
+                        <MenuItem mnemonicParsing="false" text="Unselect All" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="About MyHelloApp" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="455.0" prefWidth="725.0" VBox.vgrow="ALWAYS">
+            <children>
+                <TabPane layoutX="-62.0" layoutY="-3.0" prefHeight="578.0" prefWidth="900.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <tabs>
+                        <Tab text="Plaques">
+                            <content>
+                                <SplitPane dividerPositions="0.6385205861828332" prefHeight="515.0" prefWidth="900.0">
+                                    <items>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="762.0" prefWidth="742.0">
+                                            <children>
+                                                <TableView id="table" fx:id="tableR" layoutX="103.0" layoutY="108.0" prefHeight="548.0" prefWidth="448.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                    <columns>
+                                                        <TableColumn fx:id="lengthColumnR" prefWidth="59.0" text="Longueur" />
+                                                        <TableColumn fx:id="remainingLengthColumnR" prefWidth="116.0" text="Longueur restante" />
+                                                        <TableColumn fx:id="widthColumnR" prefWidth="62.0" text="Largeur" />
+                                                        <TableColumn fx:id="remainingWidthColumnR" prefWidth="103.0" text="Largeur restante" />
+                                                        <TableColumn fx:id="thicknessColumnR" prefWidth="64.0" text="Épaisseur" />
+                                                        <TableColumn fx:id="remainingThicknessColumnR" prefWidth="108.0" text="Épaisseur restante" />
+                                                        <TableColumn fx:id="typeColumnR" prefWidth="59.0" text="Matière" />
+                                                        <TableColumn fx:id="colorColumnR" prefWidth="54.0" text="Couleur" />
+                                                        <TableColumn fx:id="qtyColumnR" prefWidth="63.0" text="Quantité" />
+                                          <TableColumn fx:id="priceCmColumnR" prefWidth="77.0" text="Prix/cm^3" />
+                                          <TableColumn fx:id="totalPriceColumnR" prefWidth="65.0" text="Prix total" />
+                                                    </columns>
+                                                </TableView>
+                                            </children>
+                                        </AnchorPane>
+                                        <AnchorPane>
+                                            <children>
+                                                <TabPane layoutX="226.0" layoutY="125.0" prefHeight="728.0" prefWidth="636.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                    <tabs>
+                                                        <Tab text="Ajouter">
+                                                            <content>
+                                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                                    <children>
+                                                                        <GridPane layoutX="7.0" prefHeight="458.0" prefWidth="410.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                            <columnConstraints>
+                                                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                                            </columnConstraints>
+                                                                            <rowConstraints>
+                                                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                            </rowConstraints>
+                                                                            <children>
+                                                                                <Label text="Longueur" />
+                                                                                <Label text="Largeur" GridPane.rowIndex="1" />
+                                                                                <Label text="Épaisseur" GridPane.rowIndex="2" />
+                                                                                <Label text="Matière" GridPane.rowIndex="3" />
+                                                                                <Label text="Couleur" GridPane.rowIndex="4" />
+                                                            <Label text="Prix/cm^3" GridPane.rowIndex="5" />
+                                                                                <TextField fx:id="txtLengthR" GridPane.columnIndex="1" />
+                                                                                <TextField fx:id="txtWidthR" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                                                <TextField fx:id="txtThicknessR" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                                                <TextField fx:id="txtTypeR" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                                                <TextField fx:id="txtColorR" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                                            <TextField fx:id="txtPriceR" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                                                                <Button fx:id="addBtnR" mnemonicParsing="false" onMouseClicked="#clickAddBtnRec" prefHeight="84.0" prefWidth="306.0" text="Valider" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                                                                <TextArea fx:id="txtAreaR" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="6" />
+                                                                            </children>
+                                                                        </GridPane>
+                                                                    </children>
+                                                                </AnchorPane>
+                                                            </content>
+                                                        </Tab>
+                                                        <Tab text="Modifier">
+                                                            <content>
+                                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                   <children>
+                                                      <GridPane layoutX="122.0" layoutY="179.0" prefHeight="733.0" prefWidth="526.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                        <columnConstraints>
+                                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                        </columnConstraints>
+                                                        <rowConstraints>
+                                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        </rowConstraints>
+                                                         <children>
+                                                            <Label text="Longueur restante" />
+                                                            <Label text="Largeur restante" GridPane.rowIndex="1" />
+                                                            <Label text="Épaisseur restante" GridPane.rowIndex="2" />
+                                                            <TextField fx:id="newTxtLengthR" GridPane.columnIndex="1" />
+                                                            <TextField fx:id="newTxtWidthR" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                            <TextField fx:id="newTxtThicknessR" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                            <Button fx:id="duplicateBtnR" mnemonicParsing="false" prefHeight="25.0" prefWidth="261.0" text="Dupliquer" GridPane.rowIndex="3" />
+                                                            <Button fx:id="saveBtnR" mnemonicParsing="false" prefHeight="25.0" prefWidth="261.0" text="Sauvegarder les modifications" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                            <Button fx:id="delBtnR" mnemonicParsing="false" prefHeight="25.0" prefWidth="261.0" text="Supprimer" GridPane.rowIndex="4" />
+                                                         </children>
+                                                      </GridPane>
+                                                   </children></AnchorPane>
+                                                            </content>
+                                                        </Tab>
+                                                    </tabs>
+                                                </TabPane>
+                                            </children>
+                                        </AnchorPane>
+                                    </items>
+                                </SplitPane>
+                            </content>
+                        </Tab>
+                        <Tab text="Cylindres">
+                            <content>
+                                <SplitPane dividerPositions="0.5011111111111111" prefHeight="515.0" prefWidth="900.0">
+                                    <items>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="549.0" prefWidth="325.0">
+                                            <children>
+                                                <TableView id="table" fx:id="tableC" layoutX="103.0" layoutY="108.0" prefHeight="548.0" prefWidth="448.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                    <columns>
+                                                        <TableColumn fx:id="diameterColumnC" prefWidth="65.66666412353516" text="Diamètre" />
+                                                        <TableColumn fx:id="lengthColumnC" prefWidth="77.0" text="Longueur" />
+                                                        <TableColumn fx:id="remainingLengthColumnC" prefWidth="128.0" text="Longueur restante" />
+                                                        <TableColumn fx:id="typeColumnC" prefWidth="67.0" text="Matière" />
+                                                        <TableColumn fx:id="colorColumnC" prefWidth="62.0" text="Couleur" />
+                                                        <TableColumn fx:id="qtyColumnC" prefWidth="67.0" text="Quantité" />
+                                                    </columns>
+                                                </TableView>
+                                            </children>
+                                        </AnchorPane>
+                                        <AnchorPane>
+                                            <children>
+                                                <TabPane layoutX="226.0" layoutY="125.0" prefHeight="728.0" prefWidth="636.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                    <tabs>
+                                                        <Tab text="Ajouter">
+                                                            <content>
+                                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                                    <children>
+                                                                        <GridPane layoutX="7.0" prefHeight="458.0" prefWidth="445.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                            <columnConstraints>
+                                                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                                            </columnConstraints>
+                                                                            <rowConstraints>
+                                                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                            </rowConstraints>
+                                                                            <children>
+                                                                                <Label text="Type de tête" />
+                                                                                <Label text="Diamètre" GridPane.rowIndex="1" />
+                                                                                <Label text="Longueur" GridPane.rowIndex="2" />
+                                                                                <Label text="Matière" GridPane.rowIndex="3" />
+                                                                                <Label text="Couleur" GridPane.rowIndex="4" />
+                                                                                <Label text="Quantité" GridPane.rowIndex="5" />
+                                                                                <TextField fx:id="txtHead2" GridPane.columnIndex="1" />
+                                                                                <TextField fx:id="txtDiameter2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                                                <TextField fx:id="txtLength2" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                                                <TextField fx:id="txtType2" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                                                <TextField fx:id="txtColor2" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                                                                <TextField fx:id="txtQty2" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                                                                <Button mnemonicParsing="false" prefHeight="84.0" prefWidth="306.0" text="Valider" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                                                                <TextArea fx:id="txtAreaS" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="6" />
+                                                                            </children>
+                                                                        </GridPane>
+                                                                    </children>
+                                                                </AnchorPane>
+                                                            </content>
+                                                        </Tab>
+                                                        <Tab text="Modifier">
+                                                            <content>
+                                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                                            </content>
+                                                        </Tab>
+                                                        <Tab text="Changer la quantité">
+                                                            <content>
+                                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                                            </content>
+                                                        </Tab>
+                                                        <Tab text="Supprimer">
+                                                            <content>
+                                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                                            </content>
+                                                        </Tab>
+                                                    </tabs>
+                                                </TabPane>
+                                            </children>
+                                        </AnchorPane>
+                                    </items>
+                                </SplitPane>
+                            </content>
+                        </Tab>
+                        <Tab text="Bobines">
+                            <content>
+                                <SplitPane dividerPositions="0.5011111111111111" prefHeight="515.0" prefWidth="900.0">
+                                    <items>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="549.0" prefWidth="325.0">
+                                            <children>
+                                                <TableView id="table" fx:id="tableF" layoutX="103.0" layoutY="108.0" prefHeight="548.0" prefWidth="448.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                    <columns>
+                                                        <TableColumn fx:id="typeColumnF" prefWidth="65.66666412353516" text="Matériaux" />
+                                                        <TableColumn fx:id="colorColumnF" prefWidth="75.0" text="Couleur" />
+                                                        <TableColumn fx:id="diameterColumnF" prefWidth="77.0" text="Diamètre" />
+                                                        <TableColumn fx:id="weightColumnF" prefWidth="75.0" text="Poids" />
+                                                        <TableColumn fx:id="remainingWeightColumnF" prefWidth="97.0" text="Poids restant" />
+                                                    </columns>
+                                                </TableView>
+                                            </children>
+                                        </AnchorPane>
+                                        <AnchorPane>
+                                            <children>
+                                                <TabPane layoutX="226.0" layoutY="125.0" prefHeight="728.0" prefWidth="636.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                    <tabs>
+                                                        <Tab text="Ajouter">
+                                                            <content>
+                                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                                    <children>
+                                                                        <GridPane layoutX="7.0" prefHeight="458.0" prefWidth="445.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                            <columnConstraints>
+                                                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                                            </columnConstraints>
+                                                                            <rowConstraints>
+                                                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                            </rowConstraints>
+                                                                            <children>
+                                                                                <Label text="Matière" />
+                                                                                <Label text="Couleur" GridPane.rowIndex="1" />
+                                                                                <Label text="Diamètre" GridPane.rowIndex="2" />
+                                                                                <Label text="Poids" GridPane.rowIndex="3" />
+                                                                                <TextField fx:id="txtTypeF" GridPane.columnIndex="1" />
+                                                                                <TextField fx:id="txtColorF" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                                                <TextField fx:id="txtDiameterF" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                                                <TextField fx:id="txtWeightF" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                                                <Button fx:id="addBtnF" mnemonicParsing="false" onMouseClicked="#clickAddBtnSpool" prefHeight="84.0" prefWidth="306.0" text="Valider" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                                                                <TextArea fx:id="txtAreaF" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4" />
+                                                                            </children>
+                                                                        </GridPane>
+                                                                    </children>
+                                                                </AnchorPane>
+                                                            </content>
+                                                        </Tab>
+                                                        <Tab text="Modifier">
+                                                            <content>
+                                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                                            </content>
+                                                        </Tab>
+                                                        <Tab text="Changer la quantité">
+                                                            <content>
+                                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                                            </content>
+                                                        </Tab>
+                                                        <Tab text="Supprimer">
+                                                            <content>
+                                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                                            </content>
+                                                        </Tab>
+                                                    </tabs>
+                                                </TabPane>
+                                            </children>
+                                        </AnchorPane>
+                                    </items>
+                                </SplitPane>
+                            </content>
+                        </Tab>
+                    </tabs>
+                </TabPane>
+            </children>
+        </AnchorPane>
+    </children>
+</VBox>

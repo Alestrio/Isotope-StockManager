@@ -12,6 +12,8 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
@@ -45,22 +47,6 @@ class ControllerV {
     private TableColumn<Screw, String> priceColumn;
 
     @FXML
-    private TextField txtHead;
-    @FXML
-    private TextField txtDiameter;
-    @FXML
-    private TextField txtLength;
-    @FXML
-    private TextField txtType;
-    @FXML
-    private TextField txtColor;
-    @FXML
-    private TextField txtQty;
-    @FXML
-    private TextField txtPrice;
-    @FXML
-    private TextField txtQtyN;
-    @FXML
     private TextArea  txtArea;
     @FXML
     private Button    addBtn;
@@ -73,28 +59,40 @@ class ControllerV {
 
     @FXML
     void clickAddButton() {
-        Screw v = new Screw(Double.parseDouble(txtDiameter.getText()) ,
-                Double.parseDouble(txtLength.getText()) ,
-                txtHead.getText() ,
-                txtType.getText() ,
-                txtColor.getText() ,
-                Integer.parseInt(txtQty.getText()),
-                Double.parseDouble(txtPrice.getText()));
-        if(!isSimilar(v)){
-            if(!v.add()){
-                alert.setAlertType(Alert.AlertType.ERROR);
-                alert.setTitle("ERREUR !");
-                alert.setContentText("Impossible d'ajouter la vis");
-            }
-            else
-                txtArea.appendText("Reussi !");
-        }
-        else
-            txtArea.appendText("Item similaire");
-        showDbEntriesScrews();
+        Dialog d = new Dialog();
+        d.setTitle("Ajouter une vis");
+
+        Label label1 = new Label("Tête");
+        TextField txtHead = new TextField();
+        Label label2 = new Label("Diamètre");
+        TextField txtDiameter = new TextField();
+        Label label3 = new Label("Longueur");
+        TextField txtLength = new TextField();
+        Label label4 = new Label("Matière");
+        TextField txtType = new TextField();
+        Label label5 = new Label("Couleur");
+        TextField txtColor = new TextField();
+        Label label6 = new Label("Quantité");
+        TextField txtQty = new TextField();
+        Label label7 = new Label("Prix à l'unité");
+        TextField txtPrice = new TextField();
+
+        GridPane g = new GridPane();
+        g.add(label1, 1, 1);
+        g.add(txtHead, 2, 1);
+        g.add(label2, 2, 2);
+        g.add(txtDiameter, 3, 2);
+        g.add(label3, 3, 3);
+        g.add(txtLength, 4, 3);
+        g.add(label4, 4, 4);
+        g.add(txtType, 5, 4);
+        //TODO Finish dialog
+
+
+
     }
 
-    @FXML
+    /*@FXML
     void clickQtyChangeButton(){
         Screw v = tableS.getSelectionModel().getSelectedItem();
         v.setQty(Integer.parseInt(txtQtyN.getText()));
@@ -105,7 +103,7 @@ class ControllerV {
         }
         showDbEntriesScrews();
 
-    }
+    }*/
 
     @FXML
     void clickDelButton(){
