@@ -35,8 +35,6 @@ class ControllerLauncher {
             g.launch(new Stage());
         } catch (IOException ioe) {
             ioe.printStackTrace();
-        } catch (SQLException e1) {
-            e1.printStackTrace();
         }
         ((Node) (e.getSource())).getScene().getWindow().hide();
     }

@@ -76,18 +76,24 @@ class ControllerV {
         TextField txtQty = new TextField();
         Label label7 = new Label("Prix à l'unité");
         TextField txtPrice = new TextField();
+        Button ok = new Button();
 
         GridPane g = new GridPane();
         g.add(label1, 1, 1);
         g.add(txtHead, 2, 1);
-        g.add(label2, 2, 2);
-        g.add(txtDiameter, 3, 2);
-        g.add(label3, 3, 3);
-        g.add(txtLength, 4, 3);
-        g.add(label4, 4, 4);
-        g.add(txtType, 5, 4);
-        //TODO Finish dialog
-
+        g.add(label2, 1, 2);
+        g.add(txtDiameter, 2, 2);
+        g.add(label3, 1, 3);
+        g.add(txtLength, 2, 3);
+        g.add(label4, 1, 4);
+        g.add(txtType, 2, 4);
+        g.add(label5, 1, 5 );
+        g.add(txtColor, 2, 5);
+        g.add(label6, 1, 6);
+        g.add(txtQty, 2, 6);
+        g.add(label7, 1, 7);
+        g.add(txtPrice, 2, 7);
+        g.add(ok, 2, 8);
 
 
     }
