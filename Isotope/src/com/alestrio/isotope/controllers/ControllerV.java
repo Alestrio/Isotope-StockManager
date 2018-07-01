@@ -16,12 +16,10 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import javafx.util.Callback;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 public
 class ControllerV {
@@ -59,7 +57,7 @@ class ControllerV {
 
     @FXML
     void clickAddButton() {
-        Dialog d = new Dialog();
+        Dialog<Screw> d = new Dialog<>();
         d.setTitle("Ajouter une vis");
 
         Label label1 = new Label("Tête");
@@ -76,7 +74,7 @@ class ControllerV {
         TextField txtQty = new TextField();
         Label label7 = new Label("Prix à l'unité");
         TextField txtPrice = new TextField();
-        Button ok = new Button();
+        ButtonType ok = new ButtonType("Okay", ButtonBar.ButtonData.OK_DONE);
 
         GridPane g = new GridPane();
         g.add(label1, 1, 1);
@@ -93,7 +91,34 @@ class ControllerV {
         g.add(txtQty, 2, 6);
         g.add(label7, 1, 7);
         g.add(txtPrice, 2, 7);
-        g.add(ok, 2, 8);
+
+        d.getDialogPane().setContent(g);
+        d.getDialogPane().getButtonTypes().add(ok);
+
+        d.setResultConverter(new Callback<ButtonType, Screw>() {
+            @Override
+            public
+            Screw call (ButtonType param) {
+                if(ok == param && txtDiameter != null && txtLength != null && txtHead != null && txtType != null && txtColor != null && txtQty != null && txtPrice != null)
+                    return new Screw(Double.parseDouble(txtDiameter.getText()) ,
+                        Double.parseDouble(txtLength.getText()) ,
+                        txtHead.getText() ,
+                        txtType.getText() ,
+                        txtColor.getText(),
+                        Integer.parseInt(txtQty.getText()),
+                        Double.parseDouble(txtPrice.getText()));
+                else
+                    return null;
+            }
+
+        });
+
+        Optional<Screw> s = d.showAndWait();
+        if(s.isPresent()){
+            s.get().add();
+            showDbEntriesScrews();}
+        else
+           System.out.println("Non présent");
 
 
     }

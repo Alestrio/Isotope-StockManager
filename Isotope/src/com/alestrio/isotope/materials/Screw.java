@@ -20,6 +20,8 @@ class Screw extends AbsMaterial {
         this.qty.set(qty);
         this.price.set(price);
         this.totalPrice.set(qty*price);
+        if(db.getDriverState())
+            db.connect();
     }
 
     @Override
