@@ -61,17 +61,13 @@ public class DB extends Thread{
         return b;
 	}
 
-	public boolean dbQuery(String query){
-		ResultSet b;
-		boolean c = true;
+	public void dbQuery(String query){
 		try {
 			Statement state = conn.createStatement();
-			b = state.executeQuery(query);
-			c = b.absolute(MAX_PRIORITY);
+			state.executeUpdate(query);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return c;
 	}
 
     public

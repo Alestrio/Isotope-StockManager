@@ -39,6 +39,11 @@ public class RectangularPiece extends AbsMaterial {
                 this.remainingLength.get(), this.remainingWidth.get(), this.remainingThickness.get(), this.price.get() ));
     }
 
+    @Override
+    public boolean isSimilar() {
+        return false;
+    }
+
     public boolean modify(double length , double width , double thickness , String type , String color , double remainingLength , double remainingWidth , double remainingThickness, double price) {
         return db.dbQuery(String.format("UPDATE rectangles SET length=%s AND width=%s AND thickness=%s AND type=%s AND color=%s AND remaininglength=%s AND" +
                 "remainingwidth=%s AND remainingthickness=%s AND price=%s WHERE length=%s AND width=%s AND thickness=%s AND type=%s AND color=%s AND remaininglength=%s AND" +
@@ -47,8 +52,4 @@ public class RectangularPiece extends AbsMaterial {
                 this.remainingThickness.get(), this.price.get()));
     }
 
-    @Override
-    public boolean qtyChange(int newQty) {
-        return false;
-    }
 }

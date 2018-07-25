@@ -6,6 +6,8 @@
 
 package com.alestrio.isotope.materials;
 
+import javafx.collections.ObservableList;
+
 public
 class FilamentSpool extends AbsMaterial {
 
@@ -30,15 +32,25 @@ class FilamentSpool extends AbsMaterial {
         return db.dbQuery(String.format("INSERT INTO bobines (diameter, initialweight, remainingweight, type, color) VALUES (%s, %s, %s, %s, %s)", this.diameter.get(), this.initialWeight.get(), this.remainingWeight.get(), this.type.get(), this.color.get()));
     }
 
+    public boolean isSimilar() {
+            ObservableList<FilamentSpool> fsol;
+        try {
+            fsol = db.getDbEntriesSpool();
+            for(FilamentSpool f : fsol){
+                if(f.equals(this))
+                    return true;
+            }
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
+
+
     public boolean modify(double diameter ,double initialWeight ,double remainingWeight ,String type ,String color) {
         return db.dbQuery(String.format("UPDATE bobines SET diameter = %s, initialweight = %s, remainingweight = %s, type = %s, color = %s WHERE diameter = %s, initialweight = %s," +
                 ", remainingweight = %s, type = %s, color = %s", diameter, initialWeight, remainingWeight, type, color, this.diameter.get(), this.initialWeight.get(), this.remainingWeight.get(), this.type.get(), this.color.get()));
     }
 
-    @Override
-    public boolean qtyChange(int newQty) {
-        //TODO add qty setting to this object
-        return db.dbQuery(String.format("UPDATE bobines SET diameter = %s, initialweight = %s, remainingweight = %s, type = %s, color = %s WHERE diameter = %s, initialweight = %s," +
-                ", remainingweight = %s, type = %s, color = %s", diameter, initialWeight, remainingWeight, type, color, this.diameter.get(), this.initialWeight.get(), this.remainingWeight.get(), this.type.get(), this.color.get()));
-    }
 }

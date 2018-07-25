@@ -6,6 +6,9 @@
 
 package com.alestrio.isotope.materials;
 
+
+import javafx.collections.ObservableList;
+
 public
 class Cylinder extends AbsMaterial {
 
@@ -35,15 +38,16 @@ class Cylinder extends AbsMaterial {
                  this.color.get() + "' , '" + this.type.get() + "' , " + this.remainingLength.get() + ", " + this.qty.get());
     }
 
+    @Override
+    public boolean isSimilar() {
+        return false;
+    }
+
+
     public boolean modify(double diameter , double length , String type , String color , int qty , double remainingLength) {
         return db.dbQuery("UPDATE cylindres SET diameter ="+ diameter + ", length="+ length +", type ='" + type + "', color='" + color + "', qty =" + qty +", remaininglength =" + remainingLength +"  WHERE diameter = " + this.diameter.get() + "AND length =" + this.length.get() + "AND type='" + this.type.get() +"'" +
                 "AND color= '" + this.color.get() + "AND qty =" + this.qty.get() + " AND remaininglength =" + this.remainingLength.get());
     }
 
-    @Override
-    public boolean qtyChange(int newQty) {
 
-        return db.dbQuery("UPDATE cylindres SET qty =" + newQty +" WHERE diameter = " + this.diameter.get() + "AND length =" + this.length.get() + "AND type='" + this.type.get() +"'" +
-                "AND color= '" + this.color.get() + "AND qty =" + this.qty.get() + " AND remaininglength =" + this.remainingLength.get());
-    }
 }

@@ -13,16 +13,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 import javafx.stage.Window;
-import javafx.util.Callback;
 
 import java.sql.SQLException;
 import java.util.*;
 
-public
-class ControllerV {
+public class ControllerV {
     private final DB db = new DB("jdbc:postgresql://localhost:5432/isotope" ,"postgres" ,"postgre");
     /*--- SCREW ---*/
     @FXML
@@ -44,16 +40,6 @@ class ControllerV {
     @FXML
     private TableColumn<Screw, String> priceColumn;
 
-    @FXML
-    private TextArea  txtArea;
-    @FXML
-    private Button    addBtn;
-    @FXML
-    private Button delBtn;
-    @FXML
-    private Button qtyBtn;
-
-    private Alert alert;
 
     @FXML
     void clickAddButton() {
@@ -95,26 +81,21 @@ class ControllerV {
         d.getDialogPane().setContent(g);
         d.getDialogPane().getButtonTypes().add(ok);
 
-        d.setResultConverter(new Callback<ButtonType, Screw>() {
-            @Override
-            public
-            Screw call (ButtonType param) {
-                if(ok == param && txtDiameter != null && txtLength != null && txtHead != null && txtType != null && txtColor != null && txtQty != null && txtPrice != null)
-                    return new Screw(Double.parseDouble(txtDiameter.getText()) ,
-                        Double.parseDouble(txtLength.getText()) ,
-                        txtHead.getText() ,
-                        txtType.getText() ,
+        d.setResultConverter(param -> {
+            if (ok == param)
+                return new Screw(Double.parseDouble(txtDiameter.getText()),
+                        Double.parseDouble(txtLength.getText()),
+                        txtHead.getText(),
+                        txtType.getText(),
                         txtColor.getText(),
                         Integer.parseInt(txtQty.getText()),
                         Double.parseDouble(txtPrice.getText()));
-                else
-                    return null;
-            }
-
+            else
+                return null;
         });
 
         Optional<Screw> s = d.showAndWait();
-        if(s.isPresent()){
+        if(s.isPresent() && s.get().isSimilar()){
             s.get().add();
             showDbEntriesScrews();}
         else
@@ -123,27 +104,13 @@ class ControllerV {
 
     }
 
-    /*@FXML
-    void clickQtyChangeButton(){
-        Screw v = tableS.getSelectionModel().getSelectedItem();
-        v.setQty(Integer.parseInt(txtQtyN.getText()));
-        if(!v.qtyChange()){
-            alert.setAlertType(Alert.AlertType.ERROR);
-            alert.setTitle("ERREUR !");
-            alert.setContentText("Impossible de changer la quantité");
-        }
-        showDbEntriesScrews();
-
-    }*/
-
     @FXML
     void clickDelButton(){
         tableS.getSelectionModel().getSelectedItem().delete();
             showDbEntriesScrews();
     }
 
-    @FXML
-    public void showDbEntriesScrews () {
+    private void showDbEntriesScrews () {
         if(!(tableS == null))
             tableS.getColumns().clear();
         ObservableList<Screw>                  ols = db.getDbEntriesScrew();
@@ -171,15 +138,77 @@ class ControllerV {
     }
 
     @FXML
+    void clickModifyButton(){
+        Screw s = tableS.getSelectionModel().getSelectedItem();
+        Dialog<Screw> d = new Dialog<>();
+        d.setTitle("Ajouter une vis");
+
+        Label label1 = new Label("Tête");
+        TextField txtHead = new TextField();
+        txtHead.setText(s.getHead());
+        Label label2 = new Label("Diamètre");
+        TextField txtDiameter = new TextField();
+        txtDiameter.setText(String.valueOf(s.getDiameter()));
+        Label label3 = new Label("Longueur");
+        TextField txtLength = new TextField();
+        txtLength.setText(String.valueOf(s.getLength()));
+        Label label4 = new Label("Matière");
+        TextField txtType = new TextField();
+        txtType.setText(s.getType());
+        Label label5 = new Label("Couleur");
+        TextField txtColor = new TextField();
+        txtColor.setText(s.getColor());
+        Label label6 = new Label("Quantité");
+        TextField txtQty = new TextField();
+        txtQty.setText(String.valueOf(s.getQty()));
+        Label label7 = new Label("Prix à l'unité");
+        TextField txtPrice = new TextField();
+        txtPrice.setText(String.valueOf(s.getPrice()));
+        ButtonType ok = new ButtonType("Okay", ButtonBar.ButtonData.OK_DONE);
+
+        GridPane g = new GridPane();
+        g.add(label1, 1, 1);
+        g.add(txtHead, 2, 1);
+        g.add(label2, 1, 2);
+        g.add(txtDiameter, 2, 2);
+        g.add(label3, 1, 3);
+        g.add(txtLength, 2, 3);
+        g.add(label4, 1, 4);
+        g.add(txtType, 2, 4);
+        g.add(label5, 1, 5 );
+        g.add(txtColor, 2, 5);
+        g.add(label6, 1, 6);
+        g.add(txtQty, 2, 6);
+        g.add(label7, 1, 7);
+        g.add(txtPrice, 2, 7);
+
+        d.getDialogPane().setContent(g);
+        d.getDialogPane().getButtonTypes().add(ok);
+
+        d.setResultConverter(param -> {
+            if (ok == param)
+                s.modify(Double.parseDouble(txtDiameter.getText()),
+                        Double.parseDouble(txtLength.getText()),
+                        txtHead.getText(),
+                        txtType.getText(),
+                        txtColor.getText(),
+                        Integer.parseInt(txtQty.getText()),
+                        Double.parseDouble(txtPrice.getText()));
+            return null;
+        });
+        d.showAndWait();
+        showDbEntriesScrews();
+    }
+
+    @FXML
     void clickConnectionBtn () throws SQLException {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
         if(!db.getDriverState()){
-            alert.setAlertType(Alert.AlertType.ERROR);
             alert.setTitle("ERREUR !");
             alert.setContentText("Problème de driver JDBC");
         }
         db.connect();
         if(!db.getConnectionState()){
-            alert.setAlertType(Alert.AlertType.ERROR);
             alert.setTitle("ERREUR !");
             alert.setContentText("Impossible de se connecter à la base de données");
         }
@@ -204,13 +233,6 @@ class ControllerV {
         w.setOnCloseRequest(event -> w.hide());
         t.showAndWait();
     }
-
-    private boolean isSimilar(Screw s) {
-        List<Screw> screwList = db.getDbEntriesScrew();
-        for (Screw f : screwList) {
-            if (f.getColor().equals(s.getColor()) && f.getType().equals(s.getType()) && f.getHead().equals(s.getHead()) && f.getLength() == s.getLength() && f.getDiameter() == s.getDiameter() && f.getQty() == s.getQty() && f.getPrice() == s.getPrice())
-                return true;
-        }
-        return false;
-    }
 }
+
+

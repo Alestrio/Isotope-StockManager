@@ -6,6 +6,8 @@
 
 package com.alestrio.isotope.materials;
 
+import java.util.List;
+
 public
 class Screw extends AbsMaterial {
 
@@ -35,11 +37,15 @@ class Screw extends AbsMaterial {
     }
 
     public boolean modify(double diameter ,double length ,String head ,String type ,String color,int qty, double price) {
-        return db.dbQuery(String.format("UPDATE visserie SET diameter= %s, length= %s , head= %s , type=%s , color=%s , qty=%d , price=%s WHERE diameter= %s , length=%s , head=%s , type= %s , color=%s , qty=%d , price=%s", diameter, length, head, type, color, qty, price, this.diameter.get(), this.length.get(), this.head.get(), this.head.get(), this.color.get(), this.qty.get(), this.price.get()));
+        return db.dbQuery(String.format("UPDATE visserie SET diameter=%s , length=%s , head=\'%s\' , type=\'%s\' , color=\'%s\' , qty=%d , price=%s WHERE diameter=%s AND length=%s AND head=\'%s\' AND type=\'%s\' AND color=\'%s\' AND qty=%d AND price=%s", diameter, length, head, type, color, qty, price, this.diameter.get(), this.length.get(), this.head.get(), this.type.get(), this.color.get(), this.qty.get(), this.price.get()));
     }
 
-    @Override
-    public boolean qtyChange(int newQty) {
-        return db.dbQuery(String.format("UPDATE visserie SET qty = %d WHERE diameter =%s AND length = %sAND head = '%s' AND type = '%s' AND color = '%s' AND price =%s", newQty, this.diameter.get(), this.length.get(), this.head.get(), this.type.get(), this.color.get(), this.price.get()));
+    public boolean isSimilar() {
+        List<Screw> screwList = db.getDbEntriesScrew();
+        for (Screw f : screwList) {
+            if (f.equals(this))
+                return true;
+        }
+        return false;
     }
 }

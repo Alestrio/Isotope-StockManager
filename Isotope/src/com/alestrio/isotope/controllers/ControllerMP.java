@@ -7,17 +7,18 @@
 package com.alestrio.isotope.controllers;
 
 import com.alestrio.isotope.DB;
-import com.alestrio.isotope.materials.Cylinder;
-import com.alestrio.isotope.materials.FilamentSpool;
-import com.alestrio.isotope.materials.RectangularPiece;
-import com.alestrio.isotope.materials.Screw;
+import com.alestrio.isotope.materials.*;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Material;
+import javafx.util.Callback;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Optional;
 
 public
 class ControllerMP {
@@ -126,20 +127,6 @@ class ControllerMP {
 	@FXML
 	private TableColumn<FilamentSpool, String> remainingWeightColumnF;
 
-	@FXML
-	private TextField txtTypeF;
-	@FXML
-	private TextField txtColorF;
-	@FXML
-	private TextField txtDiameterF;
-	@FXML
-	private TextField txtWeightF;
-	@FXML
-	private TextField txtRemainingWeightF;
-	@FXML
-	private TextArea  txtAreaF;
-	@FXML
-	private Button    addBtnF;
 
 	/*-------------------------------------------------------------------*/
 
@@ -147,13 +134,53 @@ class ControllerMP {
 
 	@FXML
 	void clickAddBtnSpool () {
-		FilamentSpool v = new FilamentSpool(Double.parseDouble(txtDiameterF.getText()) ,
-				Double.parseDouble(txtWeightF.getText()) ,
-				Double.parseDouble(txtWeightF.getText()) ,
-				txtTypeF.getText() ,
-				txtColorF.getText());
-		if (v.add())
-			txtAreaF.appendText("Reussi !");
+		Dialog<FilamentSpool> d = new Dialog<>();
+		d.setTitle("Ajouter une bobine de filament");
+
+		Label l1 = new Label("Matière");
+		TextField txtTypeF = new TextField();
+		Label l2 = new Label("Couleur");
+		TextField txtColorF = new TextField();
+		Label l3 = new Label("Diamètre");
+		TextField txtDiameterF = new TextField();
+		Label l4 = new Label("Poids");
+		TextField txtWeightF = new TextField();
+		Label l5 = new Label("Poids restant");
+		TextField txtRemainingWeightF = new TextField();
+		ButtonType ok = new ButtonType("Okay", ButtonBar.ButtonData.OK_DONE);
+
+		GridPane g = new GridPane();
+		g.add(l1, 1, 1);
+		g.add(txtTypeF, 2, 1);
+		g.add(l2, 1, 2);
+		g.add(txtColorF, 2, 2);
+		g.add(l3, 1, 3);
+		g.add(txtDiameterF, 2, 3);
+		g.add(l4, 1, 4);
+		g.add(txtWeightF, 2, 4);
+		g.add(l5, 1, 5);
+		g.add(txtRemainingWeightF, 2, 5);
+
+		d.getDialogPane().setContent(g);
+		d.getDialogPane().getButtonTypes().add(ok);
+
+		d.setResultConverter(param -> {
+			if(ok == param) {
+				return new FilamentSpool(Double.parseDouble(txtDiameterF.getText()),
+						Double.parseDouble(txtWeightF.getText()),
+						Double.parseDouble(txtRemainingWeightF.getText()),
+						txtColorF.getText(),
+						txtTypeF.getText());
+			}
+			else
+				return null;
+		});
+		Optional<FilamentSpool> f = d.showAndWait();
+		if (f.isPresent()) {
+			if(!f.get().isSimilar()){
+				f.get().add();
+			}
+		}
 		showDbEntries();
 	}
 
@@ -171,6 +198,8 @@ class ControllerMP {
 		if (v.add())
 			txtAreaR.appendText("Reussi !");
 		showDbEntries();
+
+		//TODO ajout plaque
 	}
 
 	@FXML
@@ -187,24 +216,17 @@ class ControllerMP {
 			txtAreaC.appendText("Reussi !");
 		showDbEntries();
 		showDbEntries();
+
+		//TODO  Ajout cylindre
 	}
 
 	/*--- MODIFY BUTTONS ---*/
-	@FXML
-	void onDuplicateButtonClickR(){
-		RectangularPiece v = tableR.getSelectionModel().getSelectedItem();
-		v.add();
-	}
 
-	@FXML
-	void onSaveButtonClick(){
-
-	}
-
+		//TODO Boutons de modification
 
 	/*--- ERASE BUTTONS ---*/
 
-
+		//TODO Boutons de suppression
 
 	/*--- OTHER BUTTONS ---*/
 
