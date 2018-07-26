@@ -105,7 +105,7 @@
                                        </rowConstraints>
                                        <children>
                                           <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickConnectionBtn" text="Se connecter à la base" />
-                                          <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Ajouter" GridPane.rowIndex="1" />
+                                          <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickAddBtnRec" text="Ajouter" GridPane.rowIndex="1" />
                                           <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Modifier" GridPane.rowIndex="2" />
                                           <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Supprimer" GridPane.rowIndex="3" />
                                           <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Valeur totale" GridPane.rowIndex="4" />
@@ -130,7 +130,7 @@
                                                         <TableColumn fx:id="remainingLengthColumnC" prefWidth="128.0" text="Longueur restante" />
                                                         <TableColumn fx:id="typeColumnC" prefWidth="67.0" text="Matière" />
                                                         <TableColumn fx:id="colorColumnC" prefWidth="62.0" text="Couleur" />
-                                                        <TableColumn fx:id="qtyColumnC" prefWidth="67.0" text="Quantité" />
+                                                        <TableColumn fx:id="priceColumnC" prefWidth="67.0" text="Quantité" />
                                                     </columns>
                                                 </TableView>
                                             </children>
@@ -150,7 +150,7 @@
                                        </rowConstraints>
                                        <children>
                                           <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickConnectionBtn" text="Se connecter à la base" />
-                                          <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Ajouter" GridPane.rowIndex="1" />
+                                          <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickAddBtnCylinder" text="Ajouter" GridPane.rowIndex="1" />
                                           <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Modifier" GridPane.rowIndex="2" />
                                           <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Supprimer" GridPane.rowIndex="3" />
                                           <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Valeur totale" GridPane.rowIndex="4" />
@@ -194,7 +194,7 @@
                                        </rowConstraints>
                                        <children>
                                           <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickConnectionBtn" text="Se connecter à la base" />
-                                          <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Ajouter" GridPane.rowIndex="1" />
+                                          <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickAddBtnSpool" text="Ajouter" GridPane.rowIndex="1" />
                                           <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Modifier" GridPane.rowIndex="2" />
                                           <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Supprimer" GridPane.rowIndex="3" />
                                           <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Valeur totale" GridPane.rowIndex="4" />

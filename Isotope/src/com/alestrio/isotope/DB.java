@@ -32,6 +32,7 @@ public class DB extends Thread{
 		url = a;
 		user = b;
 		pswd = c;
+		connect();
 	}
 	
 	public boolean connect() {
@@ -100,7 +101,7 @@ public class DB extends Thread{
 			double b = result.getDouble("length");
 			String c = result.getString("type");
 			String d = result.getString("color");
-			int    e = result.getInt("qty");
+			int    e = result.getInt("price");
 			double f = result.getDouble("remainingLength");
 			olc.add(new Cylinder(a ,b ,c ,d ,e ,f));
 		}
@@ -114,8 +115,7 @@ public class DB extends Thread{
 		List<Screw>           list = new ArrayList<>();
         ObservableList<Screw> ols  = FXCollections.observableList(list);
 
-		Statement state  = null;
-        //noinspection finally
+		Statement state;
         try {
 			state = conn.createStatement();
 
@@ -132,80 +132,38 @@ public class DB extends Thread{
         }
 	} catch (SQLException e) {
 		e.printStackTrace();
+		ols = null;
 	}
-	finally{
-            //noinspection ReturnInsideFinallyBlock
-            return ols;
-		}
-
+	 return ols;
     }
-	
-	//-------- RECTANGULAR PIECES ---------
-	public boolean eraseRectangularPiece (RectangularPiece r) {
-        ResultSet b;
-        boolean d = true;
-        try {
-            Statement state = conn.createStatement();
-            b = state.executeQuery("DELETE FROM rectangles WHERE length = " + r.getLength() + "AND width = " + r.getWidth() + "AND thickness = " + r.getThickness() +" AND type = " + r.getType() + " AND color = " + r.getColor() + "AND remainingLength = " +r.getRemainingLength()+ "AND remainingWidth = " + r.getRemainingWidth() +"AND remainingThickness = " + r.getRemainingThickness()+ "AND price = " + r.getPrice());
-            d = b.absolute(MAX_PRIORITY);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return d;
-	}
-
-	public
-	boolean addRectangularPiece (RectangularPiece r) {
-		ResultSet b;
-		boolean d = true;
-		try {
-			Statement state = conn.createStatement();
-			b = state.executeQuery("INSERT INTO rectangles (length, width, thickness, type, color, remainingLength, remainingWidth, remainingThickness, price)"
-					+ " VALUES (" + r.getLength() + ", "+ r.getWidth() +", "
-					+ r.getThickness() + ", '" + r.getType() + "', '" + r.getColor() + "', " + r.getRemainingLength() + ", "
-					+ r.getRemainingWidth() + ", " + r.getRemainingThickness() + ", " + r.getPrice() +") ");
-			d = b.absolute(MAX_PRIORITY);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return d;
-	}
-
-	public boolean modifyRectangularPiece(RectangularPiece r){
-		ResultSet b;
-		boolean d = true;
-		try {
-			Statement state = conn.createStatement();
-			b = state.executeQuery("UPDATE FROW rectangles " +
-					"SET remaininglength = " + r.getRemainingLength() +", remainingwidth = " + r.getRemainingWidth() + ", remainingthickness =" + r.getRemainingThickness() +
-				"WHERE length =" + r.getLength() + " AND width = " + r.getWidth() + "AND thickness = " + r.getThickness() + "" );
-			d = b.absolute(MAX_PRIORITY);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return d;
-	}
 
     public
-	ObservableList<RectangularPiece> getDbEntriesRecPieces () throws Exception {
+	ObservableList<RectangularPiece> getDbEntriesRecPieces () {
         List<RectangularPiece>           list   = new ArrayList<>();
         ObservableList<RectangularPiece> olr    = FXCollections.observableList(list);
-		Statement                        state  = conn.createStatement();
-		ResultSet                        result = state.executeQuery("SELECT * FROM rectangles");
+		Statement state;
+		try {
+			state = conn.createStatement();
+			ResultSet result = state.executeQuery("SELECT * FROM rectangles");
 
-		while (result.next()) {
-			double a = result.getDouble("length");
-			double b = result.getDouble("width");
-			double c = result.getDouble("thickness");
-			String d = result.getString("type");
-			String e = result.getString("color");
-			double g = result.getDouble("remainingLength");
-			double h = result.getDouble("remainingWidth");
-			double i = result.getDouble("remainingThickness");
-			double j = result.getDouble("price");
-			olr.add(new RectangularPiece(a ,b ,c ,d ,e ,g ,h ,i, j));
+			while (result.next()) {
+				double a = result.getDouble("length");
+				double b = result.getDouble("width");
+				double c = result.getDouble("thickness");
+				String d = result.getString("type");
+				String e = result.getString("color");
+				double g = result.getDouble("remainingLength");
+				double h = result.getDouble("remainingWidth");
+				double i = result.getDouble("remainingThickness");
+				double j = result.getDouble("price");
+				olr.add(new RectangularPiece(a, b, c, d, e, g, h, i, j));
+			}
 		}
-
-        return olr;
+		catch(SQLException e){
+			e.printStackTrace();
+			olr = null;
+		}
+		return olr;
     }
+
 }

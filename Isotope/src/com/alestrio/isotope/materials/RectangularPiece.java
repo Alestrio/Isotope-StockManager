@@ -6,6 +6,8 @@
 
 package com.alestrio.isotope.materials;
 
+import javafx.collections.ObservableList;
+
 public class RectangularPiece extends AbsMaterial {
 
     public RectangularPiece() { }
@@ -21,32 +23,42 @@ public class RectangularPiece extends AbsMaterial {
         this.remainingThickness.set(remainingThickness);
         this.price.set(price);
         this.totalPrice.set((this.remainingLength.get() * this.remainingWidth.get() * this.remainingThickness.get())/1000 * this.price.get());
+        if(db.getDriverState())
+            db.connect();
     }
 
     @Override
-    public boolean delete() {
-
-        return db.dbQuery(String.format("DELETE FROM rectangles WHERE length=%s AND width=%s AND thickness=%s AND type=%s AND color=%s AND remaininglength=%s AND " +
+    public void delete() {
+        db.dbQuery(String.format("DELETE FROM rectangles WHERE length=%s AND width=%s AND thickness=%s AND type=\'%s\' AND color=\'%s\' AND remaininglength=%s AND " +
                 "remainingwidth=%s AND remainingthickness=%s AND price=%s", this.length.get(), this.width.get(), this.thickness.get(), this.type.get(), this.color.get(),
                 this.remainingLength.get(), this.remainingWidth.get(), this.remainingThickness.get(), this.price.get()));
     }
 
     @Override
-    public boolean add() {
-
-        return db.dbQuery(String.format("INSERT INTO rectangles (length ,width ,thickness ,type ,color ,remaininglength ,remainingwidth ,remainingthickness, price)" +
-                " VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)", this.length.get(), this.width.get(), this.thickness.get(), this.type.get(), this.color.get(),
+    public void add() {
+        db.dbQuery(String.format("INSERT INTO rectangles (length ,width ,thickness ,type ,color ,remaininglength ,remainingwidth ,remainingthickness, price)" +
+                " VALUES (%s, %s, %s, \'%s\', \'%s\', %s, %s, %s, %s)", this.length.get(), this.width.get(), this.thickness.get(), this.type.get(), this.color.get(),
                 this.remainingLength.get(), this.remainingWidth.get(), this.remainingThickness.get(), this.price.get() ));
     }
 
-    @Override
     public boolean isSimilar() {
-        return false;
+        ObservableList<RectangularPiece> fsol;
+        try {
+            fsol = db.getDbEntriesRecPieces();
+            for(RectangularPiece f : fsol){
+                if(f.equals(this))
+                    return true;
+            }
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return true;
     }
 
-    public boolean modify(double length , double width , double thickness , String type , String color , double remainingLength , double remainingWidth , double remainingThickness, double price) {
-        return db.dbQuery(String.format("UPDATE rectangles SET length=%s AND width=%s AND thickness=%s AND type=%s AND color=%s AND remaininglength=%s AND" +
-                "remainingwidth=%s AND remainingthickness=%s AND price=%s WHERE length=%s AND width=%s AND thickness=%s AND type=%s AND color=%s AND remaininglength=%s AND" +
+    public void modify(double length , double width , double thickness , String type , String color , double remainingLength , double remainingWidth , double remainingThickness, double price) {
+        db.dbQuery(String.format("UPDATE rectangles SET length=%s AND width=%s AND thickness=%s AND type=\'%s\' AND color=\'%s\' AND remaininglength=%s AND" +
+                "remainingwidth=%s AND remainingthickness=%s AND price=%s WHERE length=%s AND width=%s AND thickness=%s AND type=\'%s\' AND color=\'%s\' AND remaininglength=%s AND" +
                 "remainingwidth=%s AND remainingthickness=%s AND price=%s",length ,width ,thickness ,type ,color ,remainingLength ,remainingWidth ,remainingThickness,price,
                 this.length.get(), this.width.get(), this.thickness.get(), this.type.get(), this.color.get(), this.remainingLength.get(), this.remainingWidth.get(),
                 this.remainingThickness.get(), this.price.get()));

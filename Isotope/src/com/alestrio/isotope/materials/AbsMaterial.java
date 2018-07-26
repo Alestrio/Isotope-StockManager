@@ -8,7 +8,6 @@ package com.alestrio.isotope.materials;
 
 import com.alestrio.isotope.DB;
 import javafx.beans.property.*;
-import javafx.collections.ObservableList;
 
 public abstract class AbsMaterial {
 
@@ -213,9 +212,9 @@ public abstract class AbsMaterial {
         return this.totalPrice;
     }
 
-    public abstract boolean delete();
+    public abstract void delete();
 
-    public abstract boolean add();
+    public abstract void add();
 
     public abstract boolean isSimilar();
 

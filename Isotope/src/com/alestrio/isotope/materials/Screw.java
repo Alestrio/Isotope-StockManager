@@ -27,17 +27,17 @@ class Screw extends AbsMaterial {
     }
 
     @Override
-    public boolean delete() {
-        return db.dbQuery(String.format("DELETE FROM visserie WHERE diameter = %sAND  length = %sAND type = '%s'AND color = '%s' AND qty =%d AND price =%s", this.diameter.get(), this.length.get(), this.type.get(), this.color.get(), this.qty.get(), this.price.get()));
+    public void delete() {
+        db.dbQuery(String.format("DELETE FROM visserie WHERE diameter = %sAND  length = %sAND type = '%s'AND color = '%s' AND qty =%d AND price =%s", this.diameter.get(), this.length.get(), this.type.get(), this.color.get(), this.qty.get(), this.price.get()));
     }
 
     @Override
-    public boolean add() {
-        return db.dbQuery(String.format("INSERT INTO visserie (diameter, length, head, type, color, qty, price) VALUES (%s, %s, '%s', '%s', '%s', %d, %s)", this.diameter.get(), this.length.get(), this.head.get(), this.type.get(), this.color.get(), this.qty.get(), this.price.get()));
+    public void add() {
+        db.dbQuery(String.format("INSERT INTO visserie (diameter, length, head, type, color, qty, price) VALUES (%s, %s, '%s', '%s', '%s', %d, %s)", this.diameter.get(), this.length.get(), this.head.get(), this.type.get(), this.color.get(), this.qty.get(), this.price.get()));
     }
 
-    public boolean modify(double diameter ,double length ,String head ,String type ,String color,int qty, double price) {
-        return db.dbQuery(String.format("UPDATE visserie SET diameter=%s , length=%s , head=\'%s\' , type=\'%s\' , color=\'%s\' , qty=%d , price=%s WHERE diameter=%s AND length=%s AND head=\'%s\' AND type=\'%s\' AND color=\'%s\' AND qty=%d AND price=%s", diameter, length, head, type, color, qty, price, this.diameter.get(), this.length.get(), this.head.get(), this.type.get(), this.color.get(), this.qty.get(), this.price.get()));
+    public void modify(double diameter ,double length ,String head ,String type ,String color,int qty, double price) {
+        db.dbQuery(String.format("UPDATE visserie SET diameter=%s , length=%s , head=\'%s\' , type=\'%s\' , color=\'%s\' , qty=%d , price=%s WHERE diameter=%s AND length=%s AND head=\'%s\' AND type=\'%s\' AND color=\'%s\' AND qty=%d AND price=%s", diameter, length, head, type, color, qty, price, this.diameter.get(), this.length.get(), this.head.get(), this.type.get(), this.color.get(), this.qty.get(), this.price.get()));
     }
 
     public boolean isSimilar() {

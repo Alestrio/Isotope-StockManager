@@ -19,17 +19,19 @@ class FilamentSpool extends AbsMaterial {
         this.remainingWeight.set(remainingWeight);
         this.type.set(type);
         this.color.set(color);
+        if(db.getDriverState())
+            db.connect();
     }
 
     @Override
-    public boolean delete() {
-        return db.dbQuery("DELETE FROM bobines WHERE diameter =" + this.diameter.get() + " AND initialweight =" + this.initialWeight.get() + "AND remainingweight =" +
+    public void delete() {
+        db.dbQuery("DELETE FROM bobines WHERE diameter =" + this.diameter.get() + " AND initialweight =" + this.initialWeight.get() + "AND remainingweight =" +
                 this.remainingWeight.get() + "AND type ='" + this.type.get() + "' AND color='" + this.color.get() + "'");
     }
 
     @Override
-    public boolean add() {
-        return db.dbQuery(String.format("INSERT INTO bobines (diameter, initialweight, remainingweight, type, color) VALUES (%s, %s, %s, %s, %s)", this.diameter.get(), this.initialWeight.get(), this.remainingWeight.get(), this.type.get(), this.color.get()));
+    public void add() {
+        db.dbQuery(String.format("INSERT INTO bobines (diameter, initialweight, remainingweight, type, color) VALUES (%s, %s, %s, %s, %s)", this.diameter.get(), this.initialWeight.get(), this.remainingWeight.get(), this.type.get(), this.color.get()));
     }
 
     public boolean isSimilar() {
@@ -48,8 +50,8 @@ class FilamentSpool extends AbsMaterial {
     }
 
 
-    public boolean modify(double diameter ,double initialWeight ,double remainingWeight ,String type ,String color) {
-        return db.dbQuery(String.format("UPDATE bobines SET diameter = %s, initialweight = %s, remainingweight = %s, type = %s, color = %s WHERE diameter = %s, initialweight = %s," +
+    public void modify(double diameter ,double initialWeight ,double remainingWeight ,String type ,String color) {
+        db.dbQuery(String.format("UPDATE bobines SET diameter = %s, initialweight = %s, remainingweight = %s, type = %s, color = %s WHERE diameter = %s, initialweight = %s," +
                 ", remainingweight = %s, type = %s, color = %s", diameter, initialWeight, remainingWeight, type, color, this.diameter.get(), this.initialWeight.get(), this.remainingWeight.get(), this.type.get(), this.color.get()));
     }
 

@@ -6,6 +6,7 @@
 
 package com.alestrio.isotope.ui;
 
+import com.alestrio.isotope.DB;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -20,13 +21,16 @@ class GuiMP extends Application {
 
 	private BorderPane mainContainer;
 
+
     public
     void launch (Stage primaryStage) throws IOException {
+		DB db = new DB("jdbc:postgresql://localhost:5432/isotope" ,"postgres" ,"postgres");
 		primaryStage.setTitle("Isotope H");
 		Parent root  = FXMLLoader.load(getClass().getResource("fxml/IsotopeMP.fxml"));
 		Scene  scene = new Scene(root);
 		primaryStage.setScene(scene);
 		primaryStage.show();
+
 	}
 
 

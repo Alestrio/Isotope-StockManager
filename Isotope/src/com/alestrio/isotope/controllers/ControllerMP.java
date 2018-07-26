@@ -13,8 +13,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Material;
-import javafx.util.Callback;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -50,35 +48,6 @@ class ControllerMP {
 	@FXML
 	private TableColumn<RectangularPiece, String> totalPriceColumnR;
 
-	@FXML
-	private TextField txtTypeR;
-	@FXML
-	private TextField txtLengthR;
-	@FXML
-	private TextField txtWidthR;
-	@FXML
-	private TextField txtThicknessR;
-	@FXML
-	private TextField txtColorR;
-	@FXML
-	private TextArea  txtAreaR;
-	@FXML
-	private TextField txtPriceR;
-	@FXML
-	private TextField newTxtLengthR;
-	@FXML
-	private TextField  newTxtWidthR;
-	@FXML
-	private TextField newTxtThicknessR;
-
-	@FXML
-	private Button    addBtnR;
-	@FXML
-	private Button duplicateBtnR;
-	@FXML
-	private Button saveBtnR;
-	@FXML
-	private Button delBtnR;
 
 	/*--- TABLEVIEW CYLINDERS ---*/
 	@FXML
@@ -94,24 +63,7 @@ class ControllerMP {
 	@FXML
 	private TableColumn<Cylinder, String> colorColumnC;
 	@FXML
-	private TableColumn<Cylinder, String> qtyColumnC;
-
-	@FXML
-	private TextField txtDiameterC;
-	@FXML
-	private TextField txtLengthC;
-	@FXML
-	private TextField txtRemainingLengthC;
-	@FXML
-	private TextField txtTypeC;
-	@FXML
-	private TextField txtColorC;
-	@FXML
-	private TextField txtQtyC;
-	@FXML
-	private TextArea  txtAreaC;
-	@FXML
-	private Button    addBtnC;
+	private TableColumn<Cylinder, String> priceColumnC;
 
 	/*--- TABLEVIEW SPOOLS ---*/
 	@FXML
@@ -186,38 +138,131 @@ class ControllerMP {
 
 	@FXML
 	void clickAddBtnRec () {
-		RectangularPiece v = new RectangularPiece(Double.parseDouble(txtLengthR.getText()) ,
-				Double.parseDouble(txtWidthR.getText()) ,
-				Double.parseDouble(txtThicknessR.getText()) ,
-				txtTypeR.getText() ,
-				txtColorR.getText() ,
-				Double.parseDouble(txtLengthR.getText()) ,
-				Double.parseDouble(txtWidthR.getText()) ,
-				Double.parseDouble(txtThicknessR.getText()),
-				Double.parseDouble(txtPriceR.getText()));
-		if (v.add())
-			txtAreaR.appendText("Reussi !");
-		showDbEntries();
+		Dialog<RectangularPiece> d = new Dialog<>();
+		d.setTitle("Ajouter une plaque");
 
-		//TODO ajout plaque
+		Label l1 = new Label("Longueur");
+		TextField txtLength = new TextField();
+		Label l2 = new Label("Largeur");
+		TextField txtWidth = new TextField();
+		Label l3 = new Label("Epaisseur");
+		TextField txtThickness = new TextField();
+		Label l4 = new Label("Matière");
+		TextField txtType = new TextField();
+		Label l5 = new Label("Couleur");
+		TextField txtColor = new TextField();
+		Label l6 = new Label("Longueur restante");
+		TextField txtRemainingLength = new TextField();
+		Label l7 = new Label("Largeur restante");
+		TextField txtRemainingWidth = new TextField();
+		Label l8 = new Label("Epaisseur restante");
+		TextField txtRemainingThickness = new TextField();
+		Label l9 = new Label("Prix au cm^3");
+		TextField txtPrice = new TextField();
+		ButtonType ok = new ButtonType("Okay", ButtonBar.ButtonData.OK_DONE);
+
+		GridPane g = new GridPane();
+		g.add(l1, 1, 1);
+		g.add(txtLength, 2, 1);
+		g.add(l2, 1, 2);
+		g.add(txtWidth, 2, 2);
+		g.add(l3, 1, 3);
+		g.add(txtThickness, 2, 3);
+		g.add(l4, 1, 4);
+		g.add(txtType, 2, 4);
+		g.add(l5, 1, 5);
+		g.add(txtColor, 2, 5);
+		g.add(l6, 1,6);
+		g.add(txtRemainingLength,2,6);
+		g.add(l7, 1,7);
+		g.add(txtRemainingWidth,2,7);
+		g.add(l8, 1,8);
+		g.add(txtRemainingThickness, 2, 8);
+		g.add(l9, 1,9);
+		g.add(txtPrice, 2,9);
+
+		d.getDialogPane().setContent(g);
+		d.getDialogPane().getButtonTypes().add(ok);
+
+		d.setResultConverter(param -> {
+			if(ok == param) {
+				return new RectangularPiece(Double.parseDouble(txtLength.getText()),
+						Double.parseDouble(txtWidth.getText()),
+						Double.parseDouble(txtThickness.getText()),
+						txtType.getText(),
+						txtColor.getText(),
+						Double.parseDouble(txtRemainingLength.getText()),
+						Double.parseDouble(txtRemainingWidth.getText()),
+						Double.parseDouble(txtRemainingThickness.getText()),
+						Double.parseDouble(txtPrice.getText()));
+			}
+			else
+				return null;
+		});
+		Optional<RectangularPiece> f = d.showAndWait();
+		if (f.isPresent()) {
+			if(!f.get().isSimilar()){
+				f.get().add();
+			}
+		}
+		showDbEntries();
 	}
 
 	@FXML
 	void clickAddBtnCylinder () {
-		Cylinder c = new Cylinder(
-				Double.parseDouble(diameterColumnC.getText()),
-				Double.parseDouble(lengthColumnC.getText()),
-				typeColumnC.getText(),
-				colorColumnC.getText(),
-				Integer.parseInt(qtyColumnC.getText()),
-				Double.parseDouble(remainingLengthColumnC.getText())
-		);
-		if (c.add())
-			txtAreaC.appendText("Reussi !");
-		showDbEntries();
-		showDbEntries();
+		Dialog<Cylinder> d = new Dialog<>();
+		d.setTitle("Ajouter un cylindre");
 
-		//TODO  Ajout cylindre
+		Label l1 = new Label("Diamètre");
+		TextField txtDiameter = new TextField();
+		Label l2 = new Label("Longueur");
+		TextField txtLength = new TextField();
+		Label l3 = new Label("Matière");
+		TextField txtType = new TextField();
+		Label l4 = new Label("Couleur");
+		TextField txtColor = new TextField();
+		Label l5 = new Label("Prix cm^3");
+		TextField txtPrice = new TextField();
+		Label l6 = new Label("Longueur restante");
+		TextField txtRemainingLength = new TextField();
+		ButtonType ok = new ButtonType("Okay", ButtonBar.ButtonData.OK_DONE);
+
+		GridPane g = new GridPane();
+		g.add(l1, 1, 1);
+		g.add(txtDiameter, 2, 1);
+		g.add(l2, 1, 2);
+		g.add(txtLength, 2, 2);
+		g.add(l3, 1, 3);
+		g.add(txtType, 2, 3);
+		g.add(l4, 1, 4);
+		g.add(txtColor, 2, 4);
+		g.add(l5, 1, 5);
+		g.add(txtPrice, 2, 5);
+		g.add(l6, 1,6);
+		g.add(txtRemainingLength,2,6);
+
+		d.getDialogPane().setContent(g);
+		d.getDialogPane().getButtonTypes().add(ok);
+
+		d.setResultConverter(param -> {
+			if(ok == param) {
+				return new Cylinder(Double.parseDouble(txtDiameter.getText()),
+						Double.parseDouble(txtLength.getText()),
+						txtType.getText(),
+						txtColor.getText(),
+						Double.parseDouble(txtPrice.getText()),
+						Double.parseDouble(txtRemainingLength.getText()));
+			}
+			else
+				return null;
+		});
+		Optional<Cylinder> f = d.showAndWait();
+		if (f.isPresent()) {
+			if(!f.get().isSimilar()){
+				f.get().add();
+			}
+		}
+		showDbEntries();
 	}
 
 	/*--- MODIFY BUTTONS ---*/
@@ -287,8 +332,8 @@ class ControllerMP {
 		t.add(typeColumnC);
 		colorColumnC.setCellValueFactory(new PropertyValueFactory<>("color"));
 		t.add(colorColumnC);
-		qtyColumnC.setCellValueFactory(new PropertyValueFactory<>("qty"));
-		t.add(qtyColumnC);
+		priceColumnC.setCellValueFactory(new PropertyValueFactory<>("totalPrice"));
+		t.add(priceColumnC);
 		tableC.getColumns().addAll(t);
 		tableC.setVisible(true);
 	}
