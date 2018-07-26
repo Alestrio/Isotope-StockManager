@@ -46,7 +46,7 @@ class FilamentSpool extends AbsMaterial {
 
     @Override
     public void delete() {
-        db.dbQuery(String.format("DELETE FROM bobines WHERE diameter =%s AND initialweight =%sAND remainingweight =%s AND type ='%s' AND color='%s' AND qty=%s AND price=%s AND pricecm=%s", this.diameter.get(), this.initialWeight.get(), this.remainingWeight.get(), this.type.get(), this.color.get(), this.qty.get(), this.price.get(), this.priceCm.get()));
+        db.dbQuery(String.format("DELETE FROM bobines WHERE id=%s", this.id.get()));
     }
 
     @Override
@@ -71,8 +71,7 @@ class FilamentSpool extends AbsMaterial {
 
 
     public void modify(double diameter ,double initialWeight ,double remainingWeight ,String type ,String color, int qty, double price) {
-        db.dbQuery(String.format("UPDATE bobines SET diameter = %s, initialweight = %s, remainingweight = %s, type = %s, color = %s, qty=%s, price=%s, WHERE diameter = %s, initialweight = %s," +
-                ", remainingweight = %s, type = %s, color = %s, qty=%s, price=%s, pricecm=%s", diameter, initialWeight, remainingWeight, type, color, qty, price, this.diameter.get(), this.initialWeight.get(), this.remainingWeight.get(), this.type.get(), this.color.get(), this.qty.get(), this.price.get(), this.priceCm.get()));
+        db.dbQuery(String.format("UPDATE bobines SET diameter = %s, initialweight = %s, remainingweight = %s, type = %s, color = %s, qty=%s, price=%s, WHERE id=%s", diameter, initialWeight, remainingWeight, type, color, qty, price,this.id.get()));
     }
 
 }

@@ -294,28 +294,248 @@ class ControllerMP {
 		//TODO Boutons de modification
 
 	/*--- ERASE BUTTONS ---*/
+	@FXML
+	void clickDelBtnR(){
+		RectangularPiece r = tableR.getSelectionModel().getSelectedItem();
+		r.delete();
+		showDbEntriesRec();
+	}
 
-		//TODO Boutons de suppression
+	@FXML
+	void clickDelBtnC(){
+		Cylinder c = tableC.getSelectionModel().getSelectedItem();
+		c.delete();
+		showDbEntriesCylinders();
+	}
+
+	@FXML
+	void clickDelBtnF(){
+		FilamentSpool f = tableF.getSelectionModel().getSelectedItem();
+		f.delete();
+		showDbEntriesSpool();
+	}
 
 	/*--- DUPLICATE BUTTONS ---*/
+	//TODO Boutons de duplication, avec modif
 	@FXML
 	void clickDuplicateBtnR(){
 		RectangularPiece r = tableR.getSelectionModel().getSelectedItem();
-		r.add();
+		Dialog<RectangularPiece> d = new Dialog<>();
+		d.setTitle("Dupliquer une plaque");
+
+		Label l1 = new Label("Longueur");
+		TextField txtLength = new TextField();
+		txtLength.setText(String.valueOf(r.getLength()));
+		Label l2 = new Label("Largeur");
+		TextField txtWidth = new TextField();
+		txtWidth.setText(String.valueOf(r.getWidth()));
+		Label l3 = new Label("Epaisseur");
+		TextField txtThickness = new TextField();
+		txtThickness.setText(String.valueOf(r.getThickness()));
+		Label l4 = new Label("Matière");
+		TextField txtType = new TextField();
+		txtType.setText(r.getType());
+		Label l5 = new Label("Couleur");
+		TextField txtColor = new TextField();
+		txtColor.setText(r.getColor());
+		Label l6 = new Label("Longueur restante");
+		TextField txtRemainingLength = new TextField();
+		txtRemainingLength.setText(String.valueOf(r.getRemainingLength()));
+		Label l7 = new Label("Largeur restante");
+		TextField txtRemainingWidth = new TextField();
+		txtRemainingWidth.setText(String.valueOf(r.getRemainingWidth()));
+		Label l8 = new Label("Epaisseur restante");
+		TextField txtRemainingThickness = new TextField();
+		txtRemainingThickness.setText(String.valueOf(r.getRemainingThickness()));
+		Label l9 = new Label("Prix de la pièce");
+		TextField txtPrice = new TextField();
+		txtPrice.setText(String.valueOf(r.getPrice()));
+		Label l10 = new Label("Quantité");
+		TextField txtQty = new TextField();
+		txtQty.setText(String.valueOf(r.getQty()));
+		ButtonType ok = new ButtonType("Okay", ButtonBar.ButtonData.OK_DONE);
+
+		GridPane g = new GridPane();
+		g.add(l1, 1, 1);
+		g.add(txtLength, 2, 1);
+		g.add(l2, 1, 2);
+		g.add(txtWidth, 2, 2);
+		g.add(l3, 1, 3);
+		g.add(txtThickness, 2, 3);
+		g.add(l4, 1, 4);
+		g.add(txtType, 2, 4);
+		g.add(l5, 1, 5);
+		g.add(txtColor, 2, 5);
+		g.add(l6, 1,6);
+		g.add(txtRemainingLength,2,6);
+		g.add(l7, 1,7);
+		g.add(txtRemainingWidth,2,7);
+		g.add(l8, 1,8);
+		g.add(txtRemainingThickness, 2, 8);
+		g.add(l9, 1,9);
+		g.add(txtPrice, 2,9);
+		g.add(l10, 1, 10);
+		g.add(txtQty, 2, 10);
+
+		d.getDialogPane().setContent(g);
+		d.getDialogPane().getButtonTypes().add(ok);
+
+		d.setResultConverter(param -> {
+			if(ok == param) {
+				return new RectangularPiece(Double.parseDouble(txtLength.getText()),
+						Double.parseDouble(txtWidth.getText()),
+						Double.parseDouble(txtThickness.getText()),
+						txtType.getText(),
+						txtColor.getText(),
+						Double.parseDouble(txtRemainingLength.getText()),
+						Double.parseDouble(txtRemainingWidth.getText()),
+						Double.parseDouble(txtRemainingThickness.getText()),
+						Double.parseDouble(txtPrice.getText()),
+						Integer.parseInt(txtQty.getText()));
+			}
+			else
+				return null;
+		});
+		Optional<RectangularPiece> f = d.showAndWait();
+		if (f.isPresent())
+			f.get().add();
+
 		showDbEntriesRec();
 	}
 
 	@FXML
 	void clickDuplicateBtnC(){
 		Cylinder c = tableC.getSelectionModel().getSelectedItem();
-		c.add();
+			Dialog<Cylinder> d = new Dialog<>();
+			d.setTitle("Dupliquer un cylindre");
+
+			Label l1 = new Label("Diamètre");
+			TextField txtDiameter = new TextField();
+			txtDiameter.setText(String.valueOf(c.getDiameter()));
+			Label l2 = new Label("Longueur");
+			TextField txtLength = new TextField();
+			txtLength.setText(String.valueOf(c.getLength()));
+			Label l3 = new Label("Matière");
+			TextField txtType = new TextField();
+			txtType.setText(c.getType());
+			Label l4 = new Label("Couleur");
+			TextField txtColor = new TextField();
+			txtColor.setText(c.getColor());
+			Label l5 = new Label("Prix de la pièce");
+			TextField txtPrice = new TextField();
+			txtPrice.setText(String.valueOf(c.getPrice()));
+			Label l6 = new Label("Longueur restante");
+			TextField txtRemainingLength = new TextField();
+			txtRemainingLength.setText(String.valueOf(c.getRemainingLength()));
+			Label l7 = new Label("Quantité");
+			TextField txtQty = new TextField();
+			txtQty.setText(String.valueOf(c.getQty()));
+			ButtonType ok = new ButtonType("Okay", ButtonBar.ButtonData.OK_DONE);
+
+			GridPane g = new GridPane();
+			g.add(l1, 1, 1);
+			g.add(txtDiameter, 2, 1);
+			g.add(l2, 1, 2);
+			g.add(txtLength, 2, 2);
+			g.add(l3, 1, 3);
+			g.add(txtType, 2, 3);
+			g.add(l4, 1, 4);
+			g.add(txtColor, 2, 4);
+			g.add(l5, 1, 5);
+			g.add(txtPrice, 2, 5);
+			g.add(l6, 1,6);
+			g.add(txtRemainingLength,2,6);
+			g.add(l7, 1, 7);
+			g.add(txtQty, 2, 7);
+
+			d.getDialogPane().setContent(g);
+			d.getDialogPane().getButtonTypes().add(ok);
+
+			d.setResultConverter(param -> {
+				if(ok == param) {
+					return new Cylinder(Double.parseDouble(txtDiameter.getText()),
+							Double.parseDouble(txtLength.getText()),
+							txtType.getText(),
+							txtColor.getText(),
+							Double.parseDouble(txtPrice.getText()),
+							Double.parseDouble(txtRemainingLength.getText()),
+							Integer.parseInt(txtQty.getText()));
+				}
+				else
+					return null;
+			});
+			Optional<Cylinder> f = d.showAndWait();
+			if (f.isPresent()) {
+				f.get().add();
+			}
 		showDbEntriesCylinders();
 	}
 
 	@FXML
 	void clickDuplicateBtnF(){
-		FilamentSpool f = tableF.getSelectionModel().getSelectedItem();
-		f.add();
+		FilamentSpool s = tableF.getSelectionModel().getSelectedItem();
+		Dialog<FilamentSpool> d = new Dialog<>();
+		d.setTitle("Dupliquer une bobine de filament");
+
+		Label l1 = new Label("Matière");
+		TextField txtType = new TextField();
+		txtType.setText(s.getType());
+		Label l2 = new Label("Couleur");
+		TextField txtColor = new TextField();
+		txtColor.setText(s.getColor());
+		Label l3 = new Label("Diamètre");
+		TextField txtDiameter = new TextField();
+		txtDiameter.setText(String.valueOf(s.getDiameter()));
+		Label l4 = new Label("Poids");
+		TextField txtWeight = new TextField();
+		txtWeight.setText(String.valueOf(s.getInitialWeight()));
+		Label l5 = new Label("Poids restant");
+		TextField txtRemainingWeight = new TextField();
+		txtRemainingWeight.setText(String.valueOf(s.getRemainingWeight()));
+		Label l6 = new Label("Quantité");
+		TextField txtQty = new TextField();
+		txtQty.setText(String.valueOf(s.getQty()));
+		Label l7 = new Label("Prix de la bobine");
+		TextField txtPrice = new TextField();
+		txtPrice.setText(String.valueOf(s.getPrice()));
+		ButtonType ok = new ButtonType("Okay", ButtonBar.ButtonData.OK_DONE);
+
+		GridPane g = new GridPane();
+		g.add(l1, 1, 1);
+		g.add(txtType, 2, 1);
+		g.add(l2, 1, 2);
+		g.add(txtColor, 2, 2);
+		g.add(l3, 1, 3);
+		g.add(txtDiameter, 2, 3);
+		g.add(l4, 1, 4);
+		g.add(txtWeight, 2, 4);
+		g.add(l5, 1, 5);
+		g.add(txtRemainingWeight, 2, 5);
+		g.add(l6, 1, 6);
+		g.add(txtQty, 2, 6);
+		g.add(l7,1,7);
+		g.add(txtPrice, 2,7);
+
+		d.getDialogPane().setContent(g);
+		d.getDialogPane().getButtonTypes().add(ok);
+
+		d.setResultConverter(param -> {
+			if(ok == param) {
+				return new FilamentSpool(Double.parseDouble(txtDiameter.getText()),
+						Double.parseDouble(txtWeight.getText()),
+						Double.parseDouble(txtRemainingWeight.getText()),
+						txtColor.getText(),
+						txtType.getText(),
+						Integer.parseInt(txtQty.getText()),
+						Double.parseDouble(txtPrice.getText()));
+			}
+			else
+				return null;
+		});
+		Optional<FilamentSpool> f = d.showAndWait();
+		if (f.isPresent()) {
+			f.get().add();
+		}
 		showDbEntriesSpool();
 	}
 

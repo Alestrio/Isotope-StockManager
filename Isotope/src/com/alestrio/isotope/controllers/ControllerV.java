@@ -237,8 +237,71 @@ public class ControllerV {
     @FXML
     void clickDuplicateBtn(){
         Screw v = tableS.getSelectionModel().getSelectedItem();
-        v.add();
-        showDbEntriesScrews();
+        Screw s = tableS.getSelectionModel().getSelectedItem();
+        Dialog<Screw> d = new Dialog<>();
+        d.setTitle("Ajouter une vis");
+
+        Label label1 = new Label("Tête");
+        TextField txtHead = new TextField();
+        txtHead.setText(s.getHead());
+        Label label2 = new Label("Diamètre");
+        TextField txtDiameter = new TextField();
+        txtDiameter.setText(String.valueOf(s.getDiameter()));
+        Label label3 = new Label("Longueur");
+        TextField txtLength = new TextField();
+        txtLength.setText(String.valueOf(s.getLength()));
+        Label label4 = new Label("Matière");
+        TextField txtType = new TextField();
+        txtType.setText(s.getType());
+        Label label5 = new Label("Couleur");
+        TextField txtColor = new TextField();
+        txtColor.setText(s.getColor());
+        Label label6 = new Label("Quantité");
+        TextField txtQty = new TextField();
+        txtQty.setText(String.valueOf(s.getQty()));
+        Label label7 = new Label("Prix à l'unité");
+        TextField txtPrice = new TextField();
+        txtPrice.setText(String.valueOf(s.getPrice()));
+        ButtonType ok = new ButtonType("Okay", ButtonBar.ButtonData.OK_DONE);
+
+        GridPane g = new GridPane();
+        g.add(label1, 1, 1);
+        g.add(txtHead, 2, 1);
+        g.add(label2, 1, 2);
+        g.add(txtDiameter, 2, 2);
+        g.add(label3, 1, 3);
+        g.add(txtLength, 2, 3);
+        g.add(label4, 1, 4);
+        g.add(txtType, 2, 4);
+        g.add(label5, 1, 5 );
+        g.add(txtColor, 2, 5);
+        g.add(label6, 1, 6);
+        g.add(txtQty, 2, 6);
+        g.add(label7, 1, 7);
+        g.add(txtPrice, 2, 7);
+
+        d.getDialogPane().setContent(g);
+        d.getDialogPane().getButtonTypes().add(ok);
+
+        d.setResultConverter(param -> {
+            if (ok == param)
+                return new Screw(Double.parseDouble(txtDiameter.getText()),
+                        Double.parseDouble(txtLength.getText()),
+                        txtHead.getText(),
+                        txtType.getText(),
+                        txtColor.getText(),
+                        Integer.parseInt(txtQty.getText()),
+                        Double.parseDouble(txtPrice.getText()));
+            else
+                return null;
+        });
+
+        Optional<Screw> c = d.showAndWait();
+        if(c.isPresent()){
+            c.get().add();
+            showDbEntriesScrews();}
+        else
+            System.out.println("Non présent");
     }
 }
 

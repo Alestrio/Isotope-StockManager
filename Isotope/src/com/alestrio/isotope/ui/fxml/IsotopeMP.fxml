@@ -109,7 +109,7 @@
                                           <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickAddBtnRec" text="Ajouter" GridPane.rowIndex="1" />
                                           <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Modifier" GridPane.rowIndex="2" />
                                           <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickDuplicateBtnR" text="Dupliquer" GridPane.rowIndex="3" />
-                                          <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Supprimer" GridPane.rowIndex="4" />
+                                          <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickDelBtnR" text="Supprimer" GridPane.rowIndex="4" />
                                           <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Valeur totale" GridPane.rowIndex="5" />
                                        </children>
                                     </GridPane>
@@ -157,7 +157,7 @@
                                           <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickConnectionBtn" text="Se connecter à la base" />
                                           <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickAddBtnCylinder" text="Ajouter" GridPane.rowIndex="1" />
                                           <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Modifier" GridPane.rowIndex="2" />
-                                          <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Supprimer" GridPane.rowIndex="4" />
+                                          <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickDelBtnC" text="Supprimer" GridPane.rowIndex="4" />
                                           <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Valeur totale" GridPane.rowIndex="5" />
                                           <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickDuplicateBtnC" text="Dupliquer" GridPane.rowIndex="3" />
                                        </children>
@@ -206,7 +206,7 @@
                                           <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickConnectionBtn" text="Se connecter à la base" />
                                           <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickAddBtnSpool" text="Ajouter" GridPane.rowIndex="1" />
                                           <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Modifier" GridPane.rowIndex="2" />
-                                          <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Supprimer" GridPane.rowIndex="4" />
+                                          <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickDelBtnF" text="Supprimer" GridPane.rowIndex="4" />
                                           <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Valeur totale" GridPane.rowIndex="5" />
                                           <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickDuplicateBtnF" text="Dupliquer" GridPane.rowIndex="3" />
                                        </children>
