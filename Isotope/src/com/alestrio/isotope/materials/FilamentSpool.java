@@ -71,7 +71,7 @@ class FilamentSpool extends AbsMaterial {
 
 
     public void modify(double diameter ,double initialWeight ,double remainingWeight ,String type ,String color, int qty, double price) {
-        db.dbQuery(String.format("UPDATE bobines SET diameter = %s, initialweight = %s, remainingweight = %s, type = %s, color = %s, qty=%s, price=%s, WHERE id=%s", diameter, initialWeight, remainingWeight, type, color, qty, price,this.id.get()));
+        db.dbQuery(String.format("UPDATE bobines SET diameter = %s, initialweight = %s, remainingweight = %s, type = \'%s\', color = \'%s\', qty=%s, price=%s WHERE id=%s", diameter, initialWeight, remainingWeight, type, color, qty, price,this.id.get()));
     }
 
 }

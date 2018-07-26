@@ -69,7 +69,7 @@
                     <tabs>
                         <Tab text="Plaques">
                             <content>
-                                <SplitPane dividerPositions="0.586880669923238" prefHeight="515.0" prefWidth="900.0">
+                                <SplitPane dividerPositions="0.85" prefHeight="515.0" prefWidth="900.0">
                                     <items>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="762.0" prefWidth="742.0">
                                             <children>
@@ -107,7 +107,7 @@
                                        <children>
                                           <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickConnectionBtn" text="Se connecter à la base" />
                                           <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickAddBtnRec" text="Ajouter" GridPane.rowIndex="1" />
-                                          <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Modifier" GridPane.rowIndex="2" />
+                                          <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickModBtnR" text="Modifier" GridPane.rowIndex="2" />
                                           <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickDuplicateBtnR" text="Dupliquer" GridPane.rowIndex="3" />
                                           <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickDelBtnR" text="Supprimer" GridPane.rowIndex="4" />
                                           <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Valeur totale" GridPane.rowIndex="5" />
@@ -121,7 +121,7 @@
                         </Tab>
                         <Tab text="Cylindres">
                             <content>
-                                <SplitPane dividerPositions="0.5" prefHeight="515.0" prefWidth="900.0">
+                                <SplitPane dividerPositions="0.85" prefHeight="515.0" prefWidth="900.0">
                                     <items>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="549.0" prefWidth="325.0">
                                             <children>
@@ -156,7 +156,7 @@
                                        <children>
                                           <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickConnectionBtn" text="Se connecter à la base" />
                                           <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickAddBtnCylinder" text="Ajouter" GridPane.rowIndex="1" />
-                                          <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Modifier" GridPane.rowIndex="2" />
+                                          <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickModBtnC" text="Modifier" GridPane.rowIndex="2" />
                                           <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickDelBtnC" text="Supprimer" GridPane.rowIndex="4" />
                                           <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Valeur totale" GridPane.rowIndex="5" />
                                           <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickDuplicateBtnC" text="Dupliquer" GridPane.rowIndex="3" />
@@ -170,9 +170,9 @@
                         </Tab>
                         <Tab text="Bobines">
                             <content>
-                                <SplitPane dividerPositions="0.5" prefHeight="515.0" prefWidth="900.0">
+                                <SplitPane dividerPositions="0.85" prefHeight="515.0" prefWidth="900.0">
                                     <items>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="549.0" prefWidth="325.0">
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="762.0" prefWidth="747.0">
                                             <children>
                                                 <TableView id="table" fx:id="tableF" layoutX="103.0" layoutY="108.0" prefHeight="548.0" prefWidth="448.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                     <columns>
@@ -205,7 +205,7 @@
                                        <children>
                                           <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickConnectionBtn" text="Se connecter à la base" />
                                           <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickAddBtnSpool" text="Ajouter" GridPane.rowIndex="1" />
-                                          <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Modifier" GridPane.rowIndex="2" />
+                                          <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickModBtnF" text="Modifier" GridPane.rowIndex="2" />
                                           <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickDelBtnF" text="Supprimer" GridPane.rowIndex="4" />
                                           <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Valeur totale" GridPane.rowIndex="5" />
                                           <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickDuplicateBtnF" text="Dupliquer" GridPane.rowIndex="3" />

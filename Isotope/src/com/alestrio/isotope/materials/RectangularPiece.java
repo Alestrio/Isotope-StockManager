@@ -75,9 +75,10 @@ public class RectangularPiece extends AbsMaterial {
     }
 
 
-    public void modify(double length , double width , double thickness , String type , String color , double remainingLength , double remainingWidth , double remainingThickness, double price, double priceCm, int qty) {
-        db.dbQuery(String.format("UPDATE rectangles SET length=%s AND width=%s AND thickness=%s AND type=\'%s\' AND color=\'%s\' AND remaininglength=%s AND" +
-                "remainingwidth=%s AND remainingthickness=%s AND price=%s AND pricecm=%s AND qty=%s WHERE id=%s",length ,width ,thickness ,type ,color ,remainingLength ,remainingWidth ,remainingThickness,price, priceCm, qty, this.id.get()));
+    public void modify(double length , double width , double thickness , String type , String color , double remainingLength , double remainingWidth , double remainingThickness, double price, int qty) {
+        this.priceCm.set(price/(length/10 * width/10 * thickness/10));
+        db.dbQuery(String.format("UPDATE rectangles SET length=%s, width=%s, thickness=%s, type=\'%s\', color=\'%s\', remaininglength=%s, " +
+                "remainingwidth=%s, remainingthickness=%s, price=%s, pricecm=%s, qty=%s WHERE id=%s",length ,width ,thickness ,type ,color ,remainingLength ,remainingWidth ,remainingThickness,price, this.priceCm.get(), qty, this.id.get()));
     }
 
 }
