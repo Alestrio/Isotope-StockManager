@@ -69,7 +69,7 @@
                     <tabs>
                         <Tab text="Plaques">
                             <content>
-                                <SplitPane dividerPositions="0.5" prefHeight="515.0" prefWidth="900.0">
+                                <SplitPane dividerPositions="0.586880669923238" prefHeight="515.0" prefWidth="900.0">
                                     <items>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="762.0" prefWidth="742.0">
                                             <children>
@@ -130,7 +130,9 @@
                                                         <TableColumn fx:id="remainingLengthColumnC" prefWidth="128.0" text="Longueur restante" />
                                                         <TableColumn fx:id="typeColumnC" prefWidth="67.0" text="Matière" />
                                                         <TableColumn fx:id="colorColumnC" prefWidth="62.0" text="Couleur" />
-                                                        <TableColumn fx:id="priceColumnC" prefWidth="67.0" text="Quantité" />
+                                                        <TableColumn fx:id="priceCmColumnC" prefWidth="67.0" text="Prix cm^3" />
+                                          <TableColumn fx:id="qtyColumnC" prefWidth="67.0" text="Quantité" />
+                                          <TableColumn fx:id="totalPriceColumnC" prefWidth="67.0" text="Prix Total" />
                                                     </columns>
                                                 </TableView>
                                             </children>
@@ -175,6 +177,9 @@
                                                         <TableColumn fx:id="diameterColumnF" prefWidth="77.0" text="Diamètre" />
                                                         <TableColumn fx:id="weightColumnF" prefWidth="75.0" text="Poids" />
                                                         <TableColumn fx:id="remainingWeightColumnF" prefWidth="97.0" text="Poids restant" />
+                                          <TableColumn fx:id="priceCmColumnF" prefWidth="67.0" text="Prix / g" />
+                                          <TableColumn fx:id="qtyColumnF" prefWidth="67.0" text="Quantité" />
+                                          <TableColumn fx:id="totalPriceColumnF" prefWidth="67.0" text="Prix total" />
                                                     </columns>
                                                 </TableView>
                                             </children>

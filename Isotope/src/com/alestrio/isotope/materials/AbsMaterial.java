@@ -25,7 +25,9 @@ public abstract class AbsMaterial {
     protected SimpleStringProperty color = new SimpleStringProperty(null);
     protected SimpleIntegerProperty qty = new SimpleIntegerProperty(0);
     protected SimpleDoubleProperty price = new SimpleDoubleProperty(0);
+    protected SimpleDoubleProperty priceCm = new SimpleDoubleProperty(0);
     protected SimpleDoubleProperty totalPrice = new SimpleDoubleProperty(0);
+    protected SimpleDoubleProperty piecePrice = new SimpleDoubleProperty(0);
     DB db = new DB("jdbc:postgresql://localhost:5432/isotope" ,"postgres" ,"postgres");
 
     //Screws
@@ -217,5 +219,11 @@ public abstract class AbsMaterial {
     public abstract void add();
 
     public abstract boolean isSimilar();
+
+    public double getPriceCm() { return priceCm.get(); }
+
+    public SimpleDoubleProperty priceCmProperty() { return priceCm; }
+
+    public void setPriceCm(double priceCm) { this.priceCm.set(priceCm); }
 
 }

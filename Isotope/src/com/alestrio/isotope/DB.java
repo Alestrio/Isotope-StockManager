@@ -84,7 +84,9 @@ public class DB extends Thread{
 			double c = result.getDouble("remainingweight");
 			String d = result.getString("type");
 			String e = result.getString("color");
-			olf.add(new FilamentSpool(a ,b ,c ,d ,e));
+			int f = result.getInt("qty");
+			double g = result.getDouble("price");
+			olf.add(new FilamentSpool(a ,b ,c ,d ,e, f, g));
 		}
         return olf;
     }
@@ -103,7 +105,8 @@ public class DB extends Thread{
 			String d = result.getString("color");
 			int    e = result.getInt("price");
 			double f = result.getDouble("remainingLength");
-			olc.add(new Cylinder(a ,b ,c ,d ,e ,f));
+			int g = result.getInt("qty");
+			olc.add(new Cylinder(a ,b ,c ,d ,e ,f, g));
 		}
         return olc;
     }
@@ -156,7 +159,8 @@ public class DB extends Thread{
 				double h = result.getDouble("remainingWidth");
 				double i = result.getDouble("remainingThickness");
 				double j = result.getDouble("price");
-				olr.add(new RectangularPiece(a, b, c, d, e, g, h, i, j));
+				int k = result.getInt("qty");
+				olr.add(new RectangularPiece(a, b, c, d, e, g, h, i, j, k));
 			}
 		}
 		catch(SQLException e){
