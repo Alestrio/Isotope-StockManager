@@ -8,7 +8,6 @@ package com.alestrio.isotope.controllers;
 
 import com.alestrio.isotope.ui.GuiMP;
 import com.alestrio.isotope.ui.GuiV;
-import javafx.application.Application;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -16,7 +15,6 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 public
 class ControllerLauncher {

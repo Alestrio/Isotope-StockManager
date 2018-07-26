@@ -233,6 +233,13 @@ public class ControllerV {
         w.setOnCloseRequest(event -> w.hide());
         t.showAndWait();
     }
+
+    @FXML
+    void clickDuplicateBtn(){
+        Screw v = tableS.getSelectionModel().getSelectedItem();
+        v.add();
+        showDbEntriesScrews();
+    }
 }
 
 

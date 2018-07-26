@@ -7,7 +7,9 @@
 package com.alestrio.isotope.controllers;
 
 import com.alestrio.isotope.DB;
-import com.alestrio.isotope.materials.*;
+import com.alestrio.isotope.materials.Cylinder;
+import com.alestrio.isotope.materials.FilamentSpool;
+import com.alestrio.isotope.materials.RectangularPiece;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -68,6 +70,7 @@ class ControllerMP {
 	private TableColumn<Cylinder, String> totalPriceColumnC;
 	@FXML
 	private TableColumn<Cylinder, String> qtyColumnC;
+
 	/*--- TABLEVIEW SPOOLS ---*/
 	@FXML
 	private TableView<FilamentSpool> tableF = new TableView<>();
@@ -146,9 +149,7 @@ class ControllerMP {
 		});
 		Optional<FilamentSpool> f = d.showAndWait();
 		if (f.isPresent()) {
-			if(!f.get().isSimilar()){
 				f.get().add();
-			}
 		}
 		showDbEntries();
 	}
@@ -222,11 +223,9 @@ class ControllerMP {
 				return null;
 		});
 		Optional<RectangularPiece> f = d.showAndWait();
-		if (f.isPresent()) {
-			if(!f.get().isSimilar()){
+		if (f.isPresent())
 				f.get().add();
-			}
-		}
+
 		showDbEntries();
 	}
 
@@ -285,9 +284,7 @@ class ControllerMP {
 		});
 		Optional<Cylinder> f = d.showAndWait();
 		if (f.isPresent()) {
-			if(!f.get().isSimilar()){
 				f.get().add();
-			}
 		}
 		showDbEntries();
 	}
@@ -300,7 +297,33 @@ class ControllerMP {
 
 		//TODO Boutons de suppression
 
+	/*--- DUPLICATE BUTTONS ---*/
+	@FXML
+	void clickDuplicateBtnR(){
+		RectangularPiece r = tableR.getSelectionModel().getSelectedItem();
+		r.add();
+		showDbEntriesRec();
+	}
+
+	@FXML
+	void clickDuplicateBtnC(){
+		Cylinder c = tableC.getSelectionModel().getSelectedItem();
+		c.add();
+		showDbEntriesCylinders();
+	}
+
+	@FXML
+	void clickDuplicateBtnF(){
+		FilamentSpool f = tableF.getSelectionModel().getSelectedItem();
+		f.add();
+		showDbEntriesSpool();
+	}
+
 	/*--- OTHER BUTTONS ---*/
+
+
+
+		//TODO Filters
 
 	@FXML
 	void clickConnectionBtn() {
@@ -312,7 +335,7 @@ class ControllerMP {
 	/*--- SHOWDBENTRIES... ---*/
 
 	private
-	void showDbEntriesRec () throws Exception {
+	void showDbEntriesRec (){
 		tableR.getColumns().clear();
 		ObservableList<RectangularPiece>                  olr = db.getDbEntriesRecPieces();
 		Collection<TableColumn<RectangularPiece, String>> t   = new ArrayList<>();
@@ -344,7 +367,7 @@ class ControllerMP {
 	}
 
 	private
-	void showDbEntriesCylinders () throws Exception {
+	void showDbEntriesCylinders () {
 		tableC.getColumns().clear();
 		ObservableList<Cylinder>                  olc = db.getDbEntriesCylinders();
 		Collection<TableColumn<Cylinder, String>> t   = new ArrayList<>();
@@ -370,7 +393,7 @@ class ControllerMP {
 	}
 
 	private
-	void showDbEntriesSpool () throws Exception {
+	void showDbEntriesSpool () {
 		tableF.getColumns().clear();
 		ObservableList<FilamentSpool> olf = db.getDbEntriesSpool();
 		tableF.setItems(olf);

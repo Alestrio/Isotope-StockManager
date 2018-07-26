@@ -11,9 +11,21 @@ import java.util.List;
 public
 class Screw extends AbsMaterial {
 
-    public Screw(){ }
-
     public Screw (double diameter ,double length ,String head ,String type ,String color,int qty, double price) {
+        this.diameter.set(diameter);
+        this.length.set(length);
+        this.head.set(head);
+        this.type.set(type);
+        this.color.set(color);
+        this.qty.set(qty);
+        this.price.set(price);
+        this.totalPrice.set(qty*price);
+        if(db.getDriverState())
+            db.connect();
+    }
+
+    public Screw (double diameter ,double length ,String head ,String type ,String color,int qty, double price, int id) {
+        this.id.set(id);
         this.diameter.set(diameter);
         this.length.set(length);
         this.head.set(head);
@@ -28,7 +40,7 @@ class Screw extends AbsMaterial {
 
     @Override
     public void delete() {
-        db.dbQuery(String.format("DELETE FROM visserie WHERE diameter = %sAND  length = %sAND type = '%s'AND color = '%s' AND qty =%d AND price =%s", this.diameter.get(), this.length.get(), this.type.get(), this.color.get(), this.qty.get(), this.price.get()));
+        db.dbQuery(String.format("DELETE FROM visserie WHERE id=%s", this.id.get()));
     }
 
     @Override
@@ -37,7 +49,7 @@ class Screw extends AbsMaterial {
     }
 
     public void modify(double diameter ,double length ,String head ,String type ,String color,int qty, double price) {
-        db.dbQuery(String.format("UPDATE visserie SET diameter=%s , length=%s , head=\'%s\' , type=\'%s\' , color=\'%s\' , qty=%d , price=%s WHERE diameter=%s AND length=%s AND head=\'%s\' AND type=\'%s\' AND color=\'%s\' AND qty=%d AND price=%s", diameter, length, head, type, color, qty, price, this.diameter.get(), this.length.get(), this.head.get(), this.type.get(), this.color.get(), this.qty.get(), this.price.get()));
+        db.dbQuery(String.format("UPDATE visserie SET diameter=%s , length=%s , head=\'%s\' , type=\'%s\' , color=\'%s\' , qty=%d , price=%s WHERE id=%s", diameter, length, head, type, color, qty, price, this.id.get()));
     }
 
     public boolean isSimilar() {
@@ -48,4 +60,5 @@ class Screw extends AbsMaterial {
         }
         return false;
     }
+
 }

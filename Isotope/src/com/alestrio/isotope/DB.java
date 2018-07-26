@@ -6,7 +6,6 @@
 
 package com.alestrio.isotope;
 
-import com.alestrio.isotope.controllers.ControllerV;
 import com.alestrio.isotope.materials.Cylinder;
 import com.alestrio.isotope.materials.FilamentSpool;
 import com.alestrio.isotope.materials.RectangularPiece;
@@ -14,7 +13,6 @@ import com.alestrio.isotope.materials.Screw;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.lang.reflect.Method;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -72,10 +70,12 @@ public class DB extends Thread{
 	}
 
     public
-	ObservableList<FilamentSpool> getDbEntriesSpool () throws Exception {
+	ObservableList<FilamentSpool> getDbEntriesSpool (){
         List<FilamentSpool>           list   = new ArrayList<>();
         ObservableList<FilamentSpool> olf    = FXCollections.observableList(list);
-		Statement                     state  = conn.createStatement();
+		Statement                     state  = null;
+		try {
+			state = conn.createStatement();
 		ResultSet                     result = state.executeQuery("SELECT * FROM bobines");
 
 		while (result.next()) {
@@ -86,16 +86,23 @@ public class DB extends Thread{
 			String e = result.getString("color");
 			int f = result.getInt("qty");
 			double g = result.getDouble("price");
-			olf.add(new FilamentSpool(a ,b ,c ,d ,e, f, g));
+			int h = result.getInt("id");
+			olf.add(new FilamentSpool(a ,b ,c ,d ,e, f, g, h));
+		}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			olf = null;
 		}
         return olf;
     }
 
     public
-	ObservableList<Cylinder> getDbEntriesCylinders () throws Exception {
+	ObservableList<Cylinder> getDbEntriesCylinders () {
         List<Cylinder>           list   = new ArrayList<>();
         ObservableList<Cylinder> olc    = FXCollections.observableList(list);
-		Statement                state  = conn.createStatement();
+		Statement                state  = null;
+		try {
+			state = conn.createStatement();
 		ResultSet                result = state.executeQuery("SELECT * FROM cylindres");
 
 		while (result.next()) {
@@ -106,14 +113,18 @@ public class DB extends Thread{
 			int    e = result.getInt("price");
 			double f = result.getDouble("remainingLength");
 			int g = result.getInt("qty");
-			olc.add(new Cylinder(a ,b ,c ,d ,e ,f, g));
+			int h = result.getInt("id");
+			olc.add(new Cylinder(a ,b ,c ,d ,e ,f, g, h));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			olc = null;
 		}
-        return olc;
+		return olc;
     }
 
     public
     ObservableList<Screw> getDbEntriesScrew (){
-        int i = 0;
 
 		List<Screw>           list = new ArrayList<>();
         ObservableList<Screw> ols  = FXCollections.observableList(list);
@@ -131,7 +142,8 @@ public class DB extends Thread{
             String e = result.getString("color");
             int    f = result.getInt("qty");
             double g = result.getDouble("price");
-            ols.add(new Screw(a ,b ,c ,d ,e ,f, g));
+            int h = result.getInt("id");
+            ols.add(new Screw(a ,b ,c ,d ,e ,f, g, h));
         }
 	} catch (SQLException e) {
 		e.printStackTrace();
@@ -160,7 +172,8 @@ public class DB extends Thread{
 				double i = result.getDouble("remainingThickness");
 				double j = result.getDouble("price");
 				int k = result.getInt("qty");
-				olr.add(new RectangularPiece(a, b, c, d, e, g, h, i, j, k));
+				int l = result.getInt("id");
+				olr.add(new RectangularPiece(a, b, c, d, e, g, h, i, j, k, l));
 			}
 		}
 		catch(SQLException e){
@@ -169,5 +182,7 @@ public class DB extends Thread{
 		}
 		return olr;
     }
+
+    //TODO Method "createDatabase"
 
 }

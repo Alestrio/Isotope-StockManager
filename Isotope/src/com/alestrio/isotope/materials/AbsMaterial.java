@@ -11,6 +11,7 @@ import javafx.beans.property.*;
 
 public abstract class AbsMaterial {
 
+    protected SimpleIntegerProperty id = new SimpleIntegerProperty(0);
     protected SimpleStringProperty head = new SimpleStringProperty(null);
     protected SimpleDoubleProperty diameter = new SimpleDoubleProperty(0);
     protected SimpleDoubleProperty length = new SimpleDoubleProperty(0);

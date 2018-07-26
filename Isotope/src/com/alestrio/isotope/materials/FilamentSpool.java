@@ -11,9 +11,24 @@ import javafx.collections.ObservableList;
 public
 class FilamentSpool extends AbsMaterial {
 
-    public FilamentSpool() { }
-
     public FilamentSpool (double diameter ,double initialWeight ,double remainingWeight ,String type ,String color, int qty, double price) {
+        this.diameter.set(diameter);
+        this.initialWeight.set(initialWeight);
+        this.remainingWeight.set(remainingWeight);
+        this.type.set(type);
+        this.color.set(color);
+        this.qty.set(qty);
+        this.price.set(price);
+        //price/g in this case
+        this.priceCm.set(this.price.get()/this.initialWeight.get());
+        this.piecePrice.set(this.priceCm.get()*this.remainingWeight.get());
+        this.totalPrice.set(this.piecePrice.get()*this.qty.get());
+        if(db.getDriverState())
+            db.connect();
+    }
+
+    public FilamentSpool (double diameter ,double initialWeight ,double remainingWeight ,String type ,String color, int qty, double price, int id) {
+        this.id.set(id);
         this.diameter.set(diameter);
         this.initialWeight.set(initialWeight);
         this.remainingWeight.set(remainingWeight);
