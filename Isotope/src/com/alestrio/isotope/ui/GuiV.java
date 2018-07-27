@@ -21,7 +21,7 @@ public class GuiV extends Application
     public
     void launch (Stage primaryStage) throws IOException {
         DB db = new DB("jdbc:postgresql://localhost:5432/isotope" ,"postgres" ,"postgre");
-        primaryStage.setTitle("Isotope H");
+        primaryStage.setTitle("Isotope H Alpha 1");
         FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/IsotopeV.fxml"));
         Parent root = loader.load();
         Scene  scene = new Scene(root);

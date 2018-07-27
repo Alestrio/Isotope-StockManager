@@ -25,11 +25,12 @@ class GuiMP extends Application {
     public
     void launch (Stage primaryStage) throws IOException {
 		DB db = new DB("jdbc:postgresql://localhost:5432/isotope" ,"postgres" ,"postgres");
-		primaryStage.setTitle("Isotope H");
+		primaryStage.setTitle("Isotope H Alpha 1");
 		Parent root  = FXMLLoader.load(getClass().getResource("fxml/IsotopeMP.fxml"));
 		Scene  scene = new Scene(root);
 		primaryStage.setScene(scene);
 		primaryStage.show();
+		db.connect();
 
 	}
 
