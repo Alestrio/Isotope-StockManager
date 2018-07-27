@@ -52,6 +52,10 @@ class Screw extends AbsMaterial {
         db.dbQuery(String.format("UPDATE visserie SET diameter=%s , length=%s , head=\'%s\' , type=\'%s\' , color=\'%s\' , qty=%d , price=%s WHERE id=%s", diameter, length, head, type, color, qty, price, this.id.get()));
     }
 
+    public void modify(int qty){
+        db.dbQuery(String.format("UPDATE visserie SET qty=%s WHERE id=%s", qty, this.id.get()));
+    }
+
     public boolean isSimilar() {
         List<Screw> screwList = db.getDbEntriesScrew();
         for (Screw f : screwList) {

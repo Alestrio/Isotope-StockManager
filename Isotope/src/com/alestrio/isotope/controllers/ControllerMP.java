@@ -755,6 +755,55 @@ class ControllerMP {
 	/*--- OTHER BUTTONS ---*/
 
 
+	/*--- TOTAL VALUE BUTTONS ---*/
+	@FXML
+	void clickTotalValueR(){
+		double i = 0;
+		ObservableList<RectangularPiece> olr = db.getDbEntriesRecPieces();
+
+		for(RectangularPiece r : olr){
+			i+=r.getTotalPrice();
+		}
+		Dialog d = new Dialog();
+		d.setTitle("Valeur totale des plaques");
+		d.setContentText(String.format("Valeur totale : %s €", i));
+		ButtonType ok = new ButtonType("Okay", ButtonBar.ButtonData.OK_DONE);
+		d.getDialogPane().getButtonTypes().add(ok);
+		d.show();
+	}
+
+	@FXML
+	void clickTotalValueC(){
+		double i = 0;
+		ObservableList<Cylinder> olc = db.getDbEntriesCylinders();
+
+		for(Cylinder r : olc){
+			i+=r.getTotalPrice();
+		}
+		Dialog d = new Dialog();
+		d.setTitle("Valeur totale des cylindres");
+		d.setContentText(String.format("Valeur totale : %s €", i));
+		ButtonType ok = new ButtonType("Okay", ButtonBar.ButtonData.OK_DONE);
+		d.getDialogPane().getButtonTypes().add(ok);
+		d.show();
+	}
+
+	@FXML
+	void clickTotalValueF(){
+		double i = 0;
+		ObservableList<FilamentSpool> olf = db.getDbEntriesSpool();
+
+		for(FilamentSpool r : olf){
+			i+=r.getTotalPrice();
+		}
+		Dialog d = new Dialog();
+		d.setTitle("Valeur totale des bobines de filament");
+		d.setContentText(String.format("Valeur totale : %s €", i));
+		ButtonType ok = new ButtonType("Okay", ButtonBar.ButtonData.OK_DONE);
+		d.getDialogPane().getButtonTypes().add(ok);
+		d.show();
+	}
+
 
 		//TODO Filters
 

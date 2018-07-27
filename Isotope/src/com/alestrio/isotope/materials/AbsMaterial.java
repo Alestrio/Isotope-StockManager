@@ -9,6 +9,8 @@ package com.alestrio.isotope.materials;
 import com.alestrio.isotope.DB;
 import javafx.beans.property.*;
 
+import java.text.DecimalFormat;
+
 public abstract class AbsMaterial {
 
     protected SimpleIntegerProperty id = new SimpleIntegerProperty(0);
@@ -30,6 +32,7 @@ public abstract class AbsMaterial {
     protected SimpleDoubleProperty totalPrice = new SimpleDoubleProperty(0);
     protected SimpleDoubleProperty piecePrice = new SimpleDoubleProperty(0);
     DB db = new DB("jdbc:postgresql://localhost:5432/isotope" ,"postgres" ,"postgres");
+    DecimalFormat df = new DecimalFormat("#.#####");
 
     //Screws
     public String getHead() {

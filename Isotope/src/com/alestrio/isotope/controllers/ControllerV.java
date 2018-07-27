@@ -9,6 +9,8 @@ package com.alestrio.isotope.controllers;
 import com.alestrio.isotope.DB;
 import com.alestrio.isotope.materials.Screw;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -236,7 +238,6 @@ public class ControllerV {
 
     @FXML
     void clickDuplicateBtn(){
-        Screw v = tableS.getSelectionModel().getSelectedItem();
         Screw s = tableS.getSelectionModel().getSelectedItem();
         Dialog<Screw> d = new Dialog<>();
         d.setTitle("Ajouter une vis");
@@ -302,6 +303,37 @@ public class ControllerV {
             showDbEntriesScrews();}
         else
             System.out.println("Non présent");
+    }
+
+    @FXML
+    void clickDestockBtn(){
+        Screw v = tableS.getSelectionModel().getSelectedItem();
+        Dialog d = new Dialog();
+        GridPane g = new GridPane();
+
+        d.setTitle("Déstocker une vis");
+
+        Label l1 = new Label("Nouvelle quantité ?");
+        TextField txtQty = new TextField();
+        txtQty.setText(String.valueOf(v.getQty()));
+        ButtonType ok = new ButtonType("Okay", ButtonBar.ButtonData.OK_DONE);
+
+        g.add(l1, 1, 1);
+        g.add(txtQty, 2, 1);
+
+        d.getDialogPane().setContent(g);
+        d.getDialogPane().getButtonTypes().add(ok);
+        d.setResultConverter(param -> {
+             if (ok == param){
+                 v.modify(Integer.parseInt(txtQty.getText()));
+                return null;}
+             else
+                 return null;
+         });
+
+
+        d.show();
+        showDbEntriesScrews();
     }
 }
 
