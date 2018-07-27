@@ -29,8 +29,7 @@ public class ControllerLauncher {
     DB db = dbu.getDb();
 
     @FXML
-    private
-    void vBtnClick (Event e) {
+    private void vBtnClick(Event e) {
         GuiV g = new GuiV();
         try {
             g.launch(new Stage());
@@ -41,19 +40,18 @@ public class ControllerLauncher {
     }
 
     @FXML
-    private void mpButtonClick(Event e){
+    private void mpButtonClick(Event e) {
         GuiMP g = new GuiMP();
-        try{
+        try {
             g.launch(new Stage());
-        }
-        catch(Exception ioe){
+        } catch (Exception ioe) {
             ioe.printStackTrace();
         }
         ((Node) (e.getSource())).getScene().getWindow().hide();
     }
 
     @FXML
-    private void quitButtonClick(Event e){
+    private void quitButtonClick(Event e) {
         ((Node) (e.getSource())).getScene().getWindow().hide();
     }
 }

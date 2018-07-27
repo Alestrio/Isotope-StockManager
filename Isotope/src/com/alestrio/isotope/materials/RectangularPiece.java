@@ -10,7 +10,7 @@ import javafx.collections.ObservableList;
 
 public class RectangularPiece extends AbsMaterial {
 
-    public RectangularPiece (double length , double width , double thickness , String type , String color , double remainingLength , double remainingWidth , double remainingThickness, double price, int qty) {
+    public RectangularPiece(double length, double width, double thickness, String type, String color, double remainingLength, double remainingWidth, double remainingThickness, double price, int qty) {
         this.length.set(length);
         this.width.set(width);
         this.thickness.set(thickness);
@@ -20,13 +20,13 @@ public class RectangularPiece extends AbsMaterial {
         this.remainingWidth.set(remainingWidth);
         this.remainingThickness.set(remainingThickness);
         this.price.set(price);
-        this.priceCm.set(this.price.get()/(this.length.get()/10 * this.width.get()/10 * this.thickness.get()/10));
-        this.piecePrice.set(this.remainingLength.get()/10 * this.remainingWidth.get()/10 * this.remainingThickness.get()/10 * this.priceCm.get());
+        this.priceCm.set(this.price.get() / (this.length.get() / 10 * this.width.get() / 10 * this.thickness.get() / 10));
+        this.piecePrice.set(this.remainingLength.get() / 10 * this.remainingWidth.get() / 10 * this.remainingThickness.get() / 10 * this.priceCm.get());
         this.qty.set(qty);
-        this.totalPrice.set(this.piecePrice.get()*this.qty.get());
+        this.totalPrice.set(this.piecePrice.get() * this.qty.get());
     }
 
-    public RectangularPiece (double length , double width , double thickness , String type , String color , double remainingLength , double remainingWidth , double remainingThickness, double price, int qty, int id) {
+    public RectangularPiece(double length, double width, double thickness, String type, String color, double remainingLength, double remainingWidth, double remainingThickness, double price, int qty, int id) {
         this.id.set(id);
         this.length.set(length);
         this.width.set(width);
@@ -37,10 +37,10 @@ public class RectangularPiece extends AbsMaterial {
         this.remainingWidth.set(remainingWidth);
         this.remainingThickness.set(remainingThickness);
         this.price.set(price);
-        this.priceCm.set(this.price.get()/(this.length.get()/10 * this.width.get()/10 * this.thickness.get()/10));
-        this.piecePrice.set(this.remainingLength.get()/10 * this.remainingWidth.get()/10 * this.remainingThickness.get()/10 * this.priceCm.get());
+        this.priceCm.set(this.price.get() / (this.length.get() / 10 * this.width.get() / 10 * this.thickness.get() / 10));
+        this.piecePrice.set(this.remainingLength.get() / 10 * this.remainingWidth.get() / 10 * this.remainingThickness.get() / 10 * this.priceCm.get());
         this.qty.set(qty);
-        this.totalPrice.set(this.piecePrice.get()*this.qty.get());
+        this.totalPrice.set(this.piecePrice.get() * this.qty.get());
     }
 
     @Override
@@ -51,7 +51,7 @@ public class RectangularPiece extends AbsMaterial {
     @Override
     public void add() {
         db.dbQueryU(String.format("INSERT INTO rectangles (length ,width ,thickness ,type ,color ,remaininglength ,remainingwidth ,remainingthickness, price, pricecm, qty)" +
-                " VALUES (%s, %s, %s, \'%s\', \'%s\', %s, %s, %s, %s, %s, %s)", this.length.get(), this.width.get(), this.thickness.get(), this.type.get(), this.color.get(),
+                        " VALUES (%s, %s, %s, \'%s\', \'%s\', %s, %s, %s, %s, %s, %s)", this.length.get(), this.width.get(), this.thickness.get(), this.type.get(), this.color.get(),
                 this.remainingLength.get(), this.remainingWidth.get(), this.remainingThickness.get(), this.price.get(), this.priceCm.get(), this.qty.get()));
     }
 
@@ -59,8 +59,8 @@ public class RectangularPiece extends AbsMaterial {
         ObservableList<RectangularPiece> fsol;
         try {
             fsol = db.getDbEntriesRecPieces();
-            for(RectangularPiece f : fsol){
-                if(f.equals(this))
+            for (RectangularPiece f : fsol) {
+                if (f.equals(this))
                     return true;
             }
             return false;
@@ -71,10 +71,10 @@ public class RectangularPiece extends AbsMaterial {
     }
 
 
-    public void modify(double length , double width , double thickness , String type , String color , double remainingLength , double remainingWidth , double remainingThickness, double price, int qty) {
-        this.priceCm.set(price/(length/10 * width/10 * thickness/10));
+    public void modify(double length, double width, double thickness, String type, String color, double remainingLength, double remainingWidth, double remainingThickness, double price, int qty) {
+        this.priceCm.set(price / (length / 10 * width / 10 * thickness / 10));
         db.dbQueryU(String.format("UPDATE rectangles SET length=%s, width=%s, thickness=%s, type=\'%s\', color=\'%s\', remaininglength=%s, " +
-                "remainingwidth=%s, remainingthickness=%s, price=%s, pricecm=%s, qty=%s WHERE id=%s",length ,width ,thickness ,type ,color ,remainingLength ,remainingWidth ,remainingThickness,price, this.priceCm.get(), qty, this.id.get()));
+                "remainingwidth=%s, remainingthickness=%s, price=%s, pricecm=%s, qty=%s WHERE id=%s", length, width, thickness, type, color, remainingLength, remainingWidth, remainingThickness, price, this.priceCm.get(), qty, this.id.get()));
     }
 
 }

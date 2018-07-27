@@ -8,10 +8,9 @@ package com.alestrio.isotope.materials;
 
 import javafx.collections.ObservableList;
 
-public
-class FilamentSpool extends AbsMaterial {
+public class FilamentSpool extends AbsMaterial {
 
-    public FilamentSpool (double diameter ,double initialWeight ,double remainingWeight ,String type ,String color, int qty, double price) {
+    public FilamentSpool(double diameter, double initialWeight, double remainingWeight, String type, String color, int qty, double price) {
         this.diameter.set(diameter);
         this.initialWeight.set(initialWeight);
         this.remainingWeight.set(remainingWeight);
@@ -20,12 +19,12 @@ class FilamentSpool extends AbsMaterial {
         this.qty.set(qty);
         this.price.set(price);
         //price/g in this case
-        this.priceCm.set(this.price.get()/this.initialWeight.get());
-        this.piecePrice.set(this.priceCm.get()*this.remainingWeight.get());
-        this.totalPrice.set(this.piecePrice.get()*this.qty.get());
+        this.priceCm.set(this.price.get() / this.initialWeight.get());
+        this.piecePrice.set(this.priceCm.get() * this.remainingWeight.get());
+        this.totalPrice.set(this.piecePrice.get() * this.qty.get());
     }
 
-    public FilamentSpool (double diameter ,double initialWeight ,double remainingWeight ,String type ,String color, int qty, double price, int id) {
+    public FilamentSpool(double diameter, double initialWeight, double remainingWeight, String type, String color, int qty, double price, int id) {
         this.id.set(id);
         this.diameter.set(diameter);
         this.initialWeight.set(initialWeight);
@@ -35,9 +34,9 @@ class FilamentSpool extends AbsMaterial {
         this.qty.set(qty);
         this.price.set(price);
         //price/g in this case
-        this.priceCm.set(this.price.get()/this.initialWeight.get());
-        this.piecePrice.set(this.priceCm.get()*this.remainingWeight.get());
-        this.totalPrice.set(this.piecePrice.get()*this.qty.get());
+        this.priceCm.set(this.price.get() / this.initialWeight.get());
+        this.piecePrice.set(this.priceCm.get() * this.remainingWeight.get());
+        this.totalPrice.set(this.piecePrice.get() * this.qty.get());
     }
 
     @Override
@@ -51,11 +50,11 @@ class FilamentSpool extends AbsMaterial {
     }
 
     public boolean isSimilar() {
-            ObservableList<FilamentSpool> fsol;
+        ObservableList<FilamentSpool> fsol;
         try {
             fsol = db.getDbEntriesSpool();
-            for(FilamentSpool f : fsol){
-                if(f.equals(this))
+            for (FilamentSpool f : fsol) {
+                if (f.equals(this))
                     return true;
             }
             return false;
@@ -66,8 +65,8 @@ class FilamentSpool extends AbsMaterial {
     }
 
 
-    public void modify(double diameter ,double initialWeight ,double remainingWeight ,String type ,String color, int qty, double price) {
-        db.dbQueryU(String.format("UPDATE bobines SET diameter = %s, initialweight = %s, remainingweight = %s, type = \'%s\', color = \'%s\', qty=%s, price=%s WHERE id=%s", diameter, initialWeight, remainingWeight, type, color, qty, price,this.id.get()));
+    public void modify(double diameter, double initialWeight, double remainingWeight, String type, String color, int qty, double price) {
+        db.dbQueryU(String.format("UPDATE bobines SET diameter = %s, initialweight = %s, remainingweight = %s, type = \'%s\', color = \'%s\', qty=%s, price=%s WHERE id=%s", diameter, initialWeight, remainingWeight, type, color, qty, price, this.id.get()));
     }
 
 }

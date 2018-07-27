@@ -18,37 +18,35 @@ import javafx.stage.WindowEvent;
 
 import java.io.IOException;
 
-public
-class GuiMP extends Application {
+public class GuiMP extends Application {
 
-	private BorderPane mainContainer;
-
-
-    public
-    void launch (Stage primaryStage) throws IOException {
-		primaryStage.setTitle("Isotope H Alpha 1");
-		Parent root  = FXMLLoader.load(getClass().getResource("fxml/IsotopeMP.fxml"));
-		Scene  scene = new Scene(root);
-		primaryStage.setScene(scene);
-		primaryStage.show();
-		primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-			@Override
-			public void handle(javafx.stage.WindowEvent event) {
-				DB db = new DB();
-				db.disconnectIt();
-				try {
-					stop();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-
-	}
+    private BorderPane mainContainer;
 
 
-	@Override
-	public void start(Stage primaryStage) throws Exception {
+    public void launch(Stage primaryStage) throws IOException {
+        primaryStage.setTitle("Isotope H Alpha 1");
+        Parent root = FXMLLoader.load(getClass().getResource("fxml/IsotopeMP.fxml"));
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+        primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(javafx.stage.WindowEvent event) {
+                DB db = new DB();
+                db.disconnectIt();
+                try {
+                    stop();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
-	}
+    }
+
+
+    @Override
+    public void start(Stage primaryStage) {
+
+    }
 }

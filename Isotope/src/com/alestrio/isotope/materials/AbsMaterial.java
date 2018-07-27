@@ -8,10 +8,7 @@ package com.alestrio.isotope.materials;
 
 import com.alestrio.isotope.DB;
 import com.alestrio.isotope.DBUtil;
-import com.alestrio.isotope.controllers.ControllerLauncher;
 import javafx.beans.property.*;
-
-import java.text.DecimalFormat;
 
 public abstract class AbsMaterial {
 
@@ -227,12 +224,20 @@ public abstract class AbsMaterial {
 
     public abstract boolean isSimilar();
 
-    public double getPriceCm() { return priceCm.get(); }
+    public double getPriceCm() {
+        return priceCm.get();
+    }
 
-    public SimpleDoubleProperty priceCmProperty() { return priceCm; }
+    public void setPriceCm(double priceCm) {
+        this.priceCm.set(priceCm);
+    }
 
-    public void setPriceCm(double priceCm) { this.priceCm.set(priceCm); }
+    public SimpleDoubleProperty priceCmProperty() {
+        return priceCm;
+    }
 
-    public DB getDb(){return db;}
+    public DB getDb() {
+        return db;
+    }
 
 }

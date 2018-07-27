@@ -9,23 +9,22 @@ package com.alestrio.isotope.materials;
 
 import javafx.collections.ObservableList;
 
-public
-class Cylinder extends AbsMaterial {
+public class Cylinder extends AbsMaterial {
 
-    public Cylinder (double diameter , double length , String type , String color , double price , double remainingLength, int qty) {
+    public Cylinder(double diameter, double length, String type, String color, double price, double remainingLength, int qty) {
         this.diameter.set(diameter);
         this.length.set(length);
         this.type.set(type);
         this.color.set(color);
         this.price.set(price);
         this.remainingLength.set(remainingLength);
-        this.priceCm.set(this.price.get()/(Math.PI*(this.diameter.get()/2/10)*this.length.get()/10));
-        this.piecePrice.set(priceCm.get()*2*Math.PI*(this.diameter.get()/2/10)*this.remainingLength.get()/10);
+        this.priceCm.set(this.price.get() / (Math.PI * (this.diameter.get() / 2 / 10) * this.length.get() / 10));
+        this.piecePrice.set(priceCm.get() * 2 * Math.PI * (this.diameter.get() / 2 / 10) * this.remainingLength.get() / 10);
         this.qty.set(qty);
-        this.totalPrice.set(this.piecePrice.get()*this.qty.get());
+        this.totalPrice.set(this.piecePrice.get() * this.qty.get());
     }
 
-    public Cylinder (double diameter , double length , String type , String color , double price , double remainingLength, int qty, int id) {
+    public Cylinder(double diameter, double length, String type, String color, double price, double remainingLength, int qty, int id) {
         this.id.set(id);
         this.diameter.set(diameter);
         this.length.set(length);
@@ -33,10 +32,10 @@ class Cylinder extends AbsMaterial {
         this.color.set(color);
         this.price.set(price);
         this.remainingLength.set(remainingLength);
-        this.priceCm.set(this.price.get()/(Math.PI*(this.diameter.get()/2/10)*this.length.get()/10));
-        this.piecePrice.set(priceCm.get()*2*Math.PI*(this.diameter.get()/2/10)*this.remainingLength.get()/10);
+        this.priceCm.set(this.price.get() / (Math.PI * (this.diameter.get() / 2 / 10) * this.length.get() / 10));
+        this.piecePrice.set(priceCm.get() * 2 * Math.PI * (this.diameter.get() / 2 / 10) * this.remainingLength.get() / 10);
         this.qty.set(qty);
-        this.totalPrice.set(this.piecePrice.get()*this.qty.get());
+        this.totalPrice.set(this.piecePrice.get() * this.qty.get());
     }
 
     @Override
@@ -55,8 +54,8 @@ class Cylinder extends AbsMaterial {
         ObservableList<Cylinder> fsol;
         try {
             fsol = db.getDbEntriesCylinders();
-            for(Cylinder f : fsol){
-                if(f.equals(this))
+            for (Cylinder f : fsol) {
+                if (f.equals(this))
                     return true;
             }
             return false;
@@ -65,7 +64,6 @@ class Cylinder extends AbsMaterial {
         }
         return true;
     }
-
 
 
     public void modify(double diameter, double length, String type, String color, double remainingLength, int qty, double price) {

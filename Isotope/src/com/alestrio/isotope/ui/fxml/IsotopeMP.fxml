@@ -41,37 +41,35 @@
                                                         <TableColumn fx:id="typeColumnR" prefWidth="59.0" text="Matière" />
                                                         <TableColumn fx:id="colorColumnR" prefWidth="54.0" text="Couleur" />
                                                         <TableColumn fx:id="qtyColumnR" prefWidth="63.0" text="Quantité" />
-                                          <TableColumn fx:id="priceCmColumnR" prefWidth="77.0" text="Prix/cm^3" />
-                                          <TableColumn fx:id="totalPriceColumnR" prefWidth="65.0" text="Prix total" />
+                                                        <TableColumn fx:id="priceCmColumnR" prefWidth="77.0" text="Prix/cm^3" />
+                                                        <TableColumn fx:id="totalPriceColumnR" prefWidth="65.0" text="Prix total" />
                                                     </columns>
                                                 </TableView>
                                             </children>
                                         </AnchorPane>
-                              <AnchorPane>
-                                 <children>
-                                    <GridPane prefHeight="671.0" prefWidth="469.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                       <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                       </columnConstraints>
-                                       <rowConstraints>
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                       </rowConstraints>
-                                       <children>
-                                          <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickConnectionBtn" text="Se connecter à la base" />
-                                          <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickAddBtnRec" text="Ajouter" GridPane.rowIndex="1" />
-                                          <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickModBtnR" text="Modifier" GridPane.rowIndex="2" />
-                                          <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickDuplicateBtnR" text="Dupliquer" GridPane.rowIndex="3" />
-                                          <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickDelBtnR" text="Supprimer" GridPane.rowIndex="4" />
-                                          <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickTotalValueR" text="Valeur totale" GridPane.rowIndex="5" />
-                                       </children>
-                                    </GridPane>
-                                 </children>
-                              </AnchorPane>
+                                        <AnchorPane>
+                                            <children>
+                                                <GridPane prefHeight="671.0" prefWidth="469.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                    <columnConstraints>
+                                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                    </columnConstraints>
+                                                    <rowConstraints>
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                    </rowConstraints>
+                                                    <children>
+                                                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickAddBtnRec" text="Ajouter" />
+                                                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickModBtnR" text="Modifier" GridPane.rowIndex="1" />
+                                                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickDuplicateBtnR" text="Dupliquer" GridPane.rowIndex="2" />
+                                                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickDelBtnR" text="Supprimer" GridPane.rowIndex="3" />
+                                                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickTotalValueR" text="Valeur totale" GridPane.rowIndex="4" />
+                                                    </children>
+                                                </GridPane>
+                                            </children>
+                                        </AnchorPane>
                                     </items>
                                 </SplitPane>
                             </content>
@@ -90,37 +88,37 @@
                                                         <TableColumn fx:id="typeColumnC" prefWidth="67.0" text="Matière" />
                                                         <TableColumn fx:id="colorColumnC" prefWidth="62.0" text="Couleur" />
                                                         <TableColumn fx:id="priceCmColumnC" prefWidth="67.0" text="Prix cm^3" />
-                                          <TableColumn fx:id="qtyColumnC" prefWidth="67.0" text="Quantité" />
-                                          <TableColumn fx:id="totalPriceColumnC" prefWidth="67.0" text="Prix Total" />
+                                                        <TableColumn fx:id="qtyColumnC" prefWidth="67.0" text="Quantité" />
+                                                        <TableColumn fx:id="totalPriceColumnC" prefWidth="67.0" text="Prix Total" />
                                                     </columns>
                                                 </TableView>
                                             </children>
                                         </AnchorPane>
-                              <AnchorPane>
-                                 <children>
-                                    <GridPane prefHeight="671.0" prefWidth="469.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                       <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                       </columnConstraints>
-                                       <rowConstraints>
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                       </rowConstraints>
-                                       <children>
-                                          <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickConnectionBtn" text="Se connecter à la base" />
-                                          <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickAddBtnCylinder" text="Ajouter" GridPane.rowIndex="1" />
-                                          <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickModBtnC" text="Modifier" GridPane.rowIndex="2" />
-                                          <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickDelBtnC" text="Supprimer" GridPane.rowIndex="4" />
-                                          <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickTotalValueC" text="Valeur totale" GridPane.rowIndex="5" />
-                                          <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickDuplicateBtnC" text="Dupliquer" GridPane.rowIndex="3" />
-                                       </children>
-                                    </GridPane>
-                                 </children>
-                              </AnchorPane>
+                                        <AnchorPane>
+                                            <children>
+                                                <GridPane prefHeight="671.0" prefWidth="469.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                    <columnConstraints>
+                                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                    </columnConstraints>
+                                                    <rowConstraints>
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                    </rowConstraints>
+                                                    <children>
+                                                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickConnectionBtn" text="Se connecter à la base" />
+                                                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickAddBtnCylinder" text="Ajouter" GridPane.rowIndex="1" />
+                                                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickModBtnC" text="Modifier" GridPane.rowIndex="2" />
+                                                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickDelBtnC" text="Supprimer" GridPane.rowIndex="4" />
+                                                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickTotalValueC" text="Valeur totale" GridPane.rowIndex="5" />
+                                                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickDuplicateBtnC" text="Dupliquer" GridPane.rowIndex="3" />
+                                                    </children>
+                                                </GridPane>
+                                            </children>
+                                        </AnchorPane>
                                     </items>
                                 </SplitPane>
                             </content>
@@ -138,38 +136,38 @@
                                                         <TableColumn fx:id="diameterColumnF" prefWidth="77.0" text="Diamètre" />
                                                         <TableColumn fx:id="weightColumnF" prefWidth="75.0" text="Poids" />
                                                         <TableColumn fx:id="remainingWeightColumnF" prefWidth="97.0" text="Poids restant" />
-                                          <TableColumn fx:id="priceCmColumnF" prefWidth="67.0" text="Prix / g" />
-                                          <TableColumn fx:id="qtyColumnF" prefWidth="67.0" text="Quantité" />
-                                          <TableColumn fx:id="totalPriceColumnF" prefWidth="67.0" text="Prix total" />
+                                                        <TableColumn fx:id="priceCmColumnF" prefWidth="67.0" text="Prix / g" />
+                                                        <TableColumn fx:id="qtyColumnF" prefWidth="67.0" text="Quantité" />
+                                                        <TableColumn fx:id="totalPriceColumnF" prefWidth="67.0" text="Prix total" />
                                                     </columns>
                                                 </TableView>
                                             </children>
                                         </AnchorPane>
-                              <AnchorPane>
-                                 <children>
-                                    <GridPane prefHeight="671.0" prefWidth="469.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                       <columnConstraints>
-                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                       </columnConstraints>
-                                       <rowConstraints>
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                       </rowConstraints>
-                                       <children>
-                                          <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickConnectionBtn" text="Se connecter à la base" />
-                                          <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickAddBtnSpool" text="Ajouter" GridPane.rowIndex="1" />
-                                          <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickModBtnF" text="Modifier" GridPane.rowIndex="2" />
-                                          <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickDelBtnF" text="Supprimer" GridPane.rowIndex="4" />
-                                          <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickTotalValueF" text="Valeur totale" GridPane.rowIndex="5" />
-                                          <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickDuplicateBtnF" text="Dupliquer" GridPane.rowIndex="3" />
-                                       </children>
-                                    </GridPane>
-                                 </children>
-                              </AnchorPane>
+                                        <AnchorPane>
+                                            <children>
+                                                <GridPane prefHeight="671.0" prefWidth="469.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                    <columnConstraints>
+                                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                    </columnConstraints>
+                                                    <rowConstraints>
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                    </rowConstraints>
+                                                    <children>
+                                                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickConnectionBtn" text="Se connecter à la base" />
+                                                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickAddBtnSpool" text="Ajouter" GridPane.rowIndex="1" />
+                                                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickModBtnF" text="Modifier" GridPane.rowIndex="2" />
+                                                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickDelBtnF" text="Supprimer" GridPane.rowIndex="4" />
+                                                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickTotalValueF" text="Valeur totale" GridPane.rowIndex="5" />
+                                                        <Button maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickDuplicateBtnF" text="Dupliquer" GridPane.rowIndex="3" />
+                                                    </children>
+                                                </GridPane>
+                                            </children>
+                                        </AnchorPane>
                                     </items>
                                 </SplitPane>
                             </content>

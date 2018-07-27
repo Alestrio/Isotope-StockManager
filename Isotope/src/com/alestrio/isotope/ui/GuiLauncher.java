@@ -12,20 +12,17 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public
-class GuiLauncher extends Application {
+public class GuiLauncher extends Application {
 
-    public static
-    void main (String[] args) {
+    public static void main(String[] args) {
         Application.launch(args);
     }
 
     @Override
-    public
-    void start (Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("Isotope H Alpha 1");
-        Parent root  = FXMLLoader.load(getClass().getResource("fxml/IsotopeLauncher.fxml"));
-        Scene  scene = new Scene(root);
+        Parent root = FXMLLoader.load(getClass().getResource("fxml/IsotopeLauncher.fxml"));
+        Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();
     }

@@ -12,9 +12,13 @@ import java.util.Properties;
 
 class Settings {
 
-    private Properties p = new Properties();
     FileInputStream in;
-    private Properties loadSettings(){
+    private Properties p = new Properties();
+
+    Settings() {
+    }
+
+    private Properties loadSettings() {
         try {
             in = new FileInputStream("C:\\Users\\Alexis\\IdeaProjects\\isotope\\Isotope\\rsrc\\isotope.properties");
             p.load(in);
@@ -22,8 +26,7 @@ class Settings {
         } catch (Exception e) {
             e.printStackTrace();
             return null;
-        }
-        finally {
+        } finally {
             try {
                 in.close();
             } catch (IOException e) {
@@ -32,19 +35,17 @@ class Settings {
         }
     }
 
-    Settings(){ }
-
-    String getDbUrl(){
+    String getDbUrl() {
         p = loadSettings();
         return p.getProperty("url");
     }
 
-    String getDbUser(){
+    String getDbUser() {
         p = loadSettings();
         return p.getProperty("user");
     }
 
-    String getDbPswd(){
+    String getDbPswd() {
         p = loadSettings();
         return p.getProperty("pswd");
     }

@@ -8,7 +8,6 @@ package com.alestrio.isotope.controllers;
 
 import com.alestrio.isotope.DB;
 import com.alestrio.isotope.DBUtil;
-import com.alestrio.isotope.materials.AbsMaterial;
 import com.alestrio.isotope.materials.Screw;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -17,7 +16,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Window;
 
-import java.sql.SQLException;
 import java.util.*;
 
 public class ControllerV {
@@ -43,6 +41,12 @@ public class ControllerV {
     @FXML
     private TableColumn<Screw, String> priceColumn;
 
+
+
+    public void initialize(){
+        db.connectIt();
+        showDbEntriesScrews();
+    }
 
     @FXML
     void clickAddButton() {
@@ -74,7 +78,7 @@ public class ControllerV {
         g.add(txtLength, 2, 3);
         g.add(label4, 1, 4);
         g.add(txtType, 2, 4);
-        g.add(label5, 1, 5 );
+        g.add(label5, 1, 5);
         g.add(txtColor, 2, 5);
         g.add(label6, 1, 6);
         g.add(txtQty, 2, 6);
@@ -98,26 +102,26 @@ public class ControllerV {
         });
 
         Optional<Screw> s = d.showAndWait();
-        if(s.isPresent()){
+        if (s.isPresent()) {
             s.get().add();
-            showDbEntriesScrews();}
-        else
-           System.out.println("Non présent");
+            showDbEntriesScrews();
+        } else
+            System.out.println("Non présent");
 
 
     }
 
     @FXML
-    void clickDelButton(){
+    void clickDelButton() {
         tableS.getSelectionModel().getSelectedItem().delete();
-            showDbEntriesScrews();
+        showDbEntriesScrews();
     }
 
-    private void showDbEntriesScrews () {
-        if(!(tableS == null))
+    public void showDbEntriesScrews() {
+        if (!(tableS == null))
             tableS.getColumns().clear();
-        ObservableList<Screw>                  ols = db.getDbEntriesScrew();
-        Collection<TableColumn<Screw, String>> t   = new ArrayList<>();
+        ObservableList<Screw> ols = db.getDbEntriesScrew();
+        Collection<TableColumn<Screw, String>> t = new ArrayList<>();
         this.headColumnS.setCellValueFactory(new PropertyValueFactory<>("head"));
         t.add(headColumnS);
         this.diamColumnS.setCellValueFactory(new PropertyValueFactory<>("diameter"));
@@ -141,7 +145,7 @@ public class ControllerV {
     }
 
     @FXML
-    void clickModifyButton(){
+    void clickModifyButton() {
         Screw s = tableS.getSelectionModel().getSelectedItem();
         Dialog<Screw> d = new Dialog<>();
         d.setTitle("Modifier une vis");
@@ -178,7 +182,7 @@ public class ControllerV {
         g.add(txtLength, 2, 3);
         g.add(label4, 1, 4);
         g.add(txtType, 2, 4);
-        g.add(label5, 1, 5 );
+        g.add(label5, 1, 5);
         g.add(txtColor, 2, 5);
         g.add(label6, 1, 6);
         g.add(txtQty, 2, 6);
@@ -204,23 +208,17 @@ public class ControllerV {
     }
 
     @FXML
-    void clickConnectionBtn (){
-        System.out.println(db.connectIt());
-        showDbEntriesScrews();
-    }
-
-    @FXML
-    void clickTotalValue(){
+    void clickTotalValue() {
         Dialog<String> t = new Dialog<>();
         Window w = t.getDialogPane().getScene().getWindow();
         List<Screw> screwList = db.getDbEntriesScrew();
         Iterator<Screw> i = screwList.iterator();
         double j = 0;
-        while (i.hasNext()){
+        while (i.hasNext()) {
             Screw f = i.next();
-            j+=f.getTotalPrice();
+            j += f.getTotalPrice();
         }
-        t.setContentText("La valeur totale est de " +j+"€");
+        t.setContentText("La valeur totale est de " + j + "€");
         t.setTitle("Valeur totale");
 
         w.setOnCloseRequest(event -> w.hide());
@@ -228,7 +226,7 @@ public class ControllerV {
     }
 
     @FXML
-    void clickDuplicateBtn(){
+    void clickDuplicateBtn() {
         Screw s = tableS.getSelectionModel().getSelectedItem();
         Dialog<Screw> d = new Dialog<>();
         d.setTitle("Ajouter une vis");
@@ -265,7 +263,7 @@ public class ControllerV {
         g.add(txtLength, 2, 3);
         g.add(label4, 1, 4);
         g.add(txtType, 2, 4);
-        g.add(label5, 1, 5 );
+        g.add(label5, 1, 5);
         g.add(txtColor, 2, 5);
         g.add(label6, 1, 6);
         g.add(txtQty, 2, 6);
@@ -289,24 +287,23 @@ public class ControllerV {
         });
 
         Optional<Screw> c = d.showAndWait();
-        if(c.isPresent()){
+        if (c.isPresent()) {
             c.get().add();
-            showDbEntriesScrews();}
-        else
+            showDbEntriesScrews();
+        } else
             System.out.println("Non présent");
     }
 
     @FXML
-    void clickDestockBtn(){
+    void clickDestockBtn() {
         Screw v = tableS.getSelectionModel().getSelectedItem();
         Dialog d = new Dialog();
         GridPane g = new GridPane();
 
         d.setTitle("Déstocker une vis");
 
-        Label l1 = new Label("Nouvelle quantité ?");
+        Label l1 = new Label("Déstocker");
         TextField txtQty = new TextField();
-        txtQty.setText(String.valueOf(v.getQty()));
         ButtonType ok = new ButtonType("Okay", ButtonBar.ButtonData.OK_DONE);
 
         g.add(l1, 1, 1);
@@ -315,13 +312,40 @@ public class ControllerV {
         d.getDialogPane().setContent(g);
         d.getDialogPane().getButtonTypes().add(ok);
         d.setResultConverter(param -> {
-             if (ok == param){
-                 v.modify(Integer.parseInt(txtQty.getText()));
-                return null;}
-             else
-                 return null;
-         });
+            if (ok == param) {
+                v.modify(v.getQty() - Integer.parseInt(txtQty.getText()));
+                return null;
+            } else
+                return null;
+        });
+        d.showAndWait();
+        showDbEntriesScrews();
+    }
 
+    @FXML
+    void clickStockBtn(){
+        Screw v = tableS.getSelectionModel().getSelectedItem();
+        Dialog d = new Dialog();
+        GridPane g = new GridPane();
+
+        d.setTitle("Stocker une vis");
+
+        Label l1 = new Label("Stocker");
+        TextField txtQty = new TextField();
+        ButtonType ok = new ButtonType("Okay", ButtonBar.ButtonData.OK_DONE);
+
+        g.add(l1, 1, 1);
+        g.add(txtQty, 2, 1);
+
+        d.getDialogPane().setContent(g);
+        d.getDialogPane().getButtonTypes().add(ok);
+        d.setResultConverter(param -> {
+            if (ok == param) {
+                v.modify(v.getQty() + Integer.parseInt(txtQty.getText()));
+                return null;
+            } else
+                return null;
+        });
         d.showAndWait();
         showDbEntriesScrews();
     }

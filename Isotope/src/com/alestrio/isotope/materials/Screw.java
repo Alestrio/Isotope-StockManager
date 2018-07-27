@@ -8,10 +8,9 @@ package com.alestrio.isotope.materials;
 
 import java.util.List;
 
-public
-class Screw extends AbsMaterial {
+public class Screw extends AbsMaterial {
 
-    public Screw (double diameter ,double length ,String head ,String type ,String color,int qty, double price) {
+    public Screw(double diameter, double length, String head, String type, String color, int qty, double price) {
         this.diameter.set(diameter);
         this.length.set(length);
         this.head.set(head);
@@ -21,7 +20,7 @@ class Screw extends AbsMaterial {
         this.price.set(price);
     }
 
-    public Screw (double diameter ,double length ,String head ,String type ,String color,int qty, double price, int id) {
+    public Screw(double diameter, double length, String head, String type, String color, int qty, double price, int id) {
         this.id.set(id);
         this.diameter.set(diameter);
         this.length.set(length);
@@ -30,7 +29,7 @@ class Screw extends AbsMaterial {
         this.color.set(color);
         this.qty.set(qty);
         this.price.set(price);
-        this.totalPrice.set(qty*price);
+        this.totalPrice.set(qty * price);
     }
 
     @Override
@@ -43,11 +42,11 @@ class Screw extends AbsMaterial {
         db.dbQueryU(String.format("INSERT INTO visserie (diameter, length, head, type, color, qty, price) VALUES (%s, %s, '%s', '%s', '%s', %d, %s)", this.diameter.get(), this.length.get(), this.head.get(), this.type.get(), this.color.get(), this.qty.get(), this.price.get()));
     }
 
-    public void modify(double diameter ,double length ,String head ,String type ,String color,int qty, double price) {
+    public void modify(double diameter, double length, String head, String type, String color, int qty, double price) {
         db.dbQueryU(String.format("UPDATE visserie SET diameter=%s , length=%s , head=\'%s\' , type=\'%s\' , color=\'%s\' , qty=%d , price=%s WHERE id=%s", diameter, length, head, type, color, qty, price, this.id.get()));
     }
 
-    public void modify(int qty){
+    public void modify(int qty) {
         db.dbQueryU(String.format("UPDATE visserie SET qty=%s WHERE id=%s", qty, this.id.get()));
     }
 
