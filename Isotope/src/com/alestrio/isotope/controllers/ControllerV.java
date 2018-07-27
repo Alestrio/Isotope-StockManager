@@ -7,10 +7,10 @@
 package com.alestrio.isotope.controllers;
 
 import com.alestrio.isotope.DB;
+import com.alestrio.isotope.DBUtil;
+import com.alestrio.isotope.materials.AbsMaterial;
 import com.alestrio.isotope.materials.Screw;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -21,7 +21,8 @@ import java.sql.SQLException;
 import java.util.*;
 
 public class ControllerV {
-    private final DB db = new DB("jdbc:postgresql://localhost:5432/isotope" ,"postgres" ,"postgre");
+    DBUtil dbu = new DBUtil();
+    DB db = dbu.getDb();
     /*--- SCREW ---*/
     @FXML
     private TableView<Screw> tableS;
@@ -97,7 +98,7 @@ public class ControllerV {
         });
 
         Optional<Screw> s = d.showAndWait();
-        if(s.isPresent() && s.get().isSimilar()){
+        if(s.isPresent()){
             s.get().add();
             showDbEntriesScrews();}
         else
@@ -143,7 +144,7 @@ public class ControllerV {
     void clickModifyButton(){
         Screw s = tableS.getSelectionModel().getSelectedItem();
         Dialog<Screw> d = new Dialog<>();
-        d.setTitle("Ajouter une vis");
+        d.setTitle("Modifier une vis");
 
         Label label1 = new Label("Tête");
         TextField txtHead = new TextField();
@@ -203,19 +204,9 @@ public class ControllerV {
     }
 
     @FXML
-    void clickConnectionBtn () throws SQLException {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        if(!db.getDriverState()){
-            alert.setTitle("ERREUR !");
-            alert.setContentText("Problème de driver JDBC");
-        }
-        db.connect();
-        if(!db.getConnectionState()){
-            alert.setTitle("ERREUR !");
-            alert.setContentText("Impossible de se connecter à la base de données");
-        }
-        else
-            showDbEntriesScrews();
+    void clickConnectionBtn (){
+        System.out.println(db.connectIt());
+        showDbEntriesScrews();
     }
 
     @FXML
@@ -331,8 +322,7 @@ public class ControllerV {
                  return null;
          });
 
-
-        d.show();
+        d.showAndWait();
         showDbEntriesScrews();
     }
 }

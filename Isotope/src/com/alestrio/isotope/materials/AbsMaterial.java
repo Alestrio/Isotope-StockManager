@@ -7,6 +7,8 @@
 package com.alestrio.isotope.materials;
 
 import com.alestrio.isotope.DB;
+import com.alestrio.isotope.DBUtil;
+import com.alestrio.isotope.controllers.ControllerLauncher;
 import javafx.beans.property.*;
 
 import java.text.DecimalFormat;
@@ -31,8 +33,9 @@ public abstract class AbsMaterial {
     protected SimpleDoubleProperty priceCm = new SimpleDoubleProperty(0);
     protected SimpleDoubleProperty totalPrice = new SimpleDoubleProperty(0);
     protected SimpleDoubleProperty piecePrice = new SimpleDoubleProperty(0);
-    DB db = new DB("jdbc:postgresql://localhost:5432/isotope" ,"postgres" ,"postgres");
-    DecimalFormat df = new DecimalFormat("#.#####");
+    DBUtil dbu = new DBUtil();
+    DB db = dbu.getDb();
+
 
     //Screws
     public String getHead() {
@@ -229,5 +232,7 @@ public abstract class AbsMaterial {
     public SimpleDoubleProperty priceCmProperty() { return priceCm; }
 
     public void setPriceCm(double priceCm) { this.priceCm.set(priceCm); }
+
+    public DB getDb(){return db;}
 
 }

@@ -7,6 +7,7 @@
 package com.alestrio.isotope.controllers;
 
 import com.alestrio.isotope.DB;
+import com.alestrio.isotope.DBUtil;
 import com.alestrio.isotope.materials.Cylinder;
 import com.alestrio.isotope.materials.FilamentSpool;
 import com.alestrio.isotope.materials.RectangularPiece;
@@ -22,8 +23,8 @@ import java.util.Optional;
 
 public
 class ControllerMP {
-	private final DB db = new DB("jdbc:postgresql://localhost:5432/isotope" ,"postgres" ,"postgres");
-
+    DBUtil dbu = new DBUtil();
+    DB db = dbu.getDb();
 	/*--- PLAQUES ---*/
 	@FXML
 	private TableView<RectangularPiece> tableR = new TableView<>();
@@ -809,8 +810,7 @@ class ControllerMP {
 
 	@FXML
 	void clickConnectionBtn() {
-		System.out.println(db.getDriverState());
-		System.out.println(db.connect());
+		System.out.println(db.connectIt());
 		showDbEntries();
     }
 

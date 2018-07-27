@@ -19,9 +19,6 @@ class Screw extends AbsMaterial {
         this.color.set(color);
         this.qty.set(qty);
         this.price.set(price);
-        this.totalPrice.set(qty*price);
-        if(db.getDriverState())
-            db.connect();
     }
 
     public Screw (double diameter ,double length ,String head ,String type ,String color,int qty, double price, int id) {
@@ -34,26 +31,24 @@ class Screw extends AbsMaterial {
         this.qty.set(qty);
         this.price.set(price);
         this.totalPrice.set(qty*price);
-        if(db.getDriverState())
-            db.connect();
     }
 
     @Override
     public void delete() {
-        db.dbQuery(String.format("DELETE FROM visserie WHERE id=%s", this.id.get()));
+        db.dbQueryU(String.format("DELETE FROM visserie WHERE id=%s", this.id.get()));
     }
 
     @Override
     public void add() {
-        db.dbQuery(String.format("INSERT INTO visserie (diameter, length, head, type, color, qty, price) VALUES (%s, %s, '%s', '%s', '%s', %d, %s)", this.diameter.get(), this.length.get(), this.head.get(), this.type.get(), this.color.get(), this.qty.get(), this.price.get()));
+        db.dbQueryU(String.format("INSERT INTO visserie (diameter, length, head, type, color, qty, price) VALUES (%s, %s, '%s', '%s', '%s', %d, %s)", this.diameter.get(), this.length.get(), this.head.get(), this.type.get(), this.color.get(), this.qty.get(), this.price.get()));
     }
 
     public void modify(double diameter ,double length ,String head ,String type ,String color,int qty, double price) {
-        db.dbQuery(String.format("UPDATE visserie SET diameter=%s , length=%s , head=\'%s\' , type=\'%s\' , color=\'%s\' , qty=%d , price=%s WHERE id=%s", diameter, length, head, type, color, qty, price, this.id.get()));
+        db.dbQueryU(String.format("UPDATE visserie SET diameter=%s , length=%s , head=\'%s\' , type=\'%s\' , color=\'%s\' , qty=%d , price=%s WHERE id=%s", diameter, length, head, type, color, qty, price, this.id.get()));
     }
 
     public void modify(int qty){
-        db.dbQuery(String.format("UPDATE visserie SET qty=%s WHERE id=%s", qty, this.id.get()));
+        db.dbQueryU(String.format("UPDATE visserie SET qty=%s WHERE id=%s", qty, this.id.get()));
     }
 
     public boolean isSimilar() {

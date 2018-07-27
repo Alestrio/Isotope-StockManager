@@ -23,8 +23,6 @@ class FilamentSpool extends AbsMaterial {
         this.priceCm.set(this.price.get()/this.initialWeight.get());
         this.piecePrice.set(this.priceCm.get()*this.remainingWeight.get());
         this.totalPrice.set(this.piecePrice.get()*this.qty.get());
-        if(db.getDriverState())
-            db.connect();
     }
 
     public FilamentSpool (double diameter ,double initialWeight ,double remainingWeight ,String type ,String color, int qty, double price, int id) {
@@ -40,18 +38,16 @@ class FilamentSpool extends AbsMaterial {
         this.priceCm.set(this.price.get()/this.initialWeight.get());
         this.piecePrice.set(this.priceCm.get()*this.remainingWeight.get());
         this.totalPrice.set(this.piecePrice.get()*this.qty.get());
-        if(db.getDriverState())
-            db.connect();
     }
 
     @Override
     public void delete() {
-        db.dbQuery(String.format("DELETE FROM bobines WHERE id=%s", this.id.get()));
+        db.dbQueryU(String.format("DELETE FROM bobines WHERE id=%s", this.id.get()));
     }
 
     @Override
     public void add() {
-        db.dbQuery(String.format("INSERT INTO bobines (diameter, initialweight, remainingweight, type, color, qty, price, pricecm) VALUES (%s, %s, %s, \'%s\', \'%s\', %s, %s, %s)", this.diameter.get(), this.initialWeight.get(), this.remainingWeight.get(), this.type.get(), this.color.get(), this.qty.get(), this.price.get(), this.priceCm.get()));
+        db.dbQueryU(String.format("INSERT INTO bobines (diameter, initialweight, remainingweight, type, color, qty, price, pricecm) VALUES (%s, %s, %s, \'%s\', \'%s\', %s, %s, %s)", this.diameter.get(), this.initialWeight.get(), this.remainingWeight.get(), this.type.get(), this.color.get(), this.qty.get(), this.price.get(), this.priceCm.get()));
     }
 
     public boolean isSimilar() {
@@ -71,7 +67,7 @@ class FilamentSpool extends AbsMaterial {
 
 
     public void modify(double diameter ,double initialWeight ,double remainingWeight ,String type ,String color, int qty, double price) {
-        db.dbQuery(String.format("UPDATE bobines SET diameter = %s, initialweight = %s, remainingweight = %s, type = \'%s\', color = \'%s\', qty=%s, price=%s WHERE id=%s", diameter, initialWeight, remainingWeight, type, color, qty, price,this.id.get()));
+        db.dbQueryU(String.format("UPDATE bobines SET diameter = %s, initialweight = %s, remainingweight = %s, type = \'%s\', color = \'%s\', qty=%s, price=%s WHERE id=%s", diameter, initialWeight, remainingWeight, type, color, qty, price,this.id.get()));
     }
 
 }

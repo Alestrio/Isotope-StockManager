@@ -23,8 +23,6 @@ class Cylinder extends AbsMaterial {
         this.piecePrice.set(priceCm.get()*2*Math.PI*(this.diameter.get()/2/10)*this.remainingLength.get()/10);
         this.qty.set(qty);
         this.totalPrice.set(this.piecePrice.get()*this.qty.get());
-        if(db.getDriverState())
-            db.connect();
     }
 
     public Cylinder (double diameter , double length , String type , String color , double price , double remainingLength, int qty, int id) {
@@ -39,19 +37,17 @@ class Cylinder extends AbsMaterial {
         this.piecePrice.set(priceCm.get()*2*Math.PI*(this.diameter.get()/2/10)*this.remainingLength.get()/10);
         this.qty.set(qty);
         this.totalPrice.set(this.piecePrice.get()*this.qty.get());
-        if(db.getDriverState())
-            db.connect();
     }
 
     @Override
     public void delete() {
 
-        db.dbQuery(String.format("DELETE FROM cylindres WHERE id=%s", this.id.get()));
+        db.dbQueryU(String.format("DELETE FROM cylindres WHERE id=%s", this.id.get()));
     }
 
     @Override
     public void add() {
-        db.dbQuery(String.format("INSERT INTO cylindres (diameter, length, color, type, remaininglength, price, qty, pricecm) VALUES (%s, %s, \'%s\' , \'%s\' , %s, %s, %s, %s)", this.diameter.get(), this.length.get(), this.color.get(), this.type.get(), this.remainingLength.get(), this.price.get(), this.qty.get(), this.priceCm.get()));
+        db.dbQueryU(String.format("INSERT INTO cylindres (diameter, length, color, type, remaininglength, price, qty, pricecm) VALUES (%s, %s, \'%s\' , \'%s\' , %s, %s, %s, %s)", this.diameter.get(), this.length.get(), this.color.get(), this.type.get(), this.remainingLength.get(), this.price.get(), this.qty.get(), this.priceCm.get()));
     }
 
     @Override
@@ -73,7 +69,7 @@ class Cylinder extends AbsMaterial {
 
 
     public void modify(double diameter, double length, String type, String color, double remainingLength, int qty, double price) {
-        db.dbQuery(String.format("UPDATE cylindres SET diameter =%s, length=%s, type ='%s', color='%s', price =%s, remaininglength =%s, qty=%s  WHERE id=%s", diameter, length, type, color, price, remainingLength, qty, this.id.get()));
+        db.dbQueryU(String.format("UPDATE cylindres SET diameter =%s, length=%s, type ='%s', color='%s', price =%s, remaininglength =%s, qty=%s  WHERE id=%s", diameter, length, type, color, price, remainingLength, qty, this.id.get()));
     }
 
 

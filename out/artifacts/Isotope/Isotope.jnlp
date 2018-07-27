@@ -8,7 +8,7 @@
     <update check="background"/>
     <resources>
         <j2se version="9.0.4+" href="http://java.sun.com/products/autodl/j2se"/>
-        <jar href="Isotope.jar" size="80765" download="eager"/>
+        <jar href="Isotope.jar" size="83569" download="eager"/>
         <jar href="postgresql-42.2.1.jar" size="794639" download="eager"/>
     </resources>
     <jfx:javafx-desc width="600" height="400" main-class="com.alestrio.isotope.ui.GuiLauncher" name="GuiLauncher"/>
