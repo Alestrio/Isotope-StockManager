@@ -80,7 +80,7 @@ abstract class AbsDB {
         Statement state;
         try {
             state = conn.createStatement();
-            ResultSet result = state.executeQuery("SELECT * FROM bobines");
+            ResultSet result = state.executeQuery("SELECT * FROM \"bobines\"");
 
             while (result.next()) {
                 double a = result.getDouble("diameter");
@@ -106,7 +106,7 @@ abstract class AbsDB {
         Statement state = null;
         try {
             state = conn.createStatement();
-            ResultSet result = state.executeQuery("SELECT * FROM cylindres");
+            ResultSet result = state.executeQuery("SELECT * FROM \"cylindres\"");
 
             while (result.next()) {
                 double a = result.getDouble("diameter");
@@ -135,7 +135,7 @@ abstract class AbsDB {
         try {
             state = conn.createStatement();
 
-            ResultSet result = state.executeQuery("SELECT * FROM visserie");
+            ResultSet result = state.executeQuery("SELECT * FROM \"visserie\"");
             while (result.next()) {
                 double a = result.getDouble("diameter");
                 double b = result.getDouble("length");
@@ -160,7 +160,7 @@ abstract class AbsDB {
         Statement state;
         try {
             state = conn.createStatement();
-            ResultSet result = state.executeQuery("SELECT * FROM rectangles");
+            ResultSet result = state.executeQuery("SELECT * FROM \"rectangles\"");
 
             while (result.next()) {
                 double a = result.getDouble("length");
