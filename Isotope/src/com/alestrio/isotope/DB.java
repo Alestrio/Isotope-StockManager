@@ -27,7 +27,7 @@ public class DB {
     private Connection conn;
     private Settings s = new Settings();
 
-    public DB () {
+    public DB() {
         url = s.getDbUrl();
         user = s.getDbUser();
         pswd = s.getDbPswd();
