@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-abstract class AbsDB {
+public class DB {
 
     private final String url;
     private final String user;
@@ -27,14 +27,15 @@ abstract class AbsDB {
     private Connection conn;
     private Settings s = new Settings();
 
-    AbsDB() {
+    public DB () {
         url = s.getDbUrl();
         user = s.getDbUser();
         pswd = s.getDbPswd();
     }
 
 
-    protected boolean connect() {
+    public
+    boolean connect () {
         try {
             conn = DriverManager.getConnection(url, user, pswd);
             return true;
@@ -44,7 +45,8 @@ abstract class AbsDB {
         }
     }
 
-    protected boolean disconnect() {
+    public
+    boolean disconnect () {
         try {
             conn.close();
             return true;
@@ -65,7 +67,8 @@ abstract class AbsDB {
     }
 
 
-    protected void dbQuery(String query) {
+    public
+    void dbQuery (String query) {
         try {
             Statement state = conn.createStatement();
             state.executeUpdate(query);
@@ -185,15 +188,4 @@ abstract class AbsDB {
 
     //TODO Method "createDatabase"
 
-}
-
-public class DBUtil {
-    private DB db = new DB();
-
-    public DBUtil() {
-    }
-
-    public DB getDb() {
-        return this.db;
-    }
 }
