@@ -10,17 +10,17 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-class Settings {
+public class Settings {
 
     FileInputStream in;
     private Properties p = new Properties();
 
-    Settings() {
+    public Settings() {
     }
 
     private Properties loadSettings() {
         try {
-            in = new FileInputStream(".\\isotope.properties");
+            in = new FileInputStream(/*".\\isotope.properties"*/"C:\\Users\\Vincent\\git\\Isotope\\Isotope\\rsrc\\isotope.properties");
             p.load(in);
             return p;
         } catch (Exception e) {
@@ -48,5 +48,10 @@ class Settings {
     String getDbPswd() {
         p = loadSettings();
         return p.getProperty("pswd");
+    }
+
+    public String getVer() {
+        p = loadSettings();
+        return p.getProperty("ver");
     }
 }

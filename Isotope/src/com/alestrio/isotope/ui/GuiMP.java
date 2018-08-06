@@ -7,6 +7,7 @@
 package com.alestrio.isotope.ui;
 
 import com.alestrio.isotope.DB;
+import com.alestrio.isotope.Settings;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -23,8 +24,10 @@ public class GuiMP extends Application {
     private BorderPane mainContainer;
 
 
+
     public void launch(Stage primaryStage) throws IOException {
-        primaryStage.setTitle("Isotope H Alpha 1");
+        Settings s = new Settings();
+        primaryStage.setTitle(s.getVer());
         Parent root = FXMLLoader.load(getClass().getResource("fxml/IsotopeMP.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
@@ -32,8 +35,6 @@ public class GuiMP extends Application {
         primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(javafx.stage.WindowEvent event) {
-                DB db = new DB();
-                db.disconnectIt();
                 try {
                     stop();
                 } catch (Exception e) {

@@ -7,7 +7,6 @@
 package com.alestrio.isotope.controllers;
 
 import com.alestrio.isotope.DB;
-import com.alestrio.isotope.DBUtil;
 import com.alestrio.isotope.materials.Screw;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -15,12 +14,12 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Window;
+import org.controlsfx.control.table.TableFilter;
 
 import java.util.*;
 
 public class ControllerV {
-    DBUtil dbu = new DBUtil();
-    DB db = dbu.getDb();
+    DB db = new DB();
     /*--- SCREW ---*/
     @FXML
     private TableView<Screw> tableS;
@@ -44,7 +43,7 @@ public class ControllerV {
 
 
     public void initialize(){
-        db.connectIt();
+        db.connect();
         showDbEntriesScrews();
     }
 
@@ -142,6 +141,8 @@ public class ControllerV {
         this.tableS.setItems(ols);
         this.tableS.getColumns().addAll(t);
         this.tableS.setVisible(true);
+
+        TableFilter<Screw> filter = new TableFilter<>(tableS);
     }
 
     @FXML

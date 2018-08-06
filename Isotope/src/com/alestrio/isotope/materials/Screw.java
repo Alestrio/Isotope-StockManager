@@ -34,20 +34,28 @@ public class Screw extends AbsMaterial {
 
     @Override
     public void delete() {
-        db.dbQueryU(String.format("DELETE FROM \".visserie\" WHERE id=%s", this.id.get()));
+        db.connect();
+        db.dbQuery(String.format("DELETE FROM \".visserie\" WHERE id=%s", this.id.get()));
+        db.disconnect();
     }
 
     @Override
     public void add() {
-        db.dbQueryU(String.format("INSERT INTO \"visserie\" (diameter, length, head, type, color, qty, price) VALUES (%s, %s, '%s', '%s', '%s', %d, %s)", this.diameter.get(), this.length.get(), this.head.get(), this.type.get(), this.color.get(), this.qty.get(), this.price.get()));
+        db.connect();
+        db.dbQuery(String.format("INSERT INTO \"visserie\" (diameter, length, head, type, color, qty, price) VALUES (%s, %s, '%s', '%s', '%s', %d, %s)", this.diameter.get(), this.length.get(), this.head.get(), this.type.get(), this.color.get(), this.qty.get(), this.price.get()));
+        db.disconnect();
     }
 
     public void modify(double diameter, double length, String head, String type, String color, int qty, double price) {
-        db.dbQueryU(String.format("UPDATE \"visserie\" SET diameter=%s , length=%s , head=\'%s\' , type=\'%s\' , color=\'%s\' , qty=%d , price=%s WHERE id=%s", diameter, length, head, type, color, qty, price, this.id.get()));
+        db.connect();
+        db.dbQuery(String.format("UPDATE \"visserie\" SET diameter=%s , length=%s , head=\'%s\' , type=\'%s\' , color=\'%s\' , qty=%d , price=%s WHERE id=%s", diameter, length, head, type, color, qty, price, this.id.get()));
+        db.disconnect();
     }
 
     public void modify(int qty) {
-        db.dbQueryU(String.format("UPDATE \"visserie\" SET qty=%s WHERE id=%s", qty, this.id.get()));
+        db.connect();
+        db.dbQuery(String.format("UPDATE \"visserie\" SET qty=%s WHERE id=%s", qty, this.id.get()));
+        db.connect();
     }
 
     public boolean isSimilar() {

@@ -7,7 +7,6 @@
 package com.alestrio.isotope.controllers;
 
 import com.alestrio.isotope.DB;
-import com.alestrio.isotope.DBUtil;
 import com.alestrio.isotope.materials.Cylinder;
 import com.alestrio.isotope.materials.FilamentSpool;
 import com.alestrio.isotope.materials.RectangularPiece;
@@ -16,14 +15,15 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
+import org.controlsfx.control.table.TableFilter;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Optional;
 
 public class ControllerMP {
-    DBUtil dbu = new DBUtil();
-    DB db = dbu.getDb();
+    DB db = new DB();
     /*--- PLAQUES ---*/
     @FXML
     private TableView<RectangularPiece> tableR = new TableView<>();
@@ -93,7 +93,6 @@ public class ControllerMP {
     /*-------------------------------------------------------------------*/
 
     public void initialize() {
-        db.connectIt();
         showDbEntries();
     }
 
@@ -805,7 +804,7 @@ public class ControllerMP {
 
     @FXML
     void clickConnectionBtn() {
-        System.out.println(db.connectIt());
+        System.out.println(db.connect());
         showDbEntries();
     }
 
@@ -840,6 +839,8 @@ public class ControllerMP {
         t.add(totalPriceColumnR);
         tableR.getColumns().addAll(t);
         tableR.setVisible(true);
+
+        TableFilter<RectangularPiece> filter = new TableFilter<>(tableR);
     }
 
     private void showDbEntriesCylinders() {
@@ -865,6 +866,8 @@ public class ControllerMP {
         t.add(qtyColumnC);
         tableC.getColumns().addAll(t);
         tableC.setVisible(true);
+
+        TableFilter<Cylinder> filter = new TableFilter<>(tableC);
     }
 
     private void showDbEntriesSpool() {
@@ -891,10 +894,13 @@ public class ControllerMP {
 
         tableF.getColumns().addAll(t);
         tableF.setVisible(true);
+
+        TableFilter<FilamentSpool> filter = new TableFilter<>(tableF);
     }
 
     private void showDbEntries() {
         try {
+            db.connect();
             showDbEntriesSpool();
             showDbEntriesRec();
             showDbEntriesCylinders();

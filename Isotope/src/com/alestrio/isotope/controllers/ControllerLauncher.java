@@ -7,7 +7,6 @@
 package com.alestrio.isotope.controllers;
 
 import com.alestrio.isotope.DB;
-import com.alestrio.isotope.DBUtil;
 import com.alestrio.isotope.ui.GuiMP;
 import com.alestrio.isotope.ui.GuiV;
 import javafx.event.Event;
@@ -25,8 +24,7 @@ public class ControllerLauncher {
     Button mp;
     @FXML
     Button quit;
-    DBUtil dbu = new DBUtil();
-    DB db = dbu.getDb();
+    DB db = new DB();
 
     @FXML
     private void vBtnClick(Event e) {

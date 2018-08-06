@@ -6,6 +6,7 @@
 
 package com.alestrio.isotope.ui;
 
+import com.alestrio.isotope.Settings;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -20,7 +21,8 @@ public class GuiLauncher extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        primaryStage.setTitle("Isotope H Alpha 1");
+        Settings s = new Settings();
+        primaryStage.setTitle(s.getVer());
         Parent root = FXMLLoader.load(getClass().getResource("fxml/IsotopeLauncher.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);

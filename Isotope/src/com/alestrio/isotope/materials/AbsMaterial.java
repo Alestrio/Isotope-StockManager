@@ -7,7 +7,6 @@
 package com.alestrio.isotope.materials;
 
 import com.alestrio.isotope.DB;
-import com.alestrio.isotope.DBUtil;
 import javafx.beans.property.*;
 
 public abstract class AbsMaterial {
@@ -30,10 +29,12 @@ public abstract class AbsMaterial {
     protected SimpleDoubleProperty priceCm = new SimpleDoubleProperty(0);
     protected SimpleDoubleProperty totalPrice = new SimpleDoubleProperty(0);
     protected SimpleDoubleProperty piecePrice = new SimpleDoubleProperty(0);
-    DBUtil dbu = new DBUtil();
-    DB db = dbu.getDb();
+    DB db = new DB();
 
 
+    void AbsMaterial(){
+        db.connect();
+    }
     //Screws
     public String getHead() {
         return this.head.get();

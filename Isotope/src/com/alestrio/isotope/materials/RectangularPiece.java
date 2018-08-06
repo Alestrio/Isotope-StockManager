@@ -45,14 +45,18 @@ public class RectangularPiece extends AbsMaterial {
 
     @Override
     public void delete() {
-        db.dbQueryU(String.format("DELETE FROM \"rectangles\" WHERE id=%s", this.id.get()));
+        db.connect();
+        db.dbQuery(String.format("DELETE FROM \"rectangles\" WHERE id=%s", this.id.get()));
+        db.disconnect();
     }
 
     @Override
     public void add() {
-        db.dbQueryU(String.format("INSERT INTO \"rectangles\" (length ,width ,thickness ,type ,color ,remaininglength ,remainingwidth ,remainingthickness, price, pricecm, qty)" +
+        db.connect();
+        db.dbQuery(String.format("INSERT INTO \"rectangles\" (length ,width ,thickness ,type ,color ,remaininglength ,remainingwidth ,remainingthickness, price, pricecm, qty)" +
                         " VALUES (%s, %s, %s, \'%s\', \'%s\', %s, %s, %s, %s, %s, %s)", this.length.get(), this.width.get(), this.thickness.get(), this.type.get(), this.color.get(),
                 this.remainingLength.get(), this.remainingWidth.get(), this.remainingThickness.get(), this.price.get(), this.priceCm.get(), this.qty.get()));
+        db.disconnect();
     }
 
     public boolean isSimilar() {
@@ -73,8 +77,10 @@ public class RectangularPiece extends AbsMaterial {
 
     public void modify(double length, double width, double thickness, String type, String color, double remainingLength, double remainingWidth, double remainingThickness, double price, int qty) {
         this.priceCm.set(price / (length / 10 * width / 10 * thickness / 10));
-        db.dbQueryU(String.format("UPDATE \"rectangles\" SET length=%s, width=%s, thickness=%s, type=\'%s\', color=\'%s\', remaininglength=%s, " +
+        db.connect();
+        db.dbQuery(String.format("UPDATE \"rectangles\" SET length=%s, width=%s, thickness=%s, type=\'%s\', color=\'%s\', remaininglength=%s, " +
                 "remainingwidth=%s, remainingthickness=%s, price=%s, pricecm=%s, qty=%s WHERE id=%s", length, width, thickness, type, color, remainingLength, remainingWidth, remainingThickness, price, this.priceCm.get(), qty, this.id.get()));
+        db.disconnect();
     }
 
 }

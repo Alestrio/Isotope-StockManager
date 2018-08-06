@@ -41,12 +41,16 @@ public class FilamentSpool extends AbsMaterial {
 
     @Override
     public void delete() {
-        db.dbQueryU(String.format("DELETE FROM \"bobines\" WHERE id=%s", this.id.get()));
+        db.connect();
+        db.dbQuery(String.format("DELETE FROM \"bobines\" WHERE id=%s", this.id.get()));
+        db.disconnect();
     }
 
     @Override
     public void add() {
-        db.dbQueryU(String.format("INSERT INTO \"bobines\" (diameter, initialweight, remainingweight, type, color, qty, price, pricecm) VALUES (%s, %s, %s, \'%s\', \'%s\', %s, %s, %s)", this.diameter.get(), this.initialWeight.get(), this.remainingWeight.get(), this.type.get(), this.color.get(), this.qty.get(), this.price.get(), this.priceCm.get()));
+        db.connect();
+        db.dbQuery(String.format("INSERT INTO \"bobines\" (diameter, initialweight, remainingweight, type, color, qty, price, pricecm) VALUES (%s, %s, %s, \'%s\', \'%s\', %s, %s, %s)", this.diameter.get(), this.initialWeight.get(), this.remainingWeight.get(), this.type.get(), this.color.get(), this.qty.get(), this.price.get(), this.priceCm.get()));
+        db.disconnect();
     }
 
     public boolean isSimilar() {
@@ -66,7 +70,9 @@ public class FilamentSpool extends AbsMaterial {
 
 
     public void modify(double diameter, double initialWeight, double remainingWeight, String type, String color, int qty, double price) {
-        db.dbQueryU(String.format("UPDATE \"bobines\" SET diameter = %s, initialweight = %s, remainingweight = %s, type = \'%s\', color = \'%s\', qty=%s, price=%s WHERE id=%s", diameter, initialWeight, remainingWeight, type, color, qty, price, this.id.get()));
+        db.connect();
+        db.dbQuery(String.format("UPDATE \"bobines\" SET diameter = %s, initialweight = %s, remainingweight = %s, type = \'%s\', color = \'%s\', qty=%s, price=%s WHERE id=%s", diameter, initialWeight, remainingWeight, type, color, qty, price, this.id.get()));
+        db.disconnect();
     }
 
 }

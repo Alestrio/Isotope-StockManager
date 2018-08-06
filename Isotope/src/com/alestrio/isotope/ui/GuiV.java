@@ -7,7 +7,7 @@
 package com.alestrio.isotope.ui;
 
 import com.alestrio.isotope.DB;
-import com.alestrio.isotope.controllers.ControllerV;
+import com.alestrio.isotope.Settings;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -20,7 +20,8 @@ import java.io.IOException;
 public class GuiV extends Application {
 
     public void launch(Stage primaryStage) throws IOException {
-        primaryStage.setTitle("Isotope H Alpha 1");
+        Settings s = new Settings();
+        primaryStage.setTitle(s.getVer());
         FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/IsotopeV.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
@@ -29,8 +30,6 @@ public class GuiV extends Application {
         primaryStage.setOnCloseRequest(new EventHandler<javafx.stage.WindowEvent>() {
             @Override
             public void handle(javafx.stage.WindowEvent event) {
-                DB db = new DB();
-                db.disconnectIt();
                 try {
                     stop();
                 } catch (Exception e) {
