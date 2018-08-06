@@ -20,7 +20,7 @@ public class Settings {
 
     private Properties loadSettings() {
         try {
-            in = new FileInputStream(/*".\\isotope.properties"*/"C:\\Users\\Vincent\\git\\Isotope\\Isotope\\rsrc\\isotope.properties");
+            in = new FileInputStream(".\\isotope.properties"/*"C:\\Users\\Vincent\\git\\Isotope\\Isotope\\rsrc\\isotope.properties"*/);
             p.load(in);
             return p;
         } catch (Exception e) {
