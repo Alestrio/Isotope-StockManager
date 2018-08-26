@@ -44,10 +44,7 @@ public class ControllerV {
 
     public void initialize(){
         db.connect();
-        db.connectIt();
-        db.createDb();
         showDbEntriesScrews();
-
     }
 
     @FXML
@@ -119,7 +116,7 @@ public class ControllerV {
         showDbEntriesScrews();
     }
 
-    private void showDbEntriesScrews() {
+    public void showDbEntriesScrews() {
         if (!(tableS == null))
             tableS.getColumns().clear();
         ObservableList<Screw> ols = db.getDbEntriesScrew();

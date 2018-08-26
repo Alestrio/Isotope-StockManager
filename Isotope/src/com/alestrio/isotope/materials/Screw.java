@@ -39,6 +39,7 @@ public class Screw extends AbsMaterial {
         db.disconnect();
     }
 
+    @Override
     public void add() {
         db.connect();
         db.dbQuery(String.format("INSERT INTO \"visserie\" (diameter, length, head, type, color, qty, price) VALUES (%s, %s, '%s', '%s', '%s', %d, %s)", this.diameter.get(), this.length.get(), this.head.get(), this.type.get(), this.color.get(), this.qty.get(), this.price.get()));

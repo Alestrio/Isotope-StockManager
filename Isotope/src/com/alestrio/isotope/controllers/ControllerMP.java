@@ -93,10 +93,7 @@ public class ControllerMP {
     /*-------------------------------------------------------------------*/
 
     public void initialize() {
-        db.connectIt();
-        db.createDb();
         showDbEntries();
-
     }
 
         /*--- ADD BUTTONS ---*/
@@ -154,7 +151,9 @@ public class ControllerMP {
                 return null;
         });
         Optional<FilamentSpool> f = d.showAndWait();
-        f.ifPresent(FilamentSpool::add);
+        if (f.isPresent()) {
+            f.get().add();
+        }
         showDbEntries();
     }
 
@@ -226,7 +225,8 @@ public class ControllerMP {
                 return null;
         });
         Optional<RectangularPiece> f = d.showAndWait();
-        f.ifPresent(RectangularPiece::add);
+        if (f.isPresent())
+            f.get().add();
 
         showDbEntries();
     }
@@ -284,11 +284,14 @@ public class ControllerMP {
                 return null;
         });
         Optional<Cylinder> f = d.showAndWait();
-        f.ifPresent(Cylinder::add);
+        if (f.isPresent()) {
+            f.get().add();
+        }
         showDbEntries();
     }
 
     /*--- MODIFY BUTTONS ---*/
+    //TODO Boutons de modification
     @FXML
     void clickModBtnR() {
         RectangularPiece r = tableR.getSelectionModel().getSelectedItem();
@@ -604,7 +607,8 @@ public class ControllerMP {
                 return null;
         });
         Optional<RectangularPiece> f = d.showAndWait();
-        f.ifPresent(RectangularPiece::add);
+        if (f.isPresent())
+            f.get().add();
 
         showDbEntriesRec();
     }
@@ -670,7 +674,9 @@ public class ControllerMP {
                 return null;
         });
         Optional<Cylinder> f = d.showAndWait();
-        f.ifPresent(Cylinder::add);
+        if (f.isPresent()) {
+            f.get().add();
+        }
         showDbEntriesCylinders();
     }
 
@@ -735,7 +741,9 @@ public class ControllerMP {
                 return null;
         });
         Optional<FilamentSpool> f = d.showAndWait();
-        f.ifPresent(FilamentSpool::add);
+        if (f.isPresent()) {
+            f.get().add();
+        }
         showDbEntriesSpool();
     }
 
@@ -790,6 +798,9 @@ public class ControllerMP {
         d.getDialogPane().getButtonTypes().add(ok);
         d.show();
     }
+
+
+    //TODO Filters
 
     @FXML
     void clickConnectionBtn() {

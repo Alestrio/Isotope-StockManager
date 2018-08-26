@@ -45,6 +45,7 @@ public class Cylinder extends AbsMaterial {
         db.disconnect();
     }
 
+    @Override
     public void add() {
         db.connect();
         db.dbQuery(String.format("INSERT INTO \"cylindres\" (diameter, length, color, type, remaininglength, price, qty, pricecm) VALUES (%s, %s, \'%s\' , \'%s\' , %s, %s, %s, %s)", this.diameter.get(), this.length.get(), this.color.get(), this.type.get(), this.remainingLength.get(), this.price.get(), this.qty.get(), this.priceCm.get()));
