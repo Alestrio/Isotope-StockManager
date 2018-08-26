@@ -44,6 +44,7 @@ public class ControllerV {
 
     public void initialize(){
         db.connect();
+        db.createDatabase();
         showDbEntriesScrews();
     }
 

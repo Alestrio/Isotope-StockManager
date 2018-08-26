@@ -20,7 +20,7 @@ public class Settings {
 
     private Properties loadSettings() {
         try {
-            in = new FileInputStream(".\\isotope.properties"/*"C:\\Users\\Vincent\\git\\Isotope\\Isotope\\rsrc\\isotope.properties"*/);
+            in = new FileInputStream(".\\isotope.properties"/*"C:\\Users\\Alexis\\IdeaProjects\\isotope\\Isotope\\rsrc\\isotope.properties"*/);
             p.load(in);
             return p;
         } catch (Exception e) {
@@ -37,21 +37,25 @@ public class Settings {
 
     String getDbUrl() {
         p = loadSettings();
+        assert p != null;
         return p.getProperty("url");
     }
 
     String getDbUser() {
         p = loadSettings();
+        assert p != null;
         return p.getProperty("user");
     }
 
     String getDbPswd() {
         p = loadSettings();
+        assert p != null;
         return p.getProperty("pswd");
     }
 
     public String getVer() {
         p = loadSettings();
+        assert p != null;
         return p.getProperty("ver");
     }
 }

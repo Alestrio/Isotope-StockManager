@@ -8,6 +8,8 @@ package com.alestrio.isotope.materials;
 
 import javafx.collections.ObservableList;
 
+import java.sql.SQLException;
+
 public class FilamentSpool extends AbsMaterial {
 
     public FilamentSpool(double diameter, double initialWeight, double remainingWeight, String type, String color, int qty, double price) {
@@ -42,14 +44,22 @@ public class FilamentSpool extends AbsMaterial {
     @Override
     public void delete() {
         db.connect();
-        db.dbQuery(String.format("DELETE FROM \"bobines\" WHERE id=%s", this.id.get()));
+        try {
+            db.dbQuery(String.format("DELETE FROM \"bobines\" WHERE id=%s", this.id.get()));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         db.disconnect();
     }
 
     @Override
     public void add() {
         db.connect();
-        db.dbQuery(String.format("INSERT INTO \"bobines\" (diameter, initialweight, remainingweight, type, color, qty, price, pricecm) VALUES (%s, %s, %s, \'%s\', \'%s\', %s, %s, %s)", this.diameter.get(), this.initialWeight.get(), this.remainingWeight.get(), this.type.get(), this.color.get(), this.qty.get(), this.price.get(), this.priceCm.get()));
+        try {
+            db.dbQuery(String.format("INSERT INTO \"bobines\" (diameter, initialweight, remainingweight, type, color, qty, price, pricecm) VALUES (%s, %s, %s, \'%s\', \'%s\', %s, %s, %s)", this.diameter.get(), this.initialWeight.get(), this.remainingWeight.get(), this.type.get(), this.color.get(), this.qty.get(), this.price.get(), this.priceCm.get()));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         db.disconnect();
     }
 
@@ -71,7 +81,11 @@ public class FilamentSpool extends AbsMaterial {
 
     public void modify(double diameter, double initialWeight, double remainingWeight, String type, String color, int qty, double price) {
         db.connect();
-        db.dbQuery(String.format("UPDATE \"bobines\" SET diameter = %s, initialweight = %s, remainingweight = %s, type = \'%s\', color = \'%s\', qty=%s, price=%s WHERE id=%s", diameter, initialWeight, remainingWeight, type, color, qty, price, this.id.get()));
+        try {
+            db.dbQuery(String.format("UPDATE \"bobines\" SET diameter = %s, initialweight = %s, remainingweight = %s, type = \'%s\', color = \'%s\', qty=%s, price=%s WHERE id=%s", diameter, initialWeight, remainingWeight, type, color, qty, price, this.id.get()));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         db.disconnect();
     }
 

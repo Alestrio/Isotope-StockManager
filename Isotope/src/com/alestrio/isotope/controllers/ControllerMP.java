@@ -93,6 +93,8 @@ public class ControllerMP {
     /*-------------------------------------------------------------------*/
 
     public void initialize() {
+        db.connect();
+        db.createDatabase();
         showDbEntries();
     }
 

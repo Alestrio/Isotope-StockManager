@@ -23,7 +23,6 @@ public class DB {
     private final String url;
     private final String user;
     private final String pswd;
-    boolean isAlreadyConnected = false;
     private Connection conn;
     private Settings s = new Settings();
 
@@ -39,7 +38,8 @@ public class DB {
         try {
             conn = DriverManager.getConnection(url, user, pswd);
             return true;
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
             e.printStackTrace();
             return false;
         }
@@ -68,13 +68,9 @@ public class DB {
 
 
     public
-    void dbQuery (String query) {
-        try {
+    void dbQuery (String query) throws SQLException {
             Statement state = conn.createStatement();
             state.executeUpdate(query);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
     public ObservableList<FilamentSpool> getDbEntriesSpool() {
@@ -186,6 +182,106 @@ public class DB {
         return olr;
     }
 
-    //TODO Method "createDatabase"
+    /*Snif, j'ai écrasé ça avec une erreur de git, c'est moche :c
+    * #HereItIsAgain, #SeemsLegit, #EverythingInTheAss, #CrazyDev*/
+    public void createDatabase(){
+        try{
+            //Si ça n'existe pas
+            this.dbQuery("CREATE TABLE public.bobines\n" +
+                    "(\n" +
+                    "  id integer NOT NULL DEFAULT nextval('bobines_id_seq'::regclass),\n" +
+                    "  type text,\n" +
+                    "  diameter numeric,\n" +
+                    "  initialweight numeric,\n" +
+                    "  remainingweight numeric,\n" +
+                    "  color text,\n" +
+                    "  qty integer,\n" +
+                    "  price numeric,\n" +
+                    "  pricecm numeric\n" +
+                    ")\n" +
+                    "WITH (\n" +
+                    "  OIDS=FALSE\n" +
+                    ");\n" +
+                    "ALTER TABLE public.bobines\n" +
+                    "  OWNER TO postgres;");
+        }
+        catch(SQLException e){
+            //Si ça existe
+            System.out.println("\"bobines\" table already exists");
+        }
+
+        try{
+            this.dbQuery("CREATE TABLE public.cylindres\n" +
+                    "(\n" +
+                    "  id integer NOT NULL DEFAULT nextval('cylindres_id_seq'::regclass),\n" +
+                    "  diameter numeric,\n" +
+                    "  length numeric,\n" +
+                    "  color text,\n" +
+                    "  type text,\n" +
+                    "  remaininglength numeric,\n" +
+                    "  price numeric,\n" +
+                    "  pricecm numeric,\n" +
+                    "  qty integer\n" +
+                    ")\n" +
+                    "WITH (\n" +
+                    "  OIDS=FALSE\n" +
+                    ");\n" +
+                    "ALTER TABLE public.cylindres\n" +
+                    "  OWNER TO postgres;");
+        }
+        catch(SQLException e){
+            System.out.println("\"cylindres\" table already exists");
+        }
+
+        try{
+            this.dbQuery("CREATE TABLE public.rectangles\n" +
+                    "(\n" +
+                    "  id integer NOT NULL DEFAULT nextval('rectangles_id_seq'::regclass),\n" +
+                    "  length numeric,\n" +
+                    "  width numeric,\n" +
+                    "  thickness numeric,\n" +
+                    "  type text,\n" +
+                    "  color text,\n" +
+                    "  remaininglength numeric,\n" +
+                    "  remainingwidth numeric,\n" +
+                    "  remainingthickness numeric,\n" +
+                    "  price numeric,\n" +
+                    "  pricecm numeric,\n" +
+                    "  qty integer\n" +
+                    ")\n" +
+                    "WITH (\n" +
+                    "  OIDS=FALSE\n" +
+                    ");\n" +
+                    "ALTER TABLE public.rectangles\n" +
+                    "  OWNER TO postgres;");
+        }
+        catch(SQLException e){
+            System.out.println("\"rectangles\" table already exists");
+        }
+
+        try{
+            this.dbQuery("CREATE TABLE public.visserie\n" +
+                    "(\n" +
+                    "  id integer NOT NULL DEFAULT nextval('visserie_id_seq'::regclass),\n" +
+                    "  diameter numeric,\n" +
+                    "  length numeric,\n" +
+                    "  head text,\n" +
+                    "  type text,\n" +
+                    "  qty integer,\n" +
+                    "  color text,\n" +
+                    "  price numeric,\n" +
+                    "  totalprice numeric\n" +
+                    ")\n" +
+                    "WITH (\n" +
+                    "  OIDS=FALSE\n" +
+                    ");\n" +
+                    "ALTER TABLE public.visserie\n" +
+                    "  OWNER TO postgres;");
+        }
+        catch(SQLException e){
+            System.out.println("\"visserie\" table already exists");
+        }
+    }
+
 
 }

@@ -9,6 +9,8 @@ package com.alestrio.isotope.materials;
 
 import javafx.collections.ObservableList;
 
+import java.sql.SQLException;
+
 public class Cylinder extends AbsMaterial {
 
     public Cylinder(double diameter, double length, String type, String color, double price, double remainingLength, int qty) {
@@ -41,14 +43,22 @@ public class Cylinder extends AbsMaterial {
     @Override
     public void delete() {
         db.connect();
-        db.dbQuery(String.format("DELETE FROM \"cylindres\" WHERE id=%s", this.id.get()));
+        try {
+            db.dbQuery(String.format("DELETE FROM \"cylindres\" WHERE id=%s", this.id.get()));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         db.disconnect();
     }
 
     @Override
     public void add() {
         db.connect();
-        db.dbQuery(String.format("INSERT INTO \"cylindres\" (diameter, length, color, type, remaininglength, price, qty, pricecm) VALUES (%s, %s, \'%s\' , \'%s\' , %s, %s, %s, %s)", this.diameter.get(), this.length.get(), this.color.get(), this.type.get(), this.remainingLength.get(), this.price.get(), this.qty.get(), this.priceCm.get()));
+        try {
+            db.dbQuery(String.format("INSERT INTO \"cylindres\" (diameter, length, color, type, remaininglength, price, qty, pricecm) VALUES (%s, %s, \'%s\' , \'%s\' , %s, %s, %s, %s)", this.diameter.get(), this.length.get(), this.color.get(), this.type.get(), this.remainingLength.get(), this.price.get(), this.qty.get(), this.priceCm.get()));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         db.disconnect();
     }
 
@@ -71,7 +81,11 @@ public class Cylinder extends AbsMaterial {
 
     public void modify(double diameter, double length, String type, String color, double remainingLength, int qty, double price) {
         db.connect();
-        db.dbQuery(String.format("UPDATE \"cylindres\" SET diameter =%s, length=%s, type ='%s', color='%s', price =%s, remaininglength =%s, qty=%s  WHERE id=%s", diameter, length, type, color, price, remainingLength, qty, this.id.get()));
+        try {
+            db.dbQuery(String.format("UPDATE \"cylindres\" SET diameter =%s, length=%s, type ='%s', color='%s', price =%s, remaininglength =%s, qty=%s  WHERE id=%s", diameter, length, type, color, price, remainingLength, qty, this.id.get()));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         db.disconnect();
     }
 
