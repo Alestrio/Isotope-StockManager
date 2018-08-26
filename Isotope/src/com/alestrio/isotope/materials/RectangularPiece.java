@@ -50,6 +50,7 @@ public class RectangularPiece extends AbsMaterial {
         db.disconnect();
     }
 
+    @Override
     public void add() {
         db.connect();
         db.dbQuery(String.format("INSERT INTO \"rectangles\" (length ,width ,thickness ,type ,color ,remaininglength ,remainingwidth ,remainingthickness, price, pricecm, qty)" +

@@ -7,6 +7,7 @@
 package com.alestrio.isotope.ui;
 
 import com.alestrio.isotope.DB;
+import com.alestrio.isotope.Settings;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -36,6 +37,7 @@ public class GuiV extends Application {
                 }
             }
         });
+        //TODO find a solution to show db entries on start of the programm
     }
 
     @Override

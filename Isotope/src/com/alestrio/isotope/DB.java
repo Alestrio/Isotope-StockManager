@@ -6,13 +6,38 @@
 
 package com.alestrio.isotope;
 
-import java.sql.SQLException;
+import com.alestrio.isotope.materials.Cylinder;
+import com.alestrio.isotope.materials.FilamentSpool;
+import com.alestrio.isotope.materials.RectangularPiece;
+import com.alestrio.isotope.materials.Screw;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
-public class DB extends AbsDB {
-    public boolean connectIt() {
-        if (!this.isAlreadyConnected && this.getDriverState()) {
-            this.connect();
-            this.isAlreadyConnected = true;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+
+public class DB {
+
+    private final String url;
+    private final String user;
+    private final String pswd;
+    boolean isAlreadyConnected = false;
+    private Connection conn;
+    private Settings s = new Settings();
+
+    public DB() {
+        url = s.getDbUrl();
+        user = s.getDbUser();
+        pswd = s.getDbPswd();
+    }
+
+
+    public
+    boolean connect () {
+        try {
+            conn = DriverManager.getConnection(url, user, pswd);
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -20,20 +45,24 @@ public class DB extends AbsDB {
         }
     }
 
-    public void dbQueryU(String arg) {
-        this.connectIt();
+    public
+    boolean disconnect () {
         try {
-            this.dbQuery(arg);
+            conn.close();
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
-        this.disconnectIt();
     }
 
-    public void disconnectIt() {
-        if (this.isAlreadyConnected) {
-            this.disconnect();
-            this.isAlreadyConnected = false;
+    protected boolean getDriverState() {
+        try {
+            Class.forName("org.postgresql.Driver");
+            return true;
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            return false;
         }
     }
 
