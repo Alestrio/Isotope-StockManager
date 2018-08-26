@@ -12,7 +12,7 @@ import java.util.Properties;
 
 public class Settings {
 
-    FileInputStream in;
+    private FileInputStream in;
     private Properties p = new Properties();
 
     public Settings() {
@@ -20,7 +20,7 @@ public class Settings {
 
     private Properties loadSettings() {
         try {
-            in = new FileInputStream(".\\isotope.properties"/*"C:\\Users\\Vincent\\git\\Isotope\\Isotope\\rsrc\\isotope.properties"*/);
+            in = new FileInputStream(".\\isotope.properties" /*"C:\\Users\\Alexis\\IdeaProjects\\isotope\\Isotope\\rsrc\\isotope.properties"*/); // Evidemment, le bon FilePath parce que sinon, dans le cul la balayette !!
             p.load(in);
             return p;
         } catch (Exception e) {
@@ -37,17 +37,38 @@ public class Settings {
 
     String getDbUrl() {
         p = loadSettings();
-        return p.getProperty("url");
+        try {
+            assert p != null;
+            return p.getProperty("url");
+        }
+        catch(NullPointerException e){
+            System.out.println("Fichier de configuration invalide");
+            return null;
+        }
     }
 
     String getDbUser() {
         p = loadSettings();
-        return p.getProperty("user");
+        try {
+            assert p != null;
+            return p.getProperty("user");
+        }
+        catch(NullPointerException e){
+            System.out.println("Fichier de configuration invalide");
+            return null;
+        }
     }
 
     String getDbPswd() {
         p = loadSettings();
-        return p.getProperty("pswd");
+        try {
+            assert p != null;
+            return p.getProperty("pswd");
+        }
+        catch(NullPointerException e){
+            System.out.println("Fichier de configuration invalide");
+            return null;
+        }
     }
 
     public String getVer() {

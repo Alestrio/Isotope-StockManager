@@ -221,8 +221,6 @@ public abstract class AbsMaterial {
 
     public abstract void delete();
 
-    public abstract void add();
-
     public abstract boolean isSimilar();
 
     public double getPriceCm() {

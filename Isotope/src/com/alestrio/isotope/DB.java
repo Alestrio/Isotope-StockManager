@@ -6,38 +6,13 @@
 
 package com.alestrio.isotope;
 
-import com.alestrio.isotope.materials.Cylinder;
-import com.alestrio.isotope.materials.FilamentSpool;
-import com.alestrio.isotope.materials.RectangularPiece;
-import com.alestrio.isotope.materials.Screw;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import java.sql.SQLException;
 
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-
-
-public class DB {
-
-    private final String url;
-    private final String user;
-    private final String pswd;
-    boolean isAlreadyConnected = false;
-    private Connection conn;
-    private Settings s = new Settings();
-
-    public DB() {
-        url = s.getDbUrl();
-        user = s.getDbUser();
-        pswd = s.getDbPswd();
-    }
-
-
-    public
-    boolean connect () {
-        try {
-            conn = DriverManager.getConnection(url, user, pswd);
+public class DB extends AbsDB {
+    public boolean connectIt() {
+        if (!this.isAlreadyConnected && this.getDriverState()) {
+            this.connect();
+            this.isAlreadyConnected = true;
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -45,24 +20,20 @@ public class DB {
         }
     }
 
-    public
-    boolean disconnect () {
+    public void dbQueryU(String arg) {
+        this.connectIt();
         try {
-            conn.close();
-            return true;
+            this.dbQuery(arg);
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
         }
+        this.disconnectIt();
     }
 
-    protected boolean getDriverState() {
-        try {
-            Class.forName("org.postgresql.Driver");
-            return true;
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-            return false;
+    public void disconnectIt() {
+        if (this.isAlreadyConnected) {
+            this.disconnect();
+            this.isAlreadyConnected = false;
         }
     }
 
