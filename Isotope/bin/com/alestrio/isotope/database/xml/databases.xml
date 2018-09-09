@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<definitions>
+    <database name="Ecrous" c1name="diameter" c1type="numeric" c1prop="diameter" c2name="type" c2type="text" c2prop="type" />
+</definitions>
+
+
+
+

@@ -7,6 +7,9 @@
 package com.alestrio.isotope.controllers;
 
 import com.alestrio.isotope.DB;
+import com.alestrio.isotope.database.Database;
+import com.alestrio.isotope.database.DbColumn;
+import com.alestrio.isotope.database.XmlSettings;
 import com.alestrio.isotope.materials.Cylinder;
 import com.alestrio.isotope.materials.FilamentSpool;
 import com.alestrio.isotope.materials.RectangularPiece;
@@ -15,15 +18,18 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
-import org.controlsfx.control.table.TableFilter;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 public class ControllerMP {
     DB db = new DB();
+    private XmlSettings settings;
+    @FXML
+    TabPane tabBase = new TabPane();
+
     /*--- PLAQUES ---*/
     @FXML
     private TableView<RectangularPiece> tableR = new TableView<>();
@@ -801,9 +807,6 @@ public class ControllerMP {
         d.show();
     }
 
-
-    //TODO Filters
-
     @FXML
     void clickConnectionBtn() {
         System.out.println(db.connect());
@@ -842,7 +845,7 @@ public class ControllerMP {
         tableR.getColumns().addAll(t);
         tableR.setVisible(true);
 
-        TableFilter<RectangularPiece> filter = new TableFilter<>(tableR);
+        //TODO TableFilter<RectangularPiece> filter = new TableFilter<>(tableR);
     }
 
     private void showDbEntriesCylinders() {
@@ -869,7 +872,7 @@ public class ControllerMP {
         tableC.getColumns().addAll(t);
         tableC.setVisible(true);
 
-        TableFilter<Cylinder> filter = new TableFilter<>(tableC);
+        //TODO TableFilter<Cylinder> filter = new TableFilter<>(tableC);
     }
 
     private void showDbEntriesSpool() {
@@ -897,7 +900,7 @@ public class ControllerMP {
         tableF.getColumns().addAll(t);
         tableF.setVisible(true);
 
-        TableFilter<FilamentSpool> filter = new TableFilter<>(tableF);
+        //TODO TableFilter<FilamentSpool> filter = new TableFilter<>(tableF);
     }
 
     private void showDbEntries() {
@@ -906,8 +909,29 @@ public class ControllerMP {
             showDbEntriesSpool();
             showDbEntriesRec();
             showDbEntriesCylinders();
+            ArrayList<Database> aldb = XmlSettings.parseFile();
+            if(aldb != null){
+                Tab tab;
+                for(Database db : aldb){
+                    tab = db.getDatabaseUiElements();
+                    tabBase.getTabs().add(tab);
+                }
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    void clickAddDbButton(){
+        Dialog<Database> d = new Dialog<>();
+        GridPane g = new GridPane();
+        List<DbColumn> columns = new ArrayList<>();
+        d.setTitle("Ajouter une table");
+
+
+
+        ButtonType ok = new ButtonType("Okay", ButtonBar.ButtonData.OK_DONE);
     }
 }
