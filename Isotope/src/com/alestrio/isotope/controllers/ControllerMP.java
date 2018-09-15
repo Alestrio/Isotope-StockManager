@@ -18,6 +18,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
+import org.controlsfx.control.table.TableFilter;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -29,6 +30,7 @@ public class ControllerMP {
     private XmlSettings settings;
     @FXML
     TabPane tabBase = new TabPane();
+    ArrayList<Database> aldb = XmlSettings.parseFile();
 
     /*--- PLAQUES ---*/
     @FXML
@@ -909,7 +911,6 @@ public class ControllerMP {
             showDbEntriesSpool();
             showDbEntriesRec();
             showDbEntriesCylinders();
-            ArrayList<Database> aldb = XmlSettings.parseFile();
             if(aldb != null){
                 Tab tab;
                 for(Database db : aldb){

@@ -8,12 +8,12 @@ package com.alestrio.isotope.database;
 
 import com.alestrio.isotope.DB;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Node;
-import javafx.scene.control.SplitPane;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Material;
 
@@ -30,6 +30,11 @@ public class Database {
     private SplitPane spane;
     private AnchorPane apTableView;
     private TableView<Material> tableM;
+    private Button addButton;
+    private Button modifyButton;
+    private Button delButton;
+    private Button duplButton;
+    private Button totalValueButton;
 
     public Database(){   }
 
@@ -89,6 +94,28 @@ public class Database {
         apTableView = new AnchorPane();
         tableM = new TableView<>();
 
+        addButton = new Button();
+        modifyButton = new Button();
+        delButton = new Button();
+        duplButton = new Button();
+        totalValueButton = new Button();
+
+        addButton.setOnAction(event -> {
+         Dialog dialog = new Dialog();
+         dialog.setTitle("Ajouter un/une " + this.name);
+         GridPane gpane = new GridPane();
+         dialog.getDialogPane().setContent(gpane);
+
+         int x = 0;
+         int y = 0;
+         for(DbColumn c : columns){
+             gpane.add(new Label(c.getName()), x, y);
+             x++;
+             //TODO Add button Database
+         }
+
+        });
+
         tab.setText(name);
         tab.setContent(spane);
         spane.getItems().add(apTableView);
@@ -96,16 +123,11 @@ public class Database {
         AnchorPane apButtons = new AnchorPane();
         spane.getItems().add(apButtons);
         apTableView.getChildren().add(tableM);
-        tableM.setMaxWidth(Region.USE_COMPUTED_SIZE);
-        tableM.setMaxHeight(Region.USE_COMPUTED_SIZE);
-        tableM.setPrefHeight(apTableView.getHeight());
-        tableM.setPrefWidth(apTableView.getWidth());
         spane.setDividerPosition(0, 0.85);
-        apTableView.setMaxHeight(Region.USE_COMPUTED_SIZE);
-        apTableView.setMaxWidth(Region.USE_COMPUTED_SIZE);
+        apTableView.setPrefSize(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE);
         for(DbColumn tc : columns)
             tableM.getColumns().add(tc.getTableColumn());
+        tableM.setVisible(true);
         return tab;
-
     }
 }

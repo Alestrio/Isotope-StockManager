@@ -37,10 +37,12 @@ public class DbColumn {
         this.name = name;
         this.dbt = dbt;
         this.property = p;
+
+        this.tc.setText(this.name);
+        tc.setCellValueFactory(new PropertyValueFactory<Material, String>(property));
     }
 
     public TableColumn getTableColumn() {
-        tc.setCellValueFactory(new PropertyValueFactory<Material, String>(property));
        return tc;
     }
 }

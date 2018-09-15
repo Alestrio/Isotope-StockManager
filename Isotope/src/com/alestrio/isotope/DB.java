@@ -189,7 +189,7 @@ public class DB {
             //Si ça n'existe pas
             this.dbQuery("CREATE TABLE public.bobines\n" +
                     "(\n" +
-                    "  id integer NOT NULL DEFAULT nextval('bobines_id_seq'::regclass),\n" +
+                    "  id serial,\n" +
                     "  type text,\n" +
                     "  diameter numeric,\n" +
                     "  initialweight numeric,\n" +
@@ -201,9 +201,7 @@ public class DB {
                     ")\n" +
                     "WITH (\n" +
                     "  OIDS=FALSE\n" +
-                    ");\n" +
-                    "ALTER TABLE public.bobines\n" +
-                    "  OWNER TO postgres;");
+                    ");");
         }
         catch(SQLException e){
             //Si ça existe
@@ -213,7 +211,7 @@ public class DB {
         try{
             this.dbQuery("CREATE TABLE public.cylindres\n" +
                     "(\n" +
-                    "  id integer NOT NULL DEFAULT nextval('cylindres_id_seq'::regclass),\n" +
+                    "  id serial,\n" +
                     "  diameter numeric,\n" +
                     "  length numeric,\n" +
                     "  color text,\n" +
@@ -225,9 +223,7 @@ public class DB {
                     ")\n" +
                     "WITH (\n" +
                     "  OIDS=FALSE\n" +
-                    ");\n" +
-                    "ALTER TABLE public.cylindres\n" +
-                    "  OWNER TO postgres;");
+                    ");");
         }
         catch(SQLException e){
             System.out.println("\"cylindres\" table already exists");
@@ -236,7 +232,7 @@ public class DB {
         try{
             this.dbQuery("CREATE TABLE public.rectangles\n" +
                     "(\n" +
-                    "  id integer NOT NULL DEFAULT nextval('rectangles_id_seq'::regclass),\n" +
+                    "  id serial,\n" +
                     "  length numeric,\n" +
                     "  width numeric,\n" +
                     "  thickness numeric,\n" +
@@ -251,9 +247,7 @@ public class DB {
                     ")\n" +
                     "WITH (\n" +
                     "  OIDS=FALSE\n" +
-                    ");\n" +
-                    "ALTER TABLE public.rectangles\n" +
-                    "  OWNER TO postgres;");
+                    ");");
         }
         catch(SQLException e){
             System.out.println("\"rectangles\" table already exists");
@@ -262,7 +256,7 @@ public class DB {
         try{
             this.dbQuery("CREATE TABLE public.visserie\n" +
                     "(\n" +
-                    "  id integer NOT NULL DEFAULT nextval('visserie_id_seq'::regclass),\n" +
+                    "  id serial,\n" +
                     "  diameter numeric,\n" +
                     "  length numeric,\n" +
                     "  head text,\n" +
@@ -274,9 +268,7 @@ public class DB {
                     ")\n" +
                     "WITH (\n" +
                     "  OIDS=FALSE\n" +
-                    ");\n" +
-                    "ALTER TABLE public.visserie\n" +
-                    "  OWNER TO postgres;");
+                    ");");
         }
         catch(SQLException e){
             System.out.println("\"visserie\" table already exists");

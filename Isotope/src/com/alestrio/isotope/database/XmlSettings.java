@@ -24,7 +24,7 @@ public class XmlSettings {
             SAXParserFactory factory = SAXParserFactory.newInstance();
             SAXParser parser = factory.newSAXParser();
 
-            parser.parse("C:\\Users\\Alexis\\IdeaProjects\\isotope\\Isotope\\src\\com\\alestrio\\isotope\\database\\xml\\databases.xml", handler);
+            parser.parse("D:\\Documents\\JavaProjects\\Isotope\\Isotope\\src\\com\\alestrio\\isotope\\database\\xml\\databases.xml", handler);
 
         }
         catch(ParserConfigurationException e){
