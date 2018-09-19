@@ -7,16 +7,26 @@
 package com.alestrio.isotope.database;
 
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.paint.Material;
 
 
 public class DbColumn {
+    public String getValue() {
+        return value;
+    }
+
     private String name;
     private DB_TYPE dbt;
     private TableColumn tc = new TableColumn();
     private String property;
+    private String value;
+    TextField tf;
 
+    public void setValue(String value) {
+        this.value = value;
+    }
     public String getName() {
         return name;
     }
@@ -36,10 +46,10 @@ public class DbColumn {
     DbColumn(String name, DB_TYPE dbt, String p){
         this.name = name;
         this.dbt = dbt;
-        this.property = p;
 
         this.tc.setText(this.name);
         tc.setCellValueFactory(new PropertyValueFactory<Material, String>(property));
+        tf = new TextField(this.name);
     }
 
     public TableColumn getTableColumn() {
