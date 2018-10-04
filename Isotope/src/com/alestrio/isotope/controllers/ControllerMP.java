@@ -18,7 +18,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
-import org.controlsfx.control.table.TableFilter;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -104,6 +103,9 @@ public class ControllerMP {
         db.connect();
         db.createDatabase();
         showDbEntries();
+        for (Database db : aldb) {
+            db.addDb();
+        }
     }
 
         /*--- ADD BUTTONS ---*/
@@ -912,6 +914,7 @@ public class ControllerMP {
             showDbEntriesRec();
             showDbEntriesCylinders();
             if(aldb != null){
+                //TODO Get database items
                 Tab tab;
                 for(Database db : aldb){
                     tab = db.getDatabaseUiElements();

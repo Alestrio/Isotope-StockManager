@@ -7,10 +7,6 @@
 package com.alestrio.isotope.database;
 
 import com.alestrio.isotope.DB;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -57,22 +53,32 @@ public class Database {
     }
 
     public void addDb(){
-        String request = "CREATE TABLE public." + this.name +"\n"+
-                "{" +
-                "id serial, \n";
+        db.connect();
+        int dbNumber = columns.size();
+        String request = "CREATE TABLE public." + this.name + " \n " +
+                "(" +
+                "id serial, \n ";
+        int i = 1;
         for(DbColumn c : columns){
-            request = request.concat(c.getName() + " " + c.getDbt().getType() + "\n");
+            if (i < dbNumber) {
+                request = request.concat(c.getName() + " " + c.getDbt().getType() + ", \n ");
+            } else {
+                request = request.concat(c.getName() + " " + c.getDbt().getType() + " \n ");
+            }
+            i++;
+
         }
-        request = request.concat("} \n" +
-                "WITH (\n" +
-                "  OIDS=FALSE\n" +
-                ");\n" +
-                "ALTER TABLE public.bobines\n" +
+        request = request.concat(") \n " +
+                "WITH ( \n " +
+                "  OIDS=FALSE \n " +
+                "); \n " +
+                "ALTER TABLE public." + this.name + " \n " +
                 "  OWNER TO postgres;");
+        //System.out.println(request);
         try {
             db.dbQuery(request);
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            System.out.println("\"" + this.name + "\" already exists");
         }
     }
 
@@ -86,26 +92,32 @@ public class Database {
     }
 
     private void add(){
+        //TODO Add something when there is no columns (exception or anything else)
         String addQuery = "INSERT INTO public." + this.name + " (";
-        int i = 0;
+        int i = 1;
+        int dbNumber = columns.size();
         for(DbColumn c : columns){
-            addQuery.concat(c.getName());
-            i++;
-            if(columns.get(i) != null){
-                addQuery.concat(", ");
+            if (i < dbNumber) {
+                addQuery = addQuery.concat(c.getName() + " ,");
+            } else {
+                addQuery = addQuery.concat(c.getName());
             }
+            i++;
+
         }
-        i=0;
-        addQuery.concat(") VALUES (");
+        i = 1;
+        addQuery = addQuery.concat(") VALUES (");
         for(DbColumn c : columns){
-            addQuery.concat(c.getValue());
-            i++;
-            if(columns.get(i) != null){
-                addQuery.concat(", ");
+            if (i < dbNumber) {
+                addQuery = addQuery.concat("\'" + c.tf.getText() + "\' ,");
+            } else {
+                addQuery = addQuery.concat("\'" + c.tf.getText() + "\'");
             }
+            i++;
         }
-        addQuery.concat(")");
+        addQuery = addQuery.concat(");");
         try {
+            db.connect();
             db.dbQuery(addQuery);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -141,13 +153,17 @@ public class Database {
          for(DbColumn c : columns){
              c.setValue(c.tf.getText());
          }
+            dialog.getDialogPane().getButtonTypes().add(new ButtonType("Valider", ButtonBar.ButtonData.OK_DONE));
+            dialog.showAndWait();
          add();
         });
+
 
         tab.setText(name);
         tab.setContent(spane);
         spane.getItems().add(apTableView);
         AnchorPane apButtons = new AnchorPane();
+        apButtons.getChildren().add(addButton);
         spane.getItems().add(apButtons);
         apTableView.getChildren().add(tableM);
         spane.setDividerPosition(0, 0.85);
@@ -157,4 +173,5 @@ public class Database {
         tableM.setVisible(true);
         return tab;
     }
+
 }

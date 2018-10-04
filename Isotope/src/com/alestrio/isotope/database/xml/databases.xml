@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
 <definitions>
-    <database name="Ecrous" c1name="diametre" c1type="numeric" c1prop="diameter" c2name="matiere" c2type="text" c2prop="type" />
+    <database name="Ecrous" c1name="Diametre" c1type="numeric" c1prop="diameter" c2name="Matiere" c2type="text"
+              c2prop="type"/>
 </definitions>
 
 

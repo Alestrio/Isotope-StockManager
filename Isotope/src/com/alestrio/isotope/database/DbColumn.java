@@ -22,7 +22,7 @@ public class DbColumn {
     private TableColumn tc = new TableColumn();
     private String property;
     private String value;
-    TextField tf;
+    public TextField tf;
 
     public void setValue(String value) {
         this.value = value;
@@ -49,7 +49,7 @@ public class DbColumn {
 
         this.tc.setText(this.name);
         tc.setCellValueFactory(new PropertyValueFactory<Material, String>(property));
-        tf = new TextField(this.name);
+        tf = new TextField(null);
     }
 
     public TableColumn getTableColumn() {
