@@ -43,7 +43,7 @@ public class ControllerLauncher {
         try {
             g.launch(new Stage());
         } catch (Exception ioe) {
-            System.out.println("ControlsFxBugged");
+            ioe.printStackTrace();
         }
         ((Node) (e.getSource())).getScene().getWindow().hide();
     }

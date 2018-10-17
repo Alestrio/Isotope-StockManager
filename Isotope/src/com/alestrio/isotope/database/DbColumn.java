@@ -46,9 +46,9 @@ public class DbColumn {
     DbColumn(String name, DB_TYPE dbt, String p){
         this.name = name;
         this.dbt = dbt;
-
-        this.tc.setText(this.name);
+        this.property = p;
         tc.setCellValueFactory(new PropertyValueFactory<Material, String>(property));
+        tc.setText(this.name);
         tf = new TextField(null);
     }
 

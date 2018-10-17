@@ -20,23 +20,21 @@ title __DATABASE's Class Diagram__\n
       class Database {
           - name : String
           - columns : List<DbColumn>
-          - tab : Tab
-          - spane : SplitPane
-          - apTableView : AnchorPane
           - tableM : TableView<Material>
-          - addButton : Button
           - modifyButton : Button
           - delButton : Button
           - duplButton : Button
           - totalValueButton : Button
+          + setPct()
           + Database()
           + setColumns()
           + getName()
           + setName()
           + getColumns()
           + addColumn()
-          + add()
+          + addDb()
           - createColumnsFx()
+          - add()
           + getDatabaseUiElements()
       }
     }
@@ -49,12 +47,28 @@ title __DATABASE's Class Diagram__\n
           - name : String
           - tc : TableColumn
           - property : String
+          - value : String
+          + tf : TextField
+          + getValue()
+          + setValue()
           + getName()
           + setName()
           + getDbt()
           + setDbt()
           ~ DbColumn()
           + getTableColumn()
+      }
+    }
+  }
+  
+
+  package com.alestrio.isotope {
+    package com.alestrio.isotope.database {
+      enum PriceCount_type {
+        CUBICCM
+        SQUARECM
+        UNIT
+        i
       }
     }
   }
@@ -86,6 +100,7 @@ title __DATABASE's Class Diagram__\n
   
 
   Database o-- DB : db
+  Database o-- PriceCount_type : pct
   DbColumn o-- DB_TYPE : dbt
   XmlHandler -up-|> DefaultHandler
   XmlHandler o-- Database : db

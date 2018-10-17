@@ -28,9 +28,10 @@ public class XmlHandler extends DefaultHandler {
     }
 
     public void startElement(String namespaceURL, String lname, String qname, Attributes attrs) throws SAXException{
+        System.out.println(attrs.getLength());
         if(qname.equals("database")){
             db.setName(attrs.getValue(0));
-            for(int i = 1; i < attrs.getLength(); i+=3){
+            for(int i = 1; i < attrs.getLength() - 1; i+=3){
                 if(attrs.getValue(i+1).equals("text"))
                     db.addColumn(new DbColumn(attrs.getValue(i), DB_TYPE.TEXT, attrs.getValue(i+2)));
                 if(attrs.getValue(i+1).equals("numeric"))
@@ -41,6 +42,15 @@ public class XmlHandler extends DefaultHandler {
                     db.addColumn(new DbColumn(attrs.getValue(i), DB_TYPE.INTEG, attrs.getValue(i+2)));
             }
             aldb.add(db);
+
+            int pctIndex = Integer.parseInt(attrs.getValue(attrs.getLength()-1));
+
+            if(pctIndex == 1)
+                db.setPct(PriceCount_type.UNIT);
+            if(pctIndex == 2)
+                db.setPct(PriceCount_type.SQUARECM);
+            if(pctIndex == 3)
+                db.setPct(PriceCount_type.CUBICCM);
         }
 
 

@@ -26,10 +26,18 @@ public class Database {
     private Button modifyButton;
     private Button delButton;
     private Button duplButton;
+    // TODO: Total Value button
     private Button totalValueButton;
+    private PriceCount_type pct;
 
 
-    public Database(){   }
+    public void setPct(PriceCount_type pct) {
+        this.pct = pct;
+    }
+
+    public Database(){
+        columns.add(new DbColumn("Prix", DB_TYPE.NUMERIC, "price"));
+    }
 
     public void setColumns(ArrayList<DbColumn> s){
         this.columns = s;
@@ -79,6 +87,7 @@ public class Database {
             db.dbQuery(request);
         } catch (Exception e) {
             System.out.println("\"" + this.name + "\" already exists");
+            //e.printStackTrace();
         }
     }
 
@@ -157,7 +166,18 @@ public class Database {
             dialog.showAndWait();
          add();
         });
+        //TODO  Modify button
+        modifyButton.setOnAction(event -> {
 
+        });
+        // TODO: Delete Button
+        delButton.setOnAction(event -> {
+
+        });
+        // TODO: Duplicate button
+        duplButton.setOnAction(event -> {
+
+        });
 
         tab.setText(name);
         tab.setContent(spane);
