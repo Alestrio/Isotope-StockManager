@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
+<!--
+  ~ Copyright (c) 2018.
+  ~ Code written by Alexis LEBEL (aka Alestrio)
+  ~
+  -->
+
 <definitions>
     <database name="Ecrous" c1name="Diametre" c1type="numeric" c1prop="diameter" c2name="Matiere" c2type="text"
               c2prop="type" pct="1"/>

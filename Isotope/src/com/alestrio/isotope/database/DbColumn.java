@@ -20,7 +20,6 @@ public class DbColumn {
     private String name;
     private DB_TYPE dbt;
     private TableColumn tc = new TableColumn();
-    private String property;
     private String value;
     public TextField tf;
 
@@ -43,11 +42,10 @@ public class DbColumn {
         this.dbt = dbt;
     }
 
-    DbColumn(String name, DB_TYPE dbt, String p){
+    DbColumn(String name, DB_TYPE dbt){
         this.name = name;
         this.dbt = dbt;
-        this.property = p;
-        tc.setCellValueFactory(new PropertyValueFactory<Material, String>(property));
+        //tc.setCellValueFactory(new PropertyValueFactory<Material, String>());
         tc.setText(this.name);
         tf = new TextField(null);
     }

@@ -19,9 +19,9 @@ import java.util.Collection;
 import java.util.List;
 
 public class Database {
-    private String name;
-    private List<DbColumn> columns = new ArrayList<>();
-    private DB db = new DB();
+    protected String name;
+    protected List<DbColumn> columns = new ArrayList<>();
+    protected DB db = new DB();
     private TableView<Material> tableM;
     private Button modifyButton;
     private Button delButton;
@@ -36,7 +36,7 @@ public class Database {
     }
 
     public Database(){
-        columns.add(new DbColumn("Prix", DB_TYPE.NUMERIC, "price"));
+        columns.add(new DbColumn("Prix", DB_TYPE.NUMERIC));
     }
 
     public void setColumns(ArrayList<DbColumn> s){
@@ -100,38 +100,6 @@ public class Database {
         return tcl;
     }
 
-    private void add(){
-        //TODO Add something when there is no columns (exception or anything else)
-        String addQuery = "INSERT INTO public." + this.name + " (";
-        int i = 1;
-        int dbNumber = columns.size();
-        for(DbColumn c : columns){
-            if (i < dbNumber) {
-                addQuery = addQuery.concat(c.getName() + " ,");
-            } else {
-                addQuery = addQuery.concat(c.getName());
-            }
-            i++;
-
-        }
-        i = 1;
-        addQuery = addQuery.concat(") VALUES (");
-        for(DbColumn c : columns){
-            if (i < dbNumber) {
-                addQuery = addQuery.concat("\'" + c.tf.getText() + "\' ,");
-            } else {
-                addQuery = addQuery.concat("\'" + c.tf.getText() + "\'");
-            }
-            i++;
-        }
-        addQuery = addQuery.concat(");");
-        try {
-            db.connect();
-            db.dbQuery(addQuery);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
 
     public Tab getDatabaseUiElements(){
         Tab tab = new Tab();
@@ -164,11 +132,29 @@ public class Database {
          }
             dialog.getDialogPane().getButtonTypes().add(new ButtonType("Valider", ButtonBar.ButtonData.OK_DONE));
             dialog.showAndWait();
-         add();
+         DbItem.add();
         });
         //TODO  Modify button
         modifyButton.setOnAction(event -> {
 
+            Dialog dialog = new Dialog();
+            dialog.setTitle("Modifier un/une " + this.name);
+            GridPane gpane = new GridPane();
+            dialog.getDialogPane().setContent(gpane);
+            int x = 1;
+            int y = 1;
+            for(DbColumn c : columns){
+                gpane.add(new Label(c.getName()), x, y);
+                x++;
+                gpane.add(c.tf, x, y);
+                y++;
+                x=1;
+            }
+            for(DbColumn c : columns){
+                c.setValue(c.tf.getText());
+            }
+            dialog.getDialogPane().getButtonTypes().add(new ButtonType("Valider", ButtonBar.ButtonData.OK_DONE));
+            dialog.showAndWait();
         });
         // TODO: Delete Button
         delButton.setOnAction(event -> {

@@ -18,8 +18,8 @@ title __DATABASE's Class Diagram__\n
   package com.alestrio.isotope {
     package com.alestrio.isotope.database {
       class Database {
-          - name : String
-          - columns : List<DbColumn>
+          # name : String
+          # columns : List<DbColumn>
           - tableM : TableView<Material>
           - modifyButton : Button
           - delButton : Button
@@ -34,7 +34,6 @@ title __DATABASE's Class Diagram__\n
           + addColumn()
           + addDb()
           - createColumnsFx()
-          - add()
           + getDatabaseUiElements()
       }
     }
@@ -46,7 +45,6 @@ title __DATABASE's Class Diagram__\n
       class DbColumn {
           - name : String
           - tc : TableColumn
-          - property : String
           - value : String
           + tf : TextField
           + getValue()
@@ -57,6 +55,34 @@ title __DATABASE's Class Diagram__\n
           + setDbt()
           ~ DbColumn()
           + getTableColumn()
+      }
+    }
+  }
+  
+
+  package com.alestrio.isotope {
+    package com.alestrio.isotope.database {
+      class DbItem {
+          {static} # add()
+      }
+    }
+  }
+  
+
+  package com.alestrio.isotope {
+    package com.alestrio.isotope.database {
+      class DbItemProperty {
+          - name : String
+          - integerProperty : SimpleIntegerProperty
+          - doubleProperty : SimpleDoubleProperty
+          - simpleStringProperty : SimpleStringProperty
+          - whichProperty : int
+          - DbItemProperty()
+          ~ DbItemProperty()
+          ~ DbItemProperty()
+          ~ DbItemProperty()
+          + getProperty()
+          + getName()
       }
     }
   }
@@ -102,6 +128,7 @@ title __DATABASE's Class Diagram__\n
   Database o-- DB : db
   Database o-- PriceCount_type : pct
   DbColumn o-- DB_TYPE : dbt
+  DbItem -up-|> Database
   XmlHandler -up-|> DefaultHandler
   XmlHandler o-- Database : db
   XmlSettings o-- Database : db
