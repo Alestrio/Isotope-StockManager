@@ -17,7 +17,7 @@ public class DbItemProperty {
     private SimpleStringProperty simpleStringProperty;
     private int whichProperty;
 
-    private DbItemProperty(String name){
+    DbItemProperty(String name){
         this.name = name;
     }
     DbItemProperty(String name, int i){
@@ -50,5 +50,17 @@ public class DbItemProperty {
 
     public String getName() {
         return name;
+    }
+
+    public void setIntegerProperty(int integerProperty) {
+        this.integerProperty.set(integerProperty);
+    }
+
+    public void setDoubleProperty(double doubleProperty) {
+        this.doubleProperty.set(doubleProperty);
+    }
+
+    public void setSimpleStringProperty(String simpleStringProperty) {
+        this.simpleStringProperty.set(simpleStringProperty);
     }
 }

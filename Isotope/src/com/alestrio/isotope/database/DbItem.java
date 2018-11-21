@@ -7,12 +7,18 @@
 package com.alestrio.isotope.database;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DbItem extends Database {
+    List<DbItemProperty> ldbip;
+
+    DbItem(List<DbItemProperty> l){
+        ldbip = l;
+    }
 
 
-    static protected void add(){
+    protected void add(){
         //TODO Add something when there is no columns (exception or anything else)
         String addQuery = "INSERT INTO public." + this.name + " (";
         int i = 1;
@@ -30,9 +36,9 @@ public class DbItem extends Database {
         addQuery = addQuery.concat(") VALUES (");
         for(DbColumn c : columns){
             if (i < dbNumber) {
-                addQuery = addQuery.concat("\'" + c.tf.getText() + "\' ,");
+                //TODO addQuery = addQuery.concat("\'" + c.tf.getText() + "\' ,");
             } else {
-                addQuery = addQuery.concat("\'" + c.tf.getText() + "\'");
+                //TODO addQuery = addQuery.concat("\'" + c.tf.getText() + "\'");
             }
             i++;
         }

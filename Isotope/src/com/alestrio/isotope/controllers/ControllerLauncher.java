@@ -7,6 +7,7 @@
 package com.alestrio.isotope.controllers;
 
 import com.alestrio.isotope.DB;
+import com.alestrio.isotope.Logging;
 import com.alestrio.isotope.ui.GuiMP;
 import com.alestrio.isotope.ui.GuiV;
 import javafx.event.Event;

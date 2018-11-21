@@ -46,6 +46,8 @@ public class ControllerV {
         db.connect();
         db.createDatabase();
         showDbEntriesScrews();
+        //TODO add logging details
+
     }
 
     @FXML
@@ -107,6 +109,8 @@ public class ControllerV {
             showDbEntriesScrews();
         } else
             System.out.println("Non présent");
+        //TODO add logging details
+
 
 
     }
@@ -115,6 +119,8 @@ public class ControllerV {
     void clickDelButton() {
         tableS.getSelectionModel().getSelectedItem().delete();
         showDbEntriesScrews();
+        //TODO add logging details
+
     }
 
     public void showDbEntriesScrews() {
@@ -144,6 +150,8 @@ public class ControllerV {
         this.tableS.setVisible(true);
 
         TableFilter<Screw> filter = new TableFilter<>(tableS);
+        //TODO add logging details
+
     }
 
     @FXML
@@ -207,6 +215,8 @@ public class ControllerV {
         });
         d.showAndWait();
         showDbEntriesScrews();
+        //TODO add logging details
+
     }
 
     @FXML
@@ -225,6 +235,8 @@ public class ControllerV {
 
         w.setOnCloseRequest(event -> w.hide());
         t.showAndWait();
+        //TODO add logging details
+
     }
 
     @FXML
@@ -294,6 +306,8 @@ public class ControllerV {
             showDbEntriesScrews();
         } else
             System.out.println("Non présent");
+        //TODO add logging details
+
     }
 
     @FXML
@@ -322,6 +336,8 @@ public class ControllerV {
         });
         d.showAndWait();
         showDbEntriesScrews();
+        //TODO add logging details
+
     }
 
     @FXML
@@ -350,6 +366,8 @@ public class ControllerV {
         });
         d.showAndWait();
         showDbEntriesScrews();
+        //TODO add logging details
+
     }
 }
 

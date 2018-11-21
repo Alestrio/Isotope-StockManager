@@ -123,16 +123,16 @@ public class Database {
          for(DbColumn c : columns){
              gpane.add(new Label(c.getName()), x, y);
              x++;
-             gpane.add(c.tf, x, y);
+             //TODO gpane.add(c.tf, x, y);
              y++;
              x=1;
          }
          for(DbColumn c : columns){
-             c.setValue(c.tf.getText());
+             //TODO c.setValue(c.tf.getText());
          }
             dialog.getDialogPane().getButtonTypes().add(new ButtonType("Valider", ButtonBar.ButtonData.OK_DONE));
             dialog.showAndWait();
-         DbItem.add();
+         //TODO DbItem.add();
         });
         //TODO  Modify button
         modifyButton.setOnAction(event -> {
@@ -146,12 +146,12 @@ public class Database {
             for(DbColumn c : columns){
                 gpane.add(new Label(c.getName()), x, y);
                 x++;
-                gpane.add(c.tf, x, y);
+                //TODO gpane.add(c.tf, x, y);
                 y++;
                 x=1;
             }
             for(DbColumn c : columns){
-                c.setValue(c.tf.getText());
+                //TODO c.setValue(c.tf.getText());
             }
             dialog.getDialogPane().getButtonTypes().add(new ButtonType("Valider", ButtonBar.ButtonData.OK_DONE));
             dialog.showAndWait();

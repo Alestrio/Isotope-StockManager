@@ -7,6 +7,7 @@
 package com.alestrio.isotope.controllers;
 
 import com.alestrio.isotope.DB;
+import com.alestrio.isotope.Logging;
 import com.alestrio.isotope.database.Database;
 import com.alestrio.isotope.database.DbColumn;
 import com.alestrio.isotope.database.XmlSettings;
@@ -30,6 +31,7 @@ public class ControllerMP {
     @FXML
     TabPane tabBase = new TabPane();
     ArrayList<Database> aldb = XmlSettings.parseFile();
+    Logging log = new Logging();
 
     /*--- PLAQUES ---*/
     @FXML
@@ -165,6 +167,10 @@ public class ControllerMP {
         Optional<FilamentSpool> f = d.showAndWait();
         if (f.isPresent()) {
             f.get().add();
+            log.writeLog("Filament Spool added !");
+        }
+        else{
+            log.writeLog("ERROR : Filament Spool is not present, cannot add !");
         }
         showDbEntries();
     }
@@ -241,6 +247,7 @@ public class ControllerMP {
             f.get().add();
 
         showDbEntries();
+        //TODO add logging details
     }
 
     @FXML
@@ -300,6 +307,7 @@ public class ControllerMP {
             f.get().add();
         }
         showDbEntries();
+        //TODO add logging details
     }
 
     /*--- MODIFY BUTTONS ---*/
@@ -385,6 +393,7 @@ public class ControllerMP {
         });
         d.showAndWait();
         showDbEntriesRec();
+        //TODO add logging details
     }
 
     @FXML
@@ -450,6 +459,7 @@ public class ControllerMP {
         });
         d.showAndWait();
         showDbEntriesCylinders();
+        //TODO add logging details
     }
 
     @FXML
@@ -515,6 +525,8 @@ public class ControllerMP {
         });
         d.showAndWait();
         showDbEntriesSpool();
+        //TODO add logging details
+
     }
 
     /*--- ERASE BUTTONS ---*/
@@ -523,6 +535,8 @@ public class ControllerMP {
         RectangularPiece r = tableR.getSelectionModel().getSelectedItem();
         r.delete();
         showDbEntriesRec();
+        //TODO add logging details
+
     }
 
     @FXML
@@ -530,6 +544,8 @@ public class ControllerMP {
         Cylinder c = tableC.getSelectionModel().getSelectedItem();
         c.delete();
         showDbEntriesCylinders();
+        //TODO add logging details
+
     }
 
     @FXML
@@ -537,6 +553,8 @@ public class ControllerMP {
         FilamentSpool f = tableF.getSelectionModel().getSelectedItem();
         f.delete();
         showDbEntriesSpool();
+        //TODO add logging details
+
     }
 
     /*--- DUPLICATE BUTTONS ---*/
@@ -623,6 +641,8 @@ public class ControllerMP {
             f.get().add();
 
         showDbEntriesRec();
+        //TODO add logging details
+
     }
 
     @FXML
@@ -690,6 +710,8 @@ public class ControllerMP {
             f.get().add();
         }
         showDbEntriesCylinders();
+        //TODO add logging details
+
     }
 
     @FXML
@@ -757,6 +779,8 @@ public class ControllerMP {
             f.get().add();
         }
         showDbEntriesSpool();
+        //TODO add logging details
+
     }
 
     /*--- OTHER BUTTONS ---*/
@@ -777,6 +801,8 @@ public class ControllerMP {
         ButtonType ok = new ButtonType("Okay", ButtonBar.ButtonData.OK_DONE);
         d.getDialogPane().getButtonTypes().add(ok);
         d.show();
+        //TODO add logging details
+
     }
 
     @FXML
@@ -793,6 +819,8 @@ public class ControllerMP {
         ButtonType ok = new ButtonType("Okay", ButtonBar.ButtonData.OK_DONE);
         d.getDialogPane().getButtonTypes().add(ok);
         d.show();
+        //TODO add logging details
+
     }
 
     @FXML
@@ -809,12 +837,16 @@ public class ControllerMP {
         ButtonType ok = new ButtonType("Okay", ButtonBar.ButtonData.OK_DONE);
         d.getDialogPane().getButtonTypes().add(ok);
         d.show();
+        //TODO add logging details
+
     }
 
     @FXML
     void clickConnectionBtn() {
         System.out.println(db.connect());
         showDbEntries();
+        //TODO add logging details
+
     }
 
     /*--- SHOWDBENTRIES... ---*/
@@ -850,6 +882,8 @@ public class ControllerMP {
         tableR.setVisible(true);
 
         //TODO TableFilter<RectangularPiece> filter = new TableFilter<>(tableR);
+        //TODO add logging details
+
     }
 
     private void showDbEntriesCylinders() {
@@ -877,6 +911,8 @@ public class ControllerMP {
         tableC.setVisible(true);
 
         //TODO TableFilter<Cylinder> filter = new TableFilter<>(tableC);
+        //TODO add logging details
+
     }
 
     private void showDbEntriesSpool() {
@@ -905,6 +941,8 @@ public class ControllerMP {
         tableF.setVisible(true);
 
         //TODO TableFilter<FilamentSpool> filter = new TableFilter<>(tableF);
+        //TODO add logging details
+
     }
 
     private void showDbEntries() {
@@ -925,6 +963,8 @@ public class ControllerMP {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        //TODO add logging details
+
     }
 
     @FXML
@@ -937,5 +977,7 @@ public class ControllerMP {
 
 
         ButtonType ok = new ButtonType("Okay", ButtonBar.ButtonData.OK_DONE);
+        //TODO add logging details
+
     }
 }

@@ -13,19 +13,11 @@ import javafx.scene.paint.Material;
 
 
 public class DbColumn {
-    public String getValue() {
-        return value;
-    }
 
     private String name;
     private DB_TYPE dbt;
     private TableColumn tc = new TableColumn();
-    private String value;
-    public TextField tf;
 
-    public void setValue(String value) {
-        this.value = value;
-    }
     public String getName() {
         return name;
     }
@@ -47,10 +39,13 @@ public class DbColumn {
         this.dbt = dbt;
         //tc.setCellValueFactory(new PropertyValueFactory<Material, String>());
         tc.setText(this.name);
-        tf = new TextField(null);
     }
 
     public TableColumn getTableColumn() {
        return tc;
+    }
+
+    public DbItemProperty convert(){
+        return new DbItemProperty(this.name);
     }
 }
