@@ -11,6 +11,8 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 public class DbItemProperty {
+    //TODO ça ça va dans materials !!!
+
     private String name;
     private SimpleIntegerProperty integerProperty;
     private SimpleDoubleProperty doubleProperty;

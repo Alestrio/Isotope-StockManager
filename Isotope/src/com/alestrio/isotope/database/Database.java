@@ -36,7 +36,7 @@ public class Database {
     }
 
     public Database(){
-        columns.add(new DbColumn("Prix", DB_TYPE.NUMERIC));
+        columns.add(new DbColumn("Prix", DB_TYPE.NUMERIC, "prix"));
     }
 
     public void setColumns(ArrayList<DbColumn> s){

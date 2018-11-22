@@ -6,13 +6,12 @@
 
 package com.alestrio.isotope;
 
-import com.alestrio.isotope.materials.Cylinder;
-import com.alestrio.isotope.materials.FilamentSpool;
-import com.alestrio.isotope.materials.RectangularPiece;
-import com.alestrio.isotope.materials.Screw;
+import com.alestrio.isotope.materials.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.paint.Material;
 
+import javax.print.attribute.standard.JobStateReason;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -182,8 +181,6 @@ public class DB {
         return olr;
     }
 
-    /*Snif, j'ai écrasé ça avec une erreur de git, c'est moche :c
-    * #HereItIsAgain, #SeemsLegit, #EverythingInTheAss, #CrazyDev*/
     public void createDatabase(){
         try{
             //Si ça n'existe pas
@@ -275,5 +272,9 @@ public class DB {
         }
     }
 
+    public ArrayList<ObservableList<AbsMaterial>> getExternalDbEntries(){
+        //TODO getExternalDbEntries
+        return null;
+    }
 
 }

@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DbItem extends Database {
+
+    //TODO ça ça va dans materials !!!
     List<DbItemProperty> ldbip;
 
     DbItem(List<DbItemProperty> l){

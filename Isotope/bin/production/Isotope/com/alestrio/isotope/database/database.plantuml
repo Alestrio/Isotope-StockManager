@@ -18,24 +18,21 @@ title __DATABASE's Class Diagram__\n
   package com.alestrio.isotope {
     package com.alestrio.isotope.database {
       class Database {
-          - name : String
-          - columns : List<DbColumn>
-          - tab : Tab
-          - spane : SplitPane
-          - apTableView : AnchorPane
+          # name : String
+          # columns : List<DbColumn>
           - tableM : TableView<Material>
-          - addButton : Button
           - modifyButton : Button
           - delButton : Button
           - duplButton : Button
           - totalValueButton : Button
+          + setPct()
           + Database()
           + setColumns()
           + getName()
           + setName()
           + getColumns()
           + addColumn()
-          + add()
+          + addDb()
           - createColumnsFx()
           + getDatabaseUiElements()
       }
@@ -48,13 +45,56 @@ title __DATABASE's Class Diagram__\n
       class DbColumn {
           - name : String
           - tc : TableColumn
-          - property : String
+          - value : String
+          + tf : TextField
+          + getValue()
+          + setValue()
           + getName()
           + setName()
           + getDbt()
           + setDbt()
           ~ DbColumn()
           + getTableColumn()
+      }
+    }
+  }
+  
+
+  package com.alestrio.isotope {
+    package com.alestrio.isotope.database {
+      class DbItem {
+          {static} # add()
+      }
+    }
+  }
+  
+
+  package com.alestrio.isotope {
+    package com.alestrio.isotope.database {
+      class DbItemProperty {
+          - name : String
+          - integerProperty : SimpleIntegerProperty
+          - doubleProperty : SimpleDoubleProperty
+          - simpleStringProperty : SimpleStringProperty
+          - whichProperty : int
+          - DbItemProperty()
+          ~ DbItemProperty()
+          ~ DbItemProperty()
+          ~ DbItemProperty()
+          + getProperty()
+          + getName()
+      }
+    }
+  }
+  
+
+  package com.alestrio.isotope {
+    package com.alestrio.isotope.database {
+      enum PriceCount_type {
+        CUBICCM
+        SQUARECM
+        UNIT
+        i
       }
     }
   }
@@ -86,7 +126,9 @@ title __DATABASE's Class Diagram__\n
   
 
   Database o-- DB : db
+  Database o-- PriceCount_type : pct
   DbColumn o-- DB_TYPE : dbt
+  DbItem -up-|> Database
   XmlHandler -up-|> DefaultHandler
   XmlHandler o-- Database : db
   XmlSettings o-- Database : db

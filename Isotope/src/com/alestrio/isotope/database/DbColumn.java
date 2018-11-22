@@ -34,10 +34,10 @@ public class DbColumn {
         this.dbt = dbt;
     }
 
-    DbColumn(String name, DB_TYPE dbt){
+    DbColumn(String name, DB_TYPE dbt, String property){
         this.name = name;
         this.dbt = dbt;
-        //tc.setCellValueFactory(new PropertyValueFactory<Material, String>());
+        tc.setCellValueFactory(new PropertyValueFactory<Material, String>("property"));
         tc.setText(this.name);
     }
 

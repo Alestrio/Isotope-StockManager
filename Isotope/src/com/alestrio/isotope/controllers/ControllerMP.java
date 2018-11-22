@@ -247,7 +247,7 @@ public class ControllerMP {
             f.get().add();
 
         showDbEntries();
-        //TODO add logging details
+        log.writeLog("Rectangular piece added");
     }
 
     @FXML
@@ -307,7 +307,7 @@ public class ControllerMP {
             f.get().add();
         }
         showDbEntries();
-        //TODO add logging details
+        log.writeLog("Cylinder added !");
     }
 
     /*--- MODIFY BUTTONS ---*/
@@ -393,7 +393,7 @@ public class ControllerMP {
         });
         d.showAndWait();
         showDbEntriesRec();
-        //TODO add logging details
+        log.writeLog("Rectangular piece modified !");
     }
 
     @FXML
@@ -459,7 +459,7 @@ public class ControllerMP {
         });
         d.showAndWait();
         showDbEntriesCylinders();
-        //TODO add logging details
+        log.writeLog("Cylinder modified !");
     }
 
     @FXML
@@ -525,8 +525,7 @@ public class ControllerMP {
         });
         d.showAndWait();
         showDbEntriesSpool();
-        //TODO add logging details
-
+        log.writeLog("Filament Spool modified !");
     }
 
     /*--- ERASE BUTTONS ---*/
@@ -535,8 +534,7 @@ public class ControllerMP {
         RectangularPiece r = tableR.getSelectionModel().getSelectedItem();
         r.delete();
         showDbEntriesRec();
-        //TODO add logging details
-
+        log.writeLog("Rectangular piece deleted !");
     }
 
     @FXML
@@ -544,8 +542,7 @@ public class ControllerMP {
         Cylinder c = tableC.getSelectionModel().getSelectedItem();
         c.delete();
         showDbEntriesCylinders();
-        //TODO add logging details
-
+        log.writeLog("Cylinder deleted !");
     }
 
     @FXML
@@ -553,8 +550,7 @@ public class ControllerMP {
         FilamentSpool f = tableF.getSelectionModel().getSelectedItem();
         f.delete();
         showDbEntriesSpool();
-        //TODO add logging details
-
+        log.writeLog("Filament Spool deleted !");
     }
 
     /*--- DUPLICATE BUTTONS ---*/
@@ -641,8 +637,7 @@ public class ControllerMP {
             f.get().add();
 
         showDbEntriesRec();
-        //TODO add logging details
-
+        log.writeLog("Rectangular Piece duplicated !");
     }
 
     @FXML
@@ -710,8 +705,7 @@ public class ControllerMP {
             f.get().add();
         }
         showDbEntriesCylinders();
-        //TODO add logging details
-
+        log.writeLog("Cylinder duplicated !");
     }
 
     @FXML
@@ -779,8 +773,7 @@ public class ControllerMP {
             f.get().add();
         }
         showDbEntriesSpool();
-        //TODO add logging details
-
+        log.writeLog("Filament Spool duplicated !");
     }
 
     /*--- OTHER BUTTONS ---*/
@@ -801,8 +794,7 @@ public class ControllerMP {
         ButtonType ok = new ButtonType("Okay", ButtonBar.ButtonData.OK_DONE);
         d.getDialogPane().getButtonTypes().add(ok);
         d.show();
-        //TODO add logging details
-
+        log.writeLog("Rectangular Pieces total value :" + i);
     }
 
     @FXML
@@ -819,8 +811,7 @@ public class ControllerMP {
         ButtonType ok = new ButtonType("Okay", ButtonBar.ButtonData.OK_DONE);
         d.getDialogPane().getButtonTypes().add(ok);
         d.show();
-        //TODO add logging details
-
+        log.writeLog("Total value :" + i);
     }
 
     @FXML
@@ -837,16 +828,7 @@ public class ControllerMP {
         ButtonType ok = new ButtonType("Okay", ButtonBar.ButtonData.OK_DONE);
         d.getDialogPane().getButtonTypes().add(ok);
         d.show();
-        //TODO add logging details
-
-    }
-
-    @FXML
-    void clickConnectionBtn() {
-        System.out.println(db.connect());
-        showDbEntries();
-        //TODO add logging details
-
+        log.writeLog("Filament spool total value :" + i);
     }
 
     /*--- SHOWDBENTRIES... ---*/
@@ -882,8 +864,7 @@ public class ControllerMP {
         tableR.setVisible(true);
 
         //TODO TableFilter<RectangularPiece> filter = new TableFilter<>(tableR);
-        //TODO add logging details
-
+        log.writeLog("Rectangular Pieces shown !");
     }
 
     private void showDbEntriesCylinders() {
@@ -911,8 +892,7 @@ public class ControllerMP {
         tableC.setVisible(true);
 
         //TODO TableFilter<Cylinder> filter = new TableFilter<>(tableC);
-        //TODO add logging details
-
+        log.writeLog("Cylinders shown !");
     }
 
     private void showDbEntriesSpool() {
@@ -941,8 +921,7 @@ public class ControllerMP {
         tableF.setVisible(true);
 
         //TODO TableFilter<FilamentSpool> filter = new TableFilter<>(tableF);
-        //TODO add logging details
-
+        log.writeLog("Filament spools shown !");
     }
 
     private void showDbEntries() {
@@ -959,12 +938,11 @@ public class ControllerMP {
                     tabBase.getTabs().add(tab);
                 }
             }
+            log.writeLog("Everything shown and initialized !");
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        //TODO add logging details
-
     }
 
     @FXML
@@ -977,7 +955,6 @@ public class ControllerMP {
 
 
         ButtonType ok = new ButtonType("Okay", ButtonBar.ButtonData.OK_DONE);
-        //TODO add logging details
-
+        log.writeLog("New database added ! Name :");
     }
 }
