@@ -6,6 +6,7 @@
 
 package com.alestrio.isotope.database;
 
+import javafx.scene.Node;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -17,6 +18,7 @@ public class DbColumn {
     private String name;
     private DB_TYPE dbt;
     private TableColumn tc = new TableColumn();
+    private TextField tf = new TextField();
 
     public String getName() {
         return name;
@@ -45,7 +47,11 @@ public class DbColumn {
        return tc;
     }
 
-    public DbItemProperty convert(){
-        return new DbItemProperty(this.name);
+    public TextField getTextField() {
+        return tf;
+    }
+
+    public void setTextTextField(String text){
+        tf.setText(text);
     }
 }

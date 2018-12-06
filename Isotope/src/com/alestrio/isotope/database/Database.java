@@ -7,6 +7,7 @@
 package com.alestrio.isotope.database;
 
 import com.alestrio.isotope.DB;
+import com.alestrio.isotope.materials.DBItem;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -114,6 +115,7 @@ public class Database {
         totalValueButton = new Button();
 
         addButton.setOnAction(event -> {
+         DBItem item = new DBItem(this);
          Dialog dialog = new Dialog();
          dialog.setTitle("Ajouter un/une " + this.name);
          GridPane gpane = new GridPane();
@@ -123,16 +125,36 @@ public class Database {
          for(DbColumn c : columns){
              gpane.add(new Label(c.getName()), x, y);
              x++;
-             //TODO gpane.add(c.tf, x, y);
+             gpane.add(c.getTextField(), x, y);
              y++;
              x=1;
          }
-         for(DbColumn c : columns){
-             //TODO c.setValue(c.tf.getText());
-         }
             dialog.getDialogPane().getButtonTypes().add(new ButtonType("Valider", ButtonBar.ButtonData.OK_DONE));
             dialog.showAndWait();
-         //TODO DbItem.add();
+
+            for(DbColumn c : columns){
+                String name = c.getName();
+                switch (name){
+                    case "head" : item.setHead(c.getTextField().getText());
+                    case "diameter" : item.setDiameter(Double.parseDouble(c.getTextField().getText()));
+                    case "length" : item.setLength(Double.parseDouble(c.getTextField().getText()));
+                    case "remaininglength" : item.setRemainingLength(Double.parseDouble(c.getTextField().getText()));
+                    case "width" : item.setWidth(Double.parseDouble(c.getTextField().getText()));
+                    case "remainingwidth" : item.setRemainingWidth(Double.parseDouble(c.getTextField().getText()));
+                    case "thickness" : item.setThickness(Double.parseDouble(c.getTextField().getText()));
+                    case "remainingthickness" : item.setRemainingThickness(Double.parseDouble(c.getTextField().getText()));
+                    case "type" : item.setType(c.getTextField().getText());
+                    case "initialweight" : item.setInitialWeight(Double.parseDouble(c.getTextField().getText()));
+                    case "remainingweight" : item.setRemainingWeight(Double.parseDouble(c.getTextField().getText()));
+                    case "color" : item.setColor(c.getTextField().getText());
+                    case "qty" : item.setQty(Integer.parseInt(c.getTextField().getText()));
+                    case "price" : item.setPrice(Double.parseDouble(c.getTextField().getText()));
+                    case "pricecm" : item.setPriceCm(Double.parseDouble(c.getTextField().getText()));
+                    case "pieceprice" : item.setPiecePrice(Double.parseDouble(c.getTextField().getText()));
+                }
+
+            }
+         item.add();
         });
         //TODO  Modify button
         modifyButton.setOnAction(event -> {

@@ -276,7 +276,6 @@ public class DB {
     }
 
     public ObservableList<AbsMaterial> getExternalDbEntries(Database database){
-        //TODO getExternalDbEntries
         List<AbsMaterial> list = new ArrayList<>();
         ObservableList<AbsMaterial> oldb = FXCollections.observableList(list);
         Statement state;
@@ -349,7 +348,7 @@ public class DB {
                         item.setInitialWeight(a);
                     }
                     if(col.getName().equalsIgnoreCase("remainingweight")){
-                        Double a = result.getDouble("remainingweight")
+                        Double a = result.getDouble("remainingweight");
                         item.setRemainingWeight(a);
                     }
                     if(col.getName().equalsIgnoreCase("pricecm")){
@@ -358,6 +357,7 @@ public class DB {
                     }
                     if(col.getName().equalsIgnoreCase("pieceprice")){
                         Double a = result.getDouble("pieceprice");
+                        item.setPiecePrice(a);
                     }
                 }
 
