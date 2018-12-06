@@ -6,7 +6,10 @@
 
 package com.alestrio.isotope;
 
+import com.alestrio.isotope.database.Database;
+import com.alestrio.isotope.database.DbColumn;
 import com.alestrio.isotope.materials.*;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.paint.Material;
@@ -272,9 +275,100 @@ public class DB {
         }
     }
 
-    public ArrayList<ObservableList<AbsMaterial>> getExternalDbEntries(){
+    public ObservableList<AbsMaterial> getExternalDbEntries(Database database){
         //TODO getExternalDbEntries
-        return null;
+        List<AbsMaterial> list = new ArrayList<>();
+        ObservableList<AbsMaterial> oldb = FXCollections.observableList(list);
+        Statement state;
+        try {
+            state = conn.createStatement();
+            ResultSet result = state.executeQuery("SELECT * FROM \""+database.getName()+"\"");
+            List<DbColumn> columns = database.getColumns();
+
+            while (result.next()) {
+
+                DBItem item = new DBItem(database);
+
+
+
+                for(DbColumn col : columns) {
+                    if (col.getName().equalsIgnoreCase("length")) {
+                        double a = result.getDouble("length");
+                        item.setLength(a);
+                    }
+                    if(col.getName().equalsIgnoreCase("width")){
+                        double b = result.getDouble("width");
+                        item.setWidth(b);
+                    }
+                    if(col.getName().equalsIgnoreCase("thickness")){
+                        double c = result.getDouble("thickness");
+                        item.setThickness(c);
+                    }
+                    if(col.getName().equalsIgnoreCase("type")){
+                        String d = result.getString("type");
+                        item.setType(d);
+                    }
+                    if(col.getName().equalsIgnoreCase("color")){
+                        String e = result.getString("color");
+                        item.setColor(e);
+                    }
+                    if(col.getName().equalsIgnoreCase("remaininlength")){
+                        double g = result.getDouble("remaininglength");
+                        item.setRemainingLength(g);
+                    }
+                    if(col.getName().equalsIgnoreCase("remainingwidth")){
+                        double h = result.getDouble("remainingwidth");
+                        item.setRemainingWidth(h);
+                    }
+                    if(col.getName().equalsIgnoreCase("remainingthickness")){
+                        double i = result.getDouble("remainingthickness");
+                        item.setRemainingThickness(i);
+                    }
+                    if(col.getName().equalsIgnoreCase("price")){
+                        double j = result.getDouble("price");
+                        item.setPrice(j);
+                    }
+                    if(col.getName().equalsIgnoreCase("qty")){
+                        int k = result.getInt("qty");
+                        item.setQty(k);
+                    }
+                    if(col.getName().equalsIgnoreCase("id")){
+                        int l = result.getInt("id");
+                        item.setId(l);
+                    }
+                    if(col.getName().equalsIgnoreCase("head")){
+                        String a = result.getString("head");
+                        item.setHead(a);
+                    }
+                    if(col.getName().equalsIgnoreCase("diameter")){
+                        Double a = result.getDouble("diameter");
+                        item.setDiameter(a);
+                    }
+                    if(col.getName().equalsIgnoreCase("initialweight")){
+                        Double a = result.getDouble("initialweight");
+                        item.setInitialWeight(a);
+                    }
+                    if(col.getName().equalsIgnoreCase("remainingweight")){
+                        Double a = result.getDouble("remainingweight")
+                        item.setRemainingWeight(a);
+                    }
+                    if(col.getName().equalsIgnoreCase("pricecm")){
+                        Double a = result.getDouble("pricecm");
+                        item.setPriceCm(a);
+                    }
+                    if(col.getName().equalsIgnoreCase("pieceprice")){
+                        Double a = result.getDouble("pieceprice");
+                    }
+                }
+
+                oldb.add(item);
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            oldb = null;
+        }
+        return oldb;
     }
 
 }

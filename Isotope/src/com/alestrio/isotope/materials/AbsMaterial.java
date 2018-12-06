@@ -11,6 +11,18 @@ import javafx.beans.property.*;
 
 public abstract class AbsMaterial {
 
+    public void setId(int id) {
+        this.id.set(id);
+    }
+
+    public void setPiecePrice(double piecePrice) {
+        this.piecePrice.set(piecePrice);
+    }
+
+    public void setDb(DB db) {
+        this.db = db;
+    }
+
     protected SimpleIntegerProperty id = new SimpleIntegerProperty(0);
     protected SimpleStringProperty head = new SimpleStringProperty(null);
     protected SimpleDoubleProperty diameter = new SimpleDoubleProperty(0);
