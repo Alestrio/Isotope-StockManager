@@ -276,12 +276,13 @@ public class DB {
     }
 
     public ObservableList<AbsMaterial> getExternalDbEntries(Database database){
+        this.connect();
         List<AbsMaterial> list = new ArrayList<>();
         ObservableList<AbsMaterial> oldb = FXCollections.observableList(list);
         Statement state;
         try {
             state = conn.createStatement();
-            ResultSet result = state.executeQuery("SELECT * FROM \""+database.getName()+"\"");
+            ResultSet result = state.executeQuery("SELECT * FROM \""+database.getName().toLowerCase()+"\"");
             List<DbColumn> columns = database.getColumns();
 
             while (result.next()) {
@@ -365,6 +366,10 @@ public class DB {
 
             }
         } catch (SQLException e) {
+            e.printStackTrace();
+            oldb = null;
+        }
+        catch (NullPointerException e){
             e.printStackTrace();
             oldb = null;
         }

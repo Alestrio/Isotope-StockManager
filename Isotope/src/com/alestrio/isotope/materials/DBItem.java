@@ -8,6 +8,7 @@ public class DBItem extends AbsMaterial{
     public Database database;
 
     public DBItem(Database database) {
+        db.connect();
         this.database = database;
     }
 
@@ -24,80 +25,81 @@ public class DBItem extends AbsMaterial{
 
     @Override
     public void add() {
-        String query = "INSERT INTO " + database.getName() + " (";
+        String query = "INSERT INTO " + database.getName().toLowerCase() + " (";
 
         //columns names
         if(this.head.get() != null)
-            query.concat("head, ");
+            query = query.concat("head, ");
         if(this.diameter.get() != 0)
-            query.concat("diameter, ");
+            query = query.concat("diameter, ");
         if(this.length.get() != 0)
-            query.concat("length, ");
+            query = query.concat("length, ");
         if(this.remainingLength.get() != 0)
-            query.concat("remaininglength, ");
+            query = query.concat("remaininglength, ");
         if(this.width.get() != 0)
-            query.concat("width, ");
+            query = query.concat("width, ");
         if(this.remainingWidth.get() != 0)
-            query.concat("remainingwidth, ");
+            query = query.concat("remainingwidth, ");
         if(this.thickness.get() != 0)
-            query.concat("thickness, ");
+            query = query.concat("thickness, ");
         if(this.remainingThickness.get() != 0)
-            query.concat("remainingthickness, ");
+            query = query.concat("remainingthickness, ");
         if(this.type.get() != null)
-            query.concat("type, ");
+            query = query.concat("type, ");
         if(this.initialWeight.get() != 0)
-            query.concat("initialweight, ");
+            query = query.concat("initialweight, ");
         if(this.remainingWeight.get() != 0)
-            query.concat("remainingweight," );
+            query = query.concat("remainingweight," );
         if(this.color.get() != null)
-            query.concat("color, ");
+            query = query.concat("color, ");
         if(this.qty.get() != 0)
-            query.concat("qty, ");
+            query = query.concat("qty, ");
         if(this.priceCm.get() != 0)
-            query.concat("pricecm, ");
+            query = query.concat("pricecm, ");
         if(this.price.get() != 0)
-            query.concat("price, ");
-        query = query.substring(0, query.length()-1);
-        query.concat(") VALUES (" );
+            query = query.concat("price, ");
+        query = query.substring(0, query.length()-2);
+        query = query.concat(") VALUES (" );
 
         //values
         if(this.head.get() != null)
-            query.concat(this.head.get() + ", ");
+            query = query.concat("'" +this.head.get() + "', ");
         if(this.diameter.get() != 0)
-            query.concat(this.diameter.get() + ", ");
+            query = query.concat(this.diameter.get() + ", ");
         if(this.length.get() != 0)
-            query.concat(this.length.get() + ", ");
+            query = query.concat(this.length.get() + ", ");
         if(this.remainingLength.get() != 0)
-            query.concat(this.remainingLength.get() + ", ");
+            query = query.concat(this.remainingLength.get() + ", ");
         if(this.width.get() != 0)
-            query.concat(this.width.get() + ", ");
+            query = query.concat(this.width.get() + ", ");
         if(this.remainingWidth.get() != 0)
-            query.concat(this.remainingWidth.get() + ", ");
+            query = query.concat(this.remainingWidth.get() + ", ");
         if(this.thickness.get() != 0)
-            query.concat(this.thickness.get() + ", ");
+            query = query.concat(this.thickness.get() + ", ");
         if(this.remainingThickness.get() != 0)
-            query.concat(this.remainingThickness.get() + ", ");
+            query = query.concat(this.remainingThickness.get() + ", ");
         if(this.type.get() != null)
-            query.concat(this.type.get() + ", ");
+            query = query.concat("'" +this.type.get() + "', ");
         if(this.initialWeight.get() != 0)
-            query.concat(this.initialWeight.get() + ", ");
+            query = query.concat(this.initialWeight.get() + ", ");
         if(this.remainingWeight.get() != 0)
-            query.concat(this.remainingWeight.get() + ", ");
+            query = query.concat(this.remainingWeight.get() + ", ");
         if(this.color.get() != null)
-            query.concat(this.color.get() + ", ");
+            query = query.concat("'" + this.color.get() + "', ");
         if(this.qty.get() != 0)
-            query.concat(this.qty.get() + ", ");
+            query = query.concat(this.qty.get() + ", ");
         if(this.priceCm.get() != 0)
-            query.concat(this.priceCm.get() + ", ");
+            query = query.concat(this.priceCm.get() + ", ");
         if(this.price.get() != 0)
-            query.concat(this.price.get() + ", ");
-        query = query.substring(0, query.length()-1);
+            query = query.concat(this.price.get() + ", ");
+        query = query.substring(0, query.length()-2);
+        query = query.concat(")");
 
         System.out.println(
                 query
         );
         try {
-            db.dbQuery(""/*query*/);
+            db.dbQuery(query);
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -21,7 +21,7 @@ public class Settings {
     private Properties loadProp() {
         try {
             //TODO File path
-            in = new FileInputStream(/*".\\isotope.properties"*/"D:\\Documents\\JavaProjects\\Isotope\\Isotope\\rsrc\\isotope.properties");
+            in = new FileInputStream(/*".\\isotope.properties"*/"C:\\Users\\Alexis\\IdeaProjects\\isotope\\Isotope\\rsrc\\isotope.properties");
             p.load(in);
             return p;
         } catch (Exception e) {

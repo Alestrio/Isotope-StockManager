@@ -7,7 +7,9 @@
 package com.alestrio.isotope.database;
 
 import com.alestrio.isotope.DB;
+import com.alestrio.isotope.materials.AbsMaterial;
 import com.alestrio.isotope.materials.DBItem;
+import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -23,7 +25,7 @@ public class Database {
     protected String name;
     protected List<DbColumn> columns = new ArrayList<>();
     protected DB db = new DB();
-    private TableView<Material> tableM;
+    private TableView<AbsMaterial> tableM;
     private Button modifyButton;
     private Button delButton;
     private Button duplButton;
@@ -37,7 +39,7 @@ public class Database {
     }
 
     public Database(){
-        columns.add(new DbColumn("Prix", DB_TYPE.NUMERIC, "prix"));
+        columns.add(new DbColumn("price", DB_TYPE.NUMERIC, "price", "Prix"));
     }
 
     public void setColumns(ArrayList<DbColumn> s){
@@ -106,7 +108,7 @@ public class Database {
         Tab tab = new Tab();
         SplitPane spane = new SplitPane();
         AnchorPane apTableView = new AnchorPane();
-        tableM = new TableView<>();
+        tableM = new TableView<AbsMaterial>();
 
         Button addButton = new Button();
         modifyButton = new Button();
@@ -123,7 +125,7 @@ public class Database {
          int x = 1;
          int y = 1;
          for(DbColumn c : columns){
-             gpane.add(new Label(c.getName()), x, y);
+             gpane.add(new Label(c.getDisplayName()), x, y);
              x++;
              gpane.add(c.getTextField(), x, y);
              y++;
@@ -136,21 +138,37 @@ public class Database {
                 String name = c.getName();
                 switch (name){
                     case "head" : item.setHead(c.getTextField().getText());
+                        break;
                     case "diameter" : item.setDiameter(Double.parseDouble(c.getTextField().getText()));
+                        break;
                     case "length" : item.setLength(Double.parseDouble(c.getTextField().getText()));
+                        break;
                     case "remaininglength" : item.setRemainingLength(Double.parseDouble(c.getTextField().getText()));
+                        break;
                     case "width" : item.setWidth(Double.parseDouble(c.getTextField().getText()));
+                        break;
                     case "remainingwidth" : item.setRemainingWidth(Double.parseDouble(c.getTextField().getText()));
+                        break;
                     case "thickness" : item.setThickness(Double.parseDouble(c.getTextField().getText()));
+                        break;
                     case "remainingthickness" : item.setRemainingThickness(Double.parseDouble(c.getTextField().getText()));
+                        break;
                     case "type" : item.setType(c.getTextField().getText());
+                        break;
                     case "initialweight" : item.setInitialWeight(Double.parseDouble(c.getTextField().getText()));
+                        break;
                     case "remainingweight" : item.setRemainingWeight(Double.parseDouble(c.getTextField().getText()));
+                        break;
                     case "color" : item.setColor(c.getTextField().getText());
+                        break;
                     case "qty" : item.setQty(Integer.parseInt(c.getTextField().getText()));
+                        break;
                     case "price" : item.setPrice(Double.parseDouble(c.getTextField().getText()));
+                        break;
                     case "pricecm" : item.setPriceCm(Double.parseDouble(c.getTextField().getText()));
+                        break;
                     case "pieceprice" : item.setPiecePrice(Double.parseDouble(c.getTextField().getText()));
+                        break;
                 }
 
             }
@@ -194,10 +212,19 @@ public class Database {
         apButtons.getChildren().add(addButton);
         spane.getItems().add(apButtons);
         apTableView.getChildren().add(tableM);
+        apTableView.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+        tableM.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
+        apTableView.setPadding(new Insets(0,0,0,0));
+        tableM.setPadding(new Insets(0,0,0,0));
+        tableM.setMinSize(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE);
+        apTableView.setTopAnchor(tableM,0.0);
+        apTableView.setBottomAnchor(tableM, 0.0);
+        apTableView.setLeftAnchor(tableM, 0.0);
+        apTableView.setRightAnchor(tableM, 0.0);
         spane.setDividerPosition(0, 0.85);
-        apTableView.setPrefSize(Region.USE_COMPUTED_SIZE, Region.USE_COMPUTED_SIZE);
         for(DbColumn tc : columns)
             tableM.getColumns().add(tc.getTableColumn());
+        tableM.setItems(db.getExternalDbEntries(this));
         tableM.setVisible(true);
         return tab;
     }
