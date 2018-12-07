@@ -11,6 +11,14 @@ import javafx.beans.property.*;
 
 public abstract class AbsMaterial {
 
+    public double getPiecePrice() {
+        return piecePrice.get();
+    }
+
+    public SimpleDoubleProperty piecePriceProperty() {
+        return piecePrice;
+    }
+
     public void setId(int id) {
         this.id.set(id);
     }

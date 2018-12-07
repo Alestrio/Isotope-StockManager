@@ -1,8 +1,13 @@
 package com.alestrio.isotope.materials;
 
 import com.alestrio.isotope.database.Database;
+import com.alestrio.isotope.database.PriceCount_type;
 
 import java.sql.SQLException;
+
+import static com.alestrio.isotope.database.PriceCount_type.CUBICCM;
+import static com.alestrio.isotope.database.PriceCount_type.SQUARECM;
+import static com.alestrio.isotope.database.PriceCount_type.UNIT;
 
 public class DBItem extends AbsMaterial{
     public Database database;
@@ -10,13 +15,16 @@ public class DBItem extends AbsMaterial{
     public DBItem(Database database) {
         db.connect();
         this.database = database;
+
+
     }
 
     @Override
     public void delete() {
-        String query = "DELETE FROM " + database.getName() + " WHERE id=" + this.id.get();
+        String query = "DELETE FROM " + database.getName().toLowerCase() + " WHERE id=" + this.id.get();
 
         try {
+            System.out.println(query);
             this.db.dbQuery(query);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -109,5 +117,19 @@ public class DBItem extends AbsMaterial{
     @Override
     public boolean isSimilar() {
         return false;
+    }
+    public void computeTotalPrice(){
+        PriceCount_type pct = database.getPct();
+        if(pct.name().equalsIgnoreCase(UNIT.name())){
+            this.totalPrice.set(this.qty.get()*this.price.get());
+        }
+        if(pct.equals(SQUARECM)){
+            double area = this.remainingLength.get()*this.remainingWidth.get();
+            this.totalPrice.set(area*this.priceCm.get());
+        }
+        if(pct.equals(CUBICCM)){
+            double volume = this.remainingLength.get()*this.remainingWidth.get()*this.remainingThickness.get();
+            this.totalPrice.set(volume*this.priceCm.get());
+        }
     }
 }

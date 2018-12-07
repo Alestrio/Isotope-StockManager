@@ -332,10 +332,6 @@ public class DB {
                         int k = result.getInt("qty");
                         item.setQty(k);
                     }
-                    if(col.getName().equalsIgnoreCase("id")){
-                        int l = result.getInt("id");
-                        item.setId(l);
-                    }
                     if(col.getName().equalsIgnoreCase("head")){
                         String a = result.getString("head");
                         item.setHead(a);
@@ -360,6 +356,9 @@ public class DB {
                         Double a = result.getDouble("pieceprice");
                         item.setPiecePrice(a);
                     }
+                    int l = result.getInt("id");
+                    item.setId(l);
+                    item.computeTotalPrice();
                 }
 
                 oldb.add(item);

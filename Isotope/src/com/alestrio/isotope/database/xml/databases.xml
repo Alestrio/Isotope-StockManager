@@ -8,8 +8,9 @@
 
 <definitions>
     <database name="Ecrous"
-              c1name="diameter" c1type="numeric" c1prop="diameter" c1dispname="Diametre"
-              c2name="type" c2type="text" c2prop="type" c2dispname="Matiere"
+              c1name="diameter" c1type="numeric" c1prop="diameter" c1dispname="Diamètre"
+              c2name="type" c2type="text" c2prop="type" c2dispname="Matière"
+              c3name="qty" c3type="integer" c3prop="qty" c3dispname="Quantité"
               pct="1"/>
 </definitions>
 
