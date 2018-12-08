@@ -128,8 +128,15 @@ public class DBItem extends AbsMaterial{
             this.totalPrice.set(area*this.priceCm.get());
         }
         if(pct.equals(CUBICCM)){
-            double volume = this.remainingLength.get()*this.remainingWidth.get()*this.remainingThickness.get();
-            this.totalPrice.set(volume*this.priceCm.get());
+            if(this.diameter.get() == 0){
+                double volume = this.remainingLength.get()*this.remainingWidth.get()*this.remainingThickness.get();
+                this.totalPrice.set(volume*this.priceCm.get());
+            }
+            else{
+                double volume = (Math.pow(this.diameter.get(), 2.0)*Math.PI)*this.length.get();
+                this.totalPrice.set(volume*this.priceCm.get());
+            }
+
         }
     }
 }

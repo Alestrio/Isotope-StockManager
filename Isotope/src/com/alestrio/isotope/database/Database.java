@@ -127,6 +127,7 @@ public class Database {
         duplButton = new Button();
         duplButton.setText("Dupliquer");
         totalValueButton = new Button();
+        totalValueButton.setText("Valeur totale");
 
         tab.setText(name);
         tab.setContent(spane);
@@ -136,6 +137,7 @@ public class Database {
         btnVbox.getChildren().add(modifyButton);
         btnVbox.getChildren().add(delButton);
         btnVbox.getChildren().add(duplButton);
+        btnVbox.getChildren().add(totalValueButton);
 
         btnVbox.setMaxSize(Double.MAX_VALUE, Double.MAX_VALUE);
         btnVbox.setPrefHeight(Double.MAX_VALUE);
@@ -160,6 +162,11 @@ public class Database {
         delButton.setMaxWidth(Double.MAX_VALUE);
         delButton.setPrefHeight(150.0);
         delButton.setMaxHeight(Double.MAX_VALUE);
+
+        totalValueButton.setMinWidth(btnVbox.getWidth());
+        totalValueButton.setMaxWidth(Double.MAX_VALUE);
+        totalValueButton.setPrefHeight(150.0);
+        totalValueButton.setMaxHeight(Double.MAX_VALUE);
 
 
         spane.getItems().add(btnVbox);
@@ -504,6 +511,19 @@ public class Database {
             item.add();
             tableM.setItems(db.getExternalDbEntries(this));
         });
+
+        totalValueButton.setOnAction(event -> {
+            List<AbsMaterial> entries = db.getExternalDbEntries(this);
+            double totalValue=0;
+            for(AbsMaterial mat : entries)
+                totalValue += mat.getTotalPrice();
+
+            Dialog dialog = new Dialog();
+            dialog.setTitle("Valeur totale");
+            dialog.setContentText("Valeur total de/d' " + this.name + " : " + totalValue + " €");
+            dialog.getDialogPane().getButtonTypes().add(new ButtonType("Valider", ButtonBar.ButtonData.OK_DONE));
+            dialog.showAndWait();
+            });
 
 
         return tab;
