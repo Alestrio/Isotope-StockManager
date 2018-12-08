@@ -23,14 +23,13 @@ import java.util.Collection;
 import java.util.List;
 
 public class Database {
-    protected String name;
+    private String name;
     protected List<DbColumn> columns = new ArrayList<>();
     protected DB db = new DB();
     private TableView<AbsMaterial> tableM;
     private Button modifyButton;
     private Button delButton;
     private Button duplButton;
-    // TODO: Total Value button
     private Button totalValueButton;
     private PriceCount_type pct;
     private Button addButton;

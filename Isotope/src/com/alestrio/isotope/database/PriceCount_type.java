@@ -8,13 +8,17 @@ package com.alestrio.isotope.database;
 
 public enum PriceCount_type {
 
-    CUBICCM(),
-    SQUARECM(),
-    UNIT();
+    CUBICCM(3),
+    SQUARECM(2),
+    UNIT(1);
 
     private int i;
 
-    PriceCount_type(){
+    public int getI() {
+        return i;
+    }
 
+    PriceCount_type(int i){
+        this.i = i;
     }
 }

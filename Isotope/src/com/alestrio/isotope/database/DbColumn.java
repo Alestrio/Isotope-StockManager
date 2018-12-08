@@ -19,6 +19,7 @@ public class DbColumn {
     private DB_TYPE dbt;
     private TableColumn tc = new TableColumn();
     private TextField tf = new TextField();
+    private String property;
 
     public String getName() {
         return name;
@@ -40,9 +41,14 @@ public class DbColumn {
         return displayName;
     }
 
+    public String getProperty() {
+        return property;
+    }
+
     DbColumn(String name, DB_TYPE dbt, String property, String dispname){
         this.name = name;
         this.dbt = dbt;
+        this.property = property;
         tc.setCellValueFactory(new PropertyValueFactory<AbsMaterial, String>(property));
         this.displayName = dispname;
         tc.setText(this.displayName);

@@ -14,6 +14,7 @@ import com.alestrio.isotope.database.XmlSettings;
 import com.alestrio.isotope.materials.Cylinder;
 import com.alestrio.isotope.materials.FilamentSpool;
 import com.alestrio.isotope.materials.RectangularPiece;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -32,6 +33,7 @@ public class ControllerMP {
     TabPane tabBase = new TabPane();
     ArrayList<Database> aldb = XmlSettings.parseFile();
     Logging log = new Logging();
+    private int j = 11;
 
     /*--- PLAQUES ---*/
     @FXML
@@ -311,7 +313,7 @@ public class ControllerMP {
     }
 
     /*--- MODIFY BUTTONS ---*/
-    //TODO Boutons de modification
+
     @FXML
     void clickModBtnR() {
         RectangularPiece r = tableR.getSelectionModel().getSelectedItem();
@@ -778,6 +780,111 @@ public class ControllerMP {
 
     /*--- OTHER BUTTONS ---*/
 
+    @FXML
+    void clickDatabaseAddBtn(){
+        //TODO clickDatabaseAddBtn
+        Dialog dialog = new Dialog();
+        dialog.setTitle("Ajouter un champ dynamique personnalisé :");
+
+        Label dbNameLabel = new Label("Nom de la base de donnée : ");
+        Label dbPctLabel = new Label("Type de calcul de prix : ");
+
+        TextField dbName = new TextField();
+
+        ToggleGroup dbPct = new ToggleGroup();
+        RadioButton dbPctUnit = new RadioButton("Prix à l'unité");
+        dbPctUnit.setToggleGroup(dbPct);
+        RadioButton dbPctSqCm = new RadioButton("Prix au cm carré");
+        dbPctSqCm.setToggleGroup(dbPct);
+        RadioButton dbPctCubCm = new RadioButton("Prix au cm cube");
+        dbPctCubCm.setToggleGroup(dbPct);
+
+        GridPane gridPane = new GridPane();
+        gridPane.add(dbNameLabel, 1, 1);
+        gridPane.add(dbName, 2, 1);
+
+        gridPane.add(dbPctLabel, 1, 2);
+        gridPane.add(dbPctUnit, 2, 2);
+        gridPane.add(dbPctSqCm, 2, 3);
+        gridPane.add(dbPctCubCm, 2, 4);
+
+        Label dbColumnsLabel = new Label("Colonnes :");
+        ArrayList<TextField> listColNameTextField = new ArrayList<>();
+        ArrayList<ComboBox> listColTypeComboBox = new ArrayList<>();
+        ArrayList<ComboBox> listColPropComboBox = new ArrayList<>();
+
+        ObservableList<String> types = FXCollections.observableArrayList("INTEG",
+                                                                                "TEXT",
+                                                                                "NUMERIC");
+        ObservableList<String> props = FXCollections.observableArrayList(
+                "head",
+                "diameter",
+                "length",
+                "remainingLength",
+                "width",
+                "remainingWidth",
+                "thickness",
+                "remainingThickness",
+                "type",
+                "initialWeight",
+                "remainingWidth",
+                "color",
+                "qty",
+                "price",
+                "priceCm",
+                "piecePrice"
+        );
+
+        listColNameTextField.add(new TextField());
+
+        gridPane.add(dbColumnsLabel, 1, 6);
+
+        listColNameTextField.add(new TextField());
+        listColTypeComboBox.add(new ComboBox(types));
+        listColPropComboBox.add(new ComboBox(props));
+
+        gridPane.add(new Label("Nom :"), 1, 7);
+        gridPane.add(listColNameTextField.get(0), 2, 7);
+        gridPane.add(new Label("Type"), 1, 8);
+        gridPane.add(listColTypeComboBox.get(0), 2, 8);
+        gridPane.add(new Label("Propriété"), 1, 9);
+        gridPane.add(listColPropComboBox.get(0), 2, 9);
+
+        Button newCol = new Button("Ajouter une colonne");
+
+        gridPane.add(newCol, 1, 10);
+        newCol.setOnAction(event ->{
+            gridPane.getChildren().remove(newCol);
+
+            listColNameTextField.add(new TextField());
+            listColTypeComboBox.add(new ComboBox(types));
+            listColPropComboBox.add(new ComboBox(props));
+
+            gridPane.add(new Separator(), 1, this.j);
+            this.j++;
+            gridPane.add(new Label("Nom :"), 1, this.j);
+            gridPane.add(listColNameTextField.get(1), 2, this.j);
+            this.j++;
+            gridPane.add(new Label("Type"), 1, this.j);
+            gridPane.add(listColTypeComboBox.get(1), 2, this.j);
+            this.j++;
+            gridPane.add(new Label("Propriété"), 1, this.j);
+            gridPane.add(listColPropComboBox.get(1), 2, this.j);
+            this.j++;
+
+            gridPane.add(newCol, 1, this.j);
+            this.j++;
+            dialog.getDialogPane().setContent(gridPane);
+            this.j = this.j++;
+        });
+
+        dialog.getDialogPane().setContent(gridPane);
+        dialog.setResizable(true);
+        dialog.showAndWait();
+
+
+
+    }
 
     /*--- TOTAL VALUE BUTTONS ---*/
     @FXML
@@ -931,7 +1038,6 @@ public class ControllerMP {
             showDbEntriesRec();
             showDbEntriesCylinders();
             if(aldb != null){
-                //TODO Get database items
                 Tab tab;
                 for(Database db : aldb){
                     tab = db.getDatabaseUiElements();
