@@ -8,9 +8,7 @@ package com.alestrio.isotope.controllers;
 
 import com.alestrio.isotope.DB;
 import com.alestrio.isotope.Logging;
-import com.alestrio.isotope.database.Database;
-import com.alestrio.isotope.database.DbColumn;
-import com.alestrio.isotope.database.XmlSettings;
+import com.alestrio.isotope.database.*;
 import com.alestrio.isotope.materials.Cylinder;
 import com.alestrio.isotope.materials.FilamentSpool;
 import com.alestrio.isotope.materials.RectangularPiece;
@@ -34,6 +32,7 @@ public class ControllerMP {
     ArrayList<Database> aldb = XmlSettings.parseFile();
     Logging log = new Logging();
     private int j = 11;
+    private int i = 1;
 
     /*--- PLAQUES ---*/
     @FXML
@@ -852,9 +851,13 @@ public class ControllerMP {
 
         Button newCol = new Button("Ajouter une colonne");
 
+        Button validate = new Button("Valider");
+        gridPane.add(validate, 2, j);
         gridPane.add(newCol, 1, 10);
         newCol.setOnAction(event ->{
+            j++;
             gridPane.getChildren().remove(newCol);
+            gridPane.getChildren().remove(validate);
 
             listColNameTextField.add(new TextField());
             listColTypeComboBox.add(new ComboBox(types));
@@ -863,23 +866,76 @@ public class ControllerMP {
             gridPane.add(new Separator(), 1, this.j);
             this.j++;
             gridPane.add(new Label("Nom :"), 1, this.j);
-            gridPane.add(listColNameTextField.get(1), 2, this.j);
+            gridPane.add(listColNameTextField.get(i), 2, this.j);
             this.j++;
             gridPane.add(new Label("Type"), 1, this.j);
-            gridPane.add(listColTypeComboBox.get(1), 2, this.j);
+            gridPane.add(listColTypeComboBox.get(i), 2, this.j);
             this.j++;
             gridPane.add(new Label("Propriété"), 1, this.j);
-            gridPane.add(listColPropComboBox.get(1), 2, this.j);
+            gridPane.add(listColPropComboBox.get(i), 2, this.j);
             this.j++;
 
             gridPane.add(newCol, 1, this.j);
-            this.j++;
-            dialog.getDialogPane().setContent(gridPane);
+            this.j=j+2;
+            gridPane.add(validate, 2, j);
             this.j = this.j++;
+            dialog.getDialogPane().setContent(gridPane);
+            i++;
         });
 
         dialog.getDialogPane().setContent(gridPane);
         dialog.setResizable(true);
+        this.j = j+2;
+
+        validate.setOnAction(event ->{
+
+            Database xmlDatabase = new Database();
+            xmlDatabase.setDisplayName(dbName.getText());
+            xmlDatabase.setName(dbName.getText().replaceAll("(\\W|^_)*", "").toLowerCase());
+
+            if(dbPct.getSelectedToggle().equals(dbPctUnit)){
+                xmlDatabase.setPct(PriceCount_type.UNIT);
+            }
+            if(dbPct.getSelectedToggle().equals(dbPctSqCm)){
+                xmlDatabase.setPct(PriceCount_type.SQUARECM);
+            }
+            if(dbPct.getSelectedToggle().equals(dbPctCubCm)){
+                xmlDatabase.setPct(PriceCount_type.CUBICCM);
+            }
+            int k = 1;
+
+
+            ArrayList<DbColumn> xmlDatabaseColumns = new ArrayList<>();
+            xmlDatabaseColumns.add(new DbColumn("nothing", DB_TYPE.INTEG, "nothing", "nothing"));
+            for (TextField tf : listColNameTextField){
+                if((tf.getText() != null)){
+                    String tempType = listColTypeComboBox.get(k).toString();
+                    if (tempType != null){
+                        String tempProp = listColPropComboBox.get(k).toString();
+                        if(tempProp != null && !tempProp.equalsIgnoreCase(xmlDatabaseColumns.get(k).getProperty())){
+                            switch(tempType){
+                                case "INTEG" : xmlDatabase.addColumn(new DbColumn(tf.getText().replaceAll("(\\W|^_)*", "").toLowerCase(), DB_TYPE.INTEG, tempProp, tf.getText()));
+                                    xmlDatabaseColumns.add(new DbColumn(tf.getText().replaceAll("(\\W|^_)*", "").toLowerCase(), DB_TYPE.INTEG, tempProp, tf.getText()));
+                                    break;
+                                case "NUMERIC" : xmlDatabase.addColumn(new DbColumn(tf.getText().replaceAll("(\\W|^_)*", "").toLowerCase(), DB_TYPE.NUMERIC, tempProp, tf.getText()));
+                                    xmlDatabaseColumns.add(new DbColumn(tf.getText().replaceAll("(\\W|^_)*", "").toLowerCase(), DB_TYPE.INTEG, tempProp, tf.getText()));
+                                    break;
+                                case "TEXT" : xmlDatabase.addColumn(new DbColumn(tf.getText().replaceAll("(\\W|^_)*", "").toLowerCase(), DB_TYPE.TEXT, tempProp, tf.getText()));
+                                    xmlDatabaseColumns.add(new DbColumn(tf.getText().replaceAll("(\\W|^_)*", "").toLowerCase(), DB_TYPE.INTEG, tempProp, tf.getText()));
+                                    break;
+
+                            }
+                        }
+                    }
+                }
+            }
+
+            xmlDatabase.addDb();
+            XmlSettings xml = new XmlSettings();
+            xml.addDatabase(xmlDatabase);
+
+        });
+
         dialog.showAndWait();
 
 

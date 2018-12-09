@@ -33,7 +33,11 @@ public class Database {
     private Button totalValueButton;
     private PriceCount_type pct;
     private Button addButton;
+    private String displayName;
 
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
+    }
 
     public void setPct(PriceCount_type pct) {
         this.pct = pct;

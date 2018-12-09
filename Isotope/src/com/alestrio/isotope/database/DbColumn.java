@@ -45,7 +45,7 @@ public class DbColumn {
         return property;
     }
 
-    DbColumn(String name, DB_TYPE dbt, String property, String dispname){
+    public DbColumn(String name, DB_TYPE dbt, String property, String dispname){
         this.name = name;
         this.dbt = dbt;
         this.property = property;
