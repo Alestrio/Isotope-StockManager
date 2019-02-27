@@ -23,17 +23,17 @@ import java.util.Collection;
 import java.util.List;
 
 public class Database {
-    private String name;
+    protected String name;
     protected List<DbColumn> columns = new ArrayList<>();
-    protected DB db = new DB();
+    private DB db = new DB();
     private TableView<AbsMaterial> tableM;
     private Button modifyButton;
     private Button delButton;
     private Button duplButton;
     private Button totalValueButton;
-    private PriceCount_type pct;
+    protected PriceCount_type pct;
     private Button addButton;
-    private String displayName;
+    protected String displayName;
 
     public void setDisplayName(String displayName) {
         this.displayName = displayName;
@@ -113,6 +113,10 @@ public class Database {
     }
 
 
+    public String getDisplayName() {
+        return displayName;
+    }
+
     public Tab getDatabaseUiElements(){
         Tab tab = new Tab();
         SplitPane spane = new SplitPane();
@@ -186,7 +190,7 @@ public class Database {
         spane.setDividerPosition(0, 0.85);
         for(DbColumn tc : columns)
             tableM.getColumns().add(tc.getTableColumn());
-        tableM.setItems(db.getExternalDbEntries(this));
+        //tableM.setItems(db.getExternalDbEntries(this));
         tableM.setVisible(true);
         List<DbColumn> opcol = columns;
         opcol.remove(1);

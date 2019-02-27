@@ -26,10 +26,8 @@ import java.util.Optional;
 
 public class ControllerMP {
     DB db = new DB();
-    private XmlSettings settings;
     @FXML
     TabPane tabBase = new TabPane();
-    ArrayList<Database> aldb = XmlSettings.parseFile();
     Logging log = new Logging();
     private int j = 11;
     private int i = 1;
@@ -106,9 +104,6 @@ public class ControllerMP {
         db.connect();
         db.createDatabase();
         showDbEntries();
-        for (Database db : aldb) {
-            db.addDb();
-        }
     }
 
         /*--- ADD BUTTONS ---*/
@@ -889,39 +884,39 @@ public class ControllerMP {
 
         validate.setOnAction(event ->{
 
-            Database xmlDatabase = new Database();
-            xmlDatabase.setDisplayName(dbName.getText());
-            xmlDatabase.setName(dbName.getText().replaceAll("(\\W|^_)*", "").toLowerCase());
+            Database database = new Database();
+            database.setDisplayName(dbName.getText());
+            database.setName(dbName.getText().replaceAll("(\\W|^_)*", "").toLowerCase());
 
             if(dbPct.getSelectedToggle().equals(dbPctUnit)){
-                xmlDatabase.setPct(PriceCount_type.UNIT);
+                database.setPct(PriceCount_type.UNIT);
             }
             if(dbPct.getSelectedToggle().equals(dbPctSqCm)){
-                xmlDatabase.setPct(PriceCount_type.SQUARECM);
+                database.setPct(PriceCount_type.SQUARECM);
             }
             if(dbPct.getSelectedToggle().equals(dbPctCubCm)){
-                xmlDatabase.setPct(PriceCount_type.CUBICCM);
+                database.setPct(PriceCount_type.CUBICCM);
             }
-            int k = 1;
+            int k = 0;
 
 
-            ArrayList<DbColumn> xmlDatabaseColumns = new ArrayList<>();
-            xmlDatabaseColumns.add(new DbColumn("nothing", DB_TYPE.INTEG, "nothing", "nothing"));
+            ArrayList<DbColumn> databaseColumns = new ArrayList<>();
+            databaseColumns.add(new DbColumn("nothing", DB_TYPE.INTEG, "nothing", "nothing"));
             for (TextField tf : listColNameTextField){
                 if((tf.getText() != null)){
                     String tempType = listColTypeComboBox.get(k).toString();
                     if (tempType != null){
                         String tempProp = listColPropComboBox.get(k).toString();
-                        if(tempProp != null && !tempProp.equalsIgnoreCase(xmlDatabaseColumns.get(k).getProperty())){
+                        if(tempProp != null && !tempProp.equalsIgnoreCase(databaseColumns.get(k).getProperty())){
                             switch(tempType){
-                                case "INTEG" : xmlDatabase.addColumn(new DbColumn(tf.getText().replaceAll("(\\W|^_)*", "").toLowerCase(), DB_TYPE.INTEG, tempProp, tf.getText()));
-                                    xmlDatabaseColumns.add(new DbColumn(tf.getText().replaceAll("(\\W|^_)*", "").toLowerCase(), DB_TYPE.INTEG, tempProp, tf.getText()));
+                                case "INTEG" : database.addColumn(new DbColumn(tf.getText().replaceAll("(\\W|^_)*", "").toLowerCase(), DB_TYPE.INTEG, tempProp, tf.getText()));
+                                    databaseColumns.add(new DbColumn(tf.getText().replaceAll("(\\W|^_)*", "").toLowerCase(), DB_TYPE.INTEG, tempProp, tf.getText()));
                                     break;
-                                case "NUMERIC" : xmlDatabase.addColumn(new DbColumn(tf.getText().replaceAll("(\\W|^_)*", "").toLowerCase(), DB_TYPE.NUMERIC, tempProp, tf.getText()));
-                                    xmlDatabaseColumns.add(new DbColumn(tf.getText().replaceAll("(\\W|^_)*", "").toLowerCase(), DB_TYPE.INTEG, tempProp, tf.getText()));
+                                case "NUMERIC" : database.addColumn(new DbColumn(tf.getText().replaceAll("(\\W|^_)*", "").toLowerCase(), DB_TYPE.NUMERIC, tempProp, tf.getText()));
+                                    databaseColumns.add(new DbColumn(tf.getText().replaceAll("(\\W|^_)*", "").toLowerCase(), DB_TYPE.INTEG, tempProp, tf.getText()));
                                     break;
-                                case "TEXT" : xmlDatabase.addColumn(new DbColumn(tf.getText().replaceAll("(\\W|^_)*", "").toLowerCase(), DB_TYPE.TEXT, tempProp, tf.getText()));
-                                    xmlDatabaseColumns.add(new DbColumn(tf.getText().replaceAll("(\\W|^_)*", "").toLowerCase(), DB_TYPE.INTEG, tempProp, tf.getText()));
+                                case "TEXT" : database.addColumn(new DbColumn(tf.getText().replaceAll("(\\W|^_)*", "").toLowerCase(), DB_TYPE.TEXT, tempProp, tf.getText()));
+                                    databaseColumns.add(new DbColumn(tf.getText().replaceAll("(\\W|^_)*", "").toLowerCase(), DB_TYPE.INTEG, tempProp, tf.getText()));
                                     break;
 
                             }
@@ -930,9 +925,8 @@ public class ControllerMP {
                 }
             }
 
-            xmlDatabase.addDb();
-            XmlSettings xml = new XmlSettings();
-            xml.addDatabase(xmlDatabase);
+            JsonSerializer js = new JsonSerializer();
+            js.serialize(database);
 
         });
 
@@ -1088,23 +1082,11 @@ public class ControllerMP {
     }
 
     private void showDbEntries() {
-        try {
             db.connect();
             showDbEntriesSpool();
             showDbEntriesRec();
             showDbEntriesCylinders();
-            if(aldb != null){
-                Tab tab;
-                for(Database db : aldb){
-                    tab = db.getDatabaseUiElements();
-                    tabBase.getTabs().add(tab);
-                }
-            }
             log.writeLog("Everything shown and initialized !");
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     @FXML

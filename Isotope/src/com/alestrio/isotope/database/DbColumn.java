@@ -7,6 +7,7 @@
 package com.alestrio.isotope.database;
 
 import com.alestrio.isotope.materials.AbsMaterial;
+import flexjson.JSON;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -18,8 +19,8 @@ public class DbColumn {
     private String displayName;
     private DB_TYPE dbt;
     private TableColumn tc = new TableColumn();
-    private TextField tf = new TextField();
-    private String property;
+    protected TextField tf = new TextField();
+    protected String property;
 
     public String getName() {
         return name;
@@ -55,10 +56,12 @@ public class DbColumn {
 
     }
 
+    @JSON(include=false)
     public TableColumn getTableColumn() {
        return tc;
     }
 
+    @JSON(include=false)
     public TextField getTextField() {
         return tf;
     }
