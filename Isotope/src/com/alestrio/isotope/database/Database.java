@@ -15,9 +15,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Material;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -25,14 +23,14 @@ import java.util.List;
 public class Database {
     protected String name;
     protected List<DbColumn> columns = new ArrayList<>();
-    private DB db = new DB();
-    private TableView<AbsMaterial> tableM;
-    private Button modifyButton;
-    private Button delButton;
-    private Button duplButton;
-    private Button totalValueButton;
+    private transient DB db = new DB();
+    private transient TableView<AbsMaterial> tableM;
+    private transient Button modifyButton;
+    private transient Button delButton;
+    private transient Button duplButton;
+    private transient Button totalValueButton;
     protected PriceCount_type pct;
-    private Button addButton;
+    private transient Button addButton;
     protected String displayName;
 
     public void setDisplayName(String displayName) {

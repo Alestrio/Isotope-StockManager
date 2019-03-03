@@ -829,7 +829,7 @@ public class ControllerMP {
                 "piecePrice"
         );
 
-        listColNameTextField.add(new TextField());
+        //listColNameTextField.add(new TextField());
 
         gridPane.add(dbColumnsLabel, 1, 6);
 
@@ -902,12 +902,12 @@ public class ControllerMP {
 
             ArrayList<DbColumn> databaseColumns = new ArrayList<>();
             databaseColumns.add(new DbColumn("nothing", DB_TYPE.INTEG, "nothing", "nothing"));
-            for (TextField tf : listColNameTextField){
+            for (TextField tf : listColNameTextField){ //TODO
                 if((tf.getText() != null)){
-                    String tempType = listColTypeComboBox.get(k).toString();
+                    String tempType = listColTypeComboBox.get(k).getValue().toString();
                     if (tempType != null){
-                        String tempProp = listColPropComboBox.get(k).toString();
-                        if(tempProp != null && !tempProp.equalsIgnoreCase(databaseColumns.get(k).getProperty())){
+                        String tempProp = listColPropComboBox.get(k).getValue().toString();
+                        if(tempProp != null /*&& !tempProp.equalsIgnoreCase(databaseColumns.get(k).getProperty())*/ /*TODO*/){
                             switch(tempType){
                                 case "INTEG" : database.addColumn(new DbColumn(tf.getText().replaceAll("(\\W|^_)*", "").toLowerCase(), DB_TYPE.INTEG, tempProp, tf.getText()));
                                     databaseColumns.add(new DbColumn(tf.getText().replaceAll("(\\W|^_)*", "").toLowerCase(), DB_TYPE.INTEG, tempProp, tf.getText()));
@@ -927,10 +927,12 @@ public class ControllerMP {
 
             JsonSerializer js = new JsonSerializer();
             js.serialize(database);
+            dialog.setResult(Boolean.TRUE);
 
         });
 
         dialog.showAndWait();
+        dialog.getDialogPane();
 
 
 
