@@ -7,7 +7,7 @@
 package com.alestrio.isotope.database;
 
 import com.google.gson.*;
-
+import org.apache.commons.lang3.StringEscapeUtils;
 
 import java.io.*;
 
@@ -20,8 +20,8 @@ public class JsonSerializer {
     private JsonArray ja;
     private JsonParser jp;
     private JsonElement je;
-    private JsonSerializer js;
     private Gson gson;
+
 
     public JsonSerializer() {
         if (!file.exists()) {
@@ -34,17 +34,21 @@ public class JsonSerializer {
     }
 
     public void serialize(Object o) {
-        gson = new Gson();
-        String serializedObject = gson.toJson(o);
+        gson = new GsonBuilder().setPrettyPrinting().create();
+        String serializedObject = "{" + gson.toJson(o).substring(2, gson.toJson(o).length()-2) + "}";
         try {
-            fos = new FileOutputStream(file, true);
-            pw = new PrintWriter(fos);
             fis = new FileInputStream(file);
-            js = new JsonSerializer();
             String fileContent = new String(fis.readAllBytes());
+            jp = new JsonParser();
             ja = jp.parse(fileContent).getAsJsonArray();
-            ja.add(serializedObject);
-            pw.print(ja.getAsString());
+            fos = new FileOutputStream(file, false);
+            pw = new PrintWriter(fos);
+            je = jp.parse(serializedObject);
+            ja.add(je);
+            String unescapedobject = StringEscapeUtils.unescapeJava(ja.toString());
+            JsonArray jatemp = jp.parse(unescapedobject).getAsJsonArray();
+            pw.print(gson.toJson(jatemp));
+            pw.flush();
 
         } catch (IOException e) {
             e.printStackTrace();
