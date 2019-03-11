@@ -1,1 +1,52 @@
-[]
+[
+  {
+    "name": "ecrous",
+    "columns": [
+      {
+        "name": "price",
+        "displayName": "Prix",
+        "dbt": "NUMERIC",
+        "property": "price"
+      },
+      {
+        "name": "totalPrice",
+        "displayName": "Prix total",
+        "dbt": "NUMERIC",
+        "property": "totalPrice"
+      },
+      {
+        "name": "diametre",
+        "displayName": "Diametre",
+        "dbt": "NUMERIC",
+        "property": "diameter"
+      }
+    ],
+    "pct": "UNIT",
+    "displayName": "Ecrous"
+  },
+  {
+    "name": "rondelles",
+    "columns": [
+      {
+        "name": "price",
+        "displayName": "Prix",
+        "dbt": "NUMERIC",
+        "property": "price"
+      },
+      {
+        "name": "totalPrice",
+        "displayName": "Prix total",
+        "dbt": "NUMERIC",
+        "property": "totalPrice"
+      },
+      {
+        "name": "diametre",
+        "displayName": "Diametre",
+        "dbt": "NUMERIC",
+        "property": "diameter"
+      }
+    ],
+    "pct": "UNIT",
+    "displayName": "Rondelles"
+  }
+]

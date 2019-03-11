@@ -6,6 +6,7 @@
 
 package com.alestrio.isotope.database;
 
+import com.alestrio.isotope.Logging;
 import com.google.gson.*;
 import org.apache.commons.lang3.StringEscapeUtils;
 
@@ -21,6 +22,7 @@ public class JsonSerializer {
     private JsonParser jp;
     private JsonElement je;
     private Gson gson;
+    private Logging log;
 
 
     public JsonSerializer() {
@@ -29,6 +31,7 @@ public class JsonSerializer {
                 file.createNewFile();
             } catch (IOException e) {
                 e.printStackTrace();
+                log.writeLog(e.getMessage());
             }
         }
     }
@@ -52,6 +55,7 @@ public class JsonSerializer {
 
         } catch (IOException e) {
             e.printStackTrace();
+            log.writeLog(e.getMessage());
         }
 
     }
