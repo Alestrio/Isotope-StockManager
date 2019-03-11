@@ -26,6 +26,7 @@ public class JsonSerializer {
 
 
     public JsonSerializer() {
+        log = new Logging();
         if (!file.exists()) {
             try {
                 file.createNewFile();

@@ -19,6 +19,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -31,6 +32,8 @@ public class ControllerMP {
     Logging log = new Logging();
     private int j = 11;
     private int i = 1;
+    private JsonDeserializer jsd = new JsonDeserializer();
+    private ArrayList<Database> aldb;
 
     /*--- PLAQUES ---*/
     @FXML
@@ -103,6 +106,8 @@ public class ControllerMP {
     public void initialize() {
         db.connect();
         db.createDatabase();
+        aldb = jsd.deserialize();
+        aldb.forEach(Database::addDb);
         showDbEntries();
     }
 
@@ -1088,19 +1093,7 @@ public class ControllerMP {
             showDbEntriesSpool();
             showDbEntriesRec();
             showDbEntriesCylinders();
+            aldb.forEach(e -> this.tabBase.getTabs().add(e.getDatabaseUiElements()));
             log.writeLog("Everything shown and initialized !");
-    }
-
-    @FXML
-    void clickAddDbButton(){
-        Dialog<Database> d = new Dialog<>();
-        GridPane g = new GridPane();
-        List<DbColumn> columns = new ArrayList<>();
-        d.setTitle("Ajouter une table");
-
-
-
-        ButtonType ok = new ButtonType("Okay", ButtonBar.ButtonData.OK_DONE);
-        log.writeLog("New database added ! Name :");
     }
 }

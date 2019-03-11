@@ -17,7 +17,7 @@ public class DbColumn {
     private String name;
     private String displayName;
     private DB_TYPE dbt;
-    private transient TableColumn tc = new TableColumn();
+    private transient TableColumn tc;
     protected transient TextField tf = new TextField();
     protected String property;
 
@@ -49,14 +49,16 @@ public class DbColumn {
         this.name = name;
         this.dbt = dbt;
         this.property = property;
-        tc.setCellValueFactory(new PropertyValueFactory<AbsMaterial, String>(property));
         this.displayName = dispname;
-        tc.setText(this.displayName);
+
 
     }
 
     public TableColumn getTableColumn() {
-       return tc;
+        this.tc = new TableColumn();
+        this.tc.setCellValueFactory(new PropertyValueFactory<AbsMaterial, String>(property));
+        this.tc.setText(this.displayName);
+        return this.tc;
     }
 
     public TextField getTextField() {

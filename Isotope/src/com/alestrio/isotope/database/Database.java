@@ -134,7 +134,7 @@ public class Database {
         totalValueButton = new Button();
         totalValueButton.setText("Valeur totale");
 
-        tab.setText(name);
+        tab.setText(displayName);
         tab.setContent(spane);
         spane.getItems().add(apTableView);
 
@@ -188,7 +188,7 @@ public class Database {
         spane.setDividerPosition(0, 0.85);
         for(DbColumn tc : columns)
             tableM.getColumns().add(tc.getTableColumn());
-        //tableM.setItems(db.getExternalDbEntries(this));
+        tableM.setItems(db.getExternalDbEntries(this));
         tableM.setVisible(true);
         List<DbColumn> opcol = columns;
         opcol.remove(1);

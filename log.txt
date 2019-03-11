@@ -1,5 +1,0 @@
-# 11 mars 2019 à 05:03:28 : ########## Isotope Launched ##########
-# 11 mars 2019 à 05:03:32 : Filament spools shown !
-# 11 mars 2019 à 05:03:32 : Rectangular Pieces shown !
-# 11 mars 2019 à 05:03:32 : Cylinders shown !
-# 11 mars 2019 à 05:03:32 : Everything shown and initialized !
