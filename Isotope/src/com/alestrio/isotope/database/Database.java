@@ -9,6 +9,7 @@ package com.alestrio.isotope.database;
 import com.alestrio.isotope.DB;
 import com.alestrio.isotope.materials.AbsMaterial;
 import com.alestrio.isotope.materials.DBItem;
+import com.google.gson.annotations.Expose;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
@@ -21,17 +22,17 @@ import java.util.Collection;
 import java.util.List;
 
 public class Database {
-    protected String name;
-    protected List<DbColumn> columns = new ArrayList<>();
+    @Expose private String name;
+    @Expose private List<DbColumn> columns = new ArrayList<>();
     private transient DB db = new DB();
     private transient TableView<AbsMaterial> tableM;
     private transient Button modifyButton;
     private transient Button delButton;
     private transient Button duplButton;
     private transient Button totalValueButton;
-    protected PriceCount_type pct;
+    @Expose private PriceCount_type pct;
     private transient Button addButton;
-    protected String displayName;
+    @Expose private String displayName;
 
     public void setDisplayName(String displayName) {
         this.displayName = displayName;
@@ -44,6 +45,7 @@ public class Database {
     public Database(){
         columns.add(new DbColumn("price", DB_TYPE.NUMERIC, "price", "Prix"));
         columns.add(new DbColumn("totalPrice", DB_TYPE.NUMERIC, "totalPrice", "Prix total"));
+        columns.add(new DbColumn("qty", DB_TYPE.INTEG, "qty", "Quantite"));
     }
 
     public void setColumns(ArrayList<DbColumn> s){
@@ -79,9 +81,9 @@ public class Database {
         int i = 1;
         for(DbColumn c : columns){
             if (i < dbNumber) {
-                request = request.concat(c.getName() + " " + c.getDbt().getType() + ", \n ");
+                request = request.concat(c.getProperty() + " " + c.getDbt().getType() + ", \n ");
             } else {
-                request = request.concat(c.getName() + " " + c.getDbt().getType() + " \n ");
+                request = request.concat(c.getProperty() + " " + c.getDbt().getType() + " \n ");
             }
             i++;
 
@@ -214,8 +216,8 @@ public class Database {
             dialog.showAndWait();
 
             for(DbColumn c : opcol){
-                String name = c.getName();
-                switch (name){
+                String prop = c.getProperty();
+                switch (prop){
                     case "head" : item.setHead(c.getTextField().getText());
                         break;
                     case "diameter" : item.setDiameter(Double.parseDouble(c.getTextField().getText()));

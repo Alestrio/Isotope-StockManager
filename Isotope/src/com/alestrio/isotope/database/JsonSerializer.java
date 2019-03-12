@@ -38,7 +38,7 @@ public class JsonSerializer {
     }
 
     public void serialize(Object o) {
-        gson = new GsonBuilder().setPrettyPrinting().create();
+        gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
         String serializedObject = "{" + gson.toJson(o).substring(2, gson.toJson(o).length()-2) + "}";
         try {
             fis = new FileInputStream(file);

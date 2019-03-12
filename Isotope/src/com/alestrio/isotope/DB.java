@@ -286,73 +286,69 @@ public class DB {
             List<DbColumn> columns = database.getColumns();
 
             while (result.next()) {
-
                 DBItem item = new DBItem(database);
-
-
-
-                for(DbColumn col : columns) {
-                    if (col.getName().equalsIgnoreCase("length")) {
+                for(DbColumn col : columns) { //TODO Create a col.getProperty string var to reduce expressions with a switch statement
+                    if (col.getProperty().equalsIgnoreCase("length")) {
                         double a = result.getDouble("length");
                         item.setLength(a);
                     }
-                    if(col.getName().equalsIgnoreCase("width")){
+                    if(col.getProperty().equalsIgnoreCase("width")){
                         double b = result.getDouble("width");
                         item.setWidth(b);
                     }
-                    if(col.getName().equalsIgnoreCase("thickness")){
+                    if(col.getProperty().equalsIgnoreCase("thickness")){
                         double c = result.getDouble("thickness");
                         item.setThickness(c);
                     }
-                    if(col.getName().equalsIgnoreCase("type")){
+                    if(col.getProperty().equalsIgnoreCase("type")){
                         String d = result.getString("type");
                         item.setType(d);
                     }
-                    if(col.getName().equalsIgnoreCase("color")){
+                    if(col.getProperty().equalsIgnoreCase("color")){
                         String e = result.getString("color");
                         item.setColor(e);
                     }
-                    if(col.getName().equalsIgnoreCase("remaininlength")){
+                    if(col.getProperty().equalsIgnoreCase("remaininlength")){
                         double g = result.getDouble("remaininglength");
                         item.setRemainingLength(g);
                     }
-                    if(col.getName().equalsIgnoreCase("remainingwidth")){
+                    if(col.getProperty().equalsIgnoreCase("remainingwidth")){
                         double h = result.getDouble("remainingwidth");
                         item.setRemainingWidth(h);
                     }
-                    if(col.getName().equalsIgnoreCase("remainingthickness")){
+                    if(col.getProperty().equalsIgnoreCase("remainingthickness")){
                         double i = result.getDouble("remainingthickness");
                         item.setRemainingThickness(i);
                     }
-                    if(col.getName().equalsIgnoreCase("price")){
+                    if(col.getProperty().equalsIgnoreCase("price")){
                         double j = result.getDouble("price");
                         item.setPrice(j);
                     }
-                    if(col.getName().equalsIgnoreCase("qty")){
+                    if(col.getProperty().equalsIgnoreCase("qty")){
                         int k = result.getInt("qty");
                         item.setQty(k);
                     }
-                    if(col.getName().equalsIgnoreCase("head")){
+                    if(col.getProperty().equalsIgnoreCase("head")){
                         String a = result.getString("head");
                         item.setHead(a);
                     }
-                    if(col.getName().equalsIgnoreCase("diameter")){
+                    if(col.getProperty().equalsIgnoreCase("diameter")){
                         Double a = result.getDouble("diameter");
                         item.setDiameter(a);
                     }
-                    if(col.getName().equalsIgnoreCase("initialweight")){
+                    if(col.getProperty().equalsIgnoreCase("initialweight")){
                         Double a = result.getDouble("initialweight");
                         item.setInitialWeight(a);
                     }
-                    if(col.getName().equalsIgnoreCase("remainingweight")){
+                    if(col.getProperty().equalsIgnoreCase("remainingweight")){
                         Double a = result.getDouble("remainingweight");
                         item.setRemainingWeight(a);
                     }
-                    if(col.getName().equalsIgnoreCase("pricecm")){
+                    if(col.getProperty().equalsIgnoreCase("pricecm")){
                         Double a = result.getDouble("pricecm");
                         item.setPriceCm(a);
                     }
-                    if(col.getName().equalsIgnoreCase("pieceprice")){
+                    if(col.getProperty().equalsIgnoreCase("pieceprice")){
                         Double a = result.getDouble("pieceprice");
                         item.setPiecePrice(a);
                     }

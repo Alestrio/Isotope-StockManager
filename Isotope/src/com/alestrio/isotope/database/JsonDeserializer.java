@@ -27,7 +27,7 @@ public class JsonDeserializer {
 
     public ArrayList<Database> deserialize(){
         ArrayList<Database> adb = new ArrayList<>();
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
         try {
             fis = new FileInputStream(file);
             String fileContent = new String(fis.readAllBytes());

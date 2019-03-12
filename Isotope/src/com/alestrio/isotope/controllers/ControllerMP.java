@@ -907,12 +907,12 @@ public class ControllerMP {
 
             ArrayList<DbColumn> databaseColumns = new ArrayList<>();
             databaseColumns.add(new DbColumn("nothing", DB_TYPE.INTEG, "nothing", "nothing"));
-            for (TextField tf : listColNameTextField){ //TODO
+            for (TextField tf : listColNameTextField){
                 if((tf.getText() != null)){
                     String tempType = listColTypeComboBox.get(k).getValue().toString();
                     if (tempType != null){
                         String tempProp = listColPropComboBox.get(k).getValue().toString();
-                        if(tempProp != null /*&& !tempProp.equalsIgnoreCase(databaseColumns.get(k).getProperty())*/ /*TODO*/){
+                        if(tempProp != null){
                             switch(tempType){
                                 case "INTEG" : database.addColumn(new DbColumn(tf.getText().replaceAll("(\\W|^_)*", "").toLowerCase(), DB_TYPE.INTEG, tempProp, tf.getText()));
                                     databaseColumns.add(new DbColumn(tf.getText().replaceAll("(\\W|^_)*", "").toLowerCase(), DB_TYPE.INTEG, tempProp, tf.getText()));
@@ -923,8 +923,8 @@ public class ControllerMP {
                                 case "TEXT" : database.addColumn(new DbColumn(tf.getText().replaceAll("(\\W|^_)*", "").toLowerCase(), DB_TYPE.TEXT, tempProp, tf.getText()));
                                     databaseColumns.add(new DbColumn(tf.getText().replaceAll("(\\W|^_)*", "").toLowerCase(), DB_TYPE.INTEG, tempProp, tf.getText()));
                                     break;
-
                             }
+                            k++;
                         }
                     }
                 }

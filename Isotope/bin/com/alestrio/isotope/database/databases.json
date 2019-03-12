@@ -15,38 +15,25 @@
         "property": "totalPrice"
       },
       {
-        "name": "diametre",
-        "displayName": "Diametre",
+        "name": "qty",
+        "displayName": "Quantite",
+        "dbt": "INTEG",
+        "property": "qty"
+      },
+      {
+        "name": "diametreinterieur",
+        "displayName": "Diametre interieur",
         "dbt": "NUMERIC",
         "property": "diameter"
+      },
+      {
+        "name": "diametreexterieur",
+        "displayName": "Diametre exterieur",
+        "dbt": "NUMERIC",
+        "property": "length"
       }
     ],
     "pct": "UNIT",
     "displayName": "Ecrous"
-  },
-  {
-    "name": "rondelles",
-    "columns": [
-      {
-        "name": "price",
-        "displayName": "Prix",
-        "dbt": "NUMERIC",
-        "property": "price"
-      },
-      {
-        "name": "totalPrice",
-        "displayName": "Prix total",
-        "dbt": "NUMERIC",
-        "property": "totalPrice"
-      },
-      {
-        "name": "diametre",
-        "displayName": "Diametre",
-        "dbt": "NUMERIC",
-        "property": "diameter"
-      }
-    ],
-    "pct": "UNIT",
-    "displayName": "Rondelles"
   }
 ]

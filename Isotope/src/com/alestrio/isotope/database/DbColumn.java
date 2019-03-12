@@ -7,6 +7,7 @@
 package com.alestrio.isotope.database;
 
 import com.alestrio.isotope.materials.AbsMaterial;
+import com.google.gson.annotations.Expose;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -14,12 +15,12 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 public class DbColumn {
 
-    private String name;
-    private String displayName;
-    private DB_TYPE dbt;
-    private transient TableColumn tc;
-    protected transient TextField tf = new TextField();
-    protected String property;
+    @Expose private String name;
+    @Expose private String displayName;
+    @Expose private DB_TYPE dbt;
+    private TableColumn tc;
+    private TextField tf;
+    @Expose private String property;
 
     public String getName() {
         return name;
@@ -29,7 +30,7 @@ public class DbColumn {
         this.name = name;
     }
 
-    public DB_TYPE getDbt() {
+    DB_TYPE getDbt() {
         return dbt;
     }
 
@@ -37,7 +38,7 @@ public class DbColumn {
         this.dbt = dbt;
     }
 
-    public String getDisplayName() {
+    String getDisplayName() {
         return displayName;
     }
 
@@ -51,18 +52,19 @@ public class DbColumn {
         this.property = property;
         this.displayName = dispname;
 
-
     }
 
-    public TableColumn getTableColumn() {
+    TableColumn getTableColumn() {
         this.tc = new TableColumn();
         this.tc.setCellValueFactory(new PropertyValueFactory<AbsMaterial, String>(property));
         this.tc.setText(this.displayName);
         return this.tc;
     }
 
-    public TextField getTextField() {
-        return tf;
+    TextField getTextField() {
+        if(tf == null)
+            tf = new TextField();
+        return this.tf;
     }
 
     public void setTextTextField(String text){
