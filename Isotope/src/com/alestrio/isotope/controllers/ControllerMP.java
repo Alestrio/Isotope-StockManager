@@ -18,6 +18,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
+import org.controlsfx.control.table.TableFilter;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -26,10 +27,10 @@ import java.util.List;
 import java.util.Optional;
 
 public class ControllerMP {
-    DB db = new DB();
+    private DB db = new DB();
     @FXML
     TabPane tabBase = new TabPane();
-    Logging log = new Logging();
+    private Logging log = new Logging();
     private int j = 11;
     private int i = 1;
     private JsonDeserializer jsd = new JsonDeserializer();
@@ -781,7 +782,6 @@ public class ControllerMP {
 
     @FXML
     void clickDatabaseAddBtn(){
-        //TODO clickDatabaseAddBtn
         Dialog dialog = new Dialog();
         dialog.setTitle("Ajouter un champ dynamique personnalisé :");
 
@@ -826,7 +826,7 @@ public class ControllerMP {
                 "remainingThickness",
                 "type",
                 "initialWeight",
-                "remainingWidth",
+                "remainingWeight",
                 "color",
                 "qty",
                 "price",
@@ -1027,7 +1027,7 @@ public class ControllerMP {
         tableR.getColumns().addAll(t);
         tableR.setVisible(true);
 
-        //TODO TableFilter<RectangularPiece> filter = new TableFilter<>(tableR);
+        TableFilter<RectangularPiece> filter = new TableFilter<>(tableR);
         log.writeLog("Rectangular Pieces shown !");
     }
 
@@ -1055,7 +1055,7 @@ public class ControllerMP {
         tableC.getColumns().addAll(t);
         tableC.setVisible(true);
 
-        //TODO TableFilter<Cylinder> filter = new TableFilter<>(tableC);
+        TableFilter<Cylinder> filter = new TableFilter<>(tableC);
         log.writeLog("Cylinders shown !");
     }
 
@@ -1084,7 +1084,7 @@ public class ControllerMP {
         tableF.getColumns().addAll(t);
         tableF.setVisible(true);
 
-        //TODO TableFilter<FilamentSpool> filter = new TableFilter<>(tableF);
+        TableFilter<FilamentSpool> filter = new TableFilter<>(tableF);
         log.writeLog("Filament spools shown !");
     }
 
@@ -1096,4 +1096,5 @@ public class ControllerMP {
             aldb.forEach(e -> this.tabBase.getTabs().add(e.getDatabaseUiElements()));
             log.writeLog("Everything shown and initialized !");
     }
+    
 }

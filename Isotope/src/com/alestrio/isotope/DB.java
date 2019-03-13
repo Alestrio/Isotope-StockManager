@@ -48,13 +48,11 @@ public class DB {
     }
 
     public
-    boolean disconnect () {
+    void disconnect () {
         try {
             conn.close();
-            return true;
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
         }
     }
 
@@ -287,78 +285,64 @@ public class DB {
 
             while (result.next()) {
                 DBItem item = new DBItem(database);
-                for(DbColumn col : columns) { //TODO Create a col.getProperty string var to reduce expressions with a switch statement
-                    if (col.getProperty().equalsIgnoreCase("length")) {
-                        double a = result.getDouble("length");
-                        item.setLength(a);
-                    }
-                    if(col.getProperty().equalsIgnoreCase("width")){
-                        double b = result.getDouble("width");
-                        item.setWidth(b);
-                    }
-                    if(col.getProperty().equalsIgnoreCase("thickness")){
-                        double c = result.getDouble("thickness");
-                        item.setThickness(c);
-                    }
-                    if(col.getProperty().equalsIgnoreCase("type")){
-                        String d = result.getString("type");
-                        item.setType(d);
-                    }
-                    if(col.getProperty().equalsIgnoreCase("color")){
-                        String e = result.getString("color");
-                        item.setColor(e);
-                    }
-                    if(col.getProperty().equalsIgnoreCase("remaininlength")){
-                        double g = result.getDouble("remaininglength");
-                        item.setRemainingLength(g);
-                    }
-                    if(col.getProperty().equalsIgnoreCase("remainingwidth")){
-                        double h = result.getDouble("remainingwidth");
-                        item.setRemainingWidth(h);
-                    }
-                    if(col.getProperty().equalsIgnoreCase("remainingthickness")){
-                        double i = result.getDouble("remainingthickness");
-                        item.setRemainingThickness(i);
-                    }
-                    if(col.getProperty().equalsIgnoreCase("price")){
-                        double j = result.getDouble("price");
-                        item.setPrice(j);
-                    }
-                    if(col.getProperty().equalsIgnoreCase("qty")){
-                        int k = result.getInt("qty");
-                        item.setQty(k);
-                    }
-                    if(col.getProperty().equalsIgnoreCase("head")){
-                        String a = result.getString("head");
-                        item.setHead(a);
-                    }
-                    if(col.getProperty().equalsIgnoreCase("diameter")){
-                        Double a = result.getDouble("diameter");
-                        item.setDiameter(a);
-                    }
-                    if(col.getProperty().equalsIgnoreCase("initialweight")){
-                        Double a = result.getDouble("initialweight");
-                        item.setInitialWeight(a);
-                    }
-                    if(col.getProperty().equalsIgnoreCase("remainingweight")){
-                        Double a = result.getDouble("remainingweight");
-                        item.setRemainingWeight(a);
-                    }
-                    if(col.getProperty().equalsIgnoreCase("pricecm")){
-                        Double a = result.getDouble("pricecm");
-                        item.setPriceCm(a);
-                    }
-                    if(col.getProperty().equalsIgnoreCase("pieceprice")){
-                        Double a = result.getDouble("pieceprice");
-                        item.setPiecePrice(a);
+                String prop;
+                for(DbColumn col : columns) {
+                    prop = col.getProperty().toLowerCase();
+                    switch(prop){
+                        case("length"): double a = result.getDouble("length");
+                            item.setLength(a);
+                            break;
+                        case("width"): double b = result.getDouble("width");
+                            item.setWidth(b);
+                            break;
+                        case("thickness"): double c = result.getDouble("thickness");
+                            item.setThickness(c);
+                            break;
+                        case("type"): String d = result.getString("type");
+                            item.setType(d);
+                            break;
+                        case("color"): String e = result.getString("color");
+                            item.setColor(e);
+                            break;
+                        case("remaninglength"): double g = result.getDouble("remaininglength");
+                            item.setRemainingLength(g);
+                            break;
+                        case("remainingwidth"): double h = result.getDouble("remainingwidth");
+                            item.setRemainingWidth(h);
+                            break;
+                        case("remainingthickness"): double i = result.getDouble("remainingthickness");
+                            item.setRemainingThickness(i);
+                            break;
+                        case("price"): double j = result.getDouble("price");
+                            item.setPrice(j);
+                            break;
+                        case("qty"): int k = result.getInt("qty");
+                            item.setQty(k);
+                            break;
+                        case("head"): String l = result.getString("head");
+                            item.setHead(l);
+                            break;
+                        case("diameter"): Double m = result.getDouble("diameter");
+                            item.setDiameter(m);
+                            break;
+                        case("initialweight"): Double n = result.getDouble("initialweight");
+                            item.setInitialWeight(n);
+                            break;
+                        case("remainingweight"): Double o = result.getDouble("remainingweight");
+                            item.setRemainingWeight(o);
+                            break;
+                        case("pricecm"): Double p = result.getDouble("pricecm");
+                            item.setPriceCm(p);
+                            break;
+                        case("pieceprice"): Double q = result.getDouble("pieceprice");
+                            item.setPiecePrice(q);
+                            break;
                     }
                     int l = result.getInt("id");
                     item.setId(l);
                     item.computeTotalPrice();
                 }
-
                 oldb.add(item);
-
             }
         } catch (SQLException e) {
             e.printStackTrace();

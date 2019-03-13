@@ -7,6 +7,7 @@
 package com.alestrio.isotope.controllers;
 
 import com.alestrio.isotope.DB;
+import com.alestrio.isotope.Logging;
 import com.alestrio.isotope.materials.Screw;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -19,7 +20,8 @@ import org.controlsfx.control.table.TableFilter;
 import java.util.*;
 
 public class ControllerV {
-    DB db = new DB();
+    private DB db = new DB();
+    private Logging log = new Logging();
     /*--- SCREW ---*/
     @FXML
     private TableView<Screw> tableS;
@@ -46,7 +48,7 @@ public class ControllerV {
         db.connect();
         db.createDatabase();
         showDbEntriesScrews();
-        //TODO add logging details
+        log.writeLog("Stockmanager initialized (screws)");
 
     }
 
@@ -107,20 +109,17 @@ public class ControllerV {
         if (s.isPresent()) {
             s.get().add();
             showDbEntriesScrews();
-        } else
+        } else {
             System.out.println("Non présent");
-        //TODO add logging details
-
-
-
+            log.writeLog("Optional not present");
+        }
     }
 
     @FXML
     void clickDelButton() {
         tableS.getSelectionModel().getSelectedItem().delete();
         showDbEntriesScrews();
-        //TODO add logging details
-
+        log.writeLog("deleted screw");
     }
 
     public void showDbEntriesScrews() {
@@ -150,8 +149,7 @@ public class ControllerV {
         this.tableS.setVisible(true);
 
         TableFilter<Screw> filter = new TableFilter<>(tableS);
-        //TODO add logging details
-
+        log.writeLog("Screws displayed");
     }
 
     @FXML
@@ -215,7 +213,7 @@ public class ControllerV {
         });
         d.showAndWait();
         showDbEntriesScrews();
-        //TODO add logging details
+        log.writeLog("Edited screw");
 
     }
 
@@ -235,8 +233,6 @@ public class ControllerV {
 
         w.setOnCloseRequest(event -> w.hide());
         t.showAndWait();
-        //TODO add logging details
-
     }
 
     @FXML
@@ -304,9 +300,11 @@ public class ControllerV {
         if (c.isPresent()) {
             c.get().add();
             showDbEntriesScrews();
-        } else
+        } else {
             System.out.println("Non présent");
-        //TODO add logging details
+            log.writeLog("Optional not present");
+        }
+
 
     }
 
@@ -336,7 +334,7 @@ public class ControllerV {
         });
         d.showAndWait();
         showDbEntriesScrews();
-        //TODO add logging details
+        log.writeLog("destocked screw");
 
     }
 
@@ -366,8 +364,7 @@ public class ControllerV {
         });
         d.showAndWait();
         showDbEntriesScrews();
-        //TODO add logging details
-
+        log.writeLog("stocked screw");
     }
 }
 

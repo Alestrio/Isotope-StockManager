@@ -9,6 +9,7 @@ package com.alestrio.isotope.database;
 import com.alestrio.isotope.DB;
 import com.alestrio.isotope.materials.AbsMaterial;
 import com.alestrio.isotope.materials.DBItem;
+import com.alestrio.isotope.materials.FilamentSpool;
 import com.google.gson.annotations.Expose;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
@@ -16,6 +17,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import org.controlsfx.control.table.TableFilter;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -194,6 +196,7 @@ public class Database {
         tableM.setVisible(true);
         List<DbColumn> opcol = columns;
         opcol.remove(1);
+        TableFilter<AbsMaterial> filter = new TableFilter<>(tableM);
 
         addButton.setOnAction(event -> {
          DBItem item = new DBItem(this);
@@ -272,8 +275,8 @@ public class Database {
                 y++;
                 x = 1;
                 TextField tf = c.getTextField();
-                String name = c.getName();
-                switch (name) {
+                String prop = c.getProperty();
+                switch (prop) {
                     case "head":
                         tf.setText(item.getHead());
                         break;

@@ -5,12 +5,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Logging {
-    FileOutputStream fos;
-    FileWriter f;
+    private FileOutputStream fos;
+    private FileWriter f;
 
     public Logging() {
         try {
-            f = new FileWriter(new File("log.txt"), true);
+            f = new FileWriter(new File(Settings.getPrimitiveFilePath() + "log.txt"), true);
         } catch (FileNotFoundException e) {
             System.out.println("Cannot reach log file : creating new one");
             File file = new File("log.txt");

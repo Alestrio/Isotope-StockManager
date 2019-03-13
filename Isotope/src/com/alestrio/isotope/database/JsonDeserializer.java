@@ -6,33 +6,42 @@
 
 package com.alestrio.isotope.database;
 
+import com.alestrio.isotope.Logging;
+import com.alestrio.isotope.Settings;
 import com.google.gson.*;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 public class JsonDeserializer {
-    private FileInputStream fis;
-    private JsonArray ja;
-    private JsonParser jp;
-    private String filePath = "C:\\Users\\Alexis\\IdeaProjects\\isotope\\Isotope\\src\\com\\alestrio\\isotope\\database\\databases.json";
+    private String filePath = Settings.getPrimitiveFilePath() + "databases.json";
     private File file = new File(filePath);
+    private Logging log = new Logging();
+    private PrintWriter printWriter;
 
 
     public JsonDeserializer() {
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+                printWriter = new PrintWriter(file);
+                printWriter.print("[]");
+                printWriter.flush();
+            } catch (IOException e) {
+                e.printStackTrace();
+                log.writeLog(e.getMessage());
+            }
+        }
     }
 
     public ArrayList<Database> deserialize(){
         ArrayList<Database> adb = new ArrayList<>();
         Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
         try {
-            fis = new FileInputStream(file);
+            FileInputStream fis = new FileInputStream(file);
             String fileContent = new String(fis.readAllBytes());
-            jp = new JsonParser();
-            ja = jp.parse(fileContent).getAsJsonArray();
+            JsonParser jp = new JsonParser();
+            JsonArray ja = jp.parse(fileContent).getAsJsonArray();
             for(JsonElement jo : ja){
                 adb.add(gson.fromJson(jo, Database.class));
             }
@@ -41,8 +50,6 @@ public class JsonDeserializer {
         } catch (IOException e){
             e.printStackTrace();
         }
-
-
         return adb;
     }
 }
