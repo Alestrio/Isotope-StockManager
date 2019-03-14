@@ -2,13 +2,7 @@
 
 ## Informations générales:
 
-- Version actuelle : Hydrogène (H)
-
-- Types de consommables supportés :
-	- Visserie
-	- Plaques
-	- Cylindres
-	- Bobines d'impression 3D
+- Version actuelle : Hydrogène-Deutérium (HD)
 	
 ---
 
@@ -22,18 +16,16 @@
 
 - Le projet a besoin de
 	- SceneBuilder
-	- e(fx)clipse
 	- JDBC avec les drivers PostgreSQL
-	- Une base de données SQL avec les templates donnés dans le dossier "db"
+	- Une base de données PostGreSQL"
 
 ---
 
 ## Déploiement
 
-- En l'absence d'installateur, il faut placer le jar dans un dossier, puis rajouter le fichier donné dans le dossier "deployement",
-	de là, il faudra rentrer l'addresse du serveur dans le fichier susnommé.
+- Installer une base de données PostGreSQL
 
-- Il faudra aussi installer un serveur PostGreSQL, et importer la base de données se trouvant dans le dossier "db".
+- Exécuter l'installateur
 
 --
 
