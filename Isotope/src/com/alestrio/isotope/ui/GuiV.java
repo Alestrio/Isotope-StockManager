@@ -37,7 +37,6 @@ public class GuiV extends Application {
                 }
             }
         });
-        //TODO find a solution to show db entries on start of the programm
     }
 
     @Override

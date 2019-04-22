@@ -6,13 +6,15 @@
 
 package com.alestrio.isotope;
 
-import com.alestrio.isotope.materials.Cylinder;
-import com.alestrio.isotope.materials.FilamentSpool;
-import com.alestrio.isotope.materials.RectangularPiece;
-import com.alestrio.isotope.materials.Screw;
+import com.alestrio.isotope.database.Database;
+import com.alestrio.isotope.database.DbColumn;
+import com.alestrio.isotope.materials.*;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.paint.Material;
 
+import javax.print.attribute.standard.JobStateReason;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -46,13 +48,11 @@ public class DB {
     }
 
     public
-    boolean disconnect () {
+    void disconnect () {
         try {
             conn.close();
-            return true;
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
         }
     }
 
@@ -182,14 +182,12 @@ public class DB {
         return olr;
     }
 
-    /*Snif, j'ai écrasé ça avec une erreur de git, c'est moche :c
-    * #HereItIsAgain, #SeemsLegit, #EverythingInTheAss, #CrazyDev*/
     public void createDatabase(){
         try{
             //Si ça n'existe pas
             this.dbQuery("CREATE TABLE public.bobines\n" +
                     "(\n" +
-                    "  id integer NOT NULL DEFAULT nextval('bobines_id_seq'::regclass),\n" +
+                    "  id serial,\n" +
                     "  type text,\n" +
                     "  diameter numeric,\n" +
                     "  initialweight numeric,\n" +
@@ -201,9 +199,7 @@ public class DB {
                     ")\n" +
                     "WITH (\n" +
                     "  OIDS=FALSE\n" +
-                    ");\n" +
-                    "ALTER TABLE public.bobines\n" +
-                    "  OWNER TO postgres;");
+                    ");");
         }
         catch(SQLException e){
             //Si ça existe
@@ -213,7 +209,7 @@ public class DB {
         try{
             this.dbQuery("CREATE TABLE public.cylindres\n" +
                     "(\n" +
-                    "  id integer NOT NULL DEFAULT nextval('cylindres_id_seq'::regclass),\n" +
+                    "  id serial,\n" +
                     "  diameter numeric,\n" +
                     "  length numeric,\n" +
                     "  color text,\n" +
@@ -225,9 +221,7 @@ public class DB {
                     ")\n" +
                     "WITH (\n" +
                     "  OIDS=FALSE\n" +
-                    ");\n" +
-                    "ALTER TABLE public.cylindres\n" +
-                    "  OWNER TO postgres;");
+                    ");");
         }
         catch(SQLException e){
             System.out.println("\"cylindres\" table already exists");
@@ -236,7 +230,7 @@ public class DB {
         try{
             this.dbQuery("CREATE TABLE public.rectangles\n" +
                     "(\n" +
-                    "  id integer NOT NULL DEFAULT nextval('rectangles_id_seq'::regclass),\n" +
+                    "  id serial,\n" +
                     "  length numeric,\n" +
                     "  width numeric,\n" +
                     "  thickness numeric,\n" +
@@ -251,9 +245,7 @@ public class DB {
                     ")\n" +
                     "WITH (\n" +
                     "  OIDS=FALSE\n" +
-                    ");\n" +
-                    "ALTER TABLE public.rectangles\n" +
-                    "  OWNER TO postgres;");
+                    ");");
         }
         catch(SQLException e){
             System.out.println("\"rectangles\" table already exists");
@@ -262,7 +254,7 @@ public class DB {
         try{
             this.dbQuery("CREATE TABLE public.visserie\n" +
                     "(\n" +
-                    "  id integer NOT NULL DEFAULT nextval('visserie_id_seq'::regclass),\n" +
+                    "  id serial,\n" +
                     "  diameter numeric,\n" +
                     "  length numeric,\n" +
                     "  head text,\n" +
@@ -274,14 +266,93 @@ public class DB {
                     ")\n" +
                     "WITH (\n" +
                     "  OIDS=FALSE\n" +
-                    ");\n" +
-                    "ALTER TABLE public.visserie\n" +
-                    "  OWNER TO postgres;");
+                    ");");
         }
         catch(SQLException e){
             System.out.println("\"visserie\" table already exists");
         }
     }
 
+    public ObservableList<AbsMaterial> getExternalDbEntries(Database database){
+        this.connect();
+        List<AbsMaterial> list = new ArrayList<>();
+        ObservableList<AbsMaterial> oldb = FXCollections.observableList(list);
+        Statement state;
+        try {
+            state = conn.createStatement();
+            ResultSet result = state.executeQuery("SELECT * FROM \""+database.getName().toLowerCase()+"\"");
+            List<DbColumn> columns = database.getColumns();
+
+            while (result.next()) {
+                DBItem item = new DBItem(database);
+                String prop;
+                for(DbColumn col : columns) {
+                    prop = col.getProperty().toLowerCase();
+                    switch(prop){
+                        case("length"): double a = result.getDouble("length");
+                            item.setLength(a);
+                            break;
+                        case("width"): double b = result.getDouble("width");
+                            item.setWidth(b);
+                            break;
+                        case("thickness"): double c = result.getDouble("thickness");
+                            item.setThickness(c);
+                            break;
+                        case("type"): String d = result.getString("type");
+                            item.setType(d);
+                            break;
+                        case("color"): String e = result.getString("color");
+                            item.setColor(e);
+                            break;
+                        case("remaninglength"): double g = result.getDouble("remaininglength");
+                            item.setRemainingLength(g);
+                            break;
+                        case("remainingwidth"): double h = result.getDouble("remainingwidth");
+                            item.setRemainingWidth(h);
+                            break;
+                        case("remainingthickness"): double i = result.getDouble("remainingthickness");
+                            item.setRemainingThickness(i);
+                            break;
+                        case("price"): double j = result.getDouble("price");
+                            item.setPrice(j);
+                            break;
+                        case("qty"): int k = result.getInt("qty");
+                            item.setQty(k);
+                            break;
+                        case("head"): String l = result.getString("head");
+                            item.setHead(l);
+                            break;
+                        case("diameter"): Double m = result.getDouble("diameter");
+                            item.setDiameter(m);
+                            break;
+                        case("initialweight"): Double n = result.getDouble("initialweight");
+                            item.setInitialWeight(n);
+                            break;
+                        case("remainingweight"): Double o = result.getDouble("remainingweight");
+                            item.setRemainingWeight(o);
+                            break;
+                        case("pricecm"): Double p = result.getDouble("pricecm");
+                            item.setPriceCm(p);
+                            break;
+                        case("pieceprice"): Double q = result.getDouble("pieceprice");
+                            item.setPiecePrice(q);
+                            break;
+                    }
+                    int l = result.getInt("id");
+                    item.setId(l);
+                    item.computeTotalPrice();
+                }
+                oldb.add(item);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            oldb = null;
+        }
+        catch (NullPointerException e){
+            e.printStackTrace();
+            oldb = null;
+        }
+        return oldb;
+    }
 
 }

@@ -1,0 +1,57 @@
+[
+  {
+    "name": "ecrous",
+    "columns": [
+      {
+        "name": "price",
+        "displayName": "Prix",
+        "dbt": "NUMERIC",
+        "property": "price"
+      },
+      {
+        "name": "totalPrice",
+        "displayName": "Prix total",
+        "dbt": "NUMERIC",
+        "property": "totalPrice"
+      },
+      {
+        "name": "qty",
+        "displayName": "Quantite",
+        "dbt": "INTEG",
+        "property": "qty"
+      },
+      {
+        "name": "diametreinterieur",
+        "displayName": "Diametre interieur",
+        "dbt": "NUMERIC",
+        "property": "diameter"
+      },
+      {
+        "name": "diametreexterieur",
+        "displayName": "Diametre exterieur",
+        "dbt": "NUMERIC",
+        "property": "length"
+      },
+      {
+        "name": "matiere",
+        "displayName": "Matiere",
+        "dbt": "TEXT",
+        "property": "type"
+      },
+      {
+        "name": "couleur",
+        "displayName": "Couleur",
+        "dbt": "TEXT",
+        "property": "color"
+      },
+      {
+        "name": "autobloquant",
+        "displayName": "Auto-bloquant",
+        "dbt": "TEXT",
+        "property": "head"
+      }
+    ],
+    "pct": "UNIT",
+    "displayName": "Ecrous"
+  }
+]

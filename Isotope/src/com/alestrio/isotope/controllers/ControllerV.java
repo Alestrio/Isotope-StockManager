@@ -7,6 +7,7 @@
 package com.alestrio.isotope.controllers;
 
 import com.alestrio.isotope.DB;
+import com.alestrio.isotope.Logging;
 import com.alestrio.isotope.materials.Screw;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -19,7 +20,8 @@ import org.controlsfx.control.table.TableFilter;
 import java.util.*;
 
 public class ControllerV {
-    DB db = new DB();
+    private DB db = new DB();
+    private Logging log = new Logging();
     /*--- SCREW ---*/
     @FXML
     private TableView<Screw> tableS;
@@ -46,6 +48,8 @@ public class ControllerV {
         db.connect();
         db.createDatabase();
         showDbEntriesScrews();
+        log.writeLog("Stockmanager initialized (screws)");
+
     }
 
     @FXML
@@ -105,16 +109,17 @@ public class ControllerV {
         if (s.isPresent()) {
             s.get().add();
             showDbEntriesScrews();
-        } else
+        } else {
             System.out.println("Non présent");
-
-
+            log.writeLog("Optional not present");
+        }
     }
 
     @FXML
     void clickDelButton() {
         tableS.getSelectionModel().getSelectedItem().delete();
         showDbEntriesScrews();
+        log.writeLog("deleted screw");
     }
 
     public void showDbEntriesScrews() {
@@ -144,6 +149,7 @@ public class ControllerV {
         this.tableS.setVisible(true);
 
         TableFilter<Screw> filter = new TableFilter<>(tableS);
+        log.writeLog("Screws displayed");
     }
 
     @FXML
@@ -207,6 +213,8 @@ public class ControllerV {
         });
         d.showAndWait();
         showDbEntriesScrews();
+        log.writeLog("Edited screw");
+
     }
 
     @FXML
@@ -292,8 +300,12 @@ public class ControllerV {
         if (c.isPresent()) {
             c.get().add();
             showDbEntriesScrews();
-        } else
+        } else {
             System.out.println("Non présent");
+            log.writeLog("Optional not present");
+        }
+
+
     }
 
     @FXML
@@ -322,6 +334,8 @@ public class ControllerV {
         });
         d.showAndWait();
         showDbEntriesScrews();
+        log.writeLog("destocked screw");
+
     }
 
     @FXML
@@ -350,6 +364,7 @@ public class ControllerV {
         });
         d.showAndWait();
         showDbEntriesScrews();
+        log.writeLog("stocked screw");
     }
 }
 

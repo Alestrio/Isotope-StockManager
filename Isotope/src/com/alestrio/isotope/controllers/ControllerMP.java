@@ -7,9 +7,12 @@
 package com.alestrio.isotope.controllers;
 
 import com.alestrio.isotope.DB;
+import com.alestrio.isotope.Logging;
+import com.alestrio.isotope.database.*;
 import com.alestrio.isotope.materials.Cylinder;
 import com.alestrio.isotope.materials.FilamentSpool;
 import com.alestrio.isotope.materials.RectangularPiece;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -17,13 +20,22 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import org.controlsfx.control.table.TableFilter;
 
-import java.sql.SQLException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 public class ControllerMP {
-    DB db = new DB();
+    private DB db = new DB();
+    @FXML
+    TabPane tabBase = new TabPane();
+    private Logging log = new Logging();
+    private int j = 11;
+    private int i = 1;
+    private JsonDeserializer jsd = new JsonDeserializer();
+    private ArrayList<Database> aldb;
+
     /*--- PLAQUES ---*/
     @FXML
     private TableView<RectangularPiece> tableR = new TableView<>();
@@ -95,6 +107,8 @@ public class ControllerMP {
     public void initialize() {
         db.connect();
         db.createDatabase();
+        aldb = jsd.deserialize();
+        aldb.forEach(Database::addDb);
         showDbEntries();
     }
 
@@ -155,6 +169,10 @@ public class ControllerMP {
         Optional<FilamentSpool> f = d.showAndWait();
         if (f.isPresent()) {
             f.get().add();
+            log.writeLog("Filament Spool added !");
+        }
+        else{
+            log.writeLog("ERROR : Filament Spool is not present, cannot add !");
         }
         showDbEntries();
     }
@@ -231,6 +249,7 @@ public class ControllerMP {
             f.get().add();
 
         showDbEntries();
+        log.writeLog("Rectangular piece added");
     }
 
     @FXML
@@ -290,10 +309,11 @@ public class ControllerMP {
             f.get().add();
         }
         showDbEntries();
+        log.writeLog("Cylinder added !");
     }
 
     /*--- MODIFY BUTTONS ---*/
-    //TODO Boutons de modification
+
     @FXML
     void clickModBtnR() {
         RectangularPiece r = tableR.getSelectionModel().getSelectedItem();
@@ -375,6 +395,7 @@ public class ControllerMP {
         });
         d.showAndWait();
         showDbEntriesRec();
+        log.writeLog("Rectangular piece modified !");
     }
 
     @FXML
@@ -440,6 +461,7 @@ public class ControllerMP {
         });
         d.showAndWait();
         showDbEntriesCylinders();
+        log.writeLog("Cylinder modified !");
     }
 
     @FXML
@@ -505,6 +527,7 @@ public class ControllerMP {
         });
         d.showAndWait();
         showDbEntriesSpool();
+        log.writeLog("Filament Spool modified !");
     }
 
     /*--- ERASE BUTTONS ---*/
@@ -513,6 +536,7 @@ public class ControllerMP {
         RectangularPiece r = tableR.getSelectionModel().getSelectedItem();
         r.delete();
         showDbEntriesRec();
+        log.writeLog("Rectangular piece deleted !");
     }
 
     @FXML
@@ -520,6 +544,7 @@ public class ControllerMP {
         Cylinder c = tableC.getSelectionModel().getSelectedItem();
         c.delete();
         showDbEntriesCylinders();
+        log.writeLog("Cylinder deleted !");
     }
 
     @FXML
@@ -527,6 +552,7 @@ public class ControllerMP {
         FilamentSpool f = tableF.getSelectionModel().getSelectedItem();
         f.delete();
         showDbEntriesSpool();
+        log.writeLog("Filament Spool deleted !");
     }
 
     /*--- DUPLICATE BUTTONS ---*/
@@ -613,6 +639,7 @@ public class ControllerMP {
             f.get().add();
 
         showDbEntriesRec();
+        log.writeLog("Rectangular Piece duplicated !");
     }
 
     @FXML
@@ -680,6 +707,7 @@ public class ControllerMP {
             f.get().add();
         }
         showDbEntriesCylinders();
+        log.writeLog("Cylinder duplicated !");
     }
 
     @FXML
@@ -747,10 +775,173 @@ public class ControllerMP {
             f.get().add();
         }
         showDbEntriesSpool();
+        log.writeLog("Filament Spool duplicated !");
     }
 
     /*--- OTHER BUTTONS ---*/
 
+    @FXML
+    void clickDatabaseAddBtn(){
+        Dialog dialog = new Dialog();
+        dialog.setTitle("Ajouter un champ dynamique personnalisé :");
+
+        Label dbNameLabel = new Label("Nom de la base de donnée : ");
+        Label dbPctLabel = new Label("Type de calcul de prix : ");
+
+        TextField dbName = new TextField();
+
+        ToggleGroup dbPct = new ToggleGroup();
+        RadioButton dbPctUnit = new RadioButton("Prix à l'unité");
+        dbPctUnit.setToggleGroup(dbPct);
+        RadioButton dbPctSqCm = new RadioButton("Prix au cm carré");
+        dbPctSqCm.setToggleGroup(dbPct);
+        RadioButton dbPctCubCm = new RadioButton("Prix au cm cube");
+        dbPctCubCm.setToggleGroup(dbPct);
+
+        GridPane gridPane = new GridPane();
+        gridPane.add(dbNameLabel, 1, 1);
+        gridPane.add(dbName, 2, 1);
+
+        gridPane.add(dbPctLabel, 1, 2);
+        gridPane.add(dbPctUnit, 2, 2);
+        gridPane.add(dbPctSqCm, 2, 3);
+        gridPane.add(dbPctCubCm, 2, 4);
+
+        Label dbColumnsLabel = new Label("Colonnes :");
+        ArrayList<TextField> listColNameTextField = new ArrayList<>();
+        ArrayList<ComboBox> listColTypeComboBox = new ArrayList<>();
+        ArrayList<ComboBox> listColPropComboBox = new ArrayList<>();
+
+        ObservableList<String> types = FXCollections.observableArrayList("INTEG",
+                                                                                "TEXT",
+                                                                                "NUMERIC");
+        ObservableList<String> props = FXCollections.observableArrayList(
+                "head",
+                "diameter",
+                "length",
+                "remainingLength",
+                "width",
+                "remainingWidth",
+                "thickness",
+                "remainingThickness",
+                "type",
+                "initialWeight",
+                "remainingWeight",
+                "color",
+                "qty",
+                "price",
+                "priceCm",
+                "piecePrice"
+        );
+
+        //listColNameTextField.add(new TextField());
+
+        gridPane.add(dbColumnsLabel, 1, 6);
+
+        listColNameTextField.add(new TextField());
+        listColTypeComboBox.add(new ComboBox(types));
+        listColPropComboBox.add(new ComboBox(props));
+
+        gridPane.add(new Label("Nom :"), 1, 7);
+        gridPane.add(listColNameTextField.get(0), 2, 7);
+        gridPane.add(new Label("Type"), 1, 8);
+        gridPane.add(listColTypeComboBox.get(0), 2, 8);
+        gridPane.add(new Label("Propriété"), 1, 9);
+        gridPane.add(listColPropComboBox.get(0), 2, 9);
+
+        Button newCol = new Button("Ajouter une colonne");
+
+        Button validate = new Button("Valider");
+        gridPane.add(validate, 2, j);
+        gridPane.add(newCol, 1, 10);
+        newCol.setOnAction(event ->{
+            j++;
+            gridPane.getChildren().remove(newCol);
+            gridPane.getChildren().remove(validate);
+
+            listColNameTextField.add(new TextField());
+            listColTypeComboBox.add(new ComboBox(types));
+            listColPropComboBox.add(new ComboBox(props));
+
+            gridPane.add(new Separator(), 1, this.j);
+            this.j++;
+            gridPane.add(new Label("Nom :"), 1, this.j);
+            gridPane.add(listColNameTextField.get(i), 2, this.j);
+            this.j++;
+            gridPane.add(new Label("Type"), 1, this.j);
+            gridPane.add(listColTypeComboBox.get(i), 2, this.j);
+            this.j++;
+            gridPane.add(new Label("Propriété"), 1, this.j);
+            gridPane.add(listColPropComboBox.get(i), 2, this.j);
+            this.j++;
+
+            gridPane.add(newCol, 1, this.j);
+            this.j=j+2;
+            gridPane.add(validate, 2, j);
+            this.j = this.j++;
+            dialog.getDialogPane().setContent(gridPane);
+            i++;
+        });
+
+        dialog.getDialogPane().setContent(gridPane);
+        dialog.setResizable(true);
+        this.j = j+2;
+
+        validate.setOnAction(event ->{
+
+            Database database = new Database();
+            database.setDisplayName(dbName.getText());
+            database.setName(dbName.getText().replaceAll("(\\W|^_)*", "").toLowerCase());
+
+            if(dbPct.getSelectedToggle().equals(dbPctUnit)){
+                database.setPct(PriceCount_type.UNIT);
+            }
+            if(dbPct.getSelectedToggle().equals(dbPctSqCm)){
+                database.setPct(PriceCount_type.SQUARECM);
+            }
+            if(dbPct.getSelectedToggle().equals(dbPctCubCm)){
+                database.setPct(PriceCount_type.CUBICCM);
+            }
+            int k = 0;
+
+
+            ArrayList<DbColumn> databaseColumns = new ArrayList<>();
+            databaseColumns.add(new DbColumn("nothing", DB_TYPE.INTEG, "nothing", "nothing"));
+            for (TextField tf : listColNameTextField){
+                if((tf.getText() != null)){
+                    String tempType = listColTypeComboBox.get(k).getValue().toString();
+                    if (tempType != null){
+                        String tempProp = listColPropComboBox.get(k).getValue().toString();
+                        if(tempProp != null){
+                            switch(tempType){
+                                case "INTEG" : database.addColumn(new DbColumn(tf.getText().replaceAll("(\\W|^_)*", "").toLowerCase(), DB_TYPE.INTEG, tempProp, tf.getText()));
+                                    databaseColumns.add(new DbColumn(tf.getText().replaceAll("(\\W|^_)*", "").toLowerCase(), DB_TYPE.INTEG, tempProp, tf.getText()));
+                                    break;
+                                case "NUMERIC" : database.addColumn(new DbColumn(tf.getText().replaceAll("(\\W|^_)*", "").toLowerCase(), DB_TYPE.NUMERIC, tempProp, tf.getText()));
+                                    databaseColumns.add(new DbColumn(tf.getText().replaceAll("(\\W|^_)*", "").toLowerCase(), DB_TYPE.INTEG, tempProp, tf.getText()));
+                                    break;
+                                case "TEXT" : database.addColumn(new DbColumn(tf.getText().replaceAll("(\\W|^_)*", "").toLowerCase(), DB_TYPE.TEXT, tempProp, tf.getText()));
+                                    databaseColumns.add(new DbColumn(tf.getText().replaceAll("(\\W|^_)*", "").toLowerCase(), DB_TYPE.INTEG, tempProp, tf.getText()));
+                                    break;
+                            }
+                            k++;
+                        }
+                    }
+                }
+            }
+
+            JsonSerializer js = new JsonSerializer();
+            js.serialize(database);
+            dialog.setResult(Boolean.TRUE);
+
+        });
+
+        dialog.showAndWait();
+        dialog.getDialogPane();
+
+
+
+    }
 
     /*--- TOTAL VALUE BUTTONS ---*/
     @FXML
@@ -767,6 +958,7 @@ public class ControllerMP {
         ButtonType ok = new ButtonType("Okay", ButtonBar.ButtonData.OK_DONE);
         d.getDialogPane().getButtonTypes().add(ok);
         d.show();
+        log.writeLog("Rectangular Pieces total value :" + i);
     }
 
     @FXML
@@ -783,6 +975,7 @@ public class ControllerMP {
         ButtonType ok = new ButtonType("Okay", ButtonBar.ButtonData.OK_DONE);
         d.getDialogPane().getButtonTypes().add(ok);
         d.show();
+        log.writeLog("Total value :" + i);
     }
 
     @FXML
@@ -799,15 +992,7 @@ public class ControllerMP {
         ButtonType ok = new ButtonType("Okay", ButtonBar.ButtonData.OK_DONE);
         d.getDialogPane().getButtonTypes().add(ok);
         d.show();
-    }
-
-
-    //TODO Filters
-
-    @FXML
-    void clickConnectionBtn() {
-        System.out.println(db.connect());
-        showDbEntries();
+        log.writeLog("Filament spool total value :" + i);
     }
 
     /*--- SHOWDBENTRIES... ---*/
@@ -843,6 +1028,7 @@ public class ControllerMP {
         tableR.setVisible(true);
 
         TableFilter<RectangularPiece> filter = new TableFilter<>(tableR);
+        log.writeLog("Rectangular Pieces shown !");
     }
 
     private void showDbEntriesCylinders() {
@@ -870,6 +1056,7 @@ public class ControllerMP {
         tableC.setVisible(true);
 
         TableFilter<Cylinder> filter = new TableFilter<>(tableC);
+        log.writeLog("Cylinders shown !");
     }
 
     private void showDbEntriesSpool() {
@@ -898,16 +1085,16 @@ public class ControllerMP {
         tableF.setVisible(true);
 
         TableFilter<FilamentSpool> filter = new TableFilter<>(tableF);
+        log.writeLog("Filament spools shown !");
     }
 
     private void showDbEntries() {
-        try {
             db.connect();
             showDbEntriesSpool();
             showDbEntriesRec();
             showDbEntriesCylinders();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+            aldb.forEach(e -> this.tabBase.getTabs().add(e.getDatabaseUiElements()));
+            log.writeLog("Everything shown and initialized !");
     }
+    
 }
