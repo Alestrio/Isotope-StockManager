@@ -1,16 +1,20 @@
 **ISOTOPE**
 
+## /!\ Disclaimer /!\
+
+- Ce logiciel est le projet vrai projet complexe que j'ai fait en Java. Le code est donc un fouilli monumental et est très peu optimisé.
+
+
+
 ## Informations générales:
 
 - Version actuelle : Hydrogène-Deutérium (HD)
 	
----
 
 ## Comment contribuer ?
 
 - Par ajout de fonctionnalités ou corrections de bugs (créer un pull request)
 
----
 
 ## Environnement de développement
 
@@ -19,7 +23,6 @@
 	- JDBC avec les drivers PostgreSQL
 	- Une base de données PostGreSQL"
 
----
 
 ## Déploiement
 
@@ -27,13 +30,11 @@
 
 - Exécuter l'installateur
 
---
 
 ## Gestion de version
 
 - Merci d'utiliser Git pour commit et créer des pull requests.
 
---
 
 ## Auteur(s)
 
