@@ -3,6 +3,7 @@
 ## /!\ Disclaimer /!\
 
 - Ce logiciel est le premier vrai projet complexe que j'ai fait en Java. Le code est donc un fouilli monumental et est très peu optimisé.
+- Projet abandonné
 
 
 
